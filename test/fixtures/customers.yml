@@ -6,8 +6,8 @@ one:
   address: MyString
   city: MyString
   state: MyString
-  postal_code: MyString
-  phone: MyString
+  postal_code: '12345'
+  phone: '1234567891'
 
 two:
   name: MyString
@@ -15,5 +15,5 @@ two:
   address: MyString
   city: MyString
   state: MyString
-  postal_code: MyString
-  phone: MyString
+  postal_code: '12345'
+  phone: '1234567891'
