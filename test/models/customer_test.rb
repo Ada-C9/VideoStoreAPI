@@ -28,6 +28,7 @@ describe Customer do
       nora.rentals.each do |rental|
         rental.must_be_kind_of Rental
       end
+      nora.rentals.first.movie.title.must_equal "Babe"
     end
   end
 
