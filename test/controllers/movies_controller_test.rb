@@ -7,7 +7,7 @@ describe MoviesController do
       keys = %w(id release_date title)
 
       # Act
-      get movies_url
+      get movies_path
 
       # Assert
       must_respond_with :success

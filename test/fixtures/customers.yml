@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: Dan
   registered_at: 2018-05-07 13:41:00
-  address: MyString
-  city: MyString
-  state: MyString
-  postal_code: MyString
-  phone: MyString
+  address: Lives at Ada
+  city: Seattle
+  state: WA
+  postal_code: 98109
+  phone: 234-234-2345
 
 two:
-  name: MyString
+  name: Kari
   registered_at: 2018-05-07 13:41:00
-  address: MyString
-  city: MyString
-  state: MyString
-  postal_code: MyString
-  phone: MyString
+  address: Also lives at Ada
+  city: Seattle
+  state: WA
+  postal_code: 98101
+  phone: 456-345-2346
