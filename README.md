@@ -167,7 +167,6 @@ Fields to return:
 - `release_date`
 - `inventory` (total)
 - `available_inventory` (not currently checked-out to a customer)
-  - This will be the same as `inventory` unless you've completed the optional endpoints.
 
 #### `POST /movies`
 Create a new movie in the video store inventory.
