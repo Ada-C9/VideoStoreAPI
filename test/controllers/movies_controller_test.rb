@@ -1,4 +1,5 @@
 require "test_helper"
+require 'pry'
 
 describe MoviesController do
   describe 'index' do
@@ -35,7 +36,7 @@ describe MoviesController do
       movie = movies(:one)
 
       get movie_path(movie.id)
-
+      
       response.header['Content-Type'].must_include 'json'
       body = JSON.parse(response.body) #rails provides this
       body.must_be_kind_of Hash
