@@ -44,14 +44,17 @@ gem 'jquery-turbolinks'
 gem 'jquery-rails'
 gem 'foundation-rails'
 gem 'normalize-rails'
+
 group :development, :test do
   gem 'pry-rails'
 end
+
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 end
+
 
 group :test do
   gem 'minitest-rails'
