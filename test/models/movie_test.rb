@@ -45,5 +45,16 @@ describe Movie do
       movie2.valid?.must_equal false
       movie2.errors.messages.must_include :release_date
     end
+
+    it 'can be created with sufficient data' do
+      movie = Movie.new(
+        title: 'A movie title',
+        inventory: 1,
+        release_date: '2018-04-02',
+        overview: 'great movie'
+      )
+
+      movie.valid?.must_equal true
+    end
   end
 end
