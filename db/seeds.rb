@@ -3,5 +3,5 @@ JSON.parse(File.read('db/seeds/customers.json')).each do |customer|
 end
 
 JSON.parse(File.read('db/seeds/movies.json')).each do |movie|
-  Movie.create!(movie)
+  Movie.create_from_json(movie)
 end
