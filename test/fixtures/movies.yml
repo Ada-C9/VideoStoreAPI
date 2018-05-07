@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  overview: MyString
-  release_date: MyString
+  title: Men In Black
+  overview: Save the world through the intergalactic
+  release_date: 1990
   inventory: 1
 
 two:
-  title: MyString
-  overview: MyString
-  release_date: MyString
-  inventory: 1
+  title: Ready Player One
+  overview: Video game is life
+  release_date: 2018
+  inventory: 2
