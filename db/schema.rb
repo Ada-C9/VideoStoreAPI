@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180507192054) do
+ActiveRecord::Schema.define(version: 20180507210818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,11 +27,25 @@ ActiveRecord::Schema.define(version: 20180507192054) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "customers_rentals", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "movie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_customers_rentals_on_customer_id"
+    t.index ["movie_id"], name: "index_customers_rentals_on_movie_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.string "overview"
     t.date "release_date"
     t.integer "inventory"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rentals", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
