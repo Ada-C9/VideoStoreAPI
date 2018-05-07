@@ -39,5 +39,26 @@ describe MoviesController do
     end
   end
 
+  describe "show" do
+
+    it "can get a movie" do
+      get movie_path(movies(:one).id)
+      must_respond_with :success
+    end
+
+    it "returns 404 for movies that are not found" do
+      movie = movies(:two)
+      movie.destroy
+      get movie_path(movie.id)
+      must_respond_with :not_found
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "ok" 
+      body["ok"].must_equal false
+      body.must_include "errors"
+
+    end
+  end
+
 
 end
