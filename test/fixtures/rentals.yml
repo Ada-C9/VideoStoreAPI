@@ -3,7 +3,11 @@
 one:
   checkout_date: 2018-05-07
   due_date: 2018-05-07
+  customer: mary
+  movie: one
 
 two:
   checkout_date: 2018-05-07
   due_date: 2018-05-07
+  customer: mary
+  movie: one
