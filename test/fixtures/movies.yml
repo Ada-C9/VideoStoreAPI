@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-Babe:
-  title: "Babe"
-  overview: "The Gallant Pig"
+babe:
+  title: Babe
+  overview: The Gallant Pig
   release_date: 2018-05-07
   inventory: 3
 
-Keanu:
+keanu:
   title: Keanu
-  overview: "Two friends look for a lost kitten"
+  overview: Two friends look for a lost kitten
   release_date: 2018-05-07
   inventory: 1
