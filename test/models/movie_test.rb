@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Movie do
-  let(:movie) { Movie.new }
+  let(:movie) { Movie.first }
 
   it "must be valid" do
     value(movie).must_be :valid?
@@ -12,6 +12,8 @@ describe Movie do
 
     movie.title = nil
 
-    movie.wont_be_valid
+    movie.wont_be :valid?
   end
+
+  # Maybe raise an error if inventory = 0?
 end
