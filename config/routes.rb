@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 resources :movies, only: [:index, :show]
 resources :customers, only: [:index]
 
+get '/zomg', to: 'movies#zomg'
+
 end
