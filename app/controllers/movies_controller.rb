@@ -1,3 +1,5 @@
+require 'pry'
+
 class MoviesController < ApplicationController
 
   def index
@@ -7,9 +9,11 @@ class MoviesController < ApplicationController
   end
 
   def show
+    # binding.pry
     movie = Movie.find_by(id: params[:id])
-    
+
     render json: movie.as_json(only: [:overview, :release_date, :title], status: :ok)
 
+    puts "MOVIE :#{movie.id}"
   end
 end
