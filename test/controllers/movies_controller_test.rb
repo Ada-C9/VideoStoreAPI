@@ -30,8 +30,21 @@ describe MoviesController do
   end
 
   describe 'show' do
+    it 'returns a single movie' do
+      keys = %w(overview release_date title)
+      movie = movies(:one)
 
+      get movie_path(movie.id)
+
+      response.header['Content-Type'].must_include 'json'
+      body = JSON.parse(response.body) #rails provides this
+      body.must_be_kind_of Hash
+      body.keys.sort.must_equal keys
+      body["id"].must_equal movie.id
+    end
+
+    it 'provides an error message if movie not found' do
+
+    end
   end
-
-
 end
