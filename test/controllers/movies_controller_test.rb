@@ -64,14 +64,14 @@ describe MoviesController do
       {
         title: "Gremlins",
         overview: "Don't get them wet",
-        release_date: DateTime.now,
+        release_date: "2018-5-7",
         inventory: 25
       }
     }
 
     it "Creates a new movie" do
       proc {
-        post movies_path, params: {movie: movie_data}
+        post movies_path, params: movie_data
       }.must_change 'Movie.count', 1
 
       must_respond_with :success
@@ -82,7 +82,7 @@ describe MoviesController do
       movie_data[:title] = nil
 
       proc {
-        post movies_path, params: {movie: movie_data}
+        post movies_path, params: movie_data
       }.must_change 'Movie.count', 0
 
       must_respond_with :bad_request

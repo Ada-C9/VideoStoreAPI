@@ -6,5 +6,5 @@ class Customer < ApplicationRecord
 
   validates :phone, length: { is: 10 }
 
-  
+
 end
