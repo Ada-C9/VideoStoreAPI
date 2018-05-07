@@ -46,4 +46,12 @@ describe Customer do
       customer1.errors.messages.must_include :phone
     end
   end
+
+  describe 'relations' do
+    it 'relates rental and rental_id' do
+      customer = customers(:one)
+
+      customer.rentals.must_include rentals(:one)
+    end
+  end
 end

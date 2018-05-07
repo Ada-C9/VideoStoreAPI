@@ -57,4 +57,12 @@ describe Movie do
       movie.valid?.must_equal true
     end
   end
+
+  describe 'relations' do
+    it 'relates rental and rental_id' do
+      movie = movies(:one)
+
+      movie.rentals.must_include rentals(:one)
+    end
+  end
 end
