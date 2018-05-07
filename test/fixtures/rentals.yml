@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  check_out: 2018-05-07 13:42:51
+  due_date: 2018-05-07 13:42:51
+  check_in: 2018-05-07 13:42:51
+
+two:
+  check_out: 2018-05-07 13:42:51
+  due_date: 2018-05-07 13:42:51
+  check_in: 2018-05-07 13:42:51
