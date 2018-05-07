@@ -1,5 +1,35 @@
 class MoviesController < ApplicationController
+
   def zomg
     render json: {message: "it works!"}, status: :ok
   end
-end
+
+  def index
+    movies = Movie.all
+
+    if movies.empty?
+      render json: {
+        errors: { movie: ["No Movies were found"]}
+        }, status: :not_found
+
+      else
+        render json: movies.as_json(only: [:title, :overview, :release_date, :inventory]), status: :ok
+      end
+    end
+
+
+    def show
+      movie = Movie.find_by(id: params[:id])
+
+      if movie
+        render json: movie.as_json, status: :ok
+      else
+        render json: {errors: {movie: ["Cound not find movie with ID: #{params[:id]}"]}}, status: :not_found
+      end
+    end
+
+    private
+    def movie_params
+      return params.require[:movie].permit[:title, :overview, :release_date, :inventory]
+    end
+  end
