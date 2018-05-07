@@ -47,4 +47,19 @@ describe Movie do
       end
     end
 
+    describe "relations" do
+      before do
+        @movie = Movie.new(
+          title: "test movie",
+          overview: "The unexciting life of a boy",
+          release_date: "1979-01-18",
+          inventory: "10"
+        )
+      end
+
+      it "has customers" do
+
+      end
+    end
+
   end

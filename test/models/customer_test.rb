@@ -34,16 +34,6 @@ describe Customer do
         @customer.errors.messages.must_include :name
       end
 
-      # duplicate title -> fail
-      # it "is invalid with a duplicate title" do
-      #   dup_customer = Customer.first
-      #   @customer.title = dup_customer.title
-      #
-      #   result = @customer.valid?
-      #
-      #   result.must_equal false
-      #   @customer.errors.messages.must_include :title
-      # end
     end
 
     describe "relations" do
