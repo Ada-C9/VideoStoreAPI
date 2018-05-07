@@ -40,7 +40,7 @@ Your project will be evaluated against the following requirements:
   - The _attributes_ for each model
   - Any _relationships_ between models
 - Create a new Rails app to serve as the API
-  - **Create the rails app with:** `$ rails new . --api`
+  - **Create the rails app with:** `$ rails _5.1.6_ new . --api`
 - Create a route that responds to `/zomg` that serves a json-encoded "it works!"
 
 ## Wave 1: Database Models, Tables, & Seeds
