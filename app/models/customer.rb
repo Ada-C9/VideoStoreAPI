@@ -3,6 +3,8 @@ class Customer < ApplicationRecord
   validates :phone, presence: true
   validate :same_name_and_same_phone
 
+  has_many :rentals
+
   def same_name_and_same_phone
     customers = Customer.where(name: name)
 

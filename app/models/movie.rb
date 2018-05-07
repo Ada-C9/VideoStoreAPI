@@ -3,6 +3,8 @@ class Movie < ApplicationRecord
   validates :inventory, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validate :uniq_title_release_date_combo
 
+  has_many :rentals 
+
   def uniq_title_release_date_combo
     movies = Movie.where(title: title)
 
