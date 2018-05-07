@@ -57,9 +57,9 @@ describe MoviesController do
   describe "create" do
     let(:movie_data) {
       {
-        title: "Pirates of the Caribbean"
-        overview: "The ocean's black pearl saves and perishes"
-        release_date: 2000
+        title: "Pirates of the Caribbean",
+        overview: "The ocean's black pearl saves and perishes",
+        release_date: "2000",
         inventory: 3
       }
     }
