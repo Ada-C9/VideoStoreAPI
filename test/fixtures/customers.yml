@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  address: MyString
-  city: MyString
-  state: MyString
-  postal_code: MyString
-  phone: MyString
+  name: Molly
+  address: 123 Cool Street
+  city: Seattle
+  state: WA
+  postal_code: 98145
+  phone: 123-123-1234
 
 two:
-  name: MyString
-  address: MyString
-  city: MyString
-  state: MyString
-  postal_code: MyString
-  phone: MyString
+  name: Billy
+  address: 321 Nerd Street
+  city: San Francisio
+  state: CA
+  postal_code: 98245
+  phone: 321-321-4321
