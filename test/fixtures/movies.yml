@@ -8,7 +8,7 @@ one:
   title: harry potter
   release_date: <%= Date.new(1996,04,21) %>
   overview: Tor loves it!
-  inventory: 4
+  inventory: 2
 # column: value
 #
 two:
