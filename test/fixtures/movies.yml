@@ -4,8 +4,11 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+movie_1: {
+  title: "300",
+  inventory: 2
+  }
 # column: value
 #
-two: {}
+movie_2: {}
 # column: value
