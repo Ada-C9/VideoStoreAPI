@@ -18,7 +18,7 @@ describe MoviesController do
     end
 
     it "returns with the exact fields required" do
-      keys = %w(inventory overview release_date title )
+      keys = %w(id release_date title)
 
       get movies_path
 
@@ -32,12 +32,11 @@ describe MoviesController do
     it "returns no content when no available movies" do
       Movie.destroy_all
 
-    Movie.count.must_equal 0
+      Movie.count.must_equal 0
 
       get movies_path
 
       must_respond_with :not_found
-      puts "Here is the response body: #{response.body}"
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include "errors"
@@ -73,5 +72,68 @@ describe MoviesController do
       body.must_include "errors"
       body["errors"].must_include "movie"
     end
+  end
+
+  describe "create" do
+    it "responds with ok with appropriate data" do
+      param_hash = {
+
+        title: "Test movie Title",
+        inventory: 3
+
+      }
+
+      old_count = Movie.count
+      post movies_path, params: { movie: param_hash }
+      must_respond_with :created
+      response.header["Content-Type"].must_include 'json'
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
+      Movie.count.must_equal old_count + 1
+      body["id"].must_equal Movie.last.id
+    end
+
+    describe "responds with bad request to inappropriate data" do
+      it "inappropriate inventory" do
+        param_hash = {
+          movie: {
+            title: "Test movie Title",
+            inventory: -8
+          }
+        }
+
+        old_count = Movie.count
+        post movies_path, params: { movie: param_hash }
+        must_respond_with :bad_request
+        response.header["Content-Type"].must_include 'json'
+        body = JSON.parse(response.body)
+        body.must_be_kind_of Hash
+        body.must_include "errors"
+        Movie.count.must_equal old_count
+        body["errors"].must_include "inventory"
+      end
+
+      it "missing title" do
+        param_hash = {
+          movie: {
+            title: nil,
+            inventory: 6
+          }
+        }
+
+        old_count = Movie.count
+        post movies_path, params: { movie: param_hash }
+        must_respond_with :bad_request
+        response.header["Content-Type"].must_include 'json'
+        body = JSON.parse(response.body)
+        body.must_be_kind_of Hash
+        body.must_include "errors"
+        Movie.count.must_equal old_count
+        body["errors"].must_include "title"
+      end
+
+    end
+
   end
 end
