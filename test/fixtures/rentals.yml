@@ -1,11 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+rental_one:
+  customer: nora
+  movie: Babe
   checkout_date: 2018-05-07
-  due_date: 2018-05-07
+  due_date: 2018-05-17
   returned?: false
 
-two:
+rental_two:
+  customer: sara
+  movie: Keanu
   checkout_date: 2018-05-07
-  due_date: 2018-05-07
+  due_date: 2018-05-17
   returned?: false
