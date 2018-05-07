@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
+  resources :customers, only: [:index]
 
-  get 'movies/index'
+  resources :movies, only: [:index, :show, :create]
 
-  get 'movies/show'
-
-  get 'movies/create'
-
-  get 'customers/index'
+  resources :rentals, only: [:check_in, :check_out]
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
