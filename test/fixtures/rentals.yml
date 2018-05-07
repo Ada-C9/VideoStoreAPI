@@ -4,8 +4,14 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+one:
+  customer: one
+  movie: one
+  due_date: <%= Date.today + 7 %>
 # column: value
 #
-two: {}
+two:
+  customer: two
+  movie: two
+  due_date: <%= Date.today + 10 %>
 # column: value
