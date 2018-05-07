@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'json'
+
+JSON.parse(File.read("db/seeds/customers.json")).each do |customer|
+  Customer.create!(customer)
+end
+
+JSON.parse(File.read("db/seeds/movies.json")).each do |movie|
+  Movie.create!(movie)
+end

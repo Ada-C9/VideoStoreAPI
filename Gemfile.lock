@@ -51,6 +51,9 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
+    jbuilder (2.7.0)
+      activesupport (>= 4.2.0)
+      multi_json (>= 1.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -72,6 +75,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    multi_json (1.13.1)
     nio4r (2.3.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -139,6 +143,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   minitest-rails
   minitest-reporters
