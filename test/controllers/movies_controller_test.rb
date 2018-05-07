@@ -32,11 +32,11 @@ describe MoviesController do
 
   describe 'show' do
     it 'returns a single movie' do
-      keys = %w(overview release_date title)
+      keys = %w(inventory overview release_date title )
       movie = movies(:one)
 
       get movie_path(movie.id)
-      
+
       response.header['Content-Type'].must_include 'json'
       body = JSON.parse(response.body) #rails provides this
       body.must_be_kind_of Hash
@@ -47,6 +47,46 @@ describe MoviesController do
 
     it 'provides an error message if movie not found' do
 
+    end
+  end
+
+  describe 'create' do
+    # lazy load function that executes only if using the movie variable
+    let(:movie_data) {
+      {
+        title: "A Movie",
+        overview: "It's definitely a movie.",
+        release_date: Date.parse("1982-1-1"),
+        inventory: 10
+      }
+    }
+
+    it "creates a new movie" do
+      assert_difference "Movie.count", 1 do
+        post movies_url, params: { movie: movie_data}
+        assert_response :success
+      end
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
+
+      Movie.find(body["id"]).title.must_equal "A Movie"
+    end
+
+    it "responds with bad_request for invalid data" do
+      movie_data = movie_data().clone
+      movie_data.delete(:title)
+      assert_difference "Movie.count", 1 do
+        post movies_url, params: { movie: movie_data}
+        assert_response :bad_request
+      end
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
+
+      Movie.find(body["id"]).title.must_be nil
     end
   end
 end
