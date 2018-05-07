@@ -1,7 +1,8 @@
 require "test_helper"
 
 describe CustomersController do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
+  it "is a real working route" do
+    get customers_url
+    must_respond_with :success
+  end
 end

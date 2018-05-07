@@ -1,0 +1,53 @@
+{
+	"id": "4737232f-60c2-4e4b-8dfc-601e9035aafe",
+	"name": "VideoStoreAPI Wave 2",
+	"allTests": [],
+	"timestamp": "2018-05-07T21:23:59.099Z",
+	"collection_id": "34f1a741-7a64-4906-b500-f4eeeac84012",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "34f1a741-7a64-4906-b500-f4eeeac84012",
+		"name": "VideoStoreAPI Wave 2",
+		"description": null,
+		"auth": null,
+		"events": null,
+		"variables": null,
+		"order": [
+			"7588c537-c438-4bab-bcdd-87bbcceec047",
+			"b2d4237b-2cbd-4d81-96d7-09680957f968",
+			"287ea268-dddf-4ba3-b22f-9ad76df9383d",
+			"34551a30-0a55-480f-9146-0d28018d7ba0",
+			"1170b97b-79c3-428e-bbfe-02d5e55e79e2"
+		],
+		"folders_order": [],
+		"owner": "0",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": null,
+	"environment": null,
+	"globals": null,
+	"results": [],
+	"totalPass": 0,
+	"totalFail": 0,
+	"totalTime": 0,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "List Customers",
+			"id": "7588c537-c438-4bab-bcdd-87bbcceec047",
+			"url": "{{url}}/customers",
+			"time": "2018-05-07T21:23:59.099Z",
+			"testPassFailCounts": {}
+		}
+	],
+	"synced": false
+}
