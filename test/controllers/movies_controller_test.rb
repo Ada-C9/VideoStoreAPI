@@ -1,4 +1,5 @@
 require "test_helper"
+require 'pry'
 
 describe MoviesController do
   describe 'index' do
@@ -40,7 +41,8 @@ describe MoviesController do
       body = JSON.parse(response.body) #rails provides this
       body.must_be_kind_of Hash
       body.keys.sort.must_equal keys
-      body["id"].must_equal movie.id
+
+      body["title"].must_equal movie.title
     end
 
     it 'provides an error message if movie not found' do
