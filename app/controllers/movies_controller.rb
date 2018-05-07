@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+
   def index
     movies = Movie.all
     render json: movies.as_json(only: [:title, :release_date, :inventory, :overview])
@@ -13,5 +14,9 @@ class MoviesController < ApplicationController
       render json: {ok: false, errors: "Movie not found"}, status: :not_found
     end
   end
-  
+
+  def create
+
+  end 
+
 end

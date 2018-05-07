@@ -1,4 +1,5 @@
 class RentalsController < ApplicationController
+
   def index
     rentals = Rental.all
     render json: rentals.as_json(only: [:customer_id, :movie_id, :checkout_date])
@@ -15,5 +16,10 @@ class RentalsController < ApplicationController
   end
 
   def create
+    # check-out
+  end
+
+  def update
+    #check-in
   end
 end
