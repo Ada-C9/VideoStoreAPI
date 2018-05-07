@@ -1,3 +1,3 @@
 class Movie < ApplicationRecord
-  has_many :rentals
+  has_many_and_belongs_to :rentals
 end
