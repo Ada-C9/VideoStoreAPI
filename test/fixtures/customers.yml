@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+dan:
   name: Dan
   registered_at: 2018-05-07 13:41:00
   address: Lives at Ada
@@ -9,7 +9,7 @@ one:
   postal_code: 98109
   phone: 234-234-2345
 
-two:
+kari:
   name: Kari
   registered_at: 2018-05-07 13:41:00
   address: Also lives at Ada
