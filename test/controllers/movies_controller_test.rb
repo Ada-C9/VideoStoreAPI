@@ -58,4 +58,40 @@ describe MoviesController do
       body['errors'].must_include 'id'
     end
   end
+
+  describe 'create' do
+    before do
+      @movie_data = {
+        title: "whatever you want",
+        inventory: 3
+      }
+    end
+
+    it "can create a new movie" do
+      before_movie_count = Movie.count
+
+      post movies_path, params: { movie: @movie_data }
+
+      must_respond_with :success
+      Movie.count.must_equal before_movie_count + 1
+
+      body = JSON.parse(response.body)
+      body.must_include "id"
+      Movie.find(body['id']).title.must_equal @movie_data[:title]
+    end
+
+    it "returns an error for an invalid movie" do
+      bad_data = @movie_data.clone()
+      bad_data.delete(:title)
+
+      assert_no_difference "Movie.count" do
+        post movies_path, params: { movie: bad_data }
+        assert_response :bad_request
+      end
+
+      body = JSON.parse(response.body)
+      body.must_include "errors"
+      body['errors'].must_include 'title'
+    end
+  end
 end
