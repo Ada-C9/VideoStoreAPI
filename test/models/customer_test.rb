@@ -38,7 +38,7 @@ describe Customer do
 
     describe "relations" do
       before do
-        @customer = Customer.new(
+        @customer = Customer.create(
           name: "Movie Watcher",
           address: "2015-04-29T14:54:14.000Z",
           city: "Seattle",
@@ -46,10 +46,16 @@ describe Customer do
           postal_code: "98109",
           phone: "555-555-5555"
         )
+
+        movie = Movie.first
+        rental_data = { movie_id: movie.id, customer_id: @customer.id}
+
+        rental = Rental.create(rental_data)
+
       end
 
       it "has movies" do
-
+        @customer.rentals.count.must_equal 1
       end
     end
   end
