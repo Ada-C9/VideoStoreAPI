@@ -17,11 +17,7 @@ class Movie < ApplicationRecord
   end
 
   def inventory_check_out
-    if self.available?
       self.inventory -= 1
-    else
-      return nil
-    end
   end
 
 
