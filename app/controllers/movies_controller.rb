@@ -6,7 +6,6 @@ class MoviesController < ApplicationController
   end
 
   def show
-    Rails.logger.level=:debug
     @movie = Movie.find_by(id: params[:id])
     if @movie.nil?
       render json: {
@@ -15,8 +14,6 @@ class MoviesController < ApplicationController
         }
       }, status: :not_found
     else
-      puts "DPR about to do render"
-      # render json: @movie.as_json, status: :ok
       render :show, status: :ok
     end
   end
@@ -24,7 +21,10 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
     @movie.save!
-    render json: {id: movie.id}, status: :ok
+    render :create, status: :ok
+    # @movie = Movie.new(movie_params)
+    # @movie.save!
+    # render json: {id: movie.id}, status: :ok
   end
 
   private
