@@ -6,5 +6,5 @@
 #
 one:
   due_date: "due_date string"
-  # movie_id: movie_one.id
-  # customer_id: customer_one.id
+  movie_id: robots.id
+  customer_id: kari.id

@@ -15,12 +15,18 @@ describe Movie do
       robots.valid?.must_equal false
 
     end
+    describe 'relations' do
+      it "has rentals " do
+        robot = movies(:robots)
+        robot.must_respond_to :rentals
+      end
 
-    # it "has reviews" do
-    #   product = products(:product1)
-    #   product.must_respond_to :reviews
-    # end
+      it "has customers " do
+        robot = movies(:robots)
+        robot.must_respond_to :customers
+      end
 
+    end
   end
 
 end
