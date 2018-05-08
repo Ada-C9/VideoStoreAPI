@@ -11,7 +11,6 @@ describe MoviesController do
       end
 
       it "returns movies with a name that matches the search" do
-        skip
         get movies_url, params: {search: "Bob Esponja"}
         body = JSON.parse(response.body)
         body.each do |customer|
@@ -20,8 +19,7 @@ describe MoviesController do
       end
 
       it "returns movies with exactly the required fields" do
-        skip
-        keys = %w(address city name phone postal_code registered_at state)
+        keys = %w(id release_date title)
         get movies_url, params: {search: "Bob Esponja"}
         body = JSON.parse(response.body)
         body.each do |customer|
