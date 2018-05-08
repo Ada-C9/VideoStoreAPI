@@ -7,6 +7,11 @@ class RentalsController < ApplicationController
       new_inventory = rental.movie.available_inventory - 1
       movie = Movie.find(rental.movie_id)
       movie.update(available_inventory: new_inventory)
+
+      new_count = rental.customer.movies_checked_out_count + 1
+      customer = Customer.find_by(id: rental.customer_id)
+      customer.update(movies_checked_out_count: new_count)
+
       render json: rental.as_json(except: [:updated_at], status: :ok)
     else
       render json: { errors: rental.errors.messages}, status: :bad_request
@@ -19,6 +24,11 @@ class RentalsController < ApplicationController
       rental.update(check_in_date: Date.today)
       new_inventory = rental.movie.available_inventory + 1
       movie = Movie.find(rental.movie_id)
+
+      new_count = rental.customer.movies_checked_out_count - 1
+      customer = Customer.find_by(id: rental.customer_id)
+      customer.update(movies_checked_out_count: new_count)
+
       movie.update(available_inventory: new_inventory)
       render json: rental.as_json(except: [:updated_at], status: :ok)
     else

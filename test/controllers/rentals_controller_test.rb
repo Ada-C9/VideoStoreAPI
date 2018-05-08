@@ -46,23 +46,28 @@ describe RentalsController do
 
   describe "check_in" do
     it "checks in a rental" do
-      rental = rentals(:one)
       rental_data = {
-        movie_id: rental.movie_id,
-        customer_id: rental.customer_id
+        movie_id: Movie.first.id,
+        customer_id: Customer.first.id
       }
 
+      post check_out_path, params: rental_data
+
+      rental = Rental.last
+
       movie_inventory = rental.movie.available_inventory
+      customer_movie_count = rental.customer.movies_checked_out_count
 
       post check_in_path, params: rental_data
 
       must_respond_with :success
-      movies(:one).reload
-      movies(:one).available_inventory.must_equal movie_inventory + 1
+      rental.reload
+      rental.movie.available_inventory.must_equal movie_inventory + 1
+      rental.customer.movies_checked_out_count.must_equal customer_movie_count - 1
+
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       Rental.find(body['id']).check_in_date.must_equal Date.today
-
     end
 
     it "return bad request and error if the rental DNE" do

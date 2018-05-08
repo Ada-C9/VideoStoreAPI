@@ -1,7 +1,7 @@
 class Customer < ApplicationRecord
   validates :name, presence: true
   validates :phone, presence: true
-  validate :same_name_and_same_phone
+  validate :same_name_and_same_phone, on: :create
 
   has_many :rentals
 
