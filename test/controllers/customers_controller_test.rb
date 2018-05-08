@@ -78,9 +78,24 @@ describe CustomersController do
 
 		it "creates a customer" do
 			assert_difference "Customer.count", 1 do
-				post customer_path, params: {customer: customer_data}
+				post customers_path, params: {customer: customer_data}
 				assert_response :success
 			end
+		end
+
+		it "responds with bad_request for invalid data" do
+			bad_data = customer_data.clone()
+      bad_data.delete(:name)
+      assert_no_difference "Customer.count" do
+        post customers_path, params: { customer: bad_data}
+        assert_response :bad_request
+      end
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+
+      Customer.find_by(name: "Name").must_equal nil
 		end
 	end
 end
