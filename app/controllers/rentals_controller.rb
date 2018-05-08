@@ -1,12 +1,7 @@
 class RentalsController < ApplicationController
 
-  def check_in
-    # movie = Movie.find_by(id: rental_params[:movie_id])
-    # customer = Customer.find_by(id: rental_params[:customer_id])
-    # new_rental_data = {
-    #   customer_id: customer.id,
-    #   movie_id: movie.id
-    # }
+  def check_out
+    
     rental = Rental.new(rental_params)
 
     if rental.save
