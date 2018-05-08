@@ -1,1 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+one:
+  title: Lion King
+  overview: Cute Movie
+  release_date: 1992-01-02
+  inventory: 5
+
+
+two:
+  title: Grapes
+  overview: long boring slow movie
+  release_date: 1950-01-01
+  inventory: 1
