@@ -1,15 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  overview: MyString
-  release_date: 2018-05-07
-  inventory: 1
-  available_inventory: 1
+beautiful:
+  title: She's Beautiful When She's Angry
+  overview: A documentary film about the birth of the women's liberation movement in the 1960s.
+  release_date: 2014-12-05
+  inventory: 5
+  available_inventory: 5
 
-two:
-  title: MyString
-  overview: MyString
-  release_date: 2018-05-07
-  inventory: 1
-  available_inventory: 1
+gijane:
+  title: G.I. Jane
+  overview: In response to political pressure from Senator Lillian DeHaven (Anne Bancroft), the U.S. Navy begins a program that would allow for the eventual integration of women into its services.
+
+  release_date: 1997-08-22
+  inventory: 3
+  available_inventory: 3

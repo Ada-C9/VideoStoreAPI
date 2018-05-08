@@ -1,19 +1,28 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  address: MyString
-  city: MyString
-  state: MyString
-  postal_code: MyString
-  phone: MyString
-  movies_checked_out_count: 1
+jane:
+  name: Jane Campion
+  address: 123 Main St
+  city: New York
+  state: NY
+  postal_code: 10463
+  phone: (212) 555-5555
+  movies_checked_out_count: 4
 
-two:
-  name: MyString
-  address: MyString
-  city: MyString
-  state: MyString
-  postal_code: MyString
-  phone: MyString
-  movies_checked_out_count: 1
+ava:
+  name: Ava DuVernay
+  address: 456 Main Str
+  city: New York
+  state: NY
+  postal_code: 10462
+  phone: (212) 555-5556
+  movies_checked_out_count: 3
+
+no_name:
+  name:
+  address: 455 Main Dr
+  city: New York
+  state: NY
+  postal_code: 12462
+  phone: (212) 595-5556
+  movies_checked_out_count: 2
