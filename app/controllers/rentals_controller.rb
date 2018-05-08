@@ -7,7 +7,8 @@ class RentalsController < ApplicationController
       checkout_date: checkout,
       due_date: due,
       customer_id: params[:customer_id],
-      movie_id: params[:movie_id]
+      movie_id: params[:movie_id],
+
     )
 
     if @rental.save
@@ -18,6 +19,16 @@ class RentalsController < ApplicationController
   end
 
   def check_in
+    @rental = Rental.find_by(id: params[:id])
+
+    if @rental.nil? 
+      render json: {ok: false}, status: :bad_request
+    else
+      @rental.update(status: 'returned')
+
+      render json: {customer_id: @rental.customer_id, movie_id: @rental.movie_id, status: @rental.status}, status: :ok
+
+    end
 
   end
 

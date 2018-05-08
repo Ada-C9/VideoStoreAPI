@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: 'Bob Kelly'
   registered_at: 2018-05-07 12:56:25
   address: MyString
   city: MyString
@@ -10,7 +10,7 @@ one:
   phone: '1234567891'
 
 two:
-  name: MyString
+  name: 'Customer One'
   registered_at: 2018-05-07 12:56:25
   address: MyString
   city: MyString
