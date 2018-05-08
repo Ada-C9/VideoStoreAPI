@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180508000000) do
+ActiveRecord::Schema.define(version: 20180508221622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 20180508000000) do
     t.integer "available_inventory"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rentals", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "movie_id"
+    t.date "due_date"
+    t.date "check_in"
+    t.date "check_out"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_rentals_on_customer_id"
+    t.index ["movie_id"], name: "index_rentals_on_movie_id"
   end
 
 end
