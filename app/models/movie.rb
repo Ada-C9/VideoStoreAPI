@@ -1,6 +1,6 @@
 class Movie < ApplicationRecord
   validates :title, presence: true
-  validates :inventory, presence: true, numericality: { only_integer: true, greater_than: 0 }, on: :create
+  validates :inventory, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, on: :create
 
   validate :uniq_title_release_date_combo, on: :create
 
