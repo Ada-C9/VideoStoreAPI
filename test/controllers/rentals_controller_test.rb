@@ -1,14 +1,16 @@
 require "test_helper"
 
 describe RentalsController do
-  it "should get checkout" do
-    get rentals_checkout_url
-    value(response).must_be :success?
+
+  describe "checkout" do
+    it "should respond with created and rental id with apprpriate data" do
+
+    end
+
   end
 
-  it "should get checkin" do
-    get rentals_checkin_url
-    value(response).must_be :success?
+  describe "checkin" do
+
   end
 
 end
