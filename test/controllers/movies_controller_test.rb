@@ -4,9 +4,15 @@ describe MoviesController do
 
   describe "index" do
     it "is a real working route" do
-      get movies_url
+      get movies_path
       must_respond_with :success
     end
+
+    # what is response for invalid path
+    # it "if route is invalid/not working" do
+    #   get moon_path
+    #   must_respond_with :not_found
+    # end
 
     it "returns json" do
       get movies_url
@@ -25,6 +31,16 @@ describe MoviesController do
 
       body = JSON.parse(response.body)
       body.length.must_equal Movie.count
+    end
+
+    it "returns no movies if there are no movies, status :not_found" do
+      Movie.destroy_all
+
+      get movies_url
+      must_respond_with :ok
+      body = JSON.parse(response.body)
+      body.length.must_equal Movie.count
+
     end
 
     it "returns movies with exactly the required fields" do
@@ -70,10 +86,11 @@ describe MoviesController do
         post movies_url, params: { movie: movie_data }
       }.must_change "Movie.count", 1
       must_respond_with :success
+
     end
 
     it "returns a bad request for a bad params data" do
-      movie_data[:name] = nil
+      movie_data[:title] = nil
 
       proc{
         post movies_url, params: { movie: movie_data }
