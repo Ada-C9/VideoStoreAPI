@@ -23,9 +23,38 @@ describe RentalsController do
       Rental.find_by(movie_id: body["movie_id"]).movie_id.must_equal movies(:HP).id
     end
 
-    it "Returns an error for an invalid rental" do
+    it "Returns an error for an invalid movie ID" do
       bad_data = rental_data.clone()
-      bad_data.delete(:movie_id)
+      bad_data[:movie_id] = Movie.last.id + 1
+      assert_no_difference "Rental.count" do
+        post check_out_path, params: { rental: bad_data }
+        assert_response :not_found
+      end
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "movie_id"
+    end
+
+    it "Returns an error if movie is not available" do
+      post check_out_path, params: { rental: { movie_id: movies(:LOTR).id, customer_id: customers(:kari).id }}
+      movies(:LOTR).available_inventory.must_equal 0
+
+      assert_no_difference "Rental.count" do
+        post check_out_path, params: { rental: { movie_id: movies(:LOTR).id, customer_id: customers(:dan).id }}
+        assert_response :not_found
+      end
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "available_inventory"
+    end
+
+    it "Returns an error for an invalid customer ID" do
+      bad_data = rental_data.clone()
+      bad_data[:customer_id] = Customer.last.id + 1
       assert_no_difference "Rental.count" do
         post check_out_path, params: { rental: bad_data }
         assert_response :bad_request
@@ -34,7 +63,7 @@ describe RentalsController do
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include "errors"
-      body["errors"].must_include "movie_id"
+      body["errors"].must_include "customer"
     end
   end
 end

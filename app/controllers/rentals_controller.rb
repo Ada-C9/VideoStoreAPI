@@ -1,3 +1,4 @@
+require 'pry'
 class RentalsController < ApplicationController
 
   def check_out
@@ -5,37 +6,27 @@ class RentalsController < ApplicationController
     rental.check_out = DateTime.now
     rental.due_date = rental.check_out + 7
 
-    movie = Movie.find_by(id: params[:movie_id])
-    customer = Customer.find_by(id: params[:customer_id])
-
-    # unless movie.inventory_available?
-    #   render json: {
-    #     errors: {
-    #       :available_inventory: ["#{movie.title} is not currently available."]
-    #       }
-    #     }, status: :not_found
-    # end
+    movie = Movie.find_by(id: params[:rental][:movie_id])
 
     if movie.nil?
       render json: {
         errors: {
-          movie_id: ["No movie with ID #{params[:movie_id]}"]
+          movie_id: ["No movie with ID #{params[:rental][:movie_id]}"]
         }
       }, status: :not_found
+      return
     end
 
-    if customer.nil?
+    if movie.available_inventory < 1
       render json: {
         errors: {
-          customer_id: ["No customer with ID #{params[:customer_id]}"]
-        }
-      }, status: :not_found
+          available_inventory: ["#{movie.title} is not currently available."]
+          }
+        }, status: :not_found
+        return
     end
 
     if rental.save
-      movie.update_attributes(available_inventory: movie.inventory_check_out)
-      customer.update_attributes(movies_checked_out_count: customer.movie_check_out)
-
       render json: rental.as_json(only: [:movie_id, :customer_id]), status: :ok
     else
       render json: { errors: rental.errors.messages }, status: :bad_request
@@ -43,13 +34,12 @@ class RentalsController < ApplicationController
   end
 
   def check_in
-
     rental = Rental.find_rental(rental_params)
 
     if rental.empty?
       render json: {
         errors: {
-          :movie_id: ["No rental is currently checkout with that criteria."]
+          movie_id: ["No rental is currently checkout with that criteria."]
           }
         }, status: :not_found
     else
