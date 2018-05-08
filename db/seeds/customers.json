@@ -6,7 +6,8 @@
 "city": "Hillsboro",
 "state": "OR",
 "postal_code": "24309",
-"phone": "(322) 510-8695"
+"phone": "(322) 510-8695",
+"movies_checked_out_count": 0
 },
 {
 "name": "Curran Stout",
@@ -15,7 +16,8 @@
 "city": "San Francisco",
 "state": "California",
 "postal_code": "94267",
-"phone": "(908) 949-6758"
+"phone": "(908) 949-6758",
+"movies_checked_out_count": 0
 },
 {
 "name": "Roanna Robinson",
@@ -24,7 +26,8 @@
 "city": "Harrisburg",
 "state": "PA",
 "postal_code": "15867",
-"phone": "(323) 336-1841"
+"phone": "(323) 336-1841",
+"movies_checked_out_count": 0
 },
 {
 "name": "Carolyn Chandler",
@@ -33,7 +36,8 @@
 "city": "Fort Wayne",
 "state": "IN",
 "postal_code": "73684",
-"phone": "(234) 837-2886"
+"phone": "(234) 837-2886",
+"movies_checked_out_count": 0
 },
 {
 "name": "Aquila Riddle",
@@ -42,7 +46,8 @@
 "city": "Tacoma",
 "state": "WA",
 "postal_code": "73251",
-"phone": "(925) 161-2223"
+"phone": "(925) 161-2223",
+"movies_checked_out_count": 0
 },
 {
 "name": "Phyllis Russell",
@@ -51,7 +56,8 @@
 "city": "Boise",
 "state": "Idaho",
 "postal_code": "76759",
-"phone": "(961) 964-5158"
+"phone": "(961) 964-5158",
+"movies_checked_out_count": 0
 },
 {
 "name": "Rajah Riggs",
@@ -60,7 +66,8 @@
 "city": "Norman",
 "state": "OK",
 "postal_code": "36134",
-"phone": "(540) 515-2339"
+"phone": "(540) 515-2339",
+"movies_checked_out_count": 0
 },
 {
 "name": "Amanda Curtis",
@@ -69,7 +76,8 @@
 "city": "Iowa City",
 "state": "Iowa",
 "postal_code": "18538",
-"phone": "(253) 271-5290"
+"phone": "(253) 271-5290",
+"movies_checked_out_count": 0
 },
 {
 "name": "Jacqueline Perry",
@@ -78,7 +86,8 @@
 "city": "Anchorage",
 "state": "AK",
 "postal_code": "99789",
-"phone": "(479) 207-8414"
+"phone": "(479) 207-8414",
+"movies_checked_out_count": 0
 },
 {
 "name": "Quinlan Rich",
@@ -87,7 +96,8 @@
 "city": "Hilo",
 "state": "HI",
 "postal_code": "63747",
-"phone": "(521) 124-5753"
+"phone": "(521) 124-5753",
+"movies_checked_out_count": 0
 },
 {
 "name": "Ciara Summers",
@@ -96,7 +106,8 @@
 "city": "Grand Rapids",
 "state": "Michigan",
 "postal_code": "44906",
-"phone": "(473) 496-4835"
+"phone": "(473) 496-4835",
+"movies_checked_out_count": 0
 },
 {
 "name": "Alfreda Hines",
@@ -105,7 +116,8 @@
 "city": "Anchorage",
 "state": "Alaska",
 "postal_code": "99915",
-"phone": "(921) 910-1283"
+"phone": "(921) 910-1283",
+"movies_checked_out_count": 0
 },
 {
 "name": "Eugenia Roberson",
@@ -114,7 +126,8 @@
 "city": "Jackson",
 "state": "MS",
 "postal_code": "67415",
-"phone": "(900) 501-6947"
+"phone": "(900) 501-6947",
+"movies_checked_out_count": 0
 },
 {
 "name": "Ferris Robles",
@@ -123,7 +136,8 @@
 "city": "Independence",
 "state": "Missouri",
 "postal_code": "46428",
-"phone": "(569) 834-1872"
+"phone": "(569) 834-1872",
+"movies_checked_out_count": 0
 },
 {
 "name": "Sopoline Fisher",
@@ -132,7 +146,8 @@
 "city": "Knoxville",
 "state": "TN",
 "postal_code": "23142",
-"phone": "(603) 919-2974"
+"phone": "(603) 919-2974",
+"movies_checked_out_count": 0
 },
 {
 "name": "Vivien Justice",
@@ -141,7 +156,8 @@
 "city": "Sterling Heights",
 "state": "MI",
 "postal_code": "54505",
-"phone": "(563) 349-0325"
+"phone": "(563) 349-0325",
+"movies_checked_out_count": 0
 },
 {
 "name": "Ginger Heath",
@@ -150,7 +166,8 @@
 "city": "Billings",
 "state": "Montana",
 "postal_code": "25054",
-"phone": "(572) 140-2058"
+"phone": "(572) 140-2058",
+"movies_checked_out_count": 0
 },
 {
 "name": "Kieran Calhoun",
@@ -159,7 +176,8 @@
 "city": "Savannah",
 "state": "GA",
 "postal_code": "47373",
-"phone": "(909) 486-8575"
+"phone": "(909) 486-8575",
+"movies_checked_out_count": 0
 },
 {
 "name": "Winter Stephenson",
@@ -168,7 +186,8 @@
 "city": "Salt Lake City",
 "state": "Utah",
 "postal_code": "63684",
-"phone": "(466) 617-0803"
+"phone": "(466) 617-0803",
+"movies_checked_out_count": 0
 },
 {
 "name": "Mallory Weaver",
@@ -177,7 +196,8 @@
 "city": "Houston",
 "state": "Texas",
 "postal_code": "89807",
-"phone": "(727) 342-1336"
+"phone": "(727) 342-1336",
+"movies_checked_out_count": 0
 },
 {
 "name": "Audra Vance",
@@ -186,7 +206,8 @@
 "city": "Columbus",
 "state": "Ohio",
 "postal_code": "43007",
-"phone": "(832) 502-4114"
+"phone": "(832) 502-4114",
+"movies_checked_out_count": 0
 },
 {
 "name": "Aladdin Fowler",
@@ -195,7 +216,8 @@
 "city": "Aurora",
 "state": "IL",
 "postal_code": "92483",
-"phone": "(201) 728-7318"
+"phone": "(201) 728-7318",
+"movies_checked_out_count": 0
 },
 {
 "name": "Dominique Battle",
@@ -204,7 +226,8 @@
 "city": "Gaithersburg",
 "state": "MD",
 "postal_code": "49893",
-"phone": "(385) 326-1715"
+"phone": "(385) 326-1715",
+"movies_checked_out_count": 0
 },
 {
 "name": "Kimberly Savage",
@@ -213,7 +236,8 @@
 "city": "Virginia Beach",
 "state": "VA",
 "postal_code": "50164",
-"phone": "(285) 195-0154"
+"phone": "(285) 195-0154",
+"movies_checked_out_count": 0
 },
 {
 "name": "Branden Craig",
@@ -222,7 +246,8 @@
 "city": "Hattiesburg",
 "state": "MS",
 "postal_code": "99128",
-"phone": "(972) 938-4626"
+"phone": "(972) 938-4626",
+"movies_checked_out_count": 0
 },
 {
 "name": "Hammett Beach",
@@ -231,7 +256,8 @@
 "city": "Butte",
 "state": "MT",
 "postal_code": "54656",
-"phone": "(833) 249-0504"
+"phone": "(833) 249-0504",
+"movies_checked_out_count": 0
 },
 {
 "name": "Dai Meadows",
@@ -240,7 +266,8 @@
 "city": "Sioux City",
 "state": "IA",
 "postal_code": "63549",
-"phone": "(204) 993-4985"
+"phone": "(204) 993-4985",
+"movies_checked_out_count": 0
 },
 {
 "name": "Grady Chang",
@@ -249,7 +276,8 @@
 "city": "Sacramento",
 "state": "CA",
 "postal_code": "90337",
-"phone": "(306) 153-3636"
+"phone": "(306) 153-3636",
+"movies_checked_out_count": 0
 },
 {
 "name": "Cody Woodard",
@@ -258,7 +286,8 @@
 "city": "Gaithersburg",
 "state": "Maryland",
 "postal_code": "68459",
-"phone": "(606) 363-0837"
+"phone": "(606) 363-0837",
+"movies_checked_out_count": 0
 },
 {
 "name": "Ulysses Whitfield",
@@ -267,7 +296,8 @@
 "city": "Laramie",
 "state": "Wyoming",
 "postal_code": "95684",
-"phone": "(371) 627-1105"
+"phone": "(371) 627-1105",
+"movies_checked_out_count": 0
 },
 {
 "name": "Olympia Dyer",
@@ -276,7 +306,8 @@
 "city": "Sandy",
 "state": "Utah",
 "postal_code": "25061",
-"phone": "(124) 172-2031"
+"phone": "(124) 172-2031",
+"movies_checked_out_count": 0
 },
 {
 "name": "Kristen Snyder",
@@ -285,7 +316,8 @@
 "city": "West Jordan",
 "state": "UT",
 "postal_code": "50965",
-"phone": "(977) 906-9656"
+"phone": "(977) 906-9656",
+"movies_checked_out_count": 0
 },
 {
 "name": "Mira Stokes",
@@ -294,7 +326,8 @@
 "city": "Columbia",
 "state": "MD",
 "postal_code": "66923",
-"phone": "(473) 271-3425"
+"phone": "(473) 271-3425",
+"movies_checked_out_count": 0
 },
 {
 "name": "Ulla Skinner",
@@ -303,7 +336,8 @@
 "city": "Colorado Springs",
 "state": "Colorado",
 "postal_code": "91540",
-"phone": "(718) 770-3057"
+"phone": "(718) 770-3057",
+"movies_checked_out_count": 0
 },
 {
 "name": "Amelia Brock",
@@ -312,7 +346,8 @@
 "city": "Jackson",
 "state": "Mississippi",
 "postal_code": "19969",
-"phone": "(313) 638-8556"
+"phone": "(313) 638-8556",
+"movies_checked_out_count": 0
 },
 {
 "name": "Dexter Frank",
@@ -321,7 +356,8 @@
 "city": "Wyoming",
 "state": "Wyoming",
 "postal_code": "71026",
-"phone": "(753) 112-2298"
+"phone": "(753) 112-2298",
+"movies_checked_out_count": 0
 },
 {
 "name": "Yoshi Willis",
@@ -330,7 +366,8 @@
 "city": "Sioux City",
 "state": "Iowa",
 "postal_code": "57062",
-"phone": "(592) 873-3593"
+"phone": "(592) 873-3593",
+"movies_checked_out_count": 0
 },
 {
 "name": "Marah Ballard",
@@ -339,7 +376,8 @@
 "city": "Juneau",
 "state": "AK",
 "postal_code": "99933",
-"phone": "(482) 351-7984"
+"phone": "(482) 351-7984",
+"movies_checked_out_count": 0
 },
 {
 "name": "Eugenia Cherry",
@@ -348,7 +386,8 @@
 "city": "Stamford",
 "state": "Connecticut",
 "postal_code": "29863",
-"phone": "(318) 627-4305"
+"phone": "(318) 627-4305",
+"movies_checked_out_count": 0
 },
 {
 "name": "Porter Mclean",
@@ -357,7 +396,8 @@
 "city": "New Orleans",
 "state": "Louisiana",
 "postal_code": "70087",
-"phone": "(764) 362-7391"
+"phone": "(764) 362-7391",
+"movies_checked_out_count": 0
 },
 {
 "name": "Philip Patton",
@@ -366,7 +406,8 @@
 "city": "Aurora",
 "state": "Illinois",
 "postal_code": "88138",
-"phone": "(188) 787-8862"
+"phone": "(188) 787-8862",
+"movies_checked_out_count": 0
 },
 {
 "name": "Charlotte Turner",
@@ -375,7 +416,8 @@
 "city": "Bridgeport",
 "state": "CT",
 "postal_code": "26116",
-"phone": "(629) 711-4885"
+"phone": "(629) 711-4885",
+"movies_checked_out_count": 0
 },
 {
 "name": "Camden Aguirre",
@@ -384,7 +426,8 @@
 "city": "Nampa",
 "state": "ID",
 "postal_code": "13381",
-"phone": "(277) 267-0388"
+"phone": "(277) 267-0388",
+"movies_checked_out_count": 0
 },
 {
 "name": "Samuel Santana",
@@ -393,7 +436,8 @@
 "city": "Bellevue",
 "state": "Washington",
 "postal_code": "67560",
-"phone": "(678) 717-4843"
+"phone": "(678) 717-4843",
+"movies_checked_out_count": 0
 },
 {
 "name": "Sheila Olsen",
@@ -402,7 +446,8 @@
 "city": "Eugene",
 "state": "Oregon",
 "postal_code": "63846",
-"phone": "(574) 608-9527"
+"phone": "(574) 608-9527",
+"movies_checked_out_count": 0
 },
 {
 "name": "Acton Gilliam",
@@ -411,7 +456,8 @@
 "city": "Portland",
 "state": "Oregon",
 "postal_code": "62594",
-"phone": "(903) 973-1984"
+"phone": "(903) 973-1984",
+"movies_checked_out_count": 0
 },
 {
 "name": "Carla Fox",
@@ -420,7 +466,8 @@
 "city": "Biloxi",
 "state": "MS",
 "postal_code": "67389",
-"phone": "(438) 573-5618"
+"phone": "(438) 573-5618",
+"movies_checked_out_count": 0
 },
 {
 "name": "Ursa Harrell",
@@ -429,7 +476,8 @@
 "city": "Henderson",
 "state": "NV",
 "postal_code": "87045",
-"phone": "(951) 243-9155"
+"phone": "(951) 243-9155",
+"movies_checked_out_count": 0
 },
 {
 "name": "Stephanie Foley",
@@ -438,7 +486,8 @@
 "city": "Sioux City",
 "state": "IA",
 "postal_code": "48520",
-"phone": "(562) 674-5565"
+"phone": "(562) 674-5565",
+"movies_checked_out_count": 0
 },
 {
 "name": "Isabelle Riley",
@@ -447,7 +496,8 @@
 "city": "San Antonio",
 "state": "Texas",
 "postal_code": "42972",
-"phone": "(592) 610-6185"
+"phone": "(592) 610-6185",
+"movies_checked_out_count": 0
 },
 {
 "name": "Olivia Guy",
@@ -456,7 +506,8 @@
 "city": "San Francisco",
 "state": "California",
 "postal_code": "90775",
-"phone": "(373) 139-6846"
+"phone": "(373) 139-6846",
+"movies_checked_out_count": 0
 },
 {
 "name": "Kenneth Rowland",
@@ -465,7 +516,8 @@
 "city": "Chattanooga",
 "state": "TN",
 "postal_code": "54509",
-"phone": "(650) 912-9706"
+"phone": "(650) 912-9706",
+"movies_checked_out_count": 0
 },
 {
 "name": "Zorita Buchanan",
@@ -474,7 +526,8 @@
 "city": "Richmond",
 "state": "Virginia",
 "postal_code": "49611",
-"phone": "(109) 544-5498"
+"phone": "(109) 544-5498",
+"movies_checked_out_count": 0
 },
 {
 "name": "Galvin Daniels",
@@ -483,7 +536,8 @@
 "city": "Birmingham",
 "state": "Alabama",
 "postal_code": "36049",
-"phone": "(863) 203-7464"
+"phone": "(863) 203-7464",
+"movies_checked_out_count": 0
 },
 {
 "name": "Hamilton Hunter",
@@ -492,7 +546,8 @@
 "city": "Honolulu",
 "state": "Hawaii",
 "postal_code": "18980",
-"phone": "(531) 196-0181"
+"phone": "(531) 196-0181",
+"movies_checked_out_count": 0
 },
 {
 "name": "Dieter Frye",
@@ -501,7 +556,8 @@
 "city": "Los Angeles",
 "state": "California",
 "postal_code": "93004",
-"phone": "(843) 603-1249"
+"phone": "(843) 603-1249",
+"movies_checked_out_count": 0
 },
 {
 "name": "Anne Mclean",
@@ -510,7 +566,8 @@
 "city": "Lawton",
 "state": "OK",
 "postal_code": "34188",
-"phone": "(703) 764-9176"
+"phone": "(703) 764-9176",
+"movies_checked_out_count": 0
 },
 {
 "name": "Gretchen Gray",
@@ -519,7 +576,8 @@
 "city": "Virginia Beach",
 "state": "VA",
 "postal_code": "15836",
-"phone": "(629) 782-2033"
+"phone": "(629) 782-2033",
+"movies_checked_out_count": 0
 },
 {
 "name": "Theodore Ingram",
@@ -528,7 +586,8 @@
 "city": "Tucson",
 "state": "AZ",
 "postal_code": "86869",
-"phone": "(227) 651-0229"
+"phone": "(227) 651-0229",
+"movies_checked_out_count": 0
 },
 {
 "name": "Otto Leblanc",
@@ -537,7 +596,8 @@
 "city": "Detroit",
 "state": "Michigan",
 "postal_code": "27552",
-"phone": "(974) 976-6329"
+"phone": "(974) 976-6329",
+"movies_checked_out_count": 0
 },
 {
 "name": "Pearl Blackwell",
@@ -546,7 +606,8 @@
 "city": "Sterling Heights",
 "state": "Michigan",
 "postal_code": "51429",
-"phone": "(960) 110-2636"
+"phone": "(960) 110-2636",
+"movies_checked_out_count": 0
 },
 {
 "name": "Caesar Stanley",
@@ -555,7 +616,8 @@
 "city": "Saint Paul",
 "state": "MN",
 "postal_code": "10029",
-"phone": "(841) 157-1769"
+"phone": "(841) 157-1769",
+"movies_checked_out_count": 0
 },
 {
 "name": "Rebekah Conrad",
@@ -564,7 +626,8 @@
 "city": "Davenport",
 "state": "IA",
 "postal_code": "76937",
-"phone": "(691) 802-4154"
+"phone": "(691) 802-4154",
+"movies_checked_out_count": 0
 },
 {
 "name": "Robert Harmon",
@@ -573,7 +636,8 @@
 "city": "Kaneohe",
 "state": "Hawaii",
 "postal_code": "58444",
-"phone": "(165) 718-1361"
+"phone": "(165) 718-1361",
+"movies_checked_out_count": 0
 },
 {
 "name": "Maris Puckett",
@@ -582,7 +646,8 @@
 "city": "Gaithersburg",
 "state": "MD",
 "postal_code": "39939",
-"phone": "(952) 204-5010"
+"phone": "(952) 204-5010",
+"movies_checked_out_count": 0
 },
 {
 "name": "Lara Ellison",
@@ -591,7 +656,8 @@
 "city": "Cedar Rapids",
 "state": "Iowa",
 "postal_code": "96377",
-"phone": "(928) 139-4812"
+"phone": "(928) 139-4812",
+"movies_checked_out_count": 0
 },
 {
 "name": "Dai Baldwin",
@@ -600,7 +666,8 @@
 "city": "South Bend",
 "state": "Indiana",
 "postal_code": "27284",
-"phone": "(642) 404-1198"
+"phone": "(642) 404-1198",
+"movies_checked_out_count": 0
 },
 {
 "name": "Mira Lyons",
@@ -609,7 +676,8 @@
 "city": "Topeka",
 "state": "KS",
 "postal_code": "30606",
-"phone": "(355) 309-3105"
+"phone": "(355) 309-3105",
+"movies_checked_out_count": 0
 },
 {
 "name": "Laurel Diaz",
@@ -618,7 +686,8 @@
 "city": "Fayetteville",
 "state": "Arkansas",
 "postal_code": "72463",
-"phone": "(382) 883-9819"
+"phone": "(382) 883-9819",
+"movies_checked_out_count": 0
 },
 {
 "name": "Breanna Kim",
@@ -627,7 +696,8 @@
 "city": "Little Rock",
 "state": "AR",
 "postal_code": "71072",
-"phone": "(182) 564-6516"
+"phone": "(182) 564-6516",
+"movies_checked_out_count": 0
 },
 {
 "name": "Hayes Levine",
@@ -636,7 +706,8 @@
 "city": "Grand Island",
 "state": "NE",
 "postal_code": "89643",
-"phone": "(624) 302-2419"
+"phone": "(624) 302-2419",
+"movies_checked_out_count": 0
 },
 {
 "name": "Taylor Spence",
@@ -645,7 +716,8 @@
 "city": "Portland",
 "state": "Oregon",
 "postal_code": "91240",
-"phone": "(993) 724-6663"
+"phone": "(993) 724-6663",
+"movies_checked_out_count": 0
 },
 {
 "name": "Camille Walton",
@@ -654,7 +726,8 @@
 "city": "Boise",
 "state": "Idaho",
 "postal_code": "72346",
-"phone": "(332) 249-7842"
+"phone": "(332) 249-7842",
+"movies_checked_out_count": 0
 },
 {
 "name": "Yardley Mckenzie",
@@ -663,7 +736,8 @@
 "city": "Huntsville",
 "state": "AL",
 "postal_code": "36334",
-"phone": "(731) 311-1108"
+"phone": "(731) 311-1108",
+"movies_checked_out_count": 0
 },
 {
 "name": "Rachel Munoz",
@@ -672,7 +746,8 @@
 "city": "Madison",
 "state": "Wisconsin",
 "postal_code": "56718",
-"phone": "(651) 904-9661"
+"phone": "(651) 904-9661",
+"movies_checked_out_count": 0
 },
 {
 "name": "Bevis Jimenez",
@@ -681,7 +756,8 @@
 "city": "Columbus",
 "state": "Georgia",
 "postal_code": "35209",
-"phone": "(526) 934-4237"
+"phone": "(526) 934-4237",
+"movies_checked_out_count": 0
 },
 {
 "name": "Malik Barber",
@@ -690,7 +766,8 @@
 "city": "Waterbury",
 "state": "Connecticut",
 "postal_code": "75696",
-"phone": "(575) 915-7794"
+"phone": "(575) 915-7794",
+"movies_checked_out_count": 0
 },
 {
 "name": "Nell Bishop",
@@ -699,7 +776,8 @@
 "city": "Minneapolis",
 "state": "MN",
 "postal_code": "27078",
-"phone": "(819) 107-0728"
+"phone": "(819) 107-0728",
+"movies_checked_out_count": 0
 },
 {
 "name": "Leigh Anderson",
@@ -708,7 +786,8 @@
 "city": "Montgomery",
 "state": "Alabama",
 "postal_code": "36037",
-"phone": "(176) 966-1214"
+"phone": "(176) 966-1214",
+"movies_checked_out_count": 0
 },
 {
 "name": "Chava Kirby",
@@ -717,7 +796,8 @@
 "city": "Allentown",
 "state": "PA",
 "postal_code": "84384",
-"phone": "(795) 896-0405"
+"phone": "(795) 896-0405",
+"movies_checked_out_count": 0
 },
 {
 "name": "Inez Gamble",
@@ -726,7 +806,8 @@
 "city": "Virginia Beach",
 "state": "VA",
 "postal_code": "23365",
-"phone": "(288) 595-2741"
+"phone": "(288) 595-2741",
+"movies_checked_out_count": 0
 },
 {
 "name": "Jacob Villarreal",
@@ -735,7 +816,8 @@
 "city": "Grand Island",
 "state": "NE",
 "postal_code": "53804",
-"phone": "(676) 686-4808"
+"phone": "(676) 686-4808",
+"movies_checked_out_count": 0
 },
 {
 "name": "Velma Mcfadden",
@@ -744,7 +826,8 @@
 "city": "Juneau",
 "state": "AK",
 "postal_code": "99806",
-"phone": "(520) 661-1866"
+"phone": "(520) 661-1866",
+"movies_checked_out_count": 0
 },
 {
 "name": "Berk Carroll",
@@ -753,7 +836,8 @@
 "city": "Frankfort",
 "state": "Kentucky",
 "postal_code": "88958",
-"phone": "(937) 237-7054"
+"phone": "(937) 237-7054",
+"movies_checked_out_count": 0
 },
 {
 "name": "Serina Collins",
@@ -762,7 +846,8 @@
 "city": "South Bend",
 "state": "Indiana",
 "postal_code": "39108",
-"phone": "(216) 221-5456"
+"phone": "(216) 221-5456",
+"movies_checked_out_count": 0
 },
 {
 "name": "Larissa Soto",
@@ -771,7 +856,8 @@
 "city": "Tampa",
 "state": "Florida",
 "postal_code": "19281",
-"phone": "(693) 833-8618"
+"phone": "(693) 833-8618",
+"movies_checked_out_count": 0
 },
 {
 "name": "Erin Mckenzie",
@@ -780,7 +866,8 @@
 "city": "Madison",
 "state": "WI",
 "postal_code": "94031",
-"phone": "(646) 241-7827"
+"phone": "(646) 241-7827",
+"movies_checked_out_count": 0
 },
 {
 "name": "Katell Lewis",
@@ -789,7 +876,8 @@
 "city": "San Antonio",
 "state": "TX",
 "postal_code": "90724",
-"phone": "(307) 332-5251"
+"phone": "(307) 332-5251",
+"movies_checked_out_count": 0
 },
 {
 "name": "Yeo Humphrey",
@@ -798,7 +886,8 @@
 "city": "Bear",
 "state": "DE",
 "postal_code": "61381",
-"phone": "(770) 120-6205"
+"phone": "(770) 120-6205",
+"movies_checked_out_count": 0
 },
 {
 "name": "Brynne Stuart",
@@ -807,7 +896,8 @@
 "city": "Jonesboro",
 "state": "AR",
 "postal_code": "72921",
-"phone": "(949) 800-1135"
+"phone": "(949) 800-1135",
+"movies_checked_out_count": 0
 },
 {
 "name": "Brynne Fuentes",
@@ -816,7 +906,8 @@
 "city": "Minneapolis",
 "state": "Minnesota",
 "postal_code": "23965",
-"phone": "(535) 656-2981"
+"phone": "(535) 656-2981",
+"movies_checked_out_count": 0
 },
 {
 "name": "Giacomo Strong",
@@ -825,7 +916,8 @@
 "city": "Madison",
 "state": "Wisconsin",
 "postal_code": "18820",
-"phone": "(938) 428-0683"
+"phone": "(938) 428-0683",
+"movies_checked_out_count": 0
 },
 {
 "name": "Ruth Nelson",
@@ -834,7 +926,8 @@
 "city": "Lewiston",
 "state": "Maine",
 "postal_code": "35597",
-"phone": "(821) 465-3951"
+"phone": "(821) 465-3951",
+"movies_checked_out_count": 0
 },
 {
 "name": "Alexander Brennan",
@@ -843,7 +936,8 @@
 "city": "San Antonio",
 "state": "Texas",
 "postal_code": "74395",
-"phone": "(452) 676-2428"
+"phone": "(452) 676-2428",
+"movies_checked_out_count": 0
 },
 {
 "name": "Eagan Lynch",
@@ -852,7 +946,8 @@
 "city": "Dallas",
 "state": "Texas",
 "postal_code": "45352",
-"phone": "(874) 234-9834"
+"phone": "(874) 234-9834",
+"movies_checked_out_count": 0
 },
 {
 "name": "Charity Buckley",
@@ -861,7 +956,8 @@
 "city": "San Antonio",
 "state": "Texas",
 "postal_code": "48690",
-"phone": "(580) 120-8164"
+"phone": "(580) 120-8164",
+"movies_checked_out_count": 0
 },
 {
 "name": "Aspen Le",
@@ -870,7 +966,8 @@
 "city": "Essex",
 "state": "Vermont",
 "postal_code": "53433",
-"phone": "(179) 428-6526"
+"phone": "(179) 428-6526",
+"movies_checked_out_count": 0
 },
 {
 "name": "Jana Foster",
@@ -879,7 +976,8 @@
 "city": "Clarksville",
 "state": "TN",
 "postal_code": "41791",
-"phone": "(828) 240-0643"
+"phone": "(828) 240-0643",
+"movies_checked_out_count": 0
 },
 {
 "name": "Basia Contreras",
@@ -888,7 +986,8 @@
 "city": "Independence",
 "state": "Missouri",
 "postal_code": "44890",
-"phone": "(847) 205-9126"
+"phone": "(847) 205-9126",
+"movies_checked_out_count": 0
 },
 {
 "name": "Barbara Jacobson",
@@ -897,7 +996,8 @@
 "city": "Duluth",
 "state": "Minnesota",
 "postal_code": "59354",
-"phone": "(823) 257-9965"
+"phone": "(823) 257-9965",
+"movies_checked_out_count": 0
 },
 {
 "name": "Ria Little",
@@ -906,7 +1006,8 @@
 "city": "Athens",
 "state": "GA",
 "postal_code": "88306",
-"phone": "(496) 600-9071"
+"phone": "(496) 600-9071",
+"movies_checked_out_count": 0
 },
 {
 "name": "Jael Hoover",
@@ -915,7 +1016,8 @@
 "city": "Seattle",
 "state": "Washington",
 "postal_code": "17749",
-"phone": "(953) 751-2907"
+"phone": "(953) 751-2907",
+"movies_checked_out_count": 0
 },
 {
 "name": "Howard Meyer",
@@ -924,7 +1026,8 @@
 "city": "Colchester",
 "state": "Vermont",
 "postal_code": "11479",
-"phone": "(735) 816-9513"
+"phone": "(735) 816-9513",
+"movies_checked_out_count": 0
 },
 {
 "name": "Brian Yates",
@@ -933,7 +1036,8 @@
 "city": "Kearney",
 "state": "NE",
 "postal_code": "49867",
-"phone": "(292) 138-3176"
+"phone": "(292) 138-3176",
+"movies_checked_out_count": 0
 },
 {
 "name": "Amber Nicholson",
@@ -942,7 +1046,8 @@
 "city": "Knoxville",
 "state": "Tennessee",
 "postal_code": "57653",
-"phone": "(154) 850-1394"
+"phone": "(154) 850-1394",
+"movies_checked_out_count": 0
 },
 {
 "name": "Silas Barton",
@@ -951,7 +1056,8 @@
 "city": "Gulfport",
 "state": "MS",
 "postal_code": "72241",
-"phone": "(817) 405-3562"
+"phone": "(817) 405-3562",
+"movies_checked_out_count": 0
 },
 {
 "name": "Justina Weber",
@@ -960,7 +1066,8 @@
 "city": "Cleveland",
 "state": "OH",
 "postal_code": "35970",
-"phone": "(653) 921-2923"
+"phone": "(653) 921-2923",
+"movies_checked_out_count": 0
 },
 {
 "name": "Raven Cote",
@@ -969,7 +1076,8 @@
 "city": "Savannah",
 "state": "GA",
 "postal_code": "56882",
-"phone": "(212) 164-3612"
+"phone": "(212) 164-3612",
+"movies_checked_out_count": 0
 },
 {
 "name": "Ahmed Massey",
@@ -978,7 +1086,8 @@
 "city": "Metairie",
 "state": "Louisiana",
 "postal_code": "74601",
-"phone": "(798) 424-7871"
+"phone": "(798) 424-7871",
+"movies_checked_out_count": 0
 },
 {
 "name": "Thomas Mcbride",
@@ -987,7 +1096,8 @@
 "city": "Little Rock",
 "state": "AR",
 "postal_code": "71114",
-"phone": "(557) 571-0355"
+"phone": "(557) 571-0355",
+"movies_checked_out_count": 0
 },
 {
 "name": "April Humphrey",
@@ -996,7 +1106,8 @@
 "city": "Olathe",
 "state": "Kansas",
 "postal_code": "84858",
-"phone": "(795) 813-1088"
+"phone": "(795) 813-1088",
+"movies_checked_out_count": 0
 },
 {
 "name": "Sierra Rosa",
@@ -1005,7 +1116,8 @@
 "city": "Knoxville",
 "state": "Tennessee",
 "postal_code": "86369",
-"phone": "(433) 397-7483"
+"phone": "(433) 397-7483",
+"movies_checked_out_count": 0
 },
 {
 "name": "Sara Gay",
@@ -1014,7 +1126,8 @@
 "city": "Knoxville",
 "state": "Tennessee",
 "postal_code": "60949",
-"phone": "(239) 940-6734"
+"phone": "(239) 940-6734",
+"movies_checked_out_count": 0
 },
 {
 "name": "Alexis Ward",
@@ -1023,7 +1136,8 @@
 "city": "Miami",
 "state": "Florida",
 "postal_code": "65771",
-"phone": "(189) 124-7774"
+"phone": "(189) 124-7774",
+"movies_checked_out_count": 0
 },
 {
 "name": "Justina Dixon",
@@ -1032,7 +1146,8 @@
 "city": "Green Bay",
 "state": "Wisconsin",
 "postal_code": "28463",
-"phone": "(488) 172-0802"
+"phone": "(488) 172-0802",
+"movies_checked_out_count": 0
 },
 {
 "name": "Scott Wise",
@@ -1041,7 +1156,8 @@
 "city": "Dover",
 "state": "DE",
 "postal_code": "80375",
-"phone": "(744) 266-9954"
+"phone": "(744) 266-9954",
+"movies_checked_out_count": 0
 },
 {
 "name": "Cameran Terry",
@@ -1050,7 +1166,8 @@
 "city": "Rutland",
 "state": "VT",
 "postal_code": "13964",
-"phone": "(232) 667-7186"
+"phone": "(232) 667-7186",
+"movies_checked_out_count": 0
 },
 {
 "name": "Cooper Suarez",
@@ -1059,7 +1176,8 @@
 "city": "Montpelier",
 "state": "Vermont",
 "postal_code": "21186",
-"phone": "(792) 641-6482"
+"phone": "(792) 641-6482",
+"movies_checked_out_count": 0
 },
 {
 "name": "Karleigh Ingram",
@@ -1068,7 +1186,8 @@
 "city": "San Diego",
 "state": "CA",
 "postal_code": "92064",
-"phone": "(819) 878-4232"
+"phone": "(819) 878-4232",
+"movies_checked_out_count": 0
 },
 {
 "name": "Fiona Santana",
@@ -1077,7 +1196,8 @@
 "city": "Independence",
 "state": "MO",
 "postal_code": "64612",
-"phone": "(364) 302-8535"
+"phone": "(364) 302-8535",
+"movies_checked_out_count": 0
 },
 {
 "name": "Cheryl Shelton",
@@ -1086,7 +1206,8 @@
 "city": "Anchorage",
 "state": "AK",
 "postal_code": "99971",
-"phone": "(666) 421-3975"
+"phone": "(666) 421-3975",
+"movies_checked_out_count": 0
 },
 {
 "name": "Raya Burgess",
@@ -1095,7 +1216,8 @@
 "city": "Owensboro",
 "state": "KY",
 "postal_code": "72801",
-"phone": "(118) 782-5871"
+"phone": "(118) 782-5871",
+"movies_checked_out_count": 0
 },
 {
 "name": "Hakeem Stokes",
@@ -1104,7 +1226,8 @@
 "city": "Helena",
 "state": "MT",
 "postal_code": "67768",
-"phone": "(285) 662-1132"
+"phone": "(285) 662-1132",
+"movies_checked_out_count": 0
 },
 {
 "name": "Macon Crosby",
@@ -1113,7 +1236,8 @@
 "city": "Hartford",
 "state": "Connecticut",
 "postal_code": "56565",
-"phone": "(347) 348-8116"
+"phone": "(347) 348-8116",
+"movies_checked_out_count": 0
 },
 {
 "name": "Brittany Harris",
@@ -1122,7 +1246,8 @@
 "city": "Bozeman",
 "state": "MT",
 "postal_code": "56384",
-"phone": "(489) 746-9013"
+"phone": "(489) 746-9013",
+"movies_checked_out_count": 0
 },
 {
 "name": "Galena Ford",
@@ -1131,7 +1256,8 @@
 "city": "Gary",
 "state": "IN",
 "postal_code": "25479",
-"phone": "(538) 724-6020"
+"phone": "(538) 724-6020",
+"movies_checked_out_count": 0
 },
 {
 "name": "Nehru Smith",
@@ -1140,7 +1266,8 @@
 "city": "Austin",
 "state": "TX",
 "postal_code": "83794",
-"phone": "(127) 566-2347"
+"phone": "(127) 566-2347",
+"movies_checked_out_count": 0
 },
 {
 "name": "Craig Higgins",
@@ -1149,7 +1276,8 @@
 "city": "Cambridge",
 "state": "Massachusetts",
 "postal_code": "50503",
-"phone": "(123) 194-5906"
+"phone": "(123) 194-5906",
+"movies_checked_out_count": 0
 },
 {
 "name": "Ria Goodwin",
@@ -1158,7 +1286,8 @@
 "city": "Augusta",
 "state": "Maine",
 "postal_code": "25217",
-"phone": "(251) 172-1155"
+"phone": "(251) 172-1155",
+"movies_checked_out_count": 0
 },
 {
 "name": "Griffith Key",
@@ -1167,7 +1296,8 @@
 "city": "Nampa",
 "state": "Idaho",
 "postal_code": "51195",
-"phone": "(624) 463-6111"
+"phone": "(624) 463-6111",
+"movies_checked_out_count": 0
 },
 {
 "name": "Kasper Fischer",
@@ -1176,7 +1306,8 @@
 "city": "Independence",
 "state": "Missouri",
 "postal_code": "91560",
-"phone": "(319) 149-4379"
+"phone": "(319) 149-4379",
+"movies_checked_out_count": 0
 },
 {
 "name": "Stuart Goodwin",
@@ -1185,7 +1316,8 @@
 "city": "Augusta",
 "state": "Georgia",
 "postal_code": "71303",
-"phone": "(538) 387-3287"
+"phone": "(538) 387-3287",
+"movies_checked_out_count": 0
 },
 {
 "name": "Dawn Carlson",
@@ -1194,7 +1326,8 @@
 "city": "Aurora",
 "state": "Illinois",
 "postal_code": "79365",
-"phone": "(994) 905-9769"
+"phone": "(994) 905-9769",
+"movies_checked_out_count": 0
 },
 {
 "name": "Natalie Schroeder",
@@ -1203,7 +1336,8 @@
 "city": "Boston",
 "state": "Massachusetts",
 "postal_code": "99200",
-"phone": "(891) 649-2871"
+"phone": "(891) 649-2871",
+"movies_checked_out_count": 0
 },
 {
 "name": "Justine Goodwin",
@@ -1212,7 +1346,8 @@
 "city": "Columbus",
 "state": "Ohio",
 "postal_code": "85028",
-"phone": "(155) 830-0119"
+"phone": "(155) 830-0119",
+"movies_checked_out_count": 0
 },
 {
 "name": "Wilma Velez",
@@ -1221,7 +1356,8 @@
 "city": "Virginia Beach",
 "state": "Virginia",
 "postal_code": "36713",
-"phone": "(279) 153-9870"
+"phone": "(279) 153-9870",
+"movies_checked_out_count": 0
 },
 {
 "name": "Chiquita Burks",
@@ -1230,7 +1366,8 @@
 "city": "Dover",
 "state": "DE",
 "postal_code": "48328",
-"phone": "(264) 440-3911"
+"phone": "(264) 440-3911",
+"movies_checked_out_count": 0
 },
 {
 "name": "Christian Mclaughlin",
@@ -1239,7 +1376,8 @@
 "city": "Des Moines",
 "state": "Iowa",
 "postal_code": "35850",
-"phone": "(962) 941-9645"
+"phone": "(962) 941-9645",
+"movies_checked_out_count": 0
 },
 {
 "name": "Aurelia Giles",
@@ -1248,7 +1386,8 @@
 "city": "Wyoming",
 "state": "WY",
 "postal_code": "51587",
-"phone": "(724) 380-8095"
+"phone": "(724) 380-8095",
+"movies_checked_out_count": 0
 },
 {
 "name": "Josephine Browning",
@@ -1257,7 +1396,8 @@
 "city": "Davenport",
 "state": "Iowa",
 "postal_code": "21255",
-"phone": "(436) 817-2557"
+"phone": "(436) 817-2557",
+"movies_checked_out_count": 0
 },
 {
 "name": "Kasper Morton",
@@ -1266,7 +1406,8 @@
 "city": "Philadelphia",
 "state": "Pennsylvania",
 "postal_code": "56267",
-"phone": "(191) 710-5107"
+"phone": "(191) 710-5107",
+"movies_checked_out_count": 0
 },
 {
 "name": "Renee Higgins",
@@ -1275,7 +1416,8 @@
 "city": "Newport News",
 "state": "VA",
 "postal_code": "25802",
-"phone": "(933) 431-7021"
+"phone": "(933) 431-7021",
+"movies_checked_out_count": 0
 },
 {
 "name": "Brody Coleman",
@@ -1284,7 +1426,8 @@
 "city": "Rutland",
 "state": "Vermont",
 "postal_code": "72539",
-"phone": "(482) 790-5904"
+"phone": "(482) 790-5904",
+"movies_checked_out_count": 0
 },
 {
 "name": "Jennifer Greer",
@@ -1293,7 +1436,8 @@
 "city": "Virginia Beach",
 "state": "Virginia",
 "postal_code": "97476",
-"phone": "(547) 641-6594"
+"phone": "(547) 641-6594",
+"movies_checked_out_count": 0
 },
 {
 "name": "Gannon Abbott",
@@ -1302,7 +1446,8 @@
 "city": "Rochester",
 "state": "Minnesota",
 "postal_code": "22689",
-"phone": "(363) 394-9351"
+"phone": "(363) 394-9351",
+"movies_checked_out_count": 0
 },
 {
 "name": "Adrian Nguyen",
@@ -1311,7 +1456,8 @@
 "city": "Fort Smith",
 "state": "Arkansas",
 "postal_code": "71182",
-"phone": "(109) 817-4149"
+"phone": "(109) 817-4149",
+"movies_checked_out_count": 0
 },
 {
 "name": "Carter Morris",
@@ -1320,7 +1466,8 @@
 "city": "Kaneohe",
 "state": "Hawaii",
 "postal_code": "26814",
-"phone": "(450) 765-0057"
+"phone": "(450) 765-0057",
+"movies_checked_out_count": 0
 },
 {
 "name": "Basia Ratliff",
@@ -1329,7 +1476,8 @@
 "city": "Knoxville",
 "state": "Tennessee",
 "postal_code": "80562",
-"phone": "(734) 180-1477"
+"phone": "(734) 180-1477",
+"movies_checked_out_count": 0
 },
 {
 "name": "Genevieve Nieves",
@@ -1338,7 +1486,8 @@
 "city": "Wichita",
 "state": "KS",
 "postal_code": "17313",
-"phone": "(660) 218-7246"
+"phone": "(660) 218-7246",
+"movies_checked_out_count": 0
 },
 {
 "name": "Axel Morton",
@@ -1347,7 +1496,8 @@
 "city": "West Jordan",
 "state": "Utah",
 "postal_code": "99969",
-"phone": "(929) 552-4291"
+"phone": "(929) 552-4291",
+"movies_checked_out_count": 0
 },
 {
 "name": "Montana Wynn",
@@ -1356,7 +1506,8 @@
 "city": "Springfield",
 "state": "Missouri",
 "postal_code": "41345",
-"phone": "(697) 916-8606"
+"phone": "(697) 916-8606",
+"movies_checked_out_count": 0
 },
 {
 "name": "Allistair Bradley",
@@ -1365,7 +1516,8 @@
 "city": "Juneau",
 "state": "Alaska",
 "postal_code": "99972",
-"phone": "(627) 610-6902"
+"phone": "(627) 610-6902",
+"movies_checked_out_count": 0
 },
 {
 "name": "Jacob Foley",
@@ -1374,7 +1526,8 @@
 "city": "Little Rock",
 "state": "AR",
 "postal_code": "72550",
-"phone": "(310) 834-5542"
+"phone": "(310) 834-5542",
+"movies_checked_out_count": 0
 },
 {
 "name": "Noelani Burton",
@@ -1383,7 +1536,8 @@
 "city": "Burlington",
 "state": "VT",
 "postal_code": "83655",
-"phone": "(461) 724-9721"
+"phone": "(461) 724-9721",
+"movies_checked_out_count": 0
 },
 {
 "name": "Abigail Lara",
@@ -1392,7 +1546,8 @@
 "city": "Shreveport",
 "state": "Louisiana",
 "postal_code": "41243",
-"phone": "(235) 178-3417"
+"phone": "(235) 178-3417",
+"movies_checked_out_count": 0
 },
 {
 "name": "Driscoll Shepard",
@@ -1401,7 +1556,8 @@
 "city": "Minneapolis",
 "state": "MN",
 "postal_code": "30682",
-"phone": "(433) 449-9825"
+"phone": "(433) 449-9825",
+"movies_checked_out_count": 0
 },
 {
 "name": "Elaine Carney",
@@ -1410,7 +1566,8 @@
 "city": "Miami",
 "state": "Florida",
 "postal_code": "78257",
-"phone": "(213) 954-9127"
+"phone": "(213) 954-9127",
+"movies_checked_out_count": 0
 },
 {
 "name": "Jonas Galloway",
@@ -1419,7 +1576,8 @@
 "city": "Bloomington",
 "state": "MN",
 "postal_code": "86280",
-"phone": "(113) 365-9867"
+"phone": "(113) 365-9867",
+"movies_checked_out_count": 0
 },
 {
 "name": "Abel Oneil",
@@ -1428,7 +1586,8 @@
 "city": "Colorado Springs",
 "state": "CO",
 "postal_code": "52301",
-"phone": "(857) 528-9424"
+"phone": "(857) 528-9424",
+"movies_checked_out_count": 0
 },
 {
 "name": "Maia Brock",
@@ -1437,7 +1596,8 @@
 "city": "Essex",
 "state": "Vermont",
 "postal_code": "67149",
-"phone": "(392) 863-4448"
+"phone": "(392) 863-4448",
+"movies_checked_out_count": 0
 },
 {
 "name": "Alden Cabrera",
@@ -1446,7 +1606,8 @@
 "city": "Rutland",
 "state": "Vermont",
 "postal_code": "96595",
-"phone": "(535) 175-9355"
+"phone": "(535) 175-9355",
+"movies_checked_out_count": 0
 },
 {
 "name": "Kerry Steele",
@@ -1455,7 +1616,8 @@
 "city": "Anchorage",
 "state": "AK",
 "postal_code": "99922",
-"phone": "(178) 897-7367"
+"phone": "(178) 897-7367",
+"movies_checked_out_count": 0
 },
 {
 "name": "Charissa Browning",
@@ -1464,7 +1626,8 @@
 "city": "Jacksonville",
 "state": "Florida",
 "postal_code": "14335",
-"phone": "(840) 128-0317"
+"phone": "(840) 128-0317",
+"movies_checked_out_count": 0
 },
 {
 "name": "Darius Mendez",
@@ -1473,7 +1636,8 @@
 "city": "Casper",
 "state": "WY",
 "postal_code": "51369",
-"phone": "(335) 359-1497"
+"phone": "(335) 359-1497",
+"movies_checked_out_count": 0
 },
 {
 "name": "Megan Gates",
@@ -1482,7 +1646,8 @@
 "city": "Reading",
 "state": "PA",
 "postal_code": "81062",
-"phone": "(443) 918-1564"
+"phone": "(443) 918-1564",
+"movies_checked_out_count": 0
 },
 {
 "name": "Paloma Horne",
@@ -1491,7 +1656,8 @@
 "city": "North Las Vegas",
 "state": "NV",
 "postal_code": "43059",
-"phone": "(293) 295-3992"
+"phone": "(293) 295-3992",
+"movies_checked_out_count": 0
 },
 {
 "name": "Alec Schneider",
@@ -1500,7 +1666,8 @@
 "city": "Newport News",
 "state": "Virginia",
 "postal_code": "90428",
-"phone": "(378) 745-6478"
+"phone": "(378) 745-6478",
+"movies_checked_out_count": 0
 },
 {
 "name": "Keegan Porter",
@@ -1509,7 +1676,8 @@
 "city": "Omaha",
 "state": "Nebraska",
 "postal_code": "36496",
-"phone": "(235) 797-5965"
+"phone": "(235) 797-5965",
+"movies_checked_out_count": 0
 },
 {
 "name": "Dorian Brooks",
@@ -1518,7 +1686,8 @@
 "city": "Cedar Rapids",
 "state": "Iowa",
 "postal_code": "21997",
-"phone": "(543) 949-5105"
+"phone": "(543) 949-5105",
+"movies_checked_out_count": 0
 },
 {
 "name": "Xyla Oneal",
@@ -1527,7 +1696,8 @@
 "city": "Tuscaloosa",
 "state": "Alabama",
 "postal_code": "35503",
-"phone": "(586) 384-9718"
+"phone": "(586) 384-9718",
+"movies_checked_out_count": 0
 },
 {
 "name": "Urielle Brock",
@@ -1536,7 +1706,8 @@
 "city": "Newport News",
 "state": "VA",
 "postal_code": "96073",
-"phone": "(374) 344-9156"
+"phone": "(374) 344-9156",
+"movies_checked_out_count": 0
 },
 {
 "name": "Hadley Snow",
@@ -1545,7 +1716,8 @@
 "city": "Fort Collins",
 "state": "Colorado",
 "postal_code": "41558",
-"phone": "(290) 857-4604"
+"phone": "(290) 857-4604",
+"movies_checked_out_count": 0
 },
 {
 "name": "Jenna Conley",
@@ -1554,7 +1726,8 @@
 "city": "South Bend",
 "state": "Indiana",
 "postal_code": "27537",
-"phone": "(965) 898-4616"
+"phone": "(965) 898-4616",
+"movies_checked_out_count": 0
 },
 {
 "name": "Hermione Combs",
@@ -1563,7 +1736,8 @@
 "city": "Cambridge",
 "state": "MA",
 "postal_code": "77897",
-"phone": "(711) 537-2715"
+"phone": "(711) 537-2715",
+"movies_checked_out_count": 0
 },
 {
 "name": "Scarlet Bridges",
@@ -1572,7 +1746,8 @@
 "city": "Atlanta",
 "state": "GA",
 "postal_code": "85419",
-"phone": "(303) 449-3873"
+"phone": "(303) 449-3873",
+"movies_checked_out_count": 0
 },
 {
 "name": "Christopher Santana",
@@ -1581,7 +1756,8 @@
 "city": "Bridgeport",
 "state": "Connecticut",
 "postal_code": "31517",
-"phone": "(916) 183-3805"
+"phone": "(916) 183-3805",
+"movies_checked_out_count": 0
 },
 {
 "name": "Linus Benjamin",
@@ -1599,7 +1775,8 @@
 "city": "Carson City",
 "state": "NV",
 "postal_code": "64780",
-"phone": "(808) 310-5874"
+"phone": "(808) 310-5874",
+"movies_checked_out_count": 0
 },
 {
 "name": "Griffin Silva",
@@ -1608,7 +1785,8 @@
 "city": "Juneau",
 "state": "AK",
 "postal_code": "99838",
-"phone": "(679) 747-9281"
+"phone": "(679) 747-9281",
+"movies_checked_out_count": 0
 },
 {
 "name": "Chloe Shepard",
@@ -1617,7 +1795,8 @@
 "city": "Kapolei",
 "state": "HI",
 "postal_code": "41472",
-"phone": "(130) 324-9334"
+"phone": "(130) 324-9334",
+"movies_checked_out_count": 0
 },
 {
 "name": "Ori Russo",
@@ -1626,7 +1805,8 @@
 "city": "Lewiston",
 "state": "ME",
 "postal_code": "88250",
-"phone": "(309) 634-1120"
+"phone": "(309) 634-1120",
+"movies_checked_out_count": 0
 },
 {
 "name": "Shad Campbell",
@@ -1635,7 +1815,8 @@
 "city": "Chesapeake",
 "state": "VA",
 "postal_code": "59563",
-"phone": "(109) 812-1478"
+"phone": "(109) 812-1478",
+"movies_checked_out_count": 0
 },
 {
 "name": "Nomlanga Pugh",
@@ -1644,7 +1825,8 @@
 "city": "Fort Worth",
 "state": "TX",
 "postal_code": "54834",
-"phone": "(603) 124-9087"
+"phone": "(603) 124-9087",
+"movies_checked_out_count": 0
 },
 {
 "name": "Damian Nixon",
@@ -1653,7 +1835,8 @@
 "city": "Minneapolis",
 "state": "MN",
 "postal_code": "34740",
-"phone": "(996) 763-0457"
+"phone": "(996) 763-0457",
+"movies_checked_out_count": 0
 },
 {
 "name": "Azalia Bennett",
@@ -1662,7 +1845,8 @@
 "city": "Portland",
 "state": "ME",
 "postal_code": "12829",
-"phone": "(233) 218-0724"
+"phone": "(233) 218-0724",
+"movies_checked_out_count": 0
 },
 {
 "name": "Tyler Sweet",
@@ -1671,7 +1855,8 @@
 "city": "Paradise",
 "state": "Nevada",
 "postal_code": "10272",
-"phone": "(401) 227-4119"
+"phone": "(401) 227-4119",
+"movies_checked_out_count": 0
 },
 {
 "name": "Kyla Sears",
@@ -1680,7 +1865,8 @@
 "city": "Casper",
 "state": "Wyoming",
 "postal_code": "77130",
-"phone": "(926) 988-6271"
+"phone": "(926) 988-6271",
+"movies_checked_out_count": 0
 },
 {
 "name": "Kiona Wagner",
@@ -1689,7 +1875,8 @@
 "city": "Aurora",
 "state": "Colorado",
 "postal_code": "20338",
-"phone": "(976) 299-0296"
+"phone": "(976) 299-0296",
+"movies_checked_out_count": 0
 },
 {
 "name": "Celeste Hernandez",
@@ -1698,7 +1885,8 @@
 "city": "Ketchikan",
 "state": "AK",
 "postal_code": "99982",
-"phone": "(637) 226-8697"
+"phone": "(637) 226-8697",
+"movies_checked_out_count": 0
 },
 {
 "name": "Stuart Stevenson",
@@ -1707,7 +1895,8 @@
 "city": "Paradise",
 "state": "Nevada",
 "postal_code": "54968",
-"phone": "(884) 752-9559"
+"phone": "(884) 752-9559",
+"movies_checked_out_count": 0
 },
 {
 "name": "Yael Potter",
@@ -1716,7 +1905,8 @@
 "city": "Augusta",
 "state": "GA",
 "postal_code": "94978",
-"phone": "(838) 450-7880"
+"phone": "(838) 450-7880",
+"movies_checked_out_count": 0
 },
 {
 "name": "Sarah Price",
@@ -1725,7 +1915,8 @@
 "city": "Jefferson City",
 "state": "Missouri",
 "postal_code": "68837",
-"phone": "(694) 232-5802"
+"phone": "(694) 232-5802",
+"movies_checked_out_count": 0
 },
 {
 "name": "Keane Schroeder",
@@ -1734,7 +1925,8 @@
 "city": "Wichita",
 "state": "KS",
 "postal_code": "32895",
-"phone": "(771) 777-3480"
+"phone": "(771) 777-3480",
+"movies_checked_out_count": 0
 },
 {
 "name": "Gloria Cabrera",
@@ -1743,7 +1935,8 @@
 "city": "Reading",
 "state": "PA",
 "postal_code": "20080",
-"phone": "(872) 752-3660"
+"phone": "(872) 752-3660",
+"movies_checked_out_count": 0
 },
 {
 "name": "Audra Beck",
@@ -1752,7 +1945,8 @@
 "city": "Bellevue",
 "state": "WA",
 "postal_code": "81533",
-"phone": "(473) 949-2594"
+"phone": "(473) 949-2594",
+"movies_checked_out_count": 0
 },
 {
 "name": "Dolan Newton",
@@ -1761,7 +1955,8 @@
 "city": "Auburn",
 "state": "ME",
 "postal_code": "19968",
-"phone": "(214) 790-1643"
+"phone": "(214) 790-1643",
+"movies_checked_out_count": 0
 },
 {
 "name": "Jolie Ashley",
@@ -1770,7 +1965,8 @@
 "city": "Jefferson City",
 "state": "MO",
 "postal_code": "76963",
-"phone": "(157) 795-0499"
+"phone": "(157) 795-0499",
+"movies_checked_out_count": 0
 },
 {
 "name": "Judith Ewing",
@@ -1779,7 +1975,8 @@
 "city": "Knoxville",
 "state": "TN",
 "postal_code": "47671",
-"phone": "(200) 706-8284"
+"phone": "(200) 706-8284",
+"movies_checked_out_count": 0
 },
 {
 "name": "Scarlett Rojas",
@@ -1788,7 +1985,8 @@
 "city": "Boise",
 "state": "Idaho",
 "postal_code": "81837",
-"phone": "(669) 244-0896"
+"phone": "(669) 244-0896",
+"movies_checked_out_count": 0
 },
 {
 "name": "Kane Johnston",
@@ -1797,6 +1995,7 @@
 "city": "Austin",
 "state": "Texas",
 "postal_code": "94282",
-"phone": "(270) 219-2853"
+"phone": "(270) 219-2853",
+"movies_checked_out_count": 0
 }
 ]
