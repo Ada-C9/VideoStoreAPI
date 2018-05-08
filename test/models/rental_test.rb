@@ -33,6 +33,7 @@ describe Rental do
         }
 
         rental = Rental.create_from_request(rental_data)
+        rental.save
 
         result = (rental.due_date - due_date)
 
@@ -41,7 +42,7 @@ describe Rental do
         result.must_be :<, 1
       end
 
-      it "returns false if given invalid data" do
+      it "returns invalid rental if given invalid data" do
         old_rental_count = Rental.count
         rental_data = {
           customer_id: nil,
@@ -50,7 +51,7 @@ describe Rental do
 
         rental = Rental.create_from_request(rental_data)
 
-        rental.must_equal false
+        rental.wont_be :valid?
         Rental.count.must_equal old_rental_count
       end
     end
