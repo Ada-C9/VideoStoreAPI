@@ -67,4 +67,52 @@ describe RentalsController do
       must_respond_with :not_found
     end
   end
+
+  describe "Create" do
+    let(:rental_data) {
+    {
+      customer_id: customers(:one).id,
+      movie_id: movies(:one).id,
+      checkout_date: "2018-05-21",
+      checkin_date: nil
+    }
+  }
+
+  it "Creates a new rental" do
+
+    proc {
+      post rentals_path, params: {rental: rental_data}
+    }.must_change 'Rental.count', 1
+
+    must_respond_with :success
+  end
+
+  it "will not create a new rental with bad data" do
+    not_a_rental = {
+      movie_id: movies(:one).id,
+      checkin_date: nil
+      }
+
+    proc {
+      post rentals_path, params: {rental: not_a_rental}
+    }.wont_change 'Rental.count'
+
+    must_respond_with :bad_request
+    body = JSON.parse(response.body)
+    body.must_be_kind_of Hash
+    body.must_include "ok"
+    body["ok"].must_equal false
+    body.must_include "errors"
+
+  end
+
+
+  end
+
+
+
+
+
+
+
 end
