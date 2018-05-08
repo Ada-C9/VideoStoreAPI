@@ -13,7 +13,7 @@ class Rental < ApplicationRecord
   end
 
   def has_enough_inventory?
-    unless self.movie.inventory > 0
+    unless self.movie.available_inventory > 0
       errors[:quantity] << 'Not enough inventory for this rental'
     end
   end
