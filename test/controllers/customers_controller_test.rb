@@ -19,7 +19,7 @@ describe CustomersController do
   end
 
   it "returns with the exact fields required" do
-    keys = %w(address city id name phone postal_code state)
+    keys = %w(created_at id name phone postal_code)
 
     get customers_path
     body = JSON.parse(response.body)

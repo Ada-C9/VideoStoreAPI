@@ -84,7 +84,7 @@ describe MoviesController do
       }
 
       old_count = Movie.count
-      post movies_path, params: { movie: param_hash }
+      post movies_path, params: param_hash
       must_respond_with :created
       response.header["Content-Type"].must_include 'json'
       body = JSON.parse(response.body)
@@ -104,7 +104,7 @@ describe MoviesController do
         }
 
         old_count = Movie.count
-        post movies_path, params: { movie: param_hash }
+        post movies_path, params: param_hash
         must_respond_with :bad_request
         response.header["Content-Type"].must_include 'json'
         body = JSON.parse(response.body)
@@ -123,7 +123,7 @@ describe MoviesController do
         }
 
         old_count = Movie.count
-        post movies_path, params: { movie: param_hash }
+        post movies_path, params: param_hash
         must_respond_with :bad_request
         response.header["Content-Type"].must_include 'json'
         body = JSON.parse(response.body)
