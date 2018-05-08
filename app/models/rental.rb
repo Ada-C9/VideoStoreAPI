@@ -9,4 +9,12 @@ class Rental < ApplicationRecord
   validates_datetime :due_date, :after => :check_out
   validates_datetime :check_in, :after => :check_out, allow_nil: true
 
+
+  def self.find_rental(movie_id, customer_id)
+
+    self.all.where(movie_id: movie_id, customer_id: customer_id, check_in: nil)
+
+
+  end
+
 end
