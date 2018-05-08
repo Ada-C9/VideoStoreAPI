@@ -17,4 +17,12 @@ describe Customer do
 
   end
 
+  describe "relationships" do
+    it " Customers have many rentals" do
+      customer = Customer.first
+
+      customer.rentals
+    end
+  end
+  
 end

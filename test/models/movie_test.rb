@@ -34,4 +34,12 @@ describe Movie do
     end
 
   end
+
+  describe "relationships" do
+    it "has many rentals" do
+      movie = Movie.first
+
+      movie.rentals 
+    end
+  end
 end
