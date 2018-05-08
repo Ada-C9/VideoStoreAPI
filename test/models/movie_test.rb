@@ -53,6 +53,12 @@ describe Movie do
       end
     end
 
+    it "returns an empty array if the movie has not been rented" do
+      new_movie = Movie.create!(title: 'test', inventory: 2, available_inventory: 2)
+      new_movie.rentals.must_equal []
+      new_movie.customers.must_equal []
+    end
+
   end
 
 end
