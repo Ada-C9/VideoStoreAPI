@@ -13,7 +13,7 @@ describe Movie do
     movie.must_be :valid?
   end
 
-  it 'is invalid with no name' do
+  it 'is invalid with no title' do
     movie = Movie.new(@movie_data)
     movie.title = ""
 

@@ -10,5 +10,8 @@ movie_1: {
   }
 # column: value
 #
-movie_2: {}
+movie_2: {
+  title: 'Some Like It Hot',
+  inventory: 5
+  }
 # column: value
