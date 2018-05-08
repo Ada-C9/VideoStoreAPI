@@ -6,17 +6,17 @@ describe Customer do
       customer = customers(:kari)
       customer.must_respond_to :rentals
 
-      # customer.rentals.each do |rental|
-      #   rental.must_be_kind_of Rental
-      # end
+      customer.rentals.each do |rental|
+        rental.must_be_kind_of Rental
+      end
     end
     it 'has a list of movies' do
       customer = customers(:kari)
       customer.must_respond_to :movies
 
-      # customer.rentals.each do |rental|
-      #   rental.must_respond_to Movie
-      # end
+      customer.rentals.each do |rental|
+        rental.must_respond_to Movie
+      end
     end
   end
 
