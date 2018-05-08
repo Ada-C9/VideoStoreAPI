@@ -1,5 +1,5 @@
 class Movie < ApplicationRecord
-  has_many :rentals
+  has_many :rentals,dependent: :destroy
   validates :title, presence: true
   validates :overview,presence: true
   validates :release_date, presence: true
