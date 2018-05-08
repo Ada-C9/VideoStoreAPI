@@ -4,14 +4,12 @@ class RentalsController < ApplicationController
 
     rental = Rental.new(rental_params)
     rental.checkout_date= Date.today
-
     rental.due_date= (rental.checkout_date + 7)
 
 
 
     # customer_id = Customer.find_by(id: rental_params[:customer_id])
     # movie_id = Movie.find_by(id: rental_params[:movie_id])
-
 
     if rental.save
       #success
@@ -21,7 +19,6 @@ class RentalsController < ApplicationController
       render json: {errors: rental.errors.messages }, status: :bad_request
     end
 
-    binding.pry
 
   end
 
