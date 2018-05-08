@@ -8,7 +8,7 @@ describe MoviesController do
       must_respond_with :success
     end
 
-    it "returns " do
+    it "returns json" do
       get movies_path
       response.header['Content-Type'].must_include 'json'
     end
@@ -20,19 +20,30 @@ describe MoviesController do
       body.must_be_kind_of Array
       must_respond_with :success
     end
-     it "returns all of the movies" do
-       get movies_path
+    it "returns all of the movies" do
+      get movies_path
 
-       body = JSON.parse(response.body)
-       body.length.must_equal Movie.count
-       must_respond_with :success
-     end
+      body = JSON.parse(response.body)
+      body.length.must_equal Movie.count
+      must_respond_with :success
+    end
+
+    it "returns correct movie fields" do
+      keys = %w(id inventory overview release_date title)
+
+      get movies_path
+      body = JSON.parse(response.body)
+
+      body.each do |movie|
+        movie.keys.sort.must_equal keys
+      end
+    end
 
   end
 
   describe 'show' do
     it 'returns a single movie' do
-      keys = %w(inventory overview release_date title )
+      keys = %w(inventory overview release_date title)
       movie = movies(:one)
 
       get movie_path(movie.id)
