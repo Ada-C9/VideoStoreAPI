@@ -72,4 +72,79 @@ describe MoviesController do
 
   end
 
+  describe 'create' do
+
+    before do
+      @old_movie_count = Movie.count
+    end
+
+    it 'can create a new movie with valid data' do
+
+      movie_data = {
+        title: "test_title",
+        overview: "what a movie",
+        release_date: "2018-05-08",
+        inventory: 4
+      }
+
+      post movies_path, params: { movie: movie_data}
+
+      must_respond_with :success
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
+
+      Movie.find(body["id"]).title.must_equal movie_data[:title]
+
+      Movie.count.must_equal @old_movie_count + 1
+
+    end
+
+    it 'responds with bad_request and error messages if no title' do
+
+      movie_data = {
+        title: nil,
+        overview: "what a movie",
+        release_date: "2018-05-08",
+        inventory: 4
+      }
+
+      post movies_path, params: { movie: movie_data }
+
+      must_respond_with :bad_request
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "title"
+
+      Movie.count.must_equal @old_movie_count
+
+    end
+
+    it 'responds with bad_request and error messages if invalid inventory info' do
+
+      movie_data = {
+        title: "OMG BEST",
+        overview: "what a movie",
+        release_date: "2018-05-08",
+        inventory: "gh"
+      }
+
+      post movies_path, params: { movie: movie_data }
+
+      must_respond_with :bad_request
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "inventory"
+
+      Movie.count.must_equal @old_movie_count
+
+    end
+  end
+
+
 end
