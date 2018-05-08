@@ -26,7 +26,7 @@ describe MoviesController do
     end
 
     it "returns movies with exactly the required fields" do
-      keys = %w(id title release_date)
+      keys = %w(id release_date title)
       get movies_url
       body = JSON.parse(response.body)
       body.each do |movie|
@@ -39,6 +39,14 @@ describe MoviesController do
     it "can get a movie" do
       get movie_path(movies(:babe).id)
       must_respond_with :success
+    end
+
+    it "returns a movie with exactly the required fields" do
+      keanu = movies(:keanu)
+      keys = %w(id inventory overview release_date title)
+      get movie_url(keanu.id)
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal keys
     end
 
     it "returns a 404 for movies that are not found" do
