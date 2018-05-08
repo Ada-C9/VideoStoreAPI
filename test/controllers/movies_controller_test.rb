@@ -1,4 +1,5 @@
 require "test_helper"
+require 'pry'
 
 describe MoviesController do
   describe 'index' do
@@ -70,9 +71,8 @@ describe MoviesController do
     it "can create a new movie" do
       before_movie_count = Movie.count
 
-      post movies_path, params: { movie: @movie_data }
-
-      must_respond_with :success
+      post movies_path, params: @movie_data
+      assert_response :success
       Movie.count.must_equal before_movie_count + 1
 
       body = JSON.parse(response.body)
@@ -85,7 +85,7 @@ describe MoviesController do
       bad_data.delete(:title)
 
       assert_no_difference "Movie.count" do
-        post movies_path, params: { movie: bad_data }
+        post movies_path, params: bad_data
         assert_response :bad_request
       end
 
