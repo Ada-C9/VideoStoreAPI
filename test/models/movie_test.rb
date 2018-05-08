@@ -85,5 +85,16 @@ describe Movie do
       @movie.errors.messages.must_include :inventory
       Movie.count.must_equal count_before
     end
+
+    it "is invalid if available inventory is less than 0" do
+      count_before = Movie.count
+      @movie.available_inventory = -2
+      @movie.valid?.must_equal false
+
+      @movie.save
+
+      @movie.errors.messages.must_include :available_inventory
+      Movie.count.must_equal count_before
+    end
   end
 end

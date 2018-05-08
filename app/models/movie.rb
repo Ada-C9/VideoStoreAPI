@@ -5,6 +5,7 @@ class Movie < ApplicationRecord
   validates :overview, presence: true
   validates :release_date, presence: true
   validates :inventory, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :available_inventory, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
 
 
   def inventory_available?
