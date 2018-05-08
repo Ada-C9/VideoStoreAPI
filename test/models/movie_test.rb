@@ -13,6 +13,11 @@ describe Movie do
         release_date: "1979-01-18",
         inventory: "10"
       )
+
+      customer = Customer.first
+      rental_data = { movie_id: @movie.id, customer_id: customer.id}
+
+      rental = Rental.create(rental_data)
       end
 
       it "can be created will all required fields" do
@@ -49,16 +54,21 @@ describe Movie do
 
     describe "relations" do
       before do
-        @movie = Movie.new(
+        @movie = Movie.create(
           title: "test movie",
           overview: "The unexciting life of a boy",
           release_date: "1979-01-18",
           inventory: "10"
         )
+
+        customer = Customer.first
+        rental_data = { movie_id: @movie.id, customer_id: customer.id}
+
+        rental = Rental.create(rental_data)
       end
 
-      it "has customers" do
-
+      it "has rentals" do
+        @movie.rentals.count.must_equal 1
       end
     end
 
