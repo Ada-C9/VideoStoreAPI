@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Movie do
   describe "relations" do
-    it "has a list of rentals" do
+    it "has a collection of rentals" do
       movie = movies(:HP)
       movie.must_respond_to :rentals
       movie.rentals.each do |rental|
