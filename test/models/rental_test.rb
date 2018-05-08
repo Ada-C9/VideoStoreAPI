@@ -2,8 +2,9 @@ require "test_helper"
 
 describe Rental do
   let(:rental) { Rental.new }
+  let(:one) { rentals(:one) }
 
-  it "must be valid" do
-    value(rental).must_be :valid?
+  it "exists" do
+    one.valid?.must_equal true
   end
 end
