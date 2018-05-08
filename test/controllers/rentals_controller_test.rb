@@ -66,4 +66,28 @@ describe RentalsController do
       body["errors"].must_include "customer"
     end
   end
+
+  describe "check_in" do
+    let(:rental_data) {
+      {
+        movie_id: movies(:LOTR).id,
+        customer_id: customers(:dan).id
+      }
+    }
+
+    it "will successfully check in a rental with valid customer and movie id" do
+      assert_no_difference "Rental.count" do
+        post check_in_path, params: { rental: rental_data }
+        must_respond_with :success
+      end
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "movie_id"
+
+      # Check that the ID matches
+      Rental.find_by(movie_id: body["movie_id"]).movie_id.must_equal movies(:LOTR).id
+    end
+
+  end
 end

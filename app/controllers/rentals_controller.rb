@@ -34,20 +34,23 @@ class RentalsController < ApplicationController
   end
 
   def check_in
-    rental = Rental.find_rental(rental_params)
+    rental = Rental.find_rental(params[:rental][:movie_id], params[:rental][:customer_id])
 
-    if rental.empty?
+    if rental.nil?
       render json: {
         errors: {
           movie_id: ["No rental is currently checkout with that criteria."]
           }
         }, status: :not_found
-    else
-      movie = Movie.find_by(id: params[:movie_id])
-      customer = Customer.find_by(id: params[:customer_id])
+        return
+    end
 
-      movie.inventory_check_in
-      customer.movie_check_in
+    rental.update_attributes(check_in: DateTime.now)
+
+    if rental.save
+      render json: rental.as_json(only: [:movie_id, :customer_id]), status: :ok
+    else
+      render json: { errors: rental.errors.messages }, status: :bad_request
     end
   end
 

@@ -1,4 +1,5 @@
 require "test_helper"
+require 'pry'
 
 describe Rental do
   describe "relations" do
@@ -101,6 +102,33 @@ describe Rental do
 
       @rental.errors.messages.must_include :check_in
       Rental.count.must_equal count_before
+    end
+  end
+
+  describe "find_rental" do
+    it "will find the rental with movie and customer id" do
+      rental = Rental.find_rental(movies(:LOTR).id, customers(:dan).id)
+
+      rental.must_be_kind_of Rental
+      rental.id.must_equal rentals(:three).id
+    end
+
+    it "returns nil when the movie id is not found" do
+      rental = Rental.find_rental(Movie.last.id + 1, Customer.first.id)
+
+      rental.must_be_nil
+    end
+
+    it "returns nil when the customer id is not found" do
+      rental = Rental.find_rental(Movie.first.id, Customer.last.id + 1)
+
+      rental.must_be_nil
+    end
+
+    it "returns nil when the movie is not checked out" do
+      rental = Rental.find_rental(movies(:HP).id, customers(:dan).id)
+
+      rental.must_be_nil
     end
   end
 end

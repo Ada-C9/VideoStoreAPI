@@ -11,10 +11,7 @@ class Rental < ApplicationRecord
 
 
   def self.find_rental(movie_id, customer_id)
-
-    self.all.where(movie_id: movie_id, customer_id: customer_id, check_in: nil)
-
-
+    self.all.where(movie_id: movie_id, customer_id: customer_id, check_in: nil).first
   end
 
 end
