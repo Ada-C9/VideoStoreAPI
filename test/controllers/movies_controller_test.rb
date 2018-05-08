@@ -76,16 +76,27 @@ describe MoviesController do
 
     it "creates a new movie" do
       proc {
-        post movies_path, params: {movie: movie_data}
+        post movies_path, params: movie_data
       }.must_change 'Movie.count', 1
       must_respond_with :success
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
+
+    # Check that the ID matches
+      Movie.find(body["id"]).title.must_equal movie_data[:title]
     end
 
     it "returns a bad request for a bad params data" do
       proc {
-        post movies_path, params: {movie: bad_movie_data}
+        post movies_path, params: bad_movie_data
       }.must_change "Movie.count", 0
       must_respond_with :bad_request
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "title"
     end
 
   end
