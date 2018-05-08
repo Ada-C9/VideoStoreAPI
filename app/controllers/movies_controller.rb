@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   def index
     movies = Movie.all
 
-    render json: movies.as_json(only: [:id, :inventory, :title, :overview, :release_date]), status: :ok
+    render json: movies.as_json(only: [:id, :inventory, :title, :overview, :release_date, :available_inventory]), status: :ok
   end
 
   def show
@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
         }
         }, status: :not_found
       else
-        render json: movie.as_json(only: [:overview, :release_date, :title, :inventory]), status: :ok
+        render json: movie.as_json(only: [:overview, :release_date, :title, :inventory, :available_inventory]), status: :ok
         # won't work unless rabl
         # render 'movies/show'
       end
