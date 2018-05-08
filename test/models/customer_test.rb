@@ -27,4 +27,28 @@ describe Customer do
     end
   end
 
+  describe 'relations' do
+
+    before do
+      @customer = customer(:one)
+    end
+
+    it 'connects rental and rentals_id' do
+
+      rental = rentals(:two)
+
+      @customer.rentals.must_include rental
+
+    end
+
+    it 'connects movie and movies_id' do
+
+      movie = movies(:two)
+
+      @customer.movie.must_be movie      
+
+    end
+
+  end
+
 end
