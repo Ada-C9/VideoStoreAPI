@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
         }
         }, status: :not_found
     else
-      render(json: movie.as_json(only: [:title, :overview, :release_date, :inventory]), status: :ok)
+      render(json: movie.as_json(only: [:title, :overview, :release_date, :inventory, :available_inventory]), status: :ok)
     end
   end
 
