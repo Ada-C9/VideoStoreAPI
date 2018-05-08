@@ -1,5 +1,9 @@
 class RentalsController < ApplicationController
-  def method_name
+  def checkin
+
+  end
+
+  def checkout
 
   end
 end
