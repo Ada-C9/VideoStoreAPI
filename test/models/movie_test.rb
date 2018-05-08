@@ -14,7 +14,7 @@ describe Movie do
 
     it 'has a list of customers' do
       @movie.must_respond_to :customers
-      second_cust = Customer.create!(title: "next title")
+      second_cust = Customer.create!(name: "fake name")
       @movie.customers << second_cust
 
       @movie.customers.each do |customer|
@@ -24,8 +24,21 @@ describe Movie do
   end
 
   describe 'validations' do
-    it "must be valid" do
-      value(movie).must_be :valid?
+
+    it "can be created with all valid fields" do
+      movie = Movie.new(title: "test movie")
+
+      result = movie.valid?
+
+      result.must_equal true
+    end
+
+    it 'is invalid without a title' do
+      movie = Movie.new
+
+      result = movie.valid?
+
+      result.must_equal false
     end
   end
 end
