@@ -3,7 +3,9 @@ require "test_helper"
 describe Movie do
   describe 'relations' do
     before do
-      @customer = Customer.create!(name: "test customer")
+      # @customer = Customer.create!(name: "test customer")
+      @customer = Customer.first
+      puts @customer.name
       @movie = Movie.new(title: "test movie")
       @movie.customers << @customer
     end
