@@ -26,5 +26,16 @@ describe CustomersController do
       end
     end
 
+    it 'returns an empty array if no customers' do
+      Customer.all.each do |customer|
+        customer.delete
+      end
+
+      get customers_path
+      body = JSON.parse(response.body)
+      body.must_equal []
+
+    end
+
   end
 end
