@@ -48,7 +48,6 @@ describe MoviesController do
     it 'provides an error message if movie not found' do
       # Arrange
       movie_id = Movie.first.id + 1
-      binding.pry
       # Act
       get movie_path(movie_id)
 
@@ -62,7 +61,6 @@ describe MoviesController do
   end
 
   describe 'create' do
-    skip
     # lazy load function that executes only if using the movie variable
     let(:movie_data) {
       {
