@@ -9,14 +9,22 @@ class RentalsController < ApplicationController
       movie.update(available_inventory: new_inventory)
       render json: rental.as_json(except: [:updated_at], status: :ok)
     else
-      render json: {
-        errors: rental.errors.messages
-      }, status: :bad_request
+      render json: { errors: rental.errors.messages}, status: :bad_request
     end
   end
 
   def check_in
-
+    rental = Rental.find_checked_out_movie(params[:movie_id], params[:customer_id])
+    if rental
+      rental.update(check_in_date: Date.today)
+      render json: rental.as_json(except: [:updated_at], status: :ok)
+    else
+      render json: {
+        errors: {
+          rental: ["No rental found"]
+        }
+      }
+    end
 
   end
 
@@ -25,6 +33,6 @@ class RentalsController < ApplicationController
   private
 
   def rental_params
-    params.require(:rental).permit(:movie_id, :customer_id)
+    params.permit(:movie_id, :customer_id)
   end
 end
