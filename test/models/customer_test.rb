@@ -75,15 +75,30 @@ describe Customer do
       Customer.count.must_equal count_before
     end
 
-    it "is invalid if movies checked out count is less than 0" do
-      count_before = Customer.count
-      @customer.movies_checked_out_count = -1
-      @customer.valid?.must_equal false
+    # it "is invalid if movies checked out count is less than 0" do
+    #   count_before = Customer.count
+    #   @customer.movies_checked_out_count = -1
+    #   @customer.valid?.must_equal false
+    #
+    #   @customer.save
+    #
+    #   @customer.errors.messages.must_include :movies_checked_out_count
+    #   Customer.count.must_equal count_before
+    # end
+  end
 
-      @customer.save
+  describe "movies_checked_out_count" do
+    it "returns the number of movies checked out" do
+      customer = customers(:dan)
 
-      @customer.errors.messages.must_include :movies_checked_out_count
-      Customer.count.must_equal count_before
+      customer.movies_checked_out_count.must_equal 1
+    end
+
+    it "returns 0 if the customer has no movies checked out" do
+      customer = customers(:kari)
+
+      customer.movies_checked_out_count.must_equal 0
     end
   end
+
 end

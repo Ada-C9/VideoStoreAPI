@@ -86,54 +86,70 @@ describe Movie do
       Movie.count.must_equal count_before
     end
 
-    it "is invalid if available inventory is less than 0" do
-      count_before = Movie.count
-      @movie.available_inventory = -2
-      @movie.valid?.must_equal false
-
-      @movie.save
-
-      @movie.errors.messages.must_include :available_inventory
-      Movie.count.must_equal count_before
-    end
+    # it "is invalid if available inventory is less than 0" do
+    #   count_before = Movie.count
+    #   @movie.available_inventory = -2
+    #   @movie.valid?.must_equal false
+    #
+    #   @movie.save
+    #
+    #   @movie.errors.messages.must_include :available_inventory
+    #   Movie.count.must_equal count_before
+    # end
   end
 
-  describe "inventory_available?" do
-    it "returns true if the movie has available inventory" do
+  # describe "inventory_available?" do
+  #   it "returns true if the movie has available inventory" do
+  #     movie = movies(:HP)
+  #
+  #     movie.inventory_available?.must_equal true
+  #     movie.inventory.must_equal 3
+  #   end
+  #
+  #   it "returns false if the movie has not available inventory" do
+  #     movie = movies(:LOTR)
+  #     movie.inventory = 0
+  #
+  #     movie.inventory_available?.must_equal false
+  #   end
+  # end
+  #
+  #
+  # describe "inventory_check_out" do
+  #   it "successfully decrease the movie's available inventory" do
+  #     movie = movies(:HP)
+  #     movie.available_inventory = movie.inventory
+  #     inventory_before = movie.available_inventory
+  #
+  #     movie.inventory_check_out
+  #     movie.available_inventory.must_equal  inventory_before - 1
+  #   end
+  #
+  #   it "successfully decrease the movie's available inventory and check what happens" do
+  #     movie = movies(:LOTR)
+  #     movie.available_inventory = movie.inventory
+  #     inventory_before = movie.available_inventory
+  #
+  #     movie.update(available_inventory: movie.inventory_check_out)
+  #     movie.update(available_inventory: movie.inventory_check_out)
+  #     movie.errors.messages.must_include :available_inventory
+  #     movies(:LOTR).available_inventory.must_equal 0
+  #   end
+  # end
+
+
+  describe "available_inventory" do
+    it "shows that the available inventory is the same as the inventory if movie is not checked out" do
       movie = movies(:HP)
 
-      movie.inventory_available?.must_equal true
-      movie.inventory.must_equal 3
+      movie.available_inventory.must_equal movie.inventory
     end
 
-    it "returns false if the movie has not available inventory" do
+    it "will decreate the available inventory when the movie is checked out" do
       movie = movies(:LOTR)
-      movie.inventory = 0
 
-      movie.inventory_available?.must_equal false
-    end
-  end
+      movie.available_inventory.must_equal movie.inventory - 1
+    end 
 
-
-  describe "inventory_check_out" do
-    it "successfully decrease the movie's available inventory" do
-      movie = movies(:HP)
-      movie.available_inventory = movie.inventory
-      inventory_before = movie.available_inventory
-
-      movie.inventory_check_out
-      movie.available_inventory.must_equal  inventory_before - 1
-    end
-
-    it "successfully decrease the movie's available inventory and check what happens" do
-      movie = movies(:LOTR)
-      movie.available_inventory = movie.inventory
-      inventory_before = movie.available_inventory
-
-      movie.update(available_inventory: movie.inventory_check_out)
-      movie.update(available_inventory: movie.inventory_check_out)
-      movie.errors.messages.must_include :available_inventory
-      movies(:LOTR).available_inventory.must_equal 0
-    end
   end
 end

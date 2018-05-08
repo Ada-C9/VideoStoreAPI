@@ -4,7 +4,7 @@ describe CustomersController do
   describe "index" do
     it "gets all the customers" do
       # Arrange
-      keys = %w(id name phone postal_code registered_at)
+      keys = %w(id movies_checked_out_count name phone postal_code registered_at)
 
       # Act
       get customers_path
