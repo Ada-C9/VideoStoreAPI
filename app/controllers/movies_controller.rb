@@ -11,7 +11,6 @@ class MoviesController < ApplicationController
 
     if @movie
 
-
       render json: @movie.as_json(only:[:title,:overview,:release_date,:inventory],methods: :available_inventory),status: :ok
 
     else

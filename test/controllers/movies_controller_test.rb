@@ -1,4 +1,5 @@
 require "test_helper"
+require 'date'
 
 describe MoviesController do
   describe "index" do
@@ -63,7 +64,7 @@ describe MoviesController do
 
         title: "Planet",
         overview: "fiction",
-        release_date: Date.new(2018-05-07),
+        release_date:"2018-05-07",
         inventory: 5
 
       }
@@ -71,7 +72,7 @@ describe MoviesController do
 
     it "Creates a new movie" do
       proc{
-        post movies_path, params:{movie: movie_data}
+        post movies_path, params: movie_data
       }.must_change 'Movie.count',1
       must_respond_with :success
 
@@ -80,7 +81,7 @@ describe MoviesController do
     it "returns bad request for params data" do
       movie_data[:title] = nil
       proc{
-        post movies_path, params: {movie: movie_data}
+        post movies_path, params: movie_data
       }.must_change 'Movie.count',0
       must_respond_with :bad_request
 
@@ -90,8 +91,7 @@ describe MoviesController do
       body["ok"].must_equal false
       body.must_include "errors"
       body["errors"].must_include "title"
-      #Movie.find(body["id"]).title.must_equal movie_data[:title]
-      # end
+
     end
 
   end
