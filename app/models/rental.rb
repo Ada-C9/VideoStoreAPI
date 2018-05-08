@@ -1,2 +1,0 @@
-class Rental < ApplicationRecord
-end
