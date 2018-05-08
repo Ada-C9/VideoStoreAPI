@@ -4,8 +4,9 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+
+robots:
+  title: Robots Of Eternity,
+  overview: The laid-back life of a woman is going in a different direction as a childhood friend enters her life.
+  release_date: 2007-10-10,
+  inventory: 7
