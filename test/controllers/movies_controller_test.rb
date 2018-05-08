@@ -48,7 +48,7 @@ describe MoviesController do
     it 'provides an error message if movie not found' do
       # Arrange
       movie_id = Movie.first.id + 1
-      binding.pry
+      # binding.pry
       # Act
       get movie_path(movie_id)
 
@@ -56,13 +56,13 @@ describe MoviesController do
       response.header['Content-Type'].must_include 'json'
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
+      body.must_include "errors"
       body["errors"].must_include "id"
       must_respond_with :not_found
     end
   end
 
   describe 'create' do
-    skip
     # lazy load function that executes only if using the movie variable
     let(:movie_data) {
       {
