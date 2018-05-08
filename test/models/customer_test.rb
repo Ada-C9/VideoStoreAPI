@@ -52,4 +52,20 @@ describe Customer do
     customer.postal_code = '12384985203829387948'
     customer.valid?.must_equal false
   end
+
+  describe 'relationships' do
+    it "has many rentals" do
+      customer.rentals.must_equal [rentals(:one)]
+
+      customer.rentals.count.must_equal 1
+    end
+
+    it "can have 0 rentals" do
+      customer.rentals.each do |rental|
+        rental.destroy
+      end
+
+      customer.rentals.count.must_equal 0
+    end
+  end
 end
