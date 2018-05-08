@@ -19,7 +19,7 @@ describe CustomersController do
     end
 
     it "returns customers with exactly the required fields" do
-      keys = %w(address city name phone postal_code registered_at state)
+      keys = %w(address city id movies_checked_out_count name phone postal_code registered_at state)
       get customers_url, params: {search: "Bob Esponja"}
       body = JSON.parse(response.body)
       body.each do |customer|
@@ -32,7 +32,7 @@ describe CustomersController do
 
   describe "show" do
     it "can get a customer" do
-      keys = %w(address city id name phone postal_code registered_at state )
+      keys = %w(address city id movies_checked_out_count name phone postal_code registered_at state )
       customer = Customer.first
       get customer_path(customer.id)
       must_respond_with :success
@@ -45,7 +45,7 @@ describe CustomersController do
     end
 
     it "it should return not found and returns some error test when a customer does not exist" do
-      keys = %w(address city id name phone postal_code registered_at state )
+
       customer_id = Customer.last.id + 1
       get customer_path(customer_id)
       must_respond_with :not_found
