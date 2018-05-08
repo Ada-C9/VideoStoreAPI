@@ -56,4 +56,38 @@ describe CustomersController do
 
     end
   end
+
+  describe "create" do
+    let(:customer_data) {
+      {
+        name: 'Patrick Star',
+        address: '123 Ocean St.',
+        city: 'Seattle',
+        state: 'Washington',
+        postal_code: '12345',
+        registered_at: Date.today
+
+      }
+    }
+
+    it "should create a new valid customer" do
+      old_customer_count = Customer.count
+      post customers_url, params: { customer: customer_data }
+      Customer.count.must_equal old_customer_count + 1
+      newest_customer = Customer.last
+      newest_customer.name.must_equal customer_data[:name]
+    end
+
+    it "should yield an error and error text when invalid data for customer" do
+      customer_data[:name] = nil
+      old_customer_count = Customer.count
+      post customers_url, params: { customer: customer_data }
+      Customer.count.must_equal old_customer_count
+      must_respond_with :bad_request
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "name"
+    end
+  end # create
 end
