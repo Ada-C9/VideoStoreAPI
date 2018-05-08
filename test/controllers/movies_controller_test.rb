@@ -46,7 +46,7 @@ describe MoviesController do
       must_respond_with :success
     end
 
-    it "returns a 404 for pets that are not found" do
+    it "returns a 404 for movies that are not found" do
       #Arrange
       movie = movies(:two)
       movie.destroy
@@ -60,15 +60,18 @@ describe MoviesController do
   describe "create" do
     let(:movie_data) {
       {
-        release_date: 2018-05-07,
+
         title: "Planet",
-        overview: "science fiction"
+        overview: "fiction",
+        release_date: Date.new(2018-05-07),
+        inventory: 5
+
       }
     }
 
     it "Creates a new movie" do
       proc{
-        post movies_path, params: {movie: movie_data}
+        post movies_path, params:{movie: movie_data}
       }.must_change 'Movie.count',1
       must_respond_with :success
 
@@ -87,6 +90,8 @@ describe MoviesController do
       body["ok"].must_equal false
       body.must_include "errors"
       body["errors"].must_include "title"
+      #Movie.find(body["id"]).title.must_equal movie_data[:title]
+      # end
     end
 
   end

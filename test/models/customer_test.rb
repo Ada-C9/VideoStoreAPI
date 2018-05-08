@@ -26,7 +26,7 @@ describe Customer do
       customer.valid?.must_equal false
       customer.errors.messages.must_include :name
     end
-    
+
     it "must have validation for registered date" do
       customer.registered_at = nil
       customer.valid?.must_equal false
