@@ -16,7 +16,7 @@ describe CustomersController do
     end
 
     it 'returns customers with the required fields' do
-      keys = %w(address city created_at id name phone postal_code registered_at state updated_at)
+      keys = %w(id movies_checked_out_count name phone postal_code registered_at)
 
       get customers_path
 
