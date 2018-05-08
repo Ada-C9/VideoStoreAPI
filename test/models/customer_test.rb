@@ -30,22 +30,21 @@ describe Customer do
   describe 'relations' do
 
     before do
-      @customer = customer(:one)
+      @customer = customers(:one)
     end
 
-    it 'connects rental and rentals_id' do
+    it 'has many rentals' do
 
-      rental = rentals(:two)
-
-      @customer.rentals.must_include rental
-
+      @customer.rentals.each do |rental|
+        rental.must_be_kind_of Rental
+      end
     end
 
-    it 'connects movie and movies_id' do
+    it 'has many movies' do
 
-      movie = movies(:two)
-
-      @customer.movie.must_be movie      
+      @customer.movies.each do |movie|
+        movie.must_be_kind_of Movie
+      end
 
     end
 
