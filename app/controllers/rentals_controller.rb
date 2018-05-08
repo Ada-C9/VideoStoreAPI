@@ -4,13 +4,14 @@ class RentalsController < ApplicationController
   def new
     rental = rental.new
   end
+
   def create
     today = Date.today
 
     cust_mov = {
       customer_id: params[:customer_id],
       movie_id: params[:movie_id],
-      check_in_date: today.to_s,
+      check_out_date: today.to_s,
       due_date: (today + 7).to_s
     }
 

@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   #movies_controller
     resources :movies, only:[:index, :show, :create]
 
-  post 'rentals/check_out/:movie_id/:customer_id', to: 'movies#check_out'
+  post 'rentals/check_out/:movie_id/:customer_id', to: 'rentals#create', as: 'rental'
 end
