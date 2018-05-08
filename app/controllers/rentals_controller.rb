@@ -26,7 +26,15 @@ class RentalsController < ApplicationController
   end
 
   def update
-    #check-in
+    rental = Rental.find_by(id: params[:id])
+
+    if rental && rental.checkin_date == nil
+      # rental.checkin_date = Date.new
+      rental.update
+      render json: rental.as_json(only: [:customer_id, :movie_id, :checkout_date, :checkin]), status: :ok
+    else
+      render json: {ok: false, errors: "Rental not found"}, status: :not_found
+    end
   end
 
   private
