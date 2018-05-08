@@ -36,5 +36,6 @@ describe Movie do
 
     movie.wont_be :valid?
     movie.errors.messages.must_include :inventory
+
   end
 end
