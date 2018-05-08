@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  checkout_date: MyString
-  due_date: MyString
+  checkout_date: "2018-05-08"
+  due_date: "2018-05-15"
   customer: one
   movie: one
 
 two:
-  checkout_date: MyString
-  due_date: MyString
+  checkout_date: "2018-05-08"
+  due_date: "2018-05-15"
   customer: two
   movie: two
