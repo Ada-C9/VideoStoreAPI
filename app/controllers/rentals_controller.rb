@@ -17,7 +17,14 @@ class RentalsController < ApplicationController
   end
 
   def create
+    # when you check_out a rental, you create a rental
+
   end
+
+  def update
+    # when you check_in a rental, you update a rental 
+  end
+
 
 
 private
