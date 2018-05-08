@@ -1,6 +1,6 @@
 class RentalsController < ApplicationController
 
-  def create
+  def check_in
     movie = Movie.find_by(id: params[:movie_id])
     customer = Customer.find_by(id: params[:customer_id])
     new_rental_data = {
@@ -15,7 +15,7 @@ class RentalsController < ApplicationController
       render :new
     end
   end
-  
+
   private
   def rental_params
     params.require(:rental).permit(:movie_id, :customer_id)

@@ -4,17 +4,17 @@ describe RentalsController do
   # it "must be a real test" do
   #   flunk "Need real tests"
   # end
-  describe "create" do
+  describe "check_in" do
     let(:rental_data) {
       {
-        customer_id: rentals(:one).id,
+        customer_id: customers(:one).id,
         movie_id: movies(:one).id
       }
     }
 
     it "creates a new rental" do
       before_rental_count = Rental.count
-      post check-in_url, params: { rental: rental_data }
+      post checkin_url, params: { rental: rental_data }
       must_respond_with :success
 
       Rental.count.must_equal before_rental_count + 1
