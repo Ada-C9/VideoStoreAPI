@@ -6,4 +6,9 @@ class MoviesController < ApplicationController
   render json: movies.as_json(except: [:created_at, :updated_at], status: :ok)
 
   end
+
+  def show
+    @movie = Movie.find_by(id: params[:id])
+    render 'movies/show'
+  end
 end

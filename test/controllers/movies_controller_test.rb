@@ -27,6 +27,9 @@ describe MoviesController do
         end
       end
 
-
     end # index
+
+    describe "show" do
+      it ""
+    end # show
 end
