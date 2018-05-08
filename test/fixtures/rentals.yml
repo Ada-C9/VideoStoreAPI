@@ -3,13 +3,13 @@
 one:
   customer_id: 1
   movie_id: 1
-  checkout_date: MyString
-  due_date: MyString
-  check_out_date: MyString
+  check_out_date: nil
+  due_date: nil
+  check_in_date: nil
 
 two:
   customer_id: 1
   movie_id: 1
-  checkout_date: MyString
-  due_date: MyString
+  check_out_date:
+  due_date:
   check_out_date: MyString

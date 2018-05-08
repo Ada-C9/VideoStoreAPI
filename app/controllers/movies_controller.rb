@@ -24,6 +24,9 @@ class MoviesController < ApplicationController
     end
   end
 
+
+
+
   private
     def movie_params
       return params.permit(:title, :overview, :release_date, :inventory)
