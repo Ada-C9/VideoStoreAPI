@@ -17,10 +17,10 @@ class MoviesController < ApplicationController
 
   def create
     movie = Movie.create(posting_film_requirements)
-    if movie.save
-      render json: movie.as_json(only:[:id])
+    if movie.valid?
+      render json:{id: movie.id}, status: :ok
     else
-        render json: {ok: false, errors: movie.errors}, status: :bad_request
+       render json:{ok: false, error: movie.errors}
       end
   end
 
