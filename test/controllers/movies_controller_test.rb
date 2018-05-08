@@ -47,9 +47,7 @@ describe MoviesController do
     end
 
     it "returns 404 for movies that are not found" do
-      movie = movies(:two)
-      movie.destroy
-      get movie_path(movie.id)
+      get movie_path("fake_id")
       must_respond_with :not_found
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
