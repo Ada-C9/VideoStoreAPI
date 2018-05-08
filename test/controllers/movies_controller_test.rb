@@ -40,5 +40,25 @@ describe MoviesController do
       body.keys.sort.must_equal keys
       body["id"].must_equal movie.id
     end
+
+    it 'returns movie with exactly the required fields' do
+      movie = Movie.first
+      keys = %w(id title release_date).sort
+      get movie_path(movie)
+      body = JSON.parse(response.body)
+
+      body.keys.sort.must_equal keys
+    end
+
+    it "yields a not_found status if the movie DNE and returns an error" do
+      movie_id = Movie.last.id + 1
+      get movie_path(movie_id)
+
+      must_respond_with :not_found
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "id"
+    end
   end
 end
