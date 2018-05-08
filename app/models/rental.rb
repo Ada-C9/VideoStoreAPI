@@ -8,4 +8,5 @@ class Rental < ApplicationRecord
   validates :due_date, presence: true
   validates_datetime :due_date, :after => :check_out
   validates_datetime :check_in, :after => :check_out, allow_nil: true
+
 end
