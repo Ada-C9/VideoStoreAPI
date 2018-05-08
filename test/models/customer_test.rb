@@ -44,5 +44,5 @@ describe Customer do
     # starts out with no rentals
     # jane.movies.length = 0
 
-
+  end
 end

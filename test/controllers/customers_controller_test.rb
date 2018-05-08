@@ -38,7 +38,7 @@ describe CustomersController do
     #   body.keys.sort.must_equal keys
     #   body["id"].must_equal customer.id
     # end
-  end
+  # end
 
 
 end

@@ -23,6 +23,22 @@ describe MoviesController do
         movie.keys.sort.must_equal keys
       end
     end
+  end
 
+  describe 'show' do
+    it 'can get one movie' do
+      movie = movies(:beautiful)
+      keys = %w(id title release_date).sort
+
+      get movie_path(movie.id)
+      must_respond_with :success
+
+      response.header['Content-Type'].must_include 'json'
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.keys.sort.must_equal keys
+      body["id"].must_equal movie.id
+    end
   end
 end
