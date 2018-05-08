@@ -18,7 +18,7 @@ describe Rental do
     end
   end
 
-  decsribe "relations" do
+  describe "relations" do
     it 'belongs to a customer' do
     end
 
