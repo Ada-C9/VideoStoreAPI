@@ -34,4 +34,20 @@ describe Movie do
     movie.inventory = "jdfaaldsjb"
     movie.valid?.must_equal false
   end
+
+  describe 'relationships' do
+    it "has many rentals" do
+      movie.rentals.must_equal [rentals(:one)]
+
+      movie.rentals.count.must_equal 1
+    end
+
+    it "can have 0 rentals" do
+      movie.rentals.each do |rental|
+        rental.destroy
+      end
+
+      movie.rentals.count.must_equal 0
+    end
+  end
 end
