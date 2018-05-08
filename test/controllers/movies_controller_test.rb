@@ -54,7 +54,7 @@ describe MoviesController do
   describe "show" do
     # This bit is up to you!
     it "can get a movie" do
-      keys = %w(id inventory overview release_date title)
+      keys = %w(available_inventory id inventory overview release_date title)
       movie = movies(:two)
       get movie_path(movie.id)
       must_respond_with :success

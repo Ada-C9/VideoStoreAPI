@@ -15,5 +15,9 @@ class RentalsController < ApplicationController
       render :new
     end
   end
-
+  
+  private
+  def rental_params
+    params.require(:rental).permit(:movie_id, :customer_id)
+  end
 end
