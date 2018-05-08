@@ -1,19 +1,93 @@
 require "test_helper"
 
 describe MoviesController do
-  it "should get index" do
-    get movies_index_url
-    value(response).must_be :success?
+  describe "index" do
+    # These tests are a little verbose - yours do not need to be
+    # this explicit.
+    it "is a real working route" do
+      get movies_url
+      must_respond_with :success
+    end
+
+    it "returns json" do
+      get movies_url
+      response.header['Content-Type'].must_include 'json'
+    end
+
+    it "returns an Array" do
+      get movies_url
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+    end
+
+    it "returns all of the movies" do
+      get movies_url
+
+      body = JSON.parse(response.body)
+      body.length.must_equal Movie.count
+    end
+
+    it "returns pets with exactly the required fields" do
+      keys = %w(id release_date title)
+      get movies_url
+      body = JSON.parse(response.body)
+      body.each do |movie|
+        movie.keys.sort.must_equal keys
+      end
+    end
   end
 
-  it "should get show" do
-    get movies_show_url
-    value(response).must_be :success?
+  describe "show" do
+
+
+    it "can get a movie" do
+      get movie_path(movies(:two).id)
+      must_respond_with :success
+    end
+
+    it "returns a 404 for pets that are not found" do
+      #Arrange
+      movie = movies(:two)
+      movie.destroy
+      #Action
+      get movie_path(movie.id)
+      #Assert
+      must_respond_with :not_found
+    end
   end
 
-  it "should get create" do
-    get movies_create_url
-    value(response).must_be :success?
-  end
+  describe "create" do
+    let(:movie_data) {
+      {
+        release_date: 2018-05-07,
+        title: "Planet",
+        overview: "science fiction"
+      }
+    }
 
+    it "Creates a new movie" do
+      proc{
+        post movies_path, params: {movie: movie_data}
+      }.must_change 'Movie.count',1
+      must_respond_with :success
+
+    end
+
+    it "returns bad request for params data" do
+      movie_data[:title] = nil
+      proc{
+        post movies_path, params: {movie: movie_data}
+      }.must_change 'Movie.count',0
+      must_respond_with :bad_request
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "ok"
+      body["ok"].must_equal false
+      body.must_include "errors"
+      body["errors"].must_include "title"
+    end
+
+  end
 end
