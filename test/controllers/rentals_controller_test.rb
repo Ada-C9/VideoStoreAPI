@@ -5,8 +5,8 @@ describe RentalsController do
   describe "check_out" do
     let(:rental_data) {
       {
-        customer_id: 1,
-        movie_id: 1
+        customer_id: customers(:one).id,
+        movie_id: movies(:two).id
       }
     }
 
@@ -20,14 +20,14 @@ describe RentalsController do
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include 'customer_id'
-      body['customer_id'].must_equal 1
+      body['customer_id'].must_equal customers(:one).id
       body.must_include 'movie_id'
-      body['movie_id'].must_equal 1
+      body['movie_id'].must_equal movies(:two).id
 
     end
 
     it "returns bad_request with bad params" do
-      rental_data['customer_id'] = nil
+      rental_data[:customer_id] = nil
 
       proc {
         post check_out_path(params: rental_data)
