@@ -1,4 +1,5 @@
 require "test_helper"
+require 'pry'
 
 describe Movie do
   describe "relations" do
@@ -9,7 +10,7 @@ describe Movie do
   end
 
   describe "validations" do
-    let(:movie) { Movie.new() }
+    let(:movie_nil) { Movie.new() }
 
     it "can create a movie with both title and release_date" do
       movie.title = "Lion King"
