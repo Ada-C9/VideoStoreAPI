@@ -5,9 +5,9 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  movie_id: one
-  customer_id: two
+ movie_id: one
+ customer_id: two
 
 two:
-  movie_id: two
-  customer_id: one
+ movie_id: two
+ customer_id: one
