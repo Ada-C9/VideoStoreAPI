@@ -11,10 +11,13 @@ describe RentalsController do
         movie_id: movies(:one).id,
         customer_id: customers(:one).id
       }
+      movie_inventory = movies(:one).inventory
 
       post check_out_path, params: { rental: rental_data }
 
       must_respond_with :success
+      movies(:one).reload
+      movies(:one).inventory.must_equal movie_inventory - 1
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       Rental.find(body['id']).customer_id.must_equal rental_data[:customer_id]
@@ -25,10 +28,13 @@ describe RentalsController do
       rental_data = {
         movie_id: movies(:one).id,
       }
+      movie_inventory = movies(:one).inventory
 
       post check_out_path, params: { rental: rental_data }
 
       must_respond_with :bad_request
+      movies(:one).inventory.must_equal movie_inventory
+
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include 'errors'

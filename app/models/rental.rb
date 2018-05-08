@@ -1,6 +1,7 @@
 class Rental < ApplicationRecord
   belongs_to :customer
   belongs_to :movie
+  alias_attribute :created_at, :check_out_date
 
   validates :movie_id, presence: true
   validates :customer_id, presence: true

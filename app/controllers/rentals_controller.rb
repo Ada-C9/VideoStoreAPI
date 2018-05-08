@@ -4,6 +4,9 @@ class RentalsController < ApplicationController
     rental.due_date = Date.today + 7
 
     if rental.save
+      new_inventory = rental.movie.inventory - 1
+      movie = Movie.find(rental.movie_id)
+      movie.update(inventory: new_inventory)
       render json: rental.as_json(except: [:updated_at], status: :ok)
     else
       render json: {
@@ -11,6 +14,13 @@ class RentalsController < ApplicationController
       }, status: :bad_request
     end
   end
+
+  def check_in
+    rental = Rental.find_by()
+
+  end
+
+
 
   private
 
