@@ -85,7 +85,7 @@ describe MoviesController do
 
       old_count = Movie.count
       post movies_path, params: param_hash
-      must_respond_with :created
+      must_respond_with :ok
       response.header["Content-Type"].must_include 'json'
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash

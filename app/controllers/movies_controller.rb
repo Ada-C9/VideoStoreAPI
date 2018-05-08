@@ -32,7 +32,7 @@ class MoviesController < ApplicationController
       movie = Movie.new(movie_params)
 
       if movie.save
-        render json: { id: movie.id }, status: :created
+        render json: { id: movie.id }, status: :ok
       else
         render json: {
           errors: movie.errors.messages
