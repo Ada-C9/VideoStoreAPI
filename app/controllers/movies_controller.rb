@@ -1,8 +1,9 @@
 class MoviesController < ApplicationController
 
   def index
-    movie = "it works!"
-    render json: movie.as_json
+    movies = Movie.all
+    render json: movies.as_json(only: [:id, :title, :release_date])
   end
+
 
 end

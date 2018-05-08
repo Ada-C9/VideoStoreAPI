@@ -22,7 +22,22 @@ describe CustomersController do
         customer.keys.sort.must_equal keys
       end
     end
+  end
 
+  # describe 'show' do
+    # it 'can get one customer' do
+    #   keys = %w(id name address city state postal_code phone registered_at)
+    #
+    #   get customer_path
+    #   must_respond_with :success
+    #
+    #   response.header['Content-Type'].must_include 'json'
+    #
+    #   body = JSON.parse(response.body)
+    #   body.must_be_kind_of Hash
+    #   body.keys.sort.must_equal keys
+    #   body["id"].must_equal customer.id
+    # end
   end
 
 
