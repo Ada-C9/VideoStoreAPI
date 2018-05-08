@@ -89,5 +89,66 @@ describe RentalsController do
       Rental.find_by(movie_id: body["movie_id"]).movie_id.must_equal movies(:LOTR).id
     end
 
+    it "returns an error if the movie id is not valid" do
+      bad_data = rental_data.clone()
+      bad_data[:movie_id] = Movie.last.id + 1
+      assert_no_difference "Rental.count" do
+        post check_in_path, params: { rental: bad_data }
+        must_respond_with :not_found
+      end
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "rental"
+    end
+
+    it "returns an error if the customer id is not valid" do
+      bad_data = rental_data.clone()
+      bad_data[:customer_id] = Customer.last.id + 1
+      assert_no_difference "Rental.count" do
+        post check_in_path, params: { rental: bad_data }
+        must_respond_with :not_found
+      end
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "rental"
+    end
+
+    it "returns an error if the movie is already returned" do
+      assert_no_difference "Rental.count" do
+        post check_in_path,
+        params: {
+          rental: { movie_id: movies(:HP).id,
+                    customer_id: customers(:dan).id
+                   }
+                 }
+        must_respond_with :not_found
+      end
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "rental"
+    end
+
+    it "returns an error if the check in date is before the check out date" do
+      assert_no_difference "Rental.count" do
+        post check_in_path,
+        params: {
+          rental: { movie_id: movies(:HP).id,
+                    customer_id: customers(:kari).id
+                   }
+                 }
+        must_respond_with :bad_request
+      end
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "check_in"
+    end
   end
 end

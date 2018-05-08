@@ -39,7 +39,7 @@ class RentalsController < ApplicationController
     if rental.nil?
       render json: {
         errors: {
-          movie_id: ["No rental is currently checkout with that criteria."]
+          rental: ["No rental is currently checkout with that criteria."]
           }
         }, status: :not_found
         return
