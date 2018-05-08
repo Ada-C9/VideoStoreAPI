@@ -1,1 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+Phantom:
+  title: Phantom Thread
+  overview:
+  release_date: Date.new-13
+  inventory: 12
+Lion:
+  title: Lion King
+  overview:
+  release_date: Date.new-10
+  inventory: 8

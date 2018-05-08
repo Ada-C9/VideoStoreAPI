@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+Linda:
+  name: Linda Linel
+  registered_at:
+  address:
+  city:
+  state:
+  postal_code:
+  phone:
+
+Bob:
+  name: Bob Belcher
+  registered_at:
+  address:
+  city:
+  state:
+  postal_code:
+  phone:
