@@ -55,15 +55,30 @@ describe CustomersController do
   end
 
   describe "create" do
-    #like let(:pet_data)
+    let(:customer_data) {
+      {
+        name: "Shelley Rocha",
+        registered_at: "2015-04-29T14:54:14.000Z",
+        address: "Ap #292-5216 Ipsum Rd.",
+        city: "Hillsboro",
+        state: "OR",
+        postal_code: "24309",
+        phone: "(322) 510-8695"
+      }
+    }
 
     it "creates a new customer" do
+      before_customer_count = Customer.count
+      post customers_url, params: { customer: customer_data }
+      must_respond_with :success
 
+      Customer.count.must_equal before_customer_count + 1
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
+
+      Customer.find(body["id"]).name.must_equal customer_data[:name]
     end
-
-    it "returns an error for an invalid customer" do
-
-    end
-
   end
 end
