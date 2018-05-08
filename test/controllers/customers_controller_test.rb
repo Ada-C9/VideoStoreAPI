@@ -30,7 +30,7 @@ describe CustomersController do
     end
 
     it "returns customers with exactly the required fields" do
-      keys = %w(id name registered_at postal_code phone movies_checked_out_count)
+      keys = %w(id movies_checked_out_count name phone postal_code registered_at)
       get customers_url
       body = JSON.parse(response.body)
       body.each do |customer|
