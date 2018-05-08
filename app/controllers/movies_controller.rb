@@ -21,7 +21,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    movie = Movie .new(movie_params)
+    movie = Movie.new(movie_params)
     if movie.save
       #success
       render json: { id: movie.id }, status: :ok
@@ -33,7 +33,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :overview, :release_date, :inventory)
+    params.require(:movie).permit(:title, :overview, :release_date, :inventory, :ava)
   end
 
 end
