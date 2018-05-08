@@ -74,7 +74,6 @@ describe MoviesController do
 
       must_respond_with :bad_request
       #how to pull json for testing - must_contain with hash key/values?
-      
     end
   end
 
