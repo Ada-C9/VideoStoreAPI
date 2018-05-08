@@ -8,10 +8,12 @@ one:
   customer: one
   movie: one
   due_date: <%= Date.today + 7 %>
+  check_in_date:
 # column: value
 #
 two:
   customer: two
   movie: two
   due_date: <%= Date.today + 10 %>
+  check_in_date:
 # column: value

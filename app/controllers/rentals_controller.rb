@@ -16,7 +16,7 @@ class RentalsController < ApplicationController
   end
 
   def check_in
-    rental = Rental.find_by()
+
 
   end
 

@@ -17,4 +17,9 @@ class Rental < ApplicationRecord
       errors[:quantity] << 'Not enough inventory for this rental'
     end
   end
+
+  def self.find_checked_out_movie(movie_id, customer_id)
+    rental = Rental.where(movie_id: movie_id, customer_id: customer_id, check_in_date: nil)
+    return rental.empty? ? nil : rental.first
+  end
 end

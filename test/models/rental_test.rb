@@ -44,4 +44,25 @@ describe Rental do
       rental.errors.messages.must_include :movie_id
     end
   end
+
+  describe "business logic" do
+    describe "find_checked_out_movie" do
+      it "returns a checked out rental" do
+        rental = rentals(:one)
+        movie_id = rental.movie_id
+        customer_id = rental.customer_id
+        result = Rental.find_checked_out_movie(movie_id, customer_id)
+        result.must_be_kind_of Rental
+        result.must_equal rental
+      end
+
+      it "returns nil if the rental DNE" do
+        rental = rentals(:one)
+        movie_id = rental.movie_id + 100
+        customer_id = rental.customer_id
+        result = Rental.find_checked_out_movie(movie_id, customer_id)
+        result.must_be_nil
+      end
+    end
+  end
 end
