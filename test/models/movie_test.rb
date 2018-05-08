@@ -25,21 +25,13 @@ describe Movie do
 
     end
 
-    it "must have a unique name" do
-      movie = Movie.first
-
-      other_movie = Movie.new(title: movie.title, inventory: 4)
-
-      other_movie.wont_be :valid?
-    end
-
   end
 
   describe "relationships" do
     it "has many rentals" do
       movie = Movie.first
 
-      movie.rentals 
+      movie.rentals
     end
   end
 end

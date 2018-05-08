@@ -1,6 +1,6 @@
 object @movie
 
-attributes :title, :overview, :release_date, :inventory
+attributes :title, :overview, :release_date, :inventory, :id
 
 node(:available_inventory) { |movie|
   checked_out_count = 0
