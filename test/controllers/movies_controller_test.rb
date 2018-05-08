@@ -59,10 +59,7 @@ describe MoviesController do
     it 'provides an error message if movie not found' do
       # Arrange
       movie_id = Movie.first.id + 1
-<<<<<<< HEAD
-=======
-      # binding.pry
->>>>>>> 4cf5015570e85408464235e826789bb4ad0f2533
+
       # Act
       get movie_path(movie_id)
 

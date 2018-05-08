@@ -37,6 +37,14 @@ describe CustomersController do
 	end
 
 	describe "show" do
+		it "returns " do
+			keys = %w(address city name phone postal_code registered_at state)
+			customer = customer(:one)
 
+			get customer_path(customer.id)
+
+			body = JSON.parse(response.body)
+
+		end
 	end
 end
