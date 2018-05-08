@@ -74,19 +74,20 @@ describe MoviesController do
       Movie.find(body["id"]).title.must_equal "A Movie"
     end
 
+
     it "responds with bad_request for invalid data" do
-      movie_data = movie_data().clone
-      movie_data.delete(:title)
-      assert_difference "Movie.count", 1 do
-        post movies_url, params: { movie: movie_data}
+      bad_data = movie_data.clone()
+      bad_data.delete(:title)
+      assert_no_difference "Movie.count" do
+        post movies_url, params: { movie: bad_data}
         assert_response :bad_request
       end
 
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
-      body.must_include "id"
+      body.must_include "errors"
 
-      Movie.find(body["id"]).title.must_be nil
+      Movie.find_by(overview: "It's definitely a movie.").must_equal nil
     end
   end
 end
