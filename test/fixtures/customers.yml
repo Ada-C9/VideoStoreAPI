@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  registered_at: 2018-05-07 14:57:29
-  address: MyString
-  city: MyString
-  state: MyString
-  postal_code: MyString
-  phone: MyString
+ name: Harry Potter
+ registered_at: 2017-05-05 14:57:29
+ address: Under the stairs, 4 Privet Drive
+ city: Little Whinging
+ state: Surrey
+ postal_code: 12345
+ phone: 123-456-7890
 
 two:
-  name: MyString
-  registered_at: 2018-05-07 14:57:29
-  address: MyString
-  city: MyString
-  state: MyString
-  postal_code: MyString
-  phone: MyString
+ name: Moaning Myrtle
+ registered_at: 2008-02-10 14:57:29
+ address: That One Bathroom
+ city: Hogwarts
+ state: Magicville
+ postal_code: 88888
+ phone: 987-654-3210

@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-movie_one:
-  title: movie_one
-  overview: movie_one_overview
-  release_date: 2018-05-07
-  inventory: 1
-  available_inventory: 1
+one:
+ title: The Grinch Who Stole Christmas
+ overview: Oscar the Grouch's northern cousin learns how to enjoy Christmas. Mild parentals issues in that it normalizes breaking and entering and robbery.
+ release_date: 1966-12-18
+ inventory: 3
+ available_inventory: 3
 
-movie_two:
-  title: movie_two
-  overview: movie_two_overview
-  release_date: 2018-05-07
-  inventory: 1
-  available_inventory: 1
+two:
+ title: Gone With the Wind
+ overview: Scarlett's life goes from teenage first world problems to grown up real world problems. Much feelings. So real.
+ release_date: 1940-01-17
+ inventory: 5
+ available_inventory: 5

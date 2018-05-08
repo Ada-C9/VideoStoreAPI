@@ -34,4 +34,25 @@ describe Movie do
     end
 
   end
+
+  describe 'relations' do
+
+    before do
+      @movie = movies(:one)
+    end
+
+    it "has many rentals" do
+      @movie.rentals.each do |rental|
+        rental.must_be_kind_of Rental
+      end
+    end
+
+    it "has a list of customers who rented it" do
+      @movie.customers.each do |customer|
+        customer.must_be_kind_of Customer
+      end
+    end
+
+  end
+
 end
