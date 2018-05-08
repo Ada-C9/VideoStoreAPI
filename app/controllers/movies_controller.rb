@@ -15,9 +15,9 @@ class MoviesController < ApplicationController
           "id": ["No movie with id #{params[:id]}"]
         }
         }, status: :not_found
-      else
-        render json: movie.as_json(only: [:id, :title, :overview :release_date, :inventory], status: :ok)
-      end
+    else
+      render(json: movie.as_json(only: [:id, :title, :overview, :release_date, :inventory]), status: :ok)
+    end
   end
 
   def create
@@ -27,4 +27,5 @@ class MoviesController < ApplicationController
   def movie_params
     params.require(:movie).permit(:title, :release_date)
   end
+
 end
