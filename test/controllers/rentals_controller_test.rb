@@ -22,9 +22,10 @@ describe RentalsController do
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include "id"
+      puts body
 
-      Rental.find(body["customer_id"]).must_equal rental_data[:customer_id]
-      Rental.find(body["movie_id"]).must_equal rental_data[:movie_id]
+      Rental.find(body["id"]).customer.id.must_equal rental_data[:customer_id]
+      Rental.find(body["id"]).movie.id.must_equal rental_data[:movie_id]
     end
   end
 end

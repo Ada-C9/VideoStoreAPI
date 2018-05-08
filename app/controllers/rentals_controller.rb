@@ -10,7 +10,7 @@ class RentalsController < ApplicationController
     rental = Rental.new(rental_params)
 
     if rental.save
-      render json: { id: rental.id }, status: :created
+      render json: { id: rental.id, customer_id: rental.customer_id, movie_id: rental.movie_id }, status: :created
     else
       render json: { errors: rental.errors.messages }, status: :bad_request
     end
