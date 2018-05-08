@@ -38,4 +38,31 @@ describe MoviesController do
   end
 end
 
+  describe 'show' do
+    it 'can get a movie' do
+      keys = %w(inventory overview release_date title)
+      movie = movies(:robots)
+
+      get movie_path(movie.id)
+
+      must_respond_with :success
+      response.header["Content-Type"].must_include 'json'
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.keys.sort.must_equal keys
+      body["id"].must_equal movie.id
+    end
+
+    it 'yields a not found status and returns and error if the movie DNE' do
+      movie_id = Movie.last.id + 1
+
+      get movie_path(movie_id)
+
+      must_respond_with :not_found
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "id"
+    end
+  end
 end
