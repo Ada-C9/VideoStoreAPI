@@ -71,7 +71,7 @@ describe MoviesController do
 
     it "Creates a new movie" do
       proc{
-        post movies_path, params:{movie: movie_data}
+        post movies_path, params: movie_data
       }.must_change 'Movie.count',1
       must_respond_with :success
 
