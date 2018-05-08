@@ -1,15 +1,9 @@
 Rails.application.routes.draw do
-  get 'rentals/checkout'
 
-  get 'rentals/checkin'
+  get '/customers', to: 'customers#index', as: 'customers'
+  get '/movies', to: 'movies#index', as: 'movies'
+  get '/movie/:id', to: 'movies#show', as: 'movie'
 
-  get 'movies/index'
-
-  get 'movies/show'
-
-  get 'movies/create'
-
-  get 'customers/index'
-
+  post '/movies', to: 'movies#create', as: 'new_movie'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
