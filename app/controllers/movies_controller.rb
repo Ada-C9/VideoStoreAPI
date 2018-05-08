@@ -16,9 +16,9 @@ class MoviesController < ApplicationController
   end
 
   def create
-    movie = Movie.create(movie_params)
-    if movie.valid?
-      render json: { id: movie.id }, status: :ok
+    movie = Movie.new(movie_params)
+    if movie.save
+      render json:movie.as_json(only: [:title, :overview, :release_date, :inventory, :id]), status: :ok
     else
       render json: { ok: false, errors: movie.errors },
       status: :bad_request
@@ -29,5 +29,5 @@ end
 private
 
 def movie_params
-  return params.require(:movie).permit(:title, :overview, :release_date, :inventory)
+  return params.permit(:inventory, :overview, :release_date, :title)
 end
