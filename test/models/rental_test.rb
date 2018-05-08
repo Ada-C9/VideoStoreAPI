@@ -37,26 +37,39 @@ describe Rental do
     end
 
     it 'will raise an error with a missing check_in' do
-
+      @rental_lion.check_in = nil
+      @rental_lion.check_in.must_be_nil
+      @rental_lion.valid?.must_equal false
+      @rental_lion.errors.size.must_equal 1
+      @rental_lion.errors.messages.keys[0].must_equal :check_in
+      @rental_lion.errors.messages.values[0][0].must_equal "can't be blank"
     end
 
     it 'will raise an error with a missing check_out' do
+      @rental_lion.check_out = nil
+      @rental_lion.check_out.must_be_nil
+      @rental_lion.valid?.must_equal false
+      @rental_lion.errors.size.must_equal 1
+      @rental_lion.errors.messages.keys[0].must_equal :check_out
+      @rental_lion.errors.messages.values[0][0].must_equal "can't be blank"
     end
+
+    # it 'a valid rental contains expected content' do
+    #   @rental_lion.customer_id
+    #   @
+    # end
   end
 
   describe "relations" do
     it 'belongs to a customer' do
+      @rental_phantom.customer.must_be_kind_of Customer
+      @rental_phantom.customer.id.must_equal @customer_2.id
     end
 
     it 'belongs to a movie' do
+      @rental_phantom.movie.must_be_kind_of Movie
+      @rental_phantom.movie.id.must_equal @phantom.id
     end
   end
 
 end
-# describe Rental do
-#   let(:rental) { Rental.new }
-#
-#   it "must be valid" do
-#     value(rental).must_be :valid?
-#   end
-# end
