@@ -4,12 +4,12 @@ describe Customer do
   before do
     @customer_data = {
       name: 'tester',
-      phone: '0000000000'
+      phone: '(000) 000-0000'
     }
     @customer = Customer.new(@customer_data)
   end
 
-  it "is valid with a name and phone number length of 10" do
+  it "is valid with a name and phone number length of 14" do
 
      @customer.must_be :valid?
   end
@@ -28,7 +28,7 @@ describe Customer do
     @customer.errors.messages.must_include :phone
   end
 
-  it "is invalid with a phone number less than 10 char" do
+  it "is invalid with a phone number less than 14 char" do
     @customer.phone = '3'
     @customer.wont_be :valid?
     @customer.errors.messages.must_include :phone
