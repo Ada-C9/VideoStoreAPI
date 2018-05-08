@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :movies, only: [:index, :show, :create]
   resources :customers, only: [:index, :show]
 
-  POST 'rentals/checkout', to: 'rentals#checkout', as: 'checkout'
-  POST 'rentals/checkin', to: 'rentals#checkin', as: 'checkin'
+  post '/rentals/check-out', to: 'rentals#checkout', as: 'check-out'
+  post '/rentals/check-in', to: 'rentals#checkin', as: 'check-in'
 
 end
