@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 
 
 resources :movies, only: [:index, :show, :create]
-resources :customers, only: [:index]
+resources :customers, only: [:index, :show]
 
 end

@@ -52,8 +52,8 @@ describe MoviesController do
       body = JSON.parse(response.body) #rails provides this
       body.must_be_kind_of Hash
       body.keys.sort.must_equal keys
-
       body["title"].must_equal movie.title
+      must_respond_with :success
     end
 
     it 'provides an error message if movie not found' do
