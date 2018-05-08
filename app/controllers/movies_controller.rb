@@ -15,7 +15,8 @@ class MoviesController < ApplicationController
         }
       }, status: :not_found
     else
-      render json: movie.as_json(only: [:id, :title, :overview, :release_date, :inventory]), status: :ok
+      available_inventory = movie.available_inventory
+      render json: movie.as_json(only: [:id, :title, :overview, :release_date, :inventory, :available_inventory]), status: :ok
     end
   end
 

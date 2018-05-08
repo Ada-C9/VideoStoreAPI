@@ -25,7 +25,7 @@ describe MoviesController do
   describe "show" do
     it "can get a movie" do
       # Arrange
-      keys = %w(id inventory overview release_date title)
+      keys = %w(available_inventory id inventory overview release_date title)
       movie = movies(:LOTR)
 
       # Act
