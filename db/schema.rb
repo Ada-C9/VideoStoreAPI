@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180507211512) do
+ActiveRecord::Schema.define(version: 20180508170243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,12 @@ ActiveRecord::Schema.define(version: 20180507211512) do
     t.datetime "updated_at", null: false
     t.date "end_date"
     t.date "start_date"
-    t.bigint "movies_id"
-    t.bigint "customers_id"
-    t.index ["customers_id"], name: "index_rentals_on_customers_id"
-    t.index ["movies_id"], name: "index_rentals_on_movies_id"
+    t.bigint "movie_id"
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_rentals_on_customer_id"
+    t.index ["movie_id"], name: "index_rentals_on_movie_id"
   end
 
-  add_foreign_key "rentals", "customers", column: "customers_id"
-  add_foreign_key "rentals", "movies", column: "movies_id"
+  add_foreign_key "rentals", "customers"
+  add_foreign_key "rentals", "movies"
 end
