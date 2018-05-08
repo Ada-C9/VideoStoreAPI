@@ -76,6 +76,7 @@ describe MoviesController do
 
       must_respond_with :success
 
+
     end
 
     it "returns with bad request with invalid data" do

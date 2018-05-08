@@ -1,14 +1,52 @@
 require "test_helper"
 
 describe RentalsController do
-  it "should get check-out" do
-    get rentals_check-out_url
-    value(response).must_be :success?
+
+  describe "check_out" do
+    let(:rental_data) {
+      {
+        customer_id: 1,
+        movie_id: 1
+      }
+    }
+
+    it "creates a rental object" do
+
+      proc {
+        post check_out_path(params: rental_data)
+      }.must_change 'Rental.count', 1
+
+      must_respond_with :success
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include 'customer_id'
+      body['customer_id'].must_equal 1
+      body.must_include 'movie_id'
+      body['movie_id'].must_equal 1
+
+    end
+
+    it "returns bad_request with bad params" do
+      rental_data['customer_id'] = nil
+
+      proc {
+        post check_out_path(params: rental_data)
+      }.must_change 'Rental.count', 0
+
+      must_respond_with :bad_request
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include 'ok'
+      body['ok'].must_equal false
+
+    end
   end
 
-  it "should get check-in" do
-    get rentals_check-in_url
-    value(response).must_be :success?
+  describe "check_in" do
+
   end
+
+
+
 
 end
