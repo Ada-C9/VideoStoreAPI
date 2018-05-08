@@ -17,7 +17,7 @@ describe MoviesController do
     end
 
     it "returns movies with exactly the required fields" do
-      keys = %W[id inventory overview release_date title]
+      keys = %W[available_inventory id inventory overview release_date title]
       get movies_url
 
       body = JSON.parse(response.body)
@@ -30,7 +30,7 @@ describe MoviesController do
 
   describe "show" do
     it "can get a movie" do
-      keys = %W[id inventory overview release_date title]
+      keys = %W[available_inventory id inventory overview release_date title]
 
       movie_id = movies(:one).id
       get movie_url(movie_id)
@@ -69,9 +69,7 @@ describe MoviesController do
     end
 
     it "can create a new movie" do
-      post movies_url, params: {
-        movie: movie_data
-      }
+      post movies_url, params: movie_data
       must_respond_with :success
 
       Movie.count.must_equal @before_count + 1

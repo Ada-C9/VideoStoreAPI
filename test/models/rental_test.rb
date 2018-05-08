@@ -22,7 +22,7 @@ describe Rental do
       movie = movies(:one)
       customer = customers(:one)
 
-      movie.update(inventory: 0)
+      movie.update(available_inventory: 0)
 
       rental3 = Rental.new(movie: movie, customer: customer)
 

@@ -9,6 +9,7 @@ one:
   release_date: <%= Date.new(1996,04,21) %>
   overview: Tor loves it!
   inventory: 2
+  available_inventory: 2
 # column: value
 #
 two:
@@ -16,4 +17,5 @@ two:
   release_date: <%= Date.new(2017,04,21) %>
   overview: Wenjie loves it!
   inventory: 40
+  available_inventory: 2
 # column: value
