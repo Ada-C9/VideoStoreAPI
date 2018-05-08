@@ -1,5 +1,5 @@
 require "test_helper"
-
+require 'pry'
 describe MoviesController do
   it "should get index" do
     get movies_url
@@ -30,4 +30,51 @@ describe MoviesController do
     body = JSON.parse(response.body)
     body.length.must_equal Movie.count
   end
+
+  describe "Show" do
+    it 'can show a movie' do
+      a_movie = movies(:Phantom)
+      get movie_url(a_movie.id)
+
+      must_respond_with :success
+    end
+
+    it 'will render a 404 for a non-existant ID' do
+      non_existant_ID = 99999
+      get movie_url(non_existant_ID)
+
+      must_respond_with :not_found
+    end
+  end
+
+  describe "Create" do
+    it 'can post a movie with valid data' do
+      proc{
+        post movies_url,
+          params:{
+              movie:{
+                      title:"test movie",overview: "testing",release_date:Date.new,inventory:12,available_inventory:11
+                    }
+                  }
+            }.must_change 'Movie.count', 1
+
+      must_respond_with :success
+    end
+
+    it 'will return bad-request for post request with bad data' do
+
+      proc{
+        post movies_url,
+          params:{
+              movie:{
+                      title:"",overview: "testing",release_date:Date.new,inventory:12,available_inventory:11
+                    }
+                  }
+            }.wont_change 'Movie.count'
+
+        must_respond_with :bad_request
+    end
+  end
+
+
 end

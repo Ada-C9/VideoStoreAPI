@@ -97,19 +97,41 @@
   },
   "Unit Tests": {
     "coverage": {
-      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/models/rental.rb": [
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/controllers/movies_controller.rb": [
         1,
         1,
+        1,
+        5,
+        5,
+        null,
+        null,
+        1,
+        null,
+        2,
+        2,
         1,
         null,
         1,
+        null,
+        null,
+        null,
+        1,
+        2,
+        2,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
         1,
         1,
-        1,
+        2,
+        null,
         null
       ],
-      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/models/application_record.rb": [
-        1,
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/controllers/application_controller.rb": [
         1,
         null
       ],
@@ -117,6 +139,11 @@
         1,
         1,
         null,
+        1,
+        null
+      ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/models/application_record.rb": [
+        1,
         1,
         null
       ],
@@ -131,6 +158,17 @@
         null,
         null
       ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/models/rental.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
       "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/mailers/application_mailer.rb": [
         0,
         0,
@@ -141,26 +179,10 @@
         0,
         0
       ],
-      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/controllers/application_controller.rb": [
-        0,
-        0
-      ],
       "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/controllers/customers_controller.rb": [
         0,
         0,
         0,
-        0,
-        0,
-        0
-      ],
-      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/controllers/movies_controller.rb": [
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
-        null,
         0,
         0,
         0
@@ -187,6 +209,6 @@
         0
       ]
     },
-    "timestamp": 1525805550
+    "timestamp": 1525813109
   }
 }
