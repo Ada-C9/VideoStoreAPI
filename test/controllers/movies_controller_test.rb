@@ -44,10 +44,11 @@ describe MoviesController do
       body.must_be_kind_of Hash
     end
 
-    it "locates the correct movie associated with the uri" do
+    it "locates the correct movie" do
       get movie_path(@movie.id)
       body = JSON.parse(response.body)
-      body["id"].must_equal @movie.id
+      body["title"].must_equal @movie.title
+      body["overview"].must_equal @movie.overview
     end
 
     it "returns a movie with all the requested fields" do
