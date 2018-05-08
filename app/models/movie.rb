@@ -13,16 +13,16 @@ class Movie < ApplicationRecord
       self.available_inventory = self.inventory
     end
 
-    return self.inventory > 0
+    return self.available_inventory > 0
   end
 
   def inventory_check_out
-      self.inventory -= 1
+    self.available_inventory -= 1
   end
 
 
   def inventory_check_in
-    self.inventory += 1
+    self.available_inventory += 1
   end
 
 end
