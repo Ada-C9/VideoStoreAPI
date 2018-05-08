@@ -26,10 +26,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-<<<<<<< HEAD
     #expecting where key is movie and value is hash
-=======
->>>>>>> e3c63a7fdfb59601188317586559faf48645ac97
     params.permit(:title, :overview, :release_date, :inventory)
   end
 end
