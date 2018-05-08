@@ -30,6 +30,6 @@ describe MoviesController do
     end # index
 
     describe "show" do
-      it ""
+    
     end # show
 end
