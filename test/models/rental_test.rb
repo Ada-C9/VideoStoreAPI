@@ -11,6 +11,23 @@ describe Rental do
       rental.must_be_instance_of Rental
       rental.wont_be :valid?
     end
+
+    it "a rental can not be completed if all copies are rented for a date range" do
+      movie = Movie.first
+      customer = Customer.first
+
+      movie.inventory.times  do
+        rent = Rental.new(movie_id: movie.id, customer_id: customer.id, start_date: Date.today, end_date: Date.today + 1)
+        rent.save
+      end
+      movie.reload
+
+      rental = Rental.new(movie_id: movie.id, customer_id: customer.id, start_date: Date.today, end_date: (Date.today + 1))
+
+      rental.wont_be :valid?
+
+    end
+
   end # validations
 
   describe "relationships" do
@@ -34,4 +51,4 @@ describe Rental do
 
     end
   end
-end 
+end
