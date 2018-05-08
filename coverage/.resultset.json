@@ -92,5 +92,99 @@
       ]
     },
     "timestamp": 1525803401
+  },
+  "Unit Tests": {
+    "coverage": {
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/models/rental.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/models/customer.rb": [
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/models/movie.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/mailers/application_mailer.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/jobs/application_job.rb": [
+        0,
+        0
+      ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/controllers/application_controller.rb": [
+        0,
+        0
+      ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/controllers/customers_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/controllers/movies_controller.rb": [
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0
+      ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/controllers/rental_controller.rb": [
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0
+      ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/channels/application_cable/connection.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/owner/Documents/ada/homework/VideoStoreAPI/app/channels/application_cable/channel.rb": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "timestamp": 1525805550
   }
 }
