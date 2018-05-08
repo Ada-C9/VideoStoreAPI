@@ -31,4 +31,45 @@ describe MoviesController do
 
   end
 
+  describe 'show' do
+    before do
+      @movie = movies(:one)
+    end
+
+    it "successfully returns json containing a hash with information for one movie " do
+      get movie_path(@movie.id)
+      must_respond_with :success
+      response.header['Content-Type'].must_include 'json'
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+    end
+
+    it "locates the correct movie" do
+      get movie_path(@movie.id)
+      body = JSON.parse(response.body)
+      body["title"].must_equal @movie.title
+      body["overview"].must_equal @movie.overview
+    end
+
+    it "returns a movie with all the requested fields" do
+      keys = %w(available_inventory inventory overview release_date title)
+      get movie_path(@movie.id)
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal keys
+    end
+
+    it "renders not_found and displays errors if the movie does not exist" do
+      bad_movie_id = Movie.last.id + 1
+      get movie_path(bad_movie_id)
+
+      must_respond_with :not_found
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "id"
+    end
+
+  end
+
 end
