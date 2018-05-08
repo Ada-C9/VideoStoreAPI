@@ -130,10 +130,10 @@ describe Movie do
       movie.available_inventory = movie.inventory
       inventory_before = movie.available_inventory
 
-      movie.inventory_check_out
-      movie.inventory_check_out
-      # movie.errors.messages.must_include :available_inventory
-      movie.available_inventory.must_equal 0
+      movie.update(available_inventory: movie.inventory_check_out)
+      movie.update(available_inventory: movie.inventory_check_out)
+      movie.errors.messages.must_include :available_inventory
+      movies(:LOTR).available_inventory.must_equal 0
     end
   end
 end
