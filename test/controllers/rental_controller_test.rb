@@ -14,6 +14,7 @@ describe RentalController do
       }.must_change 'Rental.count',1
       JSON.parse(response.body).keys[0].must_equal "due_date"
       # binding.pry
+      #
       # JSON.parse(response.body)["due_date"][-9].must_equal Rental.last.check_out.to_s[0..-8]
   end
 
