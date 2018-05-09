@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
 
   def index
     movies = Movie.all
-    render json: movies.as_json(only: [:title, :overview, :release_date, :inventory, :available_inventory]), status: :ok
+    render json: movies.as_json(only: [:id, :title, :overview, :release_date, :inventory, :available_inventory]), status: :ok
   end
 
   def show
@@ -14,12 +14,13 @@ class MoviesController < ApplicationController
         }
         }, status: :not_found
       else
-        render json: movie.as_json(only: [:id, :title, :overview, :release_date, :inventory, :available_inventory]), status: :ok
+        render json: movie.as_json(only: [:title, :overview, :release_date, :inventory, :available_inventory]), status: :ok
       end
   end
 
   def create
     movie = Movie.new(movie_params)
+    #TODO set available_inventory to inventory before saving
     if movie.save
       render json: { id: movie.id }, status: :created
     else
@@ -29,6 +30,6 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :overview, :release_date, :inventory, :available_inventory)
+    params.permit(:title, :overview, :release_date, :inventory, :available_inventory)
   end
 end

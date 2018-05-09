@@ -1,10 +1,11 @@
 class RentalsController < ApplicationController
 
   def check_out
-    
+
     rental = Rental.new(rental_params)
 
     if rental.save
+      #TODO call the method to decrease movie available_inventory
       render json: { id: rental.id, customer_id: rental.customer_id, movie_id: rental.movie_id }, status: :created
     else
       render json: { errors: rental.errors.messages }, status: :bad_request

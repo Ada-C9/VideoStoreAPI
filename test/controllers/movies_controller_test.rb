@@ -38,7 +38,7 @@ describe MoviesController do
 
     it "creates a new movie" do
       before_movie_count = Movie.count
-      post movies_url, params: { movie: movie_data }
+      post movies_url, params:  movie_data
       must_respond_with :success
 
       Movie.count.must_equal before_movie_count + 1
@@ -54,7 +54,7 @@ describe MoviesController do
   describe "show" do
     # This bit is up to you!
     it "can get a movie" do
-      keys = %w(available_inventory id inventory overview release_date title)
+      keys = %w(available_inventory inventory overview release_date title)
       movie = movies(:two)
       get movie_path(movie.id)
       must_respond_with :success
@@ -63,7 +63,6 @@ describe MoviesController do
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.keys.sort.must_equal keys
-      body["id"].must_equal movie.id
     end
 
     it "yields a not found status and also return some error text if the movie D.N.E" do
