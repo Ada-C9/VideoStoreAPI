@@ -25,7 +25,7 @@ describe MoviesController do
   describe "show" do
     it "can get a movie" do
       # Arrange
-      keys = %w(available_inventory id inventory overview release_date title)
+      keys = %w(id inventory overview release_date title)
       movie = movies(:LOTR)
 
       # Act
@@ -83,7 +83,7 @@ describe MoviesController do
       bad_data = @movie_data.clone()
       bad_data.delete(:title)
       assert_no_difference "Movie.count" do
-        post movies_url, params: bad_data 
+        post movies_url, params: bad_data
         assert_response :bad_request
       end
 
