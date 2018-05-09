@@ -129,4 +129,24 @@ describe Movie do
       end
     end
 
+    describe "increase_available_inventory" do
+      it "increase_available_inventory" do
+          @movie = Movie.create(
+            title: "test movie",
+            overview: "The unexciting life of a boy",
+            release_date: "1979-01-18",
+            inventory: "10",
+            available_inventory: "8"
+          )
+
+          available_inventory = @movie.available_inventory
+          customer = Customer.first
+          rental_data = { movie_id: @movie.id, customer_id: customer.id}
+          rental = Rental.create(rental_data)
+          @movie.increase_available_inventory
+          @movie.available_inventory.must_equal available_inventory + 1
+
+      end
+    end
+
   end
