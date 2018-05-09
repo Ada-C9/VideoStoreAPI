@@ -42,8 +42,5 @@ class Rental < ApplicationRecord
 
     rental = self.new(rental_data)
 
-    # TODO: liked the way this worked with just return rental.save for boolean, figure it out if time?
-    return rental
-
   end
 end
