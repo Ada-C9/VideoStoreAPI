@@ -2,7 +2,7 @@ require "test_helper"
 
 describe RentalsController do
   before do
-    movie = Movie.first
+    @movie = Movie.first
     customer = Customer.first
     @date = Date.today
 
@@ -10,7 +10,7 @@ describe RentalsController do
       checkout: nil,
       due_date: nil,
       customer_id: customer.id,
-      movie_id: movie.id
+      movie_id: @movie.id
     }
 
   end
@@ -22,8 +22,15 @@ describe RentalsController do
       must_respond_with :success
     end
 
-    it 'can checkout a movie' do
+    it 'returns json' do
+      post checkout_path, params: @rental_data
+
+      response.header['Content-Type'].must_include 'json'
+    end
+
+    it 'can checkout a movie and updates inventory' do
       before_count = Rental.count
+      before_inventory_count = @movie.inventory
 
       # Act
       post checkout_path, params: @rental_data
@@ -42,10 +49,8 @@ describe RentalsController do
       new_rental.checkout.must_equal @date
 
       new_rental.due_date.must_equal @date + 7
-    end
-
-    it 'changes inventory of movie with creation of a new checkout' do
-      skip
+      @movie.reload
+      @movie.inventory.must_equal before_inventory_count - 1
     end
 
     it 'throws an error if inventory of movie is 0 and someone tries to checkout' do
