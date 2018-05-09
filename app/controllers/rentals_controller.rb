@@ -30,6 +30,15 @@ class RentalsController < ApplicationController
   end
 
   def checkin
+    rental = Rental.find_by(params[:id])
+    if rental.nil?
+      render json: { ok: false }, status: :no_content
+    else
+      rental.update(returned?: true)
+      movie = Movie.find_by(id: rental.movie_id)
+      movie.inventory += 1 # Todo: consider making method in movie class
+      movie.save
+    end
   end
 
   private
