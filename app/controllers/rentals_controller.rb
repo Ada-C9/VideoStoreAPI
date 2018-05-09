@@ -16,8 +16,6 @@ class RentalsController < ApplicationController
     else
       render json: { errors: rental.errors.messages }, status: :bad_request
     end
-    # render json: @rental.as_json(only: [:id, :check_in, :check_out, :due_date])
-
   end
 
   def check_in
