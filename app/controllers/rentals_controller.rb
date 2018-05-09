@@ -33,7 +33,6 @@ class RentalsController < ApplicationController
     if rental.checkin_date != nil
       render json: {ok: false, errors: "Rental already checked in."}, status: :bad_request
     else
-
       rental.checkin_date = Date.today
       rental.save
 
