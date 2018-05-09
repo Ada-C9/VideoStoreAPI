@@ -35,7 +35,20 @@ describe RentalsController do
       # Check that the ID matches
       Rental.find(body["id"]).movie_id.must_equal rental_data[:movie_id]
       babe = Movie.find_by(id: id)
-      babe.inventory.must_equal 2
+      babe.get_available_inventory.must_equal 1
+    end
+
+    it "does not create new Rental if inventory 0" do
+      id = babe.id
+      babe.inventory = 0
+      babe.save
+      proc {
+        post checkout_path, params: {rental: rental_data}
+      }.must_change "Rental.count", 0
+      must_respond_with :bad_request
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
     end
 
     it "returns a bad request for a bad params data" do
@@ -59,11 +72,10 @@ describe RentalsController do
       rental_one = Rental.find_by(id: id)
       rental_one.returned?.must_equal true
       babe = Movie.find_by(id: movie_id)
-      babe.inventory.must_equal 4
+      babe.get_available_inventory.must_equal 4
     end
 
     it "returns a bad request for a non-existent rental" do
-
       proc {
         post checkin_path(234567890)
       }.must_change "Rental.count", 0
