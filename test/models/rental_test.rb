@@ -1,9 +1,22 @@
 require "test_helper"
 
 describe Rental do
-  let(:rental) { Rental.new }
+
+  movie = Movie.first
+  customer = Customer.first
+  let(:rental) { Rental.new(movie_id: movie.id, customer_id: customer.id) }
+
   it "must be valid" do
-    skip
     value(rental).must_be :valid?
+  end
+
+  describe "relationship" do
+    it "belongs to movie" do
+      rental.must_respond_to :movie
+    end
+
+    it "belongs to customer" do
+      rental.must_respond_to :customer
+    end
   end
 end

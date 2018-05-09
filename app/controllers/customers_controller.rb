@@ -5,14 +5,6 @@ class CustomersController < ApplicationController
     render json: customers.as_json(only: [:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone, :movies_checked_out_count]), status: :ok
   end
 
-  # def zomg
-  #   render json: {
-  #     "customer": {
-  #       "name": "it works"
-  #     }
-  #   }
-  # end
-
   def show
     customer = Customer.find_by(id: params[:id])
     if customer.nil?
