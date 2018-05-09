@@ -3,10 +3,10 @@ require "test_helper"
 describe RentalController do
   it "should get check_in" do
     post check_out_path, params:{
-      "customer_id": customers(:Linda).id,
+      "customer_id": nil,
       "movie_id": movies(:Lion).id
     }
-    
+
     value(response).must_be :success?
   end
 
