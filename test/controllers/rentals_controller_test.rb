@@ -55,6 +55,25 @@ describe RentalsController do
       body.must_be_kind_of Hash
       body.must_include 'ok'
       body['ok'].must_equal false
+      body.must_include 'errors'
+      body['errors'].must_include 'customer'
+    end
+
+    it "returns no_content with no availble inventory" do
+
+      post check_out_path(params:
+        {
+          customer_id: customers(:one).id,
+          movie_id: movies(:one).id
+        })
+
+      must_respond_with :bad_request
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include 'ok'
+      body['ok'].must_equal false
+      body.must_include 'errors'
+      body['errors'].must_equal "No copies available"
     end
 
     it "does not decrease available inventory if available inventory is 0" do
@@ -84,6 +103,8 @@ describe RentalsController do
       customer_one = Customer.find_by(id: customer_one.id)
       customer_one.movies_checked_out_count.must_equal mcoc
     end
+
+
   end
 
   describe "check_in" do

@@ -4,6 +4,7 @@ class RentalsController < ApplicationController
 
     movie = Movie.find_by(id: params[:movie_id])
 
+
     if movie.available_inventory > 0
 
       checkout = Date.today.to_s
@@ -22,10 +23,12 @@ class RentalsController < ApplicationController
 
       else
         render json: {ok: false, errors: rental.errors}, status: :bad_request
+
       end
 
     else
-      render json: {ok: false, errors: "No copies available"}, status: :no_content
+
+      render json: {ok: false, errors: "No copies available"}, status: :bad_request
     end
   end
 
