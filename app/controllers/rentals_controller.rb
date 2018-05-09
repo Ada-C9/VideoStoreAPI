@@ -1,5 +1,5 @@
 class RentalsController < ApplicationController
-  
+
   def check_out
 
     movie = Movie.find_by(id: params[:movie_id])
@@ -41,9 +41,7 @@ class RentalsController < ApplicationController
       else
         rental.update(status: 'returned')
         render json: { customer_id: rental.customer_id, movie_id: rental.movie_id, status: rental.status }, status: :ok
-
       end
-
     end
 
     private

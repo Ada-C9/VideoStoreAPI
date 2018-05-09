@@ -1,16 +1,13 @@
 class MoviesController < ApplicationController
   def index
-
     @movies = Movie.all
-
   end
 
   def show
-
     @movie = Movie.find_by(id: params[:id])
 
     if @movie.nil?
-      render json: {ok: false, :errors => "Movie not found"}, status: :not_found
+      render json: { ok: false, :errors => "Movie not found" }, status: :not_found
     end
 
   end
@@ -24,6 +21,7 @@ class MoviesController < ApplicationController
     else
       render json: {ok: false, errors: movie.errors}, status: :bad_request
     end
+
   end
 
   private
@@ -31,4 +29,5 @@ class MoviesController < ApplicationController
   def movie_params
     return params.permit(:title, :overview, :release_date , :inventory)
   end
+  
 end
