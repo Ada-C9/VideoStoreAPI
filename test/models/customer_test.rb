@@ -23,9 +23,9 @@ describe Customer do
       rentals(:one).movie_id = movies(:one).id
       rentals(:one).save
 
-      person.must_respond_to :rentals
-      person.rentals[0].must_be_kind_of Rental
+      customers(:one).must_respond_to :rentals
+      customers(:one).rentals[0].must_be_kind_of Rental
     end
   end
-  
+
 end

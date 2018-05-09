@@ -29,7 +29,7 @@ describe MoviesController do
     end
 
     it "returns movies with all fields" do
-      keys = %w(inventory overview release_date title)
+      keys = %w(available_inventory id inventory overview release_date title)
       get movies_path
 
       body = JSON.parse(response.body)
@@ -78,9 +78,8 @@ describe MoviesController do
       }
 
       it "Creates a new movie" do
-
         proc {
-          post movies_path, params: {movie: movie_data}
+          post movies_path, params: movie_data
         }.must_change 'Movie.count', 1
 
         must_respond_with :success
@@ -94,7 +93,7 @@ describe MoviesController do
         }
 
         proc {
-          post movies_path, params: {movie: not_a_movie}
+          post movies_path, params: not_a_movie
         }.wont_change 'Movie.count'
 
         must_respond_with :bad_request
@@ -106,11 +105,6 @@ describe MoviesController do
         body["errors"].must_include "title"
       end
 
-
     end
-
-
-
-
   end
 end
