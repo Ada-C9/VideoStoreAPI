@@ -4,10 +4,10 @@ one:
   title: "Black Panther"
   overview: "An afrofuturism film about world resources"
   release_date: 2018-3-20
-  inventory: 1
+  inventory: 10
 
 two:
   title: "Swamp Thing"
   overview: "A woman falls in love with a swamp thing"
   release_date: 2018-05-07
-  inventory: 2
+  inventory: 20
