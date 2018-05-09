@@ -4,7 +4,12 @@ class Movie < ApplicationRecord
   validates :title, presence: true
   validates :inventory, presence: true, numericality: true
 
-  def get_available_inventory
+  def as_json(options={})
+    options[:methods] = [:available_inventory]
+    super
+  end
+
+  def available_inventory
     calc_inventory
   end
 
