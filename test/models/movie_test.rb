@@ -44,7 +44,7 @@ describe Movie do
 
   describe "inventory" do
     it "returns the available inventory" do
-      babe.get_available_inventory.must_equal 2
+      babe.available_inventory.must_equal 2
     end
   end
 
