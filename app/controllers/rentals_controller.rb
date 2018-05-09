@@ -32,5 +32,5 @@ class RentalsController < ApplicationController
 
   def rental_params
     return params.require(:rental).permit(:id, :check_in, :check_out, :due_date)
-  end  
+  end
 end
