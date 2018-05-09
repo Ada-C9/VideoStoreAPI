@@ -1,5 +1,5 @@
 class Rental < ApplicationRecord
-  belongs_to :customer#, counter_cache: :movies_checked_out_count
+  belongs_to :customer
   belongs_to :movie
 
   validates :movie_id, presence: true

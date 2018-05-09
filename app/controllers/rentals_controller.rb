@@ -1,4 +1,3 @@
-require 'pry'
 class RentalsController < ApplicationController
 
   def check_out
@@ -58,5 +57,4 @@ class RentalsController < ApplicationController
   def rental_params
     return params.permit(:movie_id, :customer_id)
   end
-
 end
