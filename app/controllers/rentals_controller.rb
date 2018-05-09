@@ -19,8 +19,7 @@ class RentalsController < ApplicationController
 
   def check_in
 
-    rental = Rental.find_by(rental_params[:id])
-    puts rental.customer
+    rental = Rental.find_by(rental_params)
     if rental.save
       rental.movie.increase_available_inventory
       render json: { id: rental.id, customer_id: rental.customer_id, movie_id: rental.movie_id }, status: :created

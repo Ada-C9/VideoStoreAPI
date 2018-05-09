@@ -44,21 +44,14 @@ describe RentalsController do
 
       before_availability = movie.available_inventory
 
-      puts "before availability #{before_availability}"
-
       available_data = { customer_id: customers(:one).id, movie_id: movies(:two).id }
 
       post checkout_url, params: { rental: available_data }
 
       body = JSON.parse(response.body)
 
-      puts "body: #{body}"
-
-
-      puts movie.title
       movie.reload
 
-      puts "movie availability after post: #{movie.available_inventory}"
       movie.available_inventory.must_equal before_availability - 1
     end
   end
@@ -68,30 +61,24 @@ describe RentalsController do
     let(:rental_data) {
       {
         customer_id: customers(:one).id,
-        movie_id: movies(:one).id
+        movie_id: movies(:two).id
       }
     }
     it "increase_available_inventory on movie in the rental" do
-      movie = movies(:one)
+      movie = movies(:two)
       before_availability = movie.available_inventory
 
-      puts "before availability #{before_availability}"
 
       available_data = { customer_id: customers(:one).id, movie_id: movies(:two).id }
-      # post checkout_url, params: { rental: available_data }
-      # movie.reload
+      post checkout_url, params: { rental: available_data }
+      movie.reload
       post checkin_url, params: { rental: available_data }
 
       body = JSON.parse(response.body)
 
-      puts "body: #{body}"
-
-
-      puts movie.title
       movie.reload
 
-      puts "movie availability after post: #{movie.available_inventory}"
-      movie.available_inventory.must_equal before_availability + 1
+      movie.available_inventory.must_equal before_availability
     end
   end
 
