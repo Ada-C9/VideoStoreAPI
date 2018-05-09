@@ -13,6 +13,8 @@ class RentalsController < ApplicationController
 
   end
 
+  
+
   private
   def rental_params
     return params.permit(:movie_id, :customer_id)
