@@ -78,4 +78,57 @@ describe Rental do
     end
 
   end
+
+  describe "validations" do
+    before do
+      @movie = Movie.first
+      @customer = Customer.first
+    end
+
+    it "cannot be created if movie.available is less than 0" do
+      available_inventory = @movie.available
+
+      available_inventory.times do
+        customer = Customer.create!(name: "Test Customer")
+        rental = Rental.new(customer: customer, movie: @movie)
+
+        rental.must_be :valid?
+
+        rental.save
+      end
+      old_rental_count = Rental.count
+      rental = Rental.new(customer: @customer, movie: @movie)
+
+      rental.wont_be :valid?
+
+      proc { rental.save }.must_raise
+      rental.errors.messages.wont_be :empty?
+      Rental.count.must_equal old_rental_count
+
+    end
+
+    it "returns an ArgumentError if the customer and movie have an active rental" do
+      Rental.create!(customer: @customer, movie: @movie)
+
+      rental = Rental.new(customer: @customer, movie: @movie)
+      rental.wont_be :valid?
+
+      old_rental_count = Rental.count
+
+      proc { rental.save }.must_raise
+      rental.errors.messages.wont_be :empty?
+      Rental.count.must_equal old_rental_count
+    end
+
+    it "does not prevent duplicate rentals if previous rental resolved" do
+      rental = Rental.create!(customer: @customer, movie: @movie)
+
+      rental.checkin_date = DateTime.now
+      rental.save
+
+      second_rental = Rental.new(customer: @customer, movie: @movie)
+
+      second_rental.must_be :valid?
+    end
+  end
 end
