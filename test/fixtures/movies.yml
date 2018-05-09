@@ -10,4 +10,10 @@ two:
   title: Harry Porter
   overview: Fiction
   release_date: 2018-05-07
-  inventory: 12
+  inventory: 1
+
+three:
+  title: Avengers
+  overview: Fiction
+  release_date: 2018-05-07
+  inventory: 1

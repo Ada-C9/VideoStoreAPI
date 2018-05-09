@@ -11,3 +11,9 @@ two:
   due_date: 2018-05-14
   customer: mary
   movie: two
+
+three:
+  checkout_date: 2018-05-07
+  due_date: 2018-05-14
+  customer: cherry
+  movie: three

@@ -17,3 +17,12 @@ sally:
   state: Wa
   postal_code: 98074
   phone: 421234541
+
+cherry:
+  name: cherry
+  registered_at: 2018-05-07 14:24:47
+  address: 112 22st
+  city: sammamish
+  state: Wa
+  postal_code: 98074
+  phone: 421234541
