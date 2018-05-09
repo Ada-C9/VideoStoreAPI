@@ -26,5 +26,17 @@ describe RentalsController do
       Rental.find(body["id"]).customer.id.must_equal rental_data[:customer_id]
       Rental.find(body["id"]).movie.id.must_equal rental_data[:movie_id]
     end
+
+    it "will respond with bad_request if the movie is not available to rent" do
+      before_rental_count = Rental.count
+      movie = Movie.create(title: "Unavailable", inventory: 1, available_inventory: 0)
+
+      unavailable_data = { customer_id: customers(:one).id, movie_id: movie.id}
+
+      post checkout_url, params: { rental: unavailable_data }
+
+      must_respond_with :bad_request
+      Rental.count.must_equal before_rental_count
+    end
   end
 end

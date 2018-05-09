@@ -1,11 +1,14 @@
 class RentalsController < ApplicationController
 
   def check_out
-    
     rental = Rental.new(rental_params)
 
-    if rental.save
-      render json: { id: rental.id, customer_id: rental.customer_id, movie_id: rental.movie_id }, status: :created
+    if rental.movie.available_to_rent?
+      if rental.save
+        render json: { id: rental.id, customer_id: rental.customer_id, movie_id: rental.movie_id }, status: :created
+      else
+        render json: { errors: rental.errors.messages }, status: :bad_request
+      end
     else
       render json: { errors: rental.errors.messages }, status: :bad_request
     end
