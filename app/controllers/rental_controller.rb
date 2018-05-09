@@ -4,6 +4,10 @@ class RentalController < ApplicationController
     customer = Customer.find_by(id: rental_params[:customer_id])
 
     if movie && customer
+
+      #add value back to inventory
+      #add check in date
+
     else
       #end outer loop
     end
@@ -23,7 +27,7 @@ class RentalController < ApplicationController
         movie.a_checkout
         rental.assign_check_out_date
         rental.assign_due_date
-        if rental.valid?
+        if rental.save
           render json: rental.as_json(only:[:due_date])
         else
           render json: {ok: false, error:rental.errors}
