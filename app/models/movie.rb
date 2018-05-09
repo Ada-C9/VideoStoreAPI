@@ -8,17 +8,17 @@ class Movie < ApplicationRecord
      unless self.available_inventory == 0
        rented_copies = self.rental.where(id: self.id)
 
-         rented_copies.each do |copy|
-           if copy.checkout_date && copy.rental.checkin_date == nil
-
-             available_inventory -= 1
-
-           end
+       rented_copies.each do |copy|
+         if copy.checkout_date && copy.rental.checkin_date == nil
+           
+           available_inventory -= 1
 
          end
-       else
 
-         return "We do not have that title available now."
+       end
+     else
+
+       return "We do not have that title available now."
 
      end
 
