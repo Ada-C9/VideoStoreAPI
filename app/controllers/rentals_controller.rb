@@ -9,8 +9,10 @@ class RentalsController < ApplicationController
       new_inventory = rental.movie.available_inventory -= 1
       customer_movie_count = rental.customer.movies_checked_out_count += 1
       #success
+      rental.update_attribute(:checked_out, true)
       rental.movie.update_attribute(:available_inventory, new_inventory)
       rental.customer.update_attribute(:movies_checked_out_count, customer_movie_count)
+      
       render json: rental_params, status: :ok
     else
       #failure
@@ -31,8 +33,10 @@ class RentalsController < ApplicationController
       new_inventory = rental.movie.available_inventory += 1
       customer_movie_count = rental.customer.movies_checked_out_count -= 1
 
+      rental.update_attribute(:checked_out, false)
       rental.movie.update_attribute(:available_inventory, new_inventory)
       rental.customer.update_attribute(:movies_checked_out_count, customer_movie_count)
+
       render(json: rental.as_json(only: [:customer_id, :movie_id]), status: :ok)
     end
   end
