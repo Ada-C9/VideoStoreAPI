@@ -2,16 +2,22 @@ require "test_helper"
 
 describe RentalsController do
   describe "check_out" do
-    let(:rental_data) {
-      {
+    before do
+      @rental_data = {
         movie_id: movies(:HP).id,
         customer_id: customers(:kari).id
       }
-    }
+    end
+    # let(:rental_data) {
+    #   {
+    #     movie_id: movies(:HP).id,
+    #     customer_id: customers(:kari).id
+    #   }
+    # }
 
     it "Creates a new rental" do
       assert_difference "Rental.count", 1 do
-        post check_out_path, params: { rental: rental_data }
+        post check_out_path, params: @rental_data
         must_respond_with :success
       end
 
@@ -24,7 +30,7 @@ describe RentalsController do
     end
 
     it "Returns an error for an invalid movie ID" do
-      bad_data = rental_data.clone()
+      bad_data = @rental_data.clone()
       bad_data[:movie_id] = Movie.last.id + 1
       assert_no_difference "Rental.count" do
         post check_out_path, params: { rental: bad_data }
@@ -38,11 +44,11 @@ describe RentalsController do
     end
 
     it "Returns an error if movie is not available" do
-      post check_out_path, params: { rental: { movie_id: movies(:LOTR).id, customer_id: customers(:kari).id }}
+      post check_out_path, params: { movie_id: movies(:LOTR).id, customer_id: customers(:kari).id }
       movies(:LOTR).available_inventory.must_equal 0
 
       assert_no_difference "Rental.count" do
-        post check_out_path, params: { rental: { movie_id: movies(:LOTR).id, customer_id: customers(:dan).id }}
+        post check_out_path, params: { movie_id: movies(:LOTR).id, customer_id: customers(:dan).id }
         assert_response :not_found
       end
 
@@ -53,10 +59,10 @@ describe RentalsController do
     end
 
     it "Returns an error for an invalid customer ID" do
-      bad_data = rental_data.clone()
+      bad_data = @rental_data.clone()
       bad_data[:customer_id] = Customer.last.id + 1
       assert_no_difference "Rental.count" do
-        post check_out_path, params: { rental: bad_data }
+        post check_out_path, params: bad_data
         assert_response :bad_request
       end
 
@@ -68,16 +74,16 @@ describe RentalsController do
   end
 
   describe "check_in" do
-    let(:rental_data) {
-      {
+    before do
+      @rental_data = {
         movie_id: movies(:LOTR).id,
         customer_id: customers(:dan).id
       }
-    }
+    end
 
     it "will successfully check in a rental with valid customer and movie id" do
       assert_no_difference "Rental.count" do
-        post check_in_path, params: { rental: rental_data }
+        post check_in_path, params: @rental_data
         must_respond_with :success
       end
 
@@ -90,10 +96,10 @@ describe RentalsController do
     end
 
     it "returns an error if the movie id is not valid" do
-      bad_data = rental_data.clone()
+      bad_data = @rental_data.clone()
       bad_data[:movie_id] = Movie.last.id + 1
       assert_no_difference "Rental.count" do
-        post check_in_path, params: { rental: bad_data }
+        post check_in_path, params: bad_data
         must_respond_with :not_found
       end
 
@@ -104,10 +110,10 @@ describe RentalsController do
     end
 
     it "returns an error if the customer id is not valid" do
-      bad_data = rental_data.clone()
+      bad_data = @rental_data.clone()
       bad_data[:customer_id] = Customer.last.id + 1
       assert_no_difference "Rental.count" do
-        post check_in_path, params: { rental: bad_data }
+        post check_in_path, params: bad_data
         must_respond_with :not_found
       end
 
@@ -120,11 +126,7 @@ describe RentalsController do
     it "returns an error if the movie is already returned" do
       assert_no_difference "Rental.count" do
         post check_in_path,
-        params: {
-          rental: { movie_id: movies(:HP).id,
-                    customer_id: customers(:dan).id
-                   }
-                 }
+        params: { movie_id: movies(:HP).id, customer_id: customers(:dan).id }
         must_respond_with :not_found
       end
 
@@ -137,11 +139,7 @@ describe RentalsController do
     it "returns an error if the check in date is before the check out date" do
       assert_no_difference "Rental.count" do
         post check_in_path,
-        params: {
-          rental: { movie_id: movies(:HP).id,
-                    customer_id: customers(:kari).id
-                   }
-                 }
+        params: { movie_id: movies(:HP).id, customer_id: customers(:kari).id }
         must_respond_with :bad_request
       end
 

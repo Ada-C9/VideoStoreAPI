@@ -17,3 +17,12 @@ kari:
   state: WA
   postal_code: 98101
   phone: 456-345-2346
+
+dee:
+  name: Dee
+  registered_at: 2018-05-07 13:41:00
+  address: Also lives at Ada
+  city: Seattle
+  state: WA
+  postal_code: 98101
+  phone: 456-345-2346

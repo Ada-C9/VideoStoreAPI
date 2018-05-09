@@ -95,7 +95,7 @@ describe Customer do
     end
 
     it "returns 0 if the customer has no movies checked out" do
-      customer = customers(:kari)
+      customer = customers(:dee)
 
       customer.movies_checked_out_count.must_equal 0
     end

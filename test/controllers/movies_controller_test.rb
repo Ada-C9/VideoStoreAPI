@@ -56,18 +56,18 @@ describe MoviesController do
   end
 
   describe "create" do
-    let(:movie_data) {
-      {
+    before do
+      @movie_data = {
         title: "Wonder Woman",
         overview: "About the most badass superhero in the world",
         release_date: Date.parse("02/05/18"),
         inventory: 4
       }
-    }
+    end
 
     it "Creates a new movie" do
       assert_difference "Movie.count", 1 do
-        post movies_url, params: { movie: movie_data }
+        post movies_url, params: @movie_data
         must_respond_with :success
       end
 
@@ -76,14 +76,14 @@ describe MoviesController do
       body.must_include "id"
 
       # Check that the ID matches
-      Movie.find(body["id"]).title.must_equal movie_data[:title]
+      Movie.find(body["id"]).title.must_equal @movie_data[:title]
     end
 
     it "Returns an error for an invalid movie" do
-      bad_data = movie_data.clone()
+      bad_data = @movie_data.clone()
       bad_data.delete(:title)
       assert_no_difference "Movie.count" do
-        post movies_url, params: { movie: bad_data }
+        post movies_url, params: bad_data 
         assert_response :bad_request
       end
 

@@ -140,7 +140,7 @@ describe Movie do
 
   describe "available_inventory" do
     it "shows that the available inventory is the same as the inventory if movie is not checked out" do
-      movie = movies(:HP)
+      movie = movies(:HP2)
 
       movie.available_inventory.must_equal movie.inventory
     end
@@ -149,7 +149,7 @@ describe Movie do
       movie = movies(:LOTR)
 
       movie.available_inventory.must_equal movie.inventory - 1
-    end 
+    end
 
   end
 end
