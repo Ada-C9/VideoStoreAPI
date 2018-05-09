@@ -30,10 +30,6 @@ class Customer < ApplicationRecord
     rentals = Rental.where(customer_id: self.id)
     rented_count = rentals.select{ |ren| !ren.checkin_date }.count
     return rented_count
-
-
-
   end
-
 
 end
