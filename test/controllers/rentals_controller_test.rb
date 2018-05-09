@@ -108,20 +108,19 @@ describe RentalsController do
 
     it "successfully updates an existing rental" do
       existing_rental = rentals(:one)
-      existing_rental.customer_id = customers(:two).id
-      existing_rental.movie_id = movies(:two).id
-      existing_rental.save
-
 
       proc {
-        post checkin_path(existing_rental),
+        patch checkin_path(existing_rental),
         params: {
           rental: {
-            checkin_date: "2018-05-09"
+            customer_id: existing_rental.customer_id,
+            movie_id: existing_rental.movie_id,
+            checkin_date: "2018-05-09",
+            checkout_date: "2018-05-04"
           }
         }
       }.wont_change "Rental.count"
-    binding.pry
+
 
       must_respond_with :success
 
@@ -137,10 +136,10 @@ describe RentalsController do
       # binding.pry
 
       proc {
-        post checkin_path(existing_rental),
+        patch checkin_path(existing_rental),
         params: {
 
-            checkin_date: "2018-05-09"
+          checkin_date: "2018-05-09"
 
         }
       }.wont_change "Rental.count"

@@ -30,6 +30,8 @@ class RentalsController < ApplicationController
   def update
     rental = Rental.find_by(customer_id: params[:customer_id], movie_id: params[:movie_id])
 
+    # binding.pry
+
     if !rental.valid?
       render json: {ok: false, errors: "Rental not found"}, status: :not_found
     elsif rental.checkin_date != nil
