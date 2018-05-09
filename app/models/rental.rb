@@ -22,4 +22,23 @@ class Rental < ApplicationRecord
     rental = Rental.where(movie_id: movie_id, customer_id: customer_id, check_in_date: nil)
     return rental.empty? ? nil : rental.first
   end
+
+
+  def self.update_movie_and_customer(rental)
+
+    if rental.check_in_date.nil?
+      new_inventory = rental.movie.available_inventory - 1
+      new_count = rental.customer.movies_checked_out_count + 1
+    else
+      new_inventory = rental.movie.available_inventory + 1
+      new_count = rental.customer.movies_checked_out_count - 1
+    end
+      # do we need to rescue this error if there is one?
+      # movie = Movie.find_by(id: rental.movie_id)
+      rental.movie.update(available_inventory: new_inventory)
+
+      rental.customer.update(movies_checked_out_count: new_count)
+
+      return rental
+  end
 end
