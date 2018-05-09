@@ -16,14 +16,34 @@
       "/Users/brittanyjones/Desktop/Adaprojects/VideoStoreAPI/app/controllers/movies_controller.rb": [
         1,
         1,
+        1,
         5,
         5,
         null,
         null,
         1,
         null,
+        2,
+        2,
+        1,
         null,
         1,
+        null,
+        null,
+        null,
+        1,
+        2,
+        2,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        2,
         null,
         null
       ],
@@ -93,7 +113,7 @@
         0
       ]
     },
-    "timestamp": 1525809619
+    "timestamp": 1525813508
   },
   "Unit Tests": {
     "coverage": {
