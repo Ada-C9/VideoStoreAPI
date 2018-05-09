@@ -126,7 +126,7 @@ describe RentalsController do
 
     end
 
-    it "will not update a rental that's already been checked out" do
+    it "will not update a rental that's already been checked in" do
       existing_rental = rentals(:three)
 
       # existing_rental.checkin_date = "2018-05-10"
@@ -138,9 +138,10 @@ describe RentalsController do
       proc {
         patch checkin_path(existing_rental),
         params: {
-
-          checkin_date: "2018-05-09"
-
+          customer_id: existing_rental.customer_id,
+          movie_id: existing_rental.movie_id,
+          checkin_date: "2018-05-09",
+          checkout_date: "2018-05-04"
         }
       }.wont_change "Rental.count"
 
