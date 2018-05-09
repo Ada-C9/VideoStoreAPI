@@ -15,7 +15,6 @@ class RentalsController < ApplicationController
         status: 'checked_out'
       )
       if @rental.save
-        # binding.pry
         render json: {customer_id: @rental.customer_id, movie_id: @rental.movie_id}, status: :ok
 
       else
@@ -29,14 +28,15 @@ class RentalsController < ApplicationController
   end
 
   def check_in
-    @rental = Rental.find_by(id: params[:id])
+    @rental = Rental.find_by(
+      customer_id: params[:customer_id],
+      movie_id: params[:movie_id],
+      status: 'checked_out')
 
     if @rental.nil?
       render json: {ok: false}, status: :bad_request
     else
       @rental.update(status: 'returned')
-
-
       render json: {customer_id: @rental.customer_id, movie_id: @rental.movie_id, status: @rental.status}, status: :ok
 
     end

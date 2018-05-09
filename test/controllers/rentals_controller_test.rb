@@ -84,7 +84,8 @@ describe RentalsController do
   describe "check_in" do
     let(:rental_data) {
       {
-        id: rentals(:one).id,
+        customer_id: customers(:one).id,
+        movie_id: movies(:one).id
       }
     }
 
@@ -106,7 +107,7 @@ describe RentalsController do
 
     it "returns bad_request with bad params" do
 
-      rental_data[:id] = nil
+      rental_data[:customer_id] = nil
 
       post check_in_path(params: rental_data)
 
@@ -115,6 +116,29 @@ describe RentalsController do
       body.must_be_kind_of Hash
       body.must_include 'ok'
       body['ok'].must_equal false
+
+    end
+
+    it "increases the movie's available inventory" do
+      movie_one = movies(:one)
+      inventory = movie_one.available_inventory
+
+      post check_in_path(params: rental_data)
+
+      movie_one = Movie.find_by(id: movie_one.id)
+      movie_one.available_inventory.must_equal inventory + 1
+
+    end
+
+    it "decrease the customer's movies checked out count" do
+      customer = customers(:one)
+      movies = customer.movies_checked_out_count
+
+      post check_in_path(params: rental_data)
+
+      customer = Customer.find_by(id: customer.id)
+
+    customer.movies_checked_out_count.must_equal movies - 1
 
     end
 
