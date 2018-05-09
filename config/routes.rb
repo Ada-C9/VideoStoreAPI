@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   resources :rentals, only: [:index, :show]
 
   post 'rentals/check-out', to: 'rentals#create', as: 'checkout'
-  post 'rentals/check-in', to: 'rentals#update', as: 'checkin'
+  patch 'rentals/check-in', to: 'rentals#update', as: 'checkin'
 
 end
