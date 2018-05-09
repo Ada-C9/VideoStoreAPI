@@ -58,7 +58,8 @@ describe Movie do
           title: "test movie",
           overview: "The unexciting life of a boy",
           release_date: "1979-01-18",
-          inventory: "10"
+          inventory: "10",
+          available_inventory: "8"
         )
 
         customer = Customer.first
@@ -69,6 +70,27 @@ describe Movie do
 
       it "has rentals" do
         @movie.rentals.count.must_equal 1
+      end
+    end
+
+    describe "reduce_available_inventory" do
+      it "reduce_available_inventory" do
+          @movie = Movie.create(
+            title: "test movie",
+            overview: "The unexciting life of a boy",
+            release_date: "1979-01-18",
+            inventory: "10",
+            available_inventory: "8"
+          )
+
+          available_inventory = @movie.available_inventory
+          puts available_inventory
+          customer = Customer.first
+          rental_data = { movie_id: @movie.id, customer_id: customer.id}
+          rental = Rental.create(rental_data)
+          @movie.reduce_available_inventory
+          @movie.available_inventory.must_equal available_inventory - 1
+
       end
     end
 
