@@ -48,7 +48,7 @@ describe "Movie" do
 
       movie.save
 
-      movie.valid?.must_equal false
+      movie.valid?.must_equal falsegi
     end
 
     it "must return error if inventory is not an integer" do
