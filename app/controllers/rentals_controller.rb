@@ -8,15 +8,29 @@ class RentalsController < ApplicationController
     else
       render json: {
         errors: rental.errors.messages
-      }, status: :bad_request
+        }, status: :bad_request
+      end
+
     end
 
-  end
+    def checkin
+      rental = Rental.find_by(id: params[:rental_id])
+      unless rental
+        render json: {
+          errors: {id: ["Invalid rental id"]}
+          }, status: :not_found
+      else
 
-  
+          rental.return_date = Date.today
 
-  private
-  def rental_params
-    return params.permit(:movie_id, :customer_id)
-  end
-end
+          if rental.save
+            render json: {id: rental.id}, status: :ok
+          end
+      end
+    end
+
+      private
+      def rental_params
+        return params.permit(:movie_id, :customer_id)
+      end
+    end

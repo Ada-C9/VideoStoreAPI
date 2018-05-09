@@ -51,4 +51,30 @@ describe RentalsController do
       Rental.count.must_equal old_rentals_count
     end
   end # checkout
+
+  describe "checkin" do
+    before do
+      @rental = Rental.create(movie_id: Movie.first.id, customer_id: Customer.first.id, start_date: Date.today, end_date: Date.today + 7)
+    end
+    it "should checkin a movie" do
+
+      @rental.return_date.must_be_nil
+
+      get checkin_path, params: {rental_id: @rental.id}
+      @rental.reload
+      @rental.return_date.must_equal Date.today
+
+    end
+
+    it "must respond with not_found for a rental that DNE" do
+
+      rental_id = @rental.id + 1
+
+      get checkin_path, params: { rental_id: rental_id}
+      
+      response.header['Content-Type'].must_include 'json'
+      must_respond_with :not_found
+
+    end
+  end
 end
