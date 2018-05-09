@@ -1,9 +1,11 @@
 require "test_helper"
 
 describe Rental do
-  let(:rental) { Rental.new }
+  movie = Movie.first
+  customer = Customer.first
+  let(:rental) { Rental.new(movie_id: movie.id, customer_id: customer.id) }
+  
   it "must be valid" do
-    skip
     value(rental).must_be :valid?
   end
 end
