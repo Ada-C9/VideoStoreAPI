@@ -18,7 +18,7 @@ class RentalsController < ApplicationController
 
 
   def checkin
-    rental = Rental.find_by(id: parmas[:id])
+    rental = Rental.find_by(customer_id: params[:customer_id], movie_id: params[:movie_id])
     if rental.nil?
         render json: {
           "errors": {
