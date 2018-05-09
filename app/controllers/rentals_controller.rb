@@ -5,16 +5,11 @@ class RentalsController < ApplicationController
     rental.checkout_date= Date.today
     rental.due_date= (rental.checkout_date + 7)
 
-    # customer_id = Customer.find_by(id: rental_params[:customer_id])
-    # movie_id = Movie.find_by(id: rental_params[:movie_id])
-
-
     if rental.save
+      new_inventory = rental.movie.available_inventory -= 1
       #success
-      rental.movie.available_inventory.update(available_inventory: (rental.movie.available_inventory - 1))
+      rental.movie.update_attribute(:available_inventory, new_inventory)
       render json: rental_params, status: :ok
-
-      binding.pry
     else
       #failure
       render json: {errors: rental.errors.messages }, status: :bad_request
@@ -31,9 +26,9 @@ class RentalsController < ApplicationController
           }
           }, status: :not_found
     else
-      rental.movie.available_inventory += 1
+      new_inventory = rental.movie.available_inventory += 1
+      rental.movie.update_attribute(:available_inventory, new_inventory)
       render(json: rental.as_json(only: [:customer_id, :movie_id]), status: :ok)
-
     end
   end
 
