@@ -32,6 +32,7 @@ class Movie < ApplicationRecord
 
     if movie && movie.available_inventory < movie.inventory
       movie.available_inventory += 1
+      movie.save
     else
       # return movie.errors.messages
     end

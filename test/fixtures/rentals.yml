@@ -3,3 +3,7 @@
 one:
   customer: one
   movie: one
+
+two:
+  customer: one
+  movie: two
