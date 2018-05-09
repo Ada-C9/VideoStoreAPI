@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
 
   validates :postal_code, length: { is: 5 }
 
-  validates :phone, length: { is: 10 }
+  # validates :phone, length: { is: 10 }
 
   def movies_checked_out_count
     return 0
