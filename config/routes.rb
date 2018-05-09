@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   resources :movies, only: [:index, :show, :create]
   resources :customers, only: [:index]
 
+  post '/checkout', to: 'rentals#create', as: 'checkout'
+  post '/checkin', to: 'rentals#checkin', as: 'checkin'
+
 end
