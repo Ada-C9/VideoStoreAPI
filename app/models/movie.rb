@@ -3,36 +3,4 @@ class Movie < ApplicationRecord
    has_many :rentals
    has_many :customers, through: :rentals
 
-   # possible logic to decrement available_inventory
-
-<<<<<<< HEAD
-   # returns true if movie is available for checkout
-   # returns false if movie isn't available for checkout
-   def self.available_inventory?
-     self.available_inventory >= 1
-   end
-
-  def self.reduce_available_inventory
-    self.available_inventory - 1
-  end
-
-  def self.available_inventory?
-    unless self.available_inventory == 0
-      rental_history = self.rentals
-
-      rental_history.each do |item|
-        if item.checkout_date.nil && item.rental.checkin_date == nil
-          available_inventory -= 1
-        end
-      end
-
-    end
-
-    return "We do not have that title available now."
-
-   end
-=======
-
->>>>>>> ece389e9ae48b6e9c96c07133fb8057bd6e578c4
-
 end
