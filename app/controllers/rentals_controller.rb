@@ -39,7 +39,7 @@ class RentalsController < ApplicationController
 
   def checkin
 
-    rental = Rental.find(check_params[:rental_id])
+    rental = Rental.find_by(id: check_params[:rental_id])
     rental.update_attributes checkin_date: DateTime.now
 
     if rental.save
@@ -56,6 +56,6 @@ class RentalsController < ApplicationController
 
   private
   def check_params
-    params.permit(:customer_id, :movie_id)
+    params.permit(:customer_id, :movie_id, :rental_id)
   end
 end
