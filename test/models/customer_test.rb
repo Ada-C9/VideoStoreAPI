@@ -41,7 +41,7 @@ describe Customer do
   end
   describe "method" do
     it "returns the count of movies checked" do
-      customer.movies_checked_out_count.must_equal 0
+      customer.movies_checked_out_count.must_equal 2
     end
   end
 end
