@@ -22,13 +22,13 @@ describe RentalsController do
     it "creates a new Rental" do
       id = babe.id
       proc {
-        post checkout_path, params: rental_data
+        post checkout_path, params: {rental: rental_data}
       }.must_change "Rental.count", 1
       must_respond_with :success
+
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include "id"
-
       # Check that the ID matches
       Rental.find(body["id"]).movie_id.must_equal rental_data[:movie_id]
       babe = Movie.find_by(id: id)
