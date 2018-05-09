@@ -1,4 +1,5 @@
 require "test_helper"
+require "pry"
 
 describe RentalsController do
   describe "Index" do
@@ -100,8 +101,56 @@ describe RentalsController do
       body.must_include "ok"
       body["ok"].must_equal false
       body.must_include "errors"
+    end
+  end
+
+  describe "Update" do
+
+    it "successfully updates an existing rental" do
+      existing_rental = rentals(:one)
+      existing_rental.customer_id = customers(:two).id
+      existing_rental.movie_id = movies(:two).id
+      existing_rental.save
+
+
+      proc {
+        post checkin_path(existing_rental),
+        params: {
+          rental: {
+            checkin_date: "2018-05-09"
+          }
+        }
+      }.wont_change "Rental.count"
+    binding.pry
+
+      must_respond_with :success
 
     end
+
+    it "will not update a rental that's already been checked out" do
+      existing_rental = rentals(:three)
+
+      # existing_rental.checkin_date = "2018-05-10"
+      # existing_rental.customer_id = customers(:two).id
+      # existing_rental.movie_id = movies(:two).id
+      # existing_rental.save
+      # binding.pry
+
+      proc {
+        post checkin_path(existing_rental),
+        params: {
+
+            checkin_date: "2018-05-09"
+
+        }
+      }.wont_change "Rental.count"
+
+      must_respond_with :bad_request
+
+    end
+
+
+
   end
 
 end
