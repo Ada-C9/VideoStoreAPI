@@ -8,6 +8,7 @@ class Rental < ApplicationRecord
   # after_save :set_return_to_false
   # after_save :reduce_inventory
 
+
   def get_due_date
     return calc_due_date
   end
