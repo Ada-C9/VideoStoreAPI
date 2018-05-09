@@ -4,10 +4,12 @@ one:
   title: Men In Black
   overview: Save the world through the intergalactic
   release_date: 1990
-  inventory: 1
+  inventory: 15
+  available_inventory: 15
 
 two:
   title: Ready Player One
   overview: Video game is life
   release_date: 2018
-  inventory: 2
+  inventory: 15
+  available_inventory: 7
