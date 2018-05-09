@@ -19,7 +19,6 @@ describe Rental do
 
     it 'can be created with all valid information' do
       rental = Rental.new(@rental_data)
-      # binding.pry
       rental.checkout.must_be_kind_of Date
       rental.due_date.must_be_kind_of Date
       rental.must_be :valid?, rental.errors.messages
@@ -81,7 +80,6 @@ describe Rental do
     end
 
     it "is invalid if movie DNE" do
-      # binding.pry
       @rental_data[:customer_id] = Customer.last.id + 1
       @rental_data[:movie_id] = Movie.last.id + 1
 
