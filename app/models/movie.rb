@@ -5,11 +5,6 @@ class Movie < ApplicationRecord
 
    # possible logic to decrement available_inventory
 
-<<<<<<< HEAD
-             available_inventory -= 1
-             
-           end
-=======
    # returns true if movie is available for checkout
    # returns false if movie isn't available for checkout
    def self.available_inventory?
@@ -19,7 +14,6 @@ class Movie < ApplicationRecord
   def self.reduce_available_inventory
     self.available_inventory - 1
   end
->>>>>>> 9b21c8ccf1fee5b0636e2d032e1594ac14edcee0
 
   def self.available_inventory?
     unless self.available_inventory == 0
