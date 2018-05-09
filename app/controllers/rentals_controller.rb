@@ -7,8 +7,11 @@ class RentalsController < ApplicationController
 
     if rental.save
       new_inventory = rental.movie.available_inventory -= 1
+      customer_movie_count = rental.customer.movies_checked_out_count += 1
       #success
       rental.movie.update_attribute(:available_inventory, new_inventory)
+      rental.customer.update_attribute(:movies_checked_out_count, customer_movie_count)
+      binding.pry
       render json: rental_params, status: :ok
     else
       #failure
@@ -27,7 +30,11 @@ class RentalsController < ApplicationController
           }, status: :not_found
     else
       new_inventory = rental.movie.available_inventory += 1
+      customer_movie_count = rental.customer.movies_checked_out_count -= 1
+
       rental.movie.update_attribute(:available_inventory, new_inventory)
+      rental.customer.update_attribute(:movies_checked_out_count, customer_movie_count)
+      binding.pry
       render(json: rental.as_json(only: [:customer_id, :movie_id]), status: :ok)
     end
   end
