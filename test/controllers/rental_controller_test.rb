@@ -1,3 +1,4 @@
+
 require "test_helper"
 
 describe RentalController do
