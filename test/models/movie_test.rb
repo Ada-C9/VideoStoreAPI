@@ -38,7 +38,6 @@ describe Movie do
   describe 'relationships' do
     it "has many rentals" do
       movie.rentals.must_equal [rentals(:one)]
-
       movie.rentals.count.must_equal 1
     end
 

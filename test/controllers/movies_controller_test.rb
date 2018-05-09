@@ -2,8 +2,6 @@ require "test_helper"
 
 describe MoviesController do
   describe "index" do
-    # These tests are a little verbose - yours do not need to be
-    # this explicit.
     it "is a real working route" do
       get movies_url
       must_respond_with :success
@@ -28,8 +26,23 @@ describe MoviesController do
       body.length.must_equal Movie.count
     end
 
+    it "returns empty array if there is no movies" do
+      Movie.all.each do |movie|
+        movie.rentals.each do |rental|
+          rental.destroy
+        end
+        movie.destroy
+      end
+
+      get movies_url
+
+      body = JSON.parse(response.body)
+      body.must_equal []
+      body.length.must_equal 0
+    end
+
     it "returns movies with exactly the required fields" do
-      keys = %w( id release_date title)
+      keys = %w(id release_date title)
 
       get movies_url
       body = JSON.parse(response.body)
@@ -40,7 +53,6 @@ describe MoviesController do
   end
 
   describe "show" do
-
     it "can get a movie" do
       get movie_path(movies(:one).id)
       must_respond_with :success
@@ -73,8 +85,6 @@ describe MoviesController do
       }.must_change 'Movie.count', 1
 
       must_respond_with :success
-
-
     end
 
     it "returns with bad request with invalid data" do
@@ -89,8 +99,6 @@ describe MoviesController do
       body.must_be_kind_of Hash
       body.must_include "errors"
       body["errors"].must_include "title"
-
     end
-
   end
 end
