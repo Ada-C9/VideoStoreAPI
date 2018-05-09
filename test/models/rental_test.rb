@@ -11,11 +11,6 @@ describe Rental do
       rental_one.valid?.must_equal true
     end
 
-    it "requires a checkout_date" do
-      rental_two.checkout_date = nil
-      rental_two.valid?.must_equal false
-    end
-
   end
 
   describe "relations" do
@@ -35,6 +30,12 @@ describe Rental do
       rental_two.must_respond_to :movie
       rental_two.movie.must_be_kind_of Movie
       rental_two.movie.title.must_equal "Keanu"
+    end
+  end
+
+  describe "get due date" do
+    it "must get the due date" do
+      rental_one.get_due_date.must_equal Date.parse('2018-05-14')
     end
   end
 end

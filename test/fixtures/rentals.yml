@@ -4,12 +4,10 @@ rental_one:
   customer: nora
   movie: babe
   checkout_date: 2018-05-07
-  due_date: 2018-05-12
   returned?: false
 
 rental_two:
   customer: sara
   movie: keanu
   checkout_date: 2018-05-07
-  due_date: 2018-05-12
   returned?: false

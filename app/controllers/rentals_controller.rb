@@ -10,10 +10,7 @@ class RentalsController < ApplicationController
       render json: { ok: false }, status: :bad_request
     else
       if movie.inventory > 0
-        rental = Rental.create(movie_id: params[:rental][:movie_id], customer_id: params[:rental][:customer_id])
-        rental.checkout_date = Date.today
-        rental.due_date = rental.checkout_date + 7
-        rental.update(returned?: false)
+        rental = Rental.create(movie_id: params[:rental][:movie_id], customer_id: params[:rental][:customer_id], checkout_date: Date.today, returned?: false)
         if rental
           movie.inventory -= 1 # Todo: consider making method in movie class
           movie.save
