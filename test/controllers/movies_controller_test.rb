@@ -67,27 +67,29 @@ describe 'show' do
 end
 
 describe 'create' do
-  movie_data = {
-    title: "Titanic",
-    overview: "Oldie movie",
-    release_date: "12-10-2000",
-    inventory: 10,
-    available_inventory: 10
-  }
+  # let(:movie_data) {
+  #       {
+  #         title: "10 Things I hate about you"
+  #       }
+  #     }
 
   it "Creates a new movie" do
     #option 1
-    before_movie_count = Movie.count
-    post new_movie_path, params: { movie: movie_data }
-    must_respond_with :success
-
-    Movie.count.must_equal before_movie_count + 1
+    # before_movie_count = Movie.count
+    # post new_movie_path, params: { movie: movie_data }
+    # must_respond_with :success
+    #
+    # Movie.count.must_equal before_movie_count + 1
 
     #option 2
+    movie_data =
+          {
+            title: "10 Things I hate about you"
+          }
     assert_difference "Movie.count", 1 do
-      post new_movie_path, params: { movie: movie_data }
-      must_respond_with :success
-    end
+        post movies_path, params: { movie: movie_data }
+        assert_response :success
+      end
 
     body = JSON.parse(response.body)
     body.must_be_kind_of Hash
@@ -98,6 +100,10 @@ describe 'create' do
   end
 
   it "Returns an error for an invalid movie" do
+    movie_data =
+          {
+            title: "10 Things I hate about you"
+          }
     bad_data = movie_data.clone()
     bad_data.delete(:title)
     assert_no_difference "Movie.count" do
