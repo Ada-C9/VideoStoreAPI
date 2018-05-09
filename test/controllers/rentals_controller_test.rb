@@ -14,7 +14,6 @@ describe RentalsController do
         checkout_date: Date.today
       }
     }
-
     let(:bad_rental_data) {
       {
         movie_id: 4567,
@@ -22,8 +21,8 @@ describe RentalsController do
         checkout_date: Date.today
       }
     }
-
     it "creates a new Rental" do
+      id = babe.id
       proc {
         post checkout_path, params: {rental: rental_data}
       }.must_change "Rental.count", 1
@@ -35,6 +34,8 @@ describe RentalsController do
 
       # Check that the ID matches
       Rental.find(body["id"]).movie_id.must_equal rental_data[:movie_id]
+      babe = Movie.find_by(id: id)
+      babe.inventory.must_equal 2
     end
 
     it "returns a bad request for a bad params data" do
@@ -46,35 +47,28 @@ describe RentalsController do
   end
 
   describe "checkin" do
-    #
-    # let(:checkin_data) {
-    #   {
-    #     movie_id: rental_one.movie_id,
-    #     customer_id: rental_one.customer_id,
-    #     returned?: true
-    #   }
-      # let(:bad_checkin_data) {
-      #   {
-      #     customer_id: rentals(:rental_two).customer_id,
-      #     returned?: true
-      #   }
-      # }
 
     it "updates a rental when returned" do
+      id = rental_one.id
+      movie_id = babe.id
       proc {
         post checkin_path(rental_one.id)
       }.must_change "Rental.count", 0
       must_respond_with :success
-      # updated_rental = Rental.find_by(id: rental_one.id)
+
+      rental_one = Rental.find_by(id: id)
       rental_one.returned?.must_equal true
+      babe = Movie.find_by(id: movie_id)
+      babe.inventory.must_equal 4
     end
-    #
-    # it "returns a bad request for a bad checkin" do
-    #   proc {
-    #     post checkin_path(3437829)
-    #   }.must_change "Rental.count", 0
-    #   must_respond_with :bad_request
-    # end
+
+    it "returns a bad request for a non-existent rental" do
+
+      proc {
+        post checkin_path(234567890)
+      }.must_change "Rental.count", 0
+      must_respond_with :no_content
+    end
 
   end
 
