@@ -1,5 +1,5 @@
 class Movie < ApplicationRecord
-  before_validation :set_available_inventory_default
+  before_validation :set_available_inventory_default, on: :create
 
   has_many :rentals
   has_many :customers, through: :rentals
@@ -11,6 +11,7 @@ class Movie < ApplicationRecord
 
   private
   def set_available_inventory_default
+    puts "Running set available inventory default"
     self.available_inventory = self.inventory
   end
 end

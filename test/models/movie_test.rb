@@ -1,10 +1,11 @@
 require "test_helper"
+require 'pry'
 
 describe Movie do
   describe 'validations' do
 
     before do
-      @movie = Movie.new(title: 'test movie', inventory: 1, available_inventory: 1)
+      @movie = movies(:one)
     end
 
     it "is valid when all required fields are present" do
@@ -19,16 +20,18 @@ describe Movie do
       @movie.errors.messages.must_include :title
     end
 
-    it "is invalid if the inventory is less than 1 " do
-      @movie.inventory = 0
+    it "is invalid if the inventory is not a number " do
+      @movie.inventory = "dfkjgh"
       result = @movie.valid?
       result.must_equal false
       @movie.errors.messages.must_include :inventory
     end
 
-    it "is invalid if the available inventory is not a number" do
+    it "is valid even if the available inventory is not a number" do
       @movie.available_inventory = nil
       result = @movie.valid?
+      # binding.pry
+
       result.must_equal false
       @movie.errors.messages.must_include :available_inventory
     end
@@ -60,5 +63,33 @@ describe Movie do
     end
 
   end
+
+  describe 'decrement_available_inventory' do
+
+    before do
+      @movie = movies(:one)
+    end
+
+    it "reduces available inventory for specific movie by 1" do
+      before_avail_inv = @movie.available_inventory
+
+      @movie.decrement_available_inventory
+
+      @movie.available_inventory.must_equal before_avail_inv - 1
+
+    end
+
+    it "will not reduce available inventory if count is 0" do
+      @movie.available_inventory = 0
+
+      @movie.decrement_available_inventory
+
+      @movie.available_inventory.must_equal 0
+
+
+    end
+
+  end
+
 
 end
