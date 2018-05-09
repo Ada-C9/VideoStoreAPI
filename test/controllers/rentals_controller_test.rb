@@ -5,15 +5,9 @@ describe RentalsController do
     before do
       @rental_data = {
         movie_id: movies(:HP).id,
-        customer_id: customers(:kari).id
+        customer_id: customers(:chris).id
       }
     end
-    # let(:rental_data) {
-    #   {
-    #     movie_id: movies(:HP).id,
-    #     customer_id: customers(:kari).id
-    #   }
-    # }
 
     it "Creates a new rental" do
       assert_difference "Rental.count", 1 do
