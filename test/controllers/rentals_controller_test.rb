@@ -54,7 +54,22 @@ describe RentalsController do
     end
 
     it 'throws an error if inventory of movie is 0 and someone tries to checkout' do
-      skip
+      before_count = Rental.count
+      @movie.inventory = 0
+      @movie.save
+
+      # binding.pry
+
+      assert_no_difference "Rental.count" do
+        post checkout_path, params: @rental_data
+        assert_response :bad_request
+      end
+
+      body = JSON.parse(response.body)
+      body.must_include "errors"
+      body['errors'].must_include 'inventory'
+
+      @movie.inventory.must_equal 0
     end
   end
 
