@@ -40,6 +40,8 @@ class RentalsController < ApplicationController
 
       customer = Customer.find_by(rental.customer_id)
       movie = Movie.find(rental.movie_id)
+    rental = Rental.find_by(id: check_params[:rental_id])
+    rental.update_attributes checkin_date: DateTime.now
 
       if rental.save
         Customer.find(rental.customer_id).update_attributes movies_checked_out_count:  customer.movies_checked_out_count-1
@@ -53,9 +55,10 @@ class RentalsController < ApplicationController
       end
 
     end
+  end
 
-    private
-    def check_params
-      params.permit(:customer_id, :movie_id, :rental_ida)
-    end
+  private
+  def check_params
+    params.permit(:customer_id, :movie_id, :rental_id)
+  end
 end

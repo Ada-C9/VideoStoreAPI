@@ -2,7 +2,7 @@ require "test_helper"
 
 describe RentalsController do
   describe "checkout" do
-    it "can check out a valid movie" do
+    it "can checkout a valid movie" do
 
     end
 
