@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180509163522) do
+ActiveRecord::Schema.define(version: 20180509165515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,12 @@ ActiveRecord::Schema.define(version: 20180509163522) do
     t.datetime "updated_at", null: false
     t.date "checkout_date"
     t.date "due_date"
+    t.bigint "customer_id"
+    t.bigint "movie_id"
+    t.index ["customer_id"], name: "index_rentals_on_customer_id"
+    t.index ["movie_id"], name: "index_rentals_on_movie_id"
   end
 
+  add_foreign_key "rentals", "customers"
+  add_foreign_key "rentals", "movies"
 end
