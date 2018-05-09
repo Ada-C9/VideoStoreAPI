@@ -37,7 +37,33 @@ describe Customer do
   end
 
   describe 'relations' do
+    it "associate correct rental with customer" do
+      #Arrange
+    date = Date.today
+    rental = Rental.new(
+      checkout: date,
+      due_date: date + 7,
+      customer_id: @customer.id,
+      movie_id: Movie.first.id
+      )
 
+      #Assert
+    rental.customer_id.must_equal @customer.id
+    end
+
+    it "is invalid if customer DNE" do
+      date = Date.today
+      rental = Rental.new(
+        checkout: date,
+        due_date: date + 7,
+        customer_id: Customer.last.id + 1,
+        movie_id: Movie.first.id
+        )
+
+        #Assert
+      rental.wont_be :valid?
+      rental.errors.messages.must_include :customer
+    end
   end
 
 

@@ -2,20 +2,20 @@ require "test_helper"
 require 'pry'
 
 describe Rental do
+  before do
+    customer = Customer.first
+    movie = Movie.first
+    date = Date.today
+
+    @rental_data = {
+      checkout: date,
+      due_date: date + 7,
+      customer_id: customer.id,
+      movie_id: movie.id
+    }
+  end
 
   describe 'validations' do
-    before do
-      customer = Customer.first
-      movie = Movie.first
-      date = Date.today
-
-      @rental_data = {
-        checkout: date,
-        due_date: date + 7,
-        customer_id: customer.id,
-        movie_id: movie.id
-      }
-    end
 
     it 'can be created with all valid information' do
       rental = Rental.new(@rental_data)
@@ -68,7 +68,7 @@ describe Rental do
   end
 
   describe 'relations' do
-    it "associates the correct customer and moveie with customer_id and movie_id" do
+    it "associates the correct customer and movie with customer_id and movie_id" do
       customer = Customer.first
       movie = Movie.first
 
@@ -78,6 +78,19 @@ describe Rental do
 
       rental.customer_id.must_equal customer.id
       rental.movie_id.must_equal movie.id
+    end
+
+    it "is invalid if movie DNE" do
+      # binding.pry
+      @rental_data[:customer_id] = Customer.last.id + 1
+      @rental_data[:movie_id] = Movie.last.id + 1
+
+      rental = Rental.new(@rental_data)
+
+
+      rental.wont_be :valid?
+      rental.errors.messages.must_include :movie
+      rental.errors.messages.must_include :customer
     end
 
   end
