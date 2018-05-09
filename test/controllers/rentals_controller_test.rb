@@ -3,7 +3,7 @@ require 'pry'
 
 describe RentalsController do
 
-  describe 'checkout' do
+  describe 'create' do
 
     let(:rental_data) {
       {
@@ -21,6 +21,8 @@ describe RentalsController do
 
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
+      body.must_include "id"
+      body.must_include "due_date"
 
       Rental.count.must_equal old_rental_count + 1
     end
@@ -77,13 +79,42 @@ describe RentalsController do
       }
 
       post checkout_path, params: { rental: bad_rental_data }
-      # binding.pry
       must_respond_with :bad_request
 
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include "errors"
       body["errors"].must_include "available inventory"
+    end
+
+  end
+
+  describe 'update' do
+
+    it "allows a checked out movie to be checked in" do
+      rental = rentals(:two)
+      rental.updated_at = rental.created_at
+
+      rental_data = {
+        movie_id: movies(:two).id,
+        customer_id: customes(:one).id
+      }
+
+      post checkin_path, params: { rental: rental_data }
+      must_respond_with :success
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
+      body.must_include "check-in date"
+    end
+
+    it "does not allow a checked in movie to be checked in again" do
+
+    end
+
+    it "does not allow a movie that has not been checked out to be checked in" do
+
     end
 
   end
