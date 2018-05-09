@@ -40,17 +40,26 @@ describe RentalsController do
     end
 
     it "reduces_available_inventory on movie in the rental" do
-      # movie = Movie.create(title: "Fake Movie", inventory: 10, available_inventory: 10)
-      #
-      # before_availability = movie.available_inventory
-      #
-      # puts before_availability
-      #
-      # available_data = { customer_id: customers(:one).id, movie_id: movie.id }
-      #
-      # post checkout_url, params: { rental: available_data }
-      #
-      # movie.available_inventory.must_equal before_availability - 1
+      movie = movies(:two)
+
+      before_availability = movie.available_inventory
+
+      puts "before availability #{before_availability}"
+
+      available_data = { customer_id: customers(:one).id, movie_id: movies(:two).id }
+
+      post checkout_url, params: { rental: available_data }
+
+      body = JSON.parse(response.body)
+
+      puts "body: #{body}"
+
+
+      puts movie.title
+      movie.reload
+
+      puts "movie availability after post: #{movie.available_inventory}"
+      movie.available_inventory.must_equal before_availability - 1
     end
   end
 end

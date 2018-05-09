@@ -221,13 +221,13 @@
 					"raw": "{\n\t\"movie_id\": {{movie_id}},\n\t\"customer_id\": {{customer_id}}\n}"
 				},
 				"url": {
-					"raw": "{{url}}/rentals/check-out",
+					"raw": "{{url}}/rentals/checkout",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"rentals",
-						"check-out"
+						"checkout"
 					]
 				}
 			},
