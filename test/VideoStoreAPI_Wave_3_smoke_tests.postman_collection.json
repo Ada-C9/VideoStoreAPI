@@ -370,13 +370,13 @@
 					"raw": "{\n\t\"customer_id\": {{customer_id}},\n\t\"movie_id\": {{movie_id}}\n}"
 				},
 				"url": {
-					"raw": "{{url}}/rentals/check-in",
+					"raw": "{{url}}/rentals/checkin",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"rentals",
-						"check-in"
+						"checkin"
 					]
 				}
 			},
