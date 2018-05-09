@@ -1,30 +1,42 @@
 require 'date'
 
 class RentalsController < ApplicationController
-  # def new
-  #   rental = rental.new
-  # end
 
   def create
-    today = Date.today
+    chosen_movie = Movie.find_by(id: params[:movie_id])
+      today = Date.today
 
-    cust_mov = {
-      customer_id: params[:customer_id],
-      movie_id: params[:movie_id],
-      check_out_date: today.to_s,
-      due_date: (today + 7).to_s
-    }
+      rental_data = {
+        movie_id: params[:movie_id],
+        customer_id: params[:customer_id],
+        check_out_date: today.to_s,
+        due_date: (today + 7).to_s
+      }
 
-    rental = Rental.new(cust_mov)
+      rental = Rental.new(rental_data)
 
-    if rental.save
-      render json: {id: rental.id}, status: :ok
-    else
-      render json: {ok: false, errors: rental.errors}, status: :bad_request
-    end
+      if rental.save
+        Movie.decrement(chosen_movie)
+
+        render json: {id: rental.id}, status: :ok
+      else
+        render json: {ok: false, errors: rental.errors}, status: :bad_request
+      end
+
   end
 
   def update
+    rental = Rental.find_by(id: params[:rental_id])
+
+    today = Date.today.to_s
+
+    rental.check_in_date = today
+
+    rental.save
+
+    Movie.increment(rental.movie)
+
+    render json: {id: rental.id}, status: :ok
   end
 
   private

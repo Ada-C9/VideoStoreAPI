@@ -62,4 +62,24 @@ describe Movie do
     end
   end
 
+  describe "Movie.increment method" do
+    it "increment available_inventory of a movie when given valid data" do
+      movie = movies(:two)
+      available = movie.available_inventory
+
+      Movie.increment(movie)
+
+      movie.available_inventory.must_equal (available +1)
+    end
+
+    it "cannot increment available if available is inventory" do
+      movie = movies(:one)
+      available = movie.available_inventory
+
+      Movie.increment(movie)
+      binding.pry
+      movie.available_inventory.must_equal (available)
+    end
+  end
+
 end

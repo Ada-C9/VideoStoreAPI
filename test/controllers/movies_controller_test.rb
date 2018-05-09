@@ -1,18 +1,11 @@
 require "test_helper"
 
 describe MoviesController do
-
   describe "index" do
     it "is a real working route" do
       get movies_path
       must_respond_with :success
     end
-
-    # what is response for invalid path
-    # it "if route is invalid/not working" do
-    #   get moon_path
-    #   must_respond_with :not_found
-    # end
 
     it "returns json" do
       get movies_url
@@ -44,8 +37,8 @@ describe MoviesController do
     end
 
     it "returns movies with exactly the required fields" do
-      # unsure of order for keys...doesn't matter?
-      keys = %w(title overview release_date inventory id)
+
+      keys = %w(title overview release_date inventory id available_inventory)
 
       get movies_url
       body = JSON.parse(response.body)
@@ -56,7 +49,6 @@ describe MoviesController do
   end
 
   describe "show" do
-    # This bit is up to you!
     it "can get a movie" do
       get movie_path(movies(:two).id)
       must_respond_with :success
@@ -76,14 +68,14 @@ describe MoviesController do
         title: "Pirates of the Caribbean",
         overview: "The ocean's black pearl saves and perishes",
         release_date: "2000",
-        inventory: 3
+        inventory: 3,
+        available_inventory: 3
       }
     }
 
     it "Creates a new movie" do
-
       proc{
-        post movies_path, params: { movie: movie_data }
+        post movies_path, params: movie_data
       }.must_change "Movie.count", 1
       must_respond_with :success
 
@@ -93,7 +85,7 @@ describe MoviesController do
       movie_data[:title] = nil
 
       proc{
-        post movies_url, params: { movie: movie_data }
+        post movies_url, params: movie_data
       }.must_change "Movie.count", 0
       must_respond_with :bad_request
       body = JSON.parse(response.body)

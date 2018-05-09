@@ -27,4 +27,28 @@ class Movie < ApplicationRecord
     end
   end
 
+  def self.increment(movie)
+
+    if movie && movie.available_inventory < movie.inventory
+      movie.available_inventory += 1
+    else
+      # return movie.errors.messages
+    end
+  end
+
+  def self.available_movie?(id)
+    movie = false
+
+    if Movie.find_by(id: id)
+
+      movie = Movie.find_by(id: id)
+
+      if movie.available_inventory <= 0
+        movie = false
+      end
+    end
+
+    return movie
+  end
+
 end
