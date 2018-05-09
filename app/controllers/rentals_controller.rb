@@ -1,8 +1,10 @@
 class RentalsController < ApplicationController
+    # protect_from_forgery with: :null_session
+
   def checkout
-    rental = Rental.create_from_request(params)
+    rental = Rental.create_from_request(rental_params)
     if rental.save
-      render json: { id: rental.id }, status: :created
+      render json: { id: rental.id }, status: :ok
     else
       render json: {
         errors: rental.errors.messages
@@ -11,7 +13,7 @@ class RentalsController < ApplicationController
     end
 
     def checkin
-      rental = Rental.find_by(id: params[:rental_id])
+      rental = Rental.where(rental_params).last
 
       if rental
         rental.checkin_date = DateTime.now
@@ -30,5 +32,10 @@ class RentalsController < ApplicationController
         }, status: :not_found
       end
 
+    end
+
+    private
+    def rental_params
+      return params.permit(:customer_id, :movie_id)
     end
   end
