@@ -16,6 +16,19 @@ class RentalsController < ApplicationController
     end
   end
 
+  def check_in
+
+    rental = Rental.find_by_id(rental_params[:id])
+    if rental.save
+      rental.movie.increase_available_inventory
+      render json: { id: rental.id, customer_id: rental.customer_id, movie_id: rental.movie_id }, status: :created
+    else
+      render json: { errors: rental.errors.messages }, status: :bad_request
+    end
+
+  end
+
+
   private
   def rental_params
     params.require(:rental).permit(:movie_id, :customer_id)
