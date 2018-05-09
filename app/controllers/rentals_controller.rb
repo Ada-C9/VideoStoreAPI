@@ -16,7 +16,9 @@ class RentalsController < ApplicationController
   end
 
   def create
-    rental = Rental.create(rental_params)
+    rental = Rental.new(rental_params)
+    rental.checkout_date = Date.today
+    rental.save
 
     if rental.valid?
       render json: { id: rental.id }, status: :ok
@@ -41,7 +43,7 @@ class RentalsController < ApplicationController
 
   private
   def rental_params
-    return params.require(:rental).permit(:customer_id, :movie_id, :checkin_date, :checkout_date)
+    return params.permit(:customer_id, :movie_id)
   end
 
 end
