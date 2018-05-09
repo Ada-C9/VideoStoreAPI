@@ -16,11 +16,10 @@ class Rental < ApplicationRecord
 
 
   def enough_inventory_for_rent
-    range = start_date..end_date
     if movie
       count = 0
       self.movie.rentals.each do |rent|
-        if range.include?(rent.start_date) || range.include?(rent.end_date)
+        if rent.return_date.nil?
           count += 1
         end
       end
