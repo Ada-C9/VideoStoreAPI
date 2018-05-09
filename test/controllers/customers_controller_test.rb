@@ -26,8 +26,8 @@ describe CustomersController do
       body.length.must_equal Customer.count
     end
 
-    it "customers must have names and phone nums" do
-      keys = %w(address city id name phone postal_code registered_at)
+    it "customers must have requisite info" do
+      keys = %w(id name phone postal_code registered_at movies_checked_out_count)
       get customers_url
       body = JSON.parse(response.body)
       body.each do |customer|
