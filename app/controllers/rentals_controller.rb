@@ -6,8 +6,6 @@ class RentalsController < ApplicationController
     rental.checkout_date= Date.today
     rental.due_date= (rental.checkout_date + 7)
 
-
-
     # customer_id = Customer.find_by(id: rental_params[:customer_id])
     # movie_id = Movie.find_by(id: rental_params[:movie_id])
 
