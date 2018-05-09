@@ -6,11 +6,11 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find_by(id: params[:id])
+    @movie = Movie.find_by(id: movie_params[:id])
     if @movie.nil?
       render json: {
         errors: {
-          id: ["No movie with ID #{params[:id]}"]
+          id: ["No movie with ID #{movie_params[:id]}"]
         }
       }, status: :not_found
     else
@@ -22,13 +22,10 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
     @movie.save!
     render :create, status: :ok
-    # @movie = Movie.new(movie_params)
-    # @movie.save!
-    # render json: {id: movie.id}, status: :ok
   end
 
   private
   def movie_params
-    params.permit(:title, :overview, :release_date, :inventory)
+    params.permit(:id, :title, :overview, :release_date, :inventory)
   end
 end
