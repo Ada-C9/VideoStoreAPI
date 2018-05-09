@@ -40,7 +40,7 @@ end
 
   describe 'show' do
     it 'can get a movie' do
-      keys = %w(inventory overview release_date title)
+      keys = %w(available_inventory inventory overview release_date title)
       movie = movies(:robots)
 
       get movie_path(movie.id)

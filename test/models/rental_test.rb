@@ -9,8 +9,8 @@ describe Rental do
     movie = Movie.first
     customer = Customer.first
 
-    rental.movies = movie
-    rental.customers = customer
+    rental.movie = movie
+    rental.customer = customer
 
     rental.movie_id.must_equal movie.id
     rental.customer_id.must_equal customer.id
