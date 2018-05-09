@@ -1,15 +1,15 @@
 class RentalsController < ApplicationController
 
   def checkout
-    movie = Movie.find_by(id: params[:movie_id])
-    customer = Customer.find_by(id: params[:customer_id])
+    movie = Movie.find_by(id: params[:rental][:movie_id])
+    customer = Customer.find_by(id: params[:rental][:customer_id])
     if movie.nil? || customer.nil?
       render json: { ok: false }, status: :bad_request
     else
       if movie.available_inventory > 0
-        rental = Rental.create(rental_params)
+        rental = Rental.create(movie_id: params[:rental][:movie_id], customer_id: params[:rental][:customer_id], returned?: false)
         if rental
-          render status: :ok
+          render json: rental.as_json(), status: :ok
         else
           render json: { ok: false, errors: rental.errors },
           status: :bad_request
@@ -26,13 +26,12 @@ class RentalsController < ApplicationController
       render json: { ok: false }, status: :no_content
     else
       rental.update(returned?: true)
-      rental.save
     end
   end
 
   private
 
   def rental_params
-    return params.permit(:customer_id, :movie_id).merge(checkout_date: Date.today, returned?: false)
+    return params.permit(:customer_id, :movie_id)
   end
 end
