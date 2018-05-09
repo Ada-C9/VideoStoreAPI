@@ -38,5 +38,19 @@ describe RentalsController do
       must_respond_with :bad_request
       Rental.count.must_equal before_rental_count
     end
+
+    it "reduces_available_inventory on movie in the rental" do
+      # movie = Movie.create(title: "Fake Movie", inventory: 10, available_inventory: 10)
+      #
+      # before_availability = movie.available_inventory
+      #
+      # puts before_availability
+      #
+      # available_data = { customer_id: customers(:one).id, movie_id: movie.id }
+      #
+      # post checkout_url, params: { rental: available_data }
+      #
+      # movie.available_inventory.must_equal before_availability - 1
+    end
   end
 end

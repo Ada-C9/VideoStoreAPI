@@ -9,7 +9,10 @@ class Movie < ApplicationRecord
   end
 
 
-
+  def reduce_available_inventory
+    self.available_inventory -= 1
+    self.save
+  end
 
   private
   #https://stackoverflow.com/questions/29575259/default-values-for-models-in-rails

@@ -5,6 +5,7 @@ class RentalsController < ApplicationController
 
     if rental.movie.available_to_rent?
       if rental.save
+        rental.movie.reduce_available_inventory
         render json: { id: rental.id, customer_id: rental.customer_id, movie_id: rental.movie_id }, status: :created
       else
         render json: { errors: rental.errors.messages }, status: :bad_request
