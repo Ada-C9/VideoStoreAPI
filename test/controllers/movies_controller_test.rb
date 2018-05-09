@@ -67,34 +67,29 @@ describe 'show' do
 end
 
 describe 'create' do
-  movie_data = {
+  let(:movie_data) {
+    {
     title: "Titanic",
     overview: "Oldie movie",
     release_date: "12-10-2000",
     inventory: 10,
     available_inventory: 10
+    }
   }
 
   it "Creates a new movie" do
-    #option 1
+
     before_movie_count = Movie.count
-    post new_movie_path, params: { movie: movie_data }
+    post new_movie_path, params: movie_data
     must_respond_with :success
 
     Movie.count.must_equal before_movie_count + 1
-
-    #option 2
-    assert_difference "Movie.count", 1 do
-      post new_movie_path, params: { movie: movie_data }
-      must_respond_with :success
-    end
-
     body = JSON.parse(response.body)
     body.must_be_kind_of Hash
-    body.must_include "title"
+    body.must_include "id"
 
     # Check that the ID matches
-    Movie.find(body["id"]).title.must_equal movie_data.title
+    Movie.find(body["id"]).title.must_equal movie_data[:title]
   end
 
   it "Returns an error for an invalid movie" do
