@@ -5,9 +5,11 @@ one:
   due_date: "2018-05-15"
   customer: one
   movie: one
+  status: "checked_out"
 
 two:
   checkout_date: "2018-05-08"
   due_date: "2018-05-15"
   customer: two
   movie: two
+  status: "checked_out"

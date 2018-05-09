@@ -6,6 +6,13 @@ class Movie < ApplicationRecord
   validates :inventory, numericality: { greater_than: -1 }
 
   def available_inventory
-    return inventory
+    checkout_count = 0
+    self.rentals.each do |rental|
+      if rental.status == 'checked_out'
+        checkout_count += 1
+      end
+    end
+
+    return self.inventory - checkout_count
   end
 end

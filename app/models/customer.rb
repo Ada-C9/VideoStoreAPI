@@ -8,6 +8,8 @@ class Customer < ApplicationRecord
   # validates :phone, length: { is: 10 }
 
   def movies_checked_out_count
-    return 0
+    movies = self.rentals.select{ |rental| rental.status == 'checked_out' }
+
+    return movies.count
   end
 end

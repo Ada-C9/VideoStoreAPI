@@ -1,3 +1,3 @@
 collection @customers
-attributes :id, :name, :registered_at, :postal_code, :phone
+attributes :id, :name, :phone, :postal_code, :registered_at
 node(:movies_checked_out_count) { |customer| customer.movies_checked_out_count }

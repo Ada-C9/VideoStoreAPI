@@ -40,6 +40,23 @@ describe RentalsController do
       body['ok'].must_equal false
 
     end
+
+    it "decreases the movie's available inventory" do
+      movie_two = movies(:two)
+      inventory = movie_two.available_inventory
+
+      post check_out_path(params: rental_data)
+
+      movie_two = Movie.find_by(id: movie_two.id)
+      # binding.pry
+      movie_two.available_inventory.must_equal inventory - 1
+
+    end
+
+    it "increases the customer's movies checked out count" do
+      
+
+    end
   end
 
   describe "check_in" do
