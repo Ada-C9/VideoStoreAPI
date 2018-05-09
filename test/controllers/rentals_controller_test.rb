@@ -1,14 +1,24 @@
 require "test_helper"
+require 'pry'
 
-describe RentalsController do
-  it "should get new" do
-    get rentals_new_url
-    value(response).must_be :success?
+describe "RentalsController" do
+
+  it "can create new rental" do
+
+    rental_count = Rental.all.count
+
+    customer_movie_info = {
+      customer_id: customers(:one).id,
+      movie_id: movies(:one).id
+    }
+
+    post rental_path(customer_movie_info)
+
+    Rental.all.count.must_equal (rental_count + 1)
   end
 
-  it "should get update" do
-    get rentals_update_url
-    value(response).must_be :success?
-  end
+    it "should be able update a rental" do
 
-end
+    end
+
+  end

@@ -1,9 +1,9 @@
 require 'date'
 
 class RentalsController < ApplicationController
-  def new
-    rental = rental.new
-  end
+  # def new
+  #   rental = rental.new
+  # end
 
   def create
     today = Date.today

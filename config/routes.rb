@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   #movies_controller
     resources :movies, only:[:index, :show, :create]
 
-  post 'rentals/check_out/:movie_id/:customer_id', to: 'rentals#create', as: 'rental_create'
+  post 'rentals/check_out/:movie_id/:customer_id', to: 'rentals#create', as: 'rental'
 
-  patch 'rentals/update', to: 'rentals#update' as 'rental_update'
+  patch 'rentals/update', to: 'rentals#update'
 
 end
