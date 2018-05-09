@@ -16,16 +16,6 @@ class RentalsController < ApplicationController
     }
 
     rental = Rental.new(cust_mov)
-    # rental.check_out_date = today.to_s
-    # rental.due_date = (today + 7).to_s
-
-    # rental_data = {
-    #   customer_id: params[:customer_id],
-    #   movie_id: params[:movie_id],
-    #   check_out_date: Date.today.to_s,
-    #   due_date: (Date.today + 7).to_s
-    # }
-    # rental = Rental.new(rental_data)
 
     if rental.save
       render json: {id: rental.id}, status: :ok

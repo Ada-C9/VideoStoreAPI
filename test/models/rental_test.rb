@@ -23,6 +23,8 @@ describe Rental do
 
     it "must be valid" do
 
+      binding.pry
+
       rental_data = {
         customer_id: (customers(:one)).id,
         movie_id: (movies(:one)).id,

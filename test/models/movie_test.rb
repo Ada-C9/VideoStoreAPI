@@ -1,68 +1,51 @@
 require "test_helper"
-require 'date'
 
-describe "Movie" do
+describe Movie do
   describe "valid movies" do
-    it "must be valid if given valid movie info" do
-
-      movie_data = {
-        title: "Not another movie" ,
-        overview: "more of the same" ,
-        release_date: 1993 ,
-        inventory: 12
-      }
-
-      movie = Movie.create(movie_data)
-
-      value(movie).must_be :valid?
+    it "must be valid movie" do
+      movie = movies(:one)
+      movie.valid?.must_equal true
     end
   end
 
   describe "invalid movies" do
-    it "must return error if missing title" do
-
-      movie_data = {
-        title: nil ,
-        overview: "more of the same" ,
-        release_date: 1993 ,
-        inventory: 12
-      }
-
-      movie = Movie.new(movie_data)
-
-      movie.save
+    it "title must be valid" do
+      movie = movies(:one)
+      movie.title = nil
 
       movie.valid?.must_equal false
     end
 
-    it "must return error if missing inventory" do
-
-      movie_data = {
-        title: "not another movie" ,
-        overview: "more of the same" ,
-        release_date: 1993 ,
-        inventory: nil
-      }
-
-      movie = Movie.new(movie_data)
-
-      movie.save
+    it "inventory must be valid" do
+      movie = movies(:one)
+      movie.inventory = nil
 
       movie.valid?.must_equal false
     end
 
-    it "must return error if inventory is not an integer" do
+    it "inventory cannot be a string" do
+      movie = movies(:one)
+      movie.inventory = "cat"
 
-      movie_data = {
-        title: "friday night and lights are low" ,
-        overview: "dancing queen" ,
-        release_date: 1993 ,
-        inventory: "abba"
-      }
+      movie.valid?.must_equal false
+    end
 
-      movie = Movie.new(movie_data)
+    it "cannot have string for available_inventory" do
+      movie = movies(:one)
+      movie.available_inventory = "cat"
+      movie.valid?.must_equal false
+    end
 
-      movie.save
+    it "must have available_inventory between 0 and total inventory" do
+      movie = movies(:one)
+      movie.available_inventory = -1
+
+      movie.valid?.must_equal false
+    end
+
+    it "must have available_inventory between 0 and total inventory" do
+      movie = movies(:one)
+      movie.available_inventory = 6
 
       movie.valid?.must_equal false
     end
@@ -70,16 +53,7 @@ describe "Movie" do
 
   describe "Movie.decrement method" do
     it "decrements available_inventory of a movie when given valid data" do
-      movie_data =  {
-          title: "Not another movie" ,
-          overview: "more of the same" ,
-          release_date: 1993 ,
-          inventory: 12,
-          available_inventory: 10
-        }
-
-      movie = Movie.create(movie_data)
-
+      movie = movies(:two)
       available = movie.available_inventory
 
       Movie.decrement(movie)
@@ -87,4 +61,5 @@ describe "Movie" do
       movie.available_inventory.must_equal (available -1)
     end
   end
+
 end

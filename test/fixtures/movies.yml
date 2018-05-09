@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: Men In Black
-  overview: Save the world through the intergalactic
-  release_date: 1990
-  inventory: 15
-  available_inventory: 15
+  title: Men in black
+  overview: will smithy
+  release_date: "2005-08-08"
+  inventory: 3
+  available_inventory: 3
 
 two:
-  title: Ready Player One
-  overview: Video game is life
-  release_date: 2018
-  inventory: 15
-  available_inventory: 7
+  title: Men in black II
+  overview: will smithy II
+  release_date: "2015-08-08"
+  inventory: 5
+  available_inventory: 5
