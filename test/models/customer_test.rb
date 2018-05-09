@@ -45,18 +45,9 @@ describe Customer do
     customer.valid?.must_equal false
   end
 
-  # it "must have phone length = 10" do
-  #   customer.postal_code = '1234'
-  #   customer.valid?.must_equal false
-  #
-  #   customer.postal_code = '12384985203829387948'
-  #   customer.valid?.must_equal false
-  # end
-
   describe 'relationships' do
     it "has many rentals" do
       customer.rentals.must_equal [rentals(:one)]
-
       customer.rentals.count.must_equal 1
     end
 
