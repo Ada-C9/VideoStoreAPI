@@ -84,7 +84,6 @@ describe Movie do
           )
 
           available_inventory = @movie.available_inventory
-          puts available_inventory
           customer = Customer.first
           rental_data = { movie_id: @movie.id, customer_id: customer.id}
           rental = Rental.create(rental_data)
