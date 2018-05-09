@@ -38,9 +38,6 @@ describe MoviesController do
   end
 end
 
-
-
-
 describe 'show' do
   it 'can get a movie' do
     keys = %w(available_inventory inventory overview release_date title)

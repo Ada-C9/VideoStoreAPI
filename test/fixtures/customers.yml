@@ -13,3 +13,4 @@ kari:
   state: California
   postal_code: 94267
   phone: (908) 949-6758
+  movies_checked_out_count: 0
