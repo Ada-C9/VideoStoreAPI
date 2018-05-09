@@ -12,7 +12,7 @@ class Movie < ApplicationRecord
            if copy.checkout_date && copy.rental.checkin_date == nil
 
              available_inventory -= 1
-
+             
            end
 
          end
