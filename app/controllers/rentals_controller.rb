@@ -33,6 +33,7 @@ class RentalsController < ApplicationController
   end
 
 
+
     def checkin
 
       rental = Rental.find(params[:rental_id])
