@@ -20,7 +20,6 @@ class MoviesController < ApplicationController
 
   def create
     movie = Movie.new(movie_params)
-    #TODO set available_inventory to inventory before saving
     if movie.save
       render json: { id: movie.id }, status: :created
     else
