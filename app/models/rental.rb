@@ -17,15 +17,18 @@ class Rental < ApplicationRecord
 
   def enough_inventory_for_rent
     range = start_date..end_date
-    count = 0
-    self.movie.rentals.each do |rent|
-      if range.include?(rent.start_date) || range.include?(rent.end_date)
-        count += 1
+    if movie
+      count = 0
+      self.movie.rentals.each do |rent|
+        if range.include?(rent.start_date) || range.include?(rent.end_date)
+          count += 1
+        end
       end
-    end
-
-    if count >= self.movie.inventory
-      errors.add( :range,"All copies of the movie are rented for this date range")
+      if count >= self.movie.inventory
+        errors.add( :range,"All copies of the movie are rented for this date range")
+      end
+    else
+      errors.add(:movie_id,"Movie does not exist.")
     end
   end
 
