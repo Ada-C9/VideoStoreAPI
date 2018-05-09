@@ -9,19 +9,16 @@ class RentalsController < ApplicationController
     if movie.nil? || customer.nil?
       render json: { ok: false }, status: :bad_request
     else
-      if movie.inventory > 0
+      if movie.get_available_inventory > 0
         rental = Rental.create(movie_id: params[:rental][:movie_id], customer_id: params[:rental][:customer_id], checkout_date: Date.today, returned?: false)
         if rental
-          movie.inventory -= 1 # Todo: consider making method in movie class
-          movie.save
           render json: rental.as_json(), status: :ok
         else
           render json: { ok: false, errors: rental.errors },
           status: :bad_request
         end
       else
-        render json: { ok: false, errors: rental.errors },
-        status: :bad_request # Todo: look up to see if better status
+        render json: { ok: false}, status: :bad_request # Todo: look up to see if better status
       end
     end
   end
