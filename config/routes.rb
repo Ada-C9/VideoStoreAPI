@@ -5,9 +5,6 @@ Rails.application.routes.draw do
   resources :customers, only: [:index, :show]
 
   post '/rentals/check-out', to: 'rentals#checkout', as: 'check-out'
-
   post '/rentals/check-in', to: 'rentals#checkin', as: 'check-in'
-
-
 
 end
