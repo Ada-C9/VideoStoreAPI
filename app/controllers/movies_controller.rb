@@ -5,24 +5,24 @@ class MoviesController < ApplicationController
   end
 
   def index
-    movies = Movie.all
+    @movies = Movie.all
 
-    if movies.empty?
+    if @movies.empty?
       render json: {
         errors: { movie: ["No Movies were found"]}
         }, status: :not_found
 
       else
-        render json: movies.as_json(only: [:id, :title, :release_date]), status: :ok
+        render 'index.json'
       end
     end
 
 
     def show
-      movie = Movie.find_by(id: params[:id])
+      @movie = Movie.find_by(id: params[:id])
 
-      if movie
-        render json: movie.as_json, status: :ok
+      if @movie
+        render 'show.json'
       else
         render json: {errors: {movie: ["Cound not find movie with ID: #{params[:id]}"]}}, status: :not_found
       end

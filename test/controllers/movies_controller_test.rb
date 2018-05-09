@@ -26,7 +26,7 @@ describe "movies#index" do
   end
 
   it "returns with the exact fields required" do
-    keys = %w(id release_date title)
+    keys = %w(available_inventory id inventory overview release_date title)
 
     get movies_path
 
