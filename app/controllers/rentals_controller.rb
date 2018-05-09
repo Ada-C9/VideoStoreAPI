@@ -51,14 +51,12 @@ class RentalsController < ApplicationController
       render json: { id: rental.id }, status: :ok
     else
       render json: { errors: rental.errors.messages }, status: :bad_request
-
     end
 
   end
 end
 
-  private
-  def check_params
-    params.permit(:customer_id, :movie_id, :rental_id)
-  end
+private
+def check_params
+  params.permit(:customer_id, :movie_id, :rental_id)
 end
