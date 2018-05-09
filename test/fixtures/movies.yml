@@ -2,10 +2,10 @@
 Phantom:
   title: Phantom Thread
   overview:
-  release_date: Date.new-13
+  release_date: 2016-02-03
   inventory: 12
 Lion:
   title: Lion King
   overview:
-  release_date: Date.new-10
+  release_date: 1993-12-10
   inventory: 8

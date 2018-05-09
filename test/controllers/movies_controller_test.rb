@@ -53,7 +53,7 @@ describe MoviesController do
         post movies_url,
           params:{
               movie:{
-                      title:"test movie",overview: "testing",release_date:Date.new,inventory:12,available_inventory:11
+                      title:"test movie",overview: "testing",release_date:DateTime.now,inventory:12,available_inventory:11
                     }
                   }
             }.must_change 'Movie.count', 1
@@ -67,7 +67,7 @@ describe MoviesController do
         post movies_url,
           params:{
               movie:{
-                      title:"",overview: "testing",release_date:Date.new,inventory:12,available_inventory:11
+                      title:"",overview: "testing",release_date:DateTime.now,inventory:12,available_inventory:11
                     }
                   }
             }.wont_change 'Movie.count'
