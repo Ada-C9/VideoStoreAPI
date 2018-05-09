@@ -5,6 +5,7 @@ class Movie < ApplicationRecord
 
    # possible logic to decrement available_inventory
 
+<<<<<<< HEAD
    # returns true if movie is available for checkout
    # returns false if movie isn't available for checkout
    def self.available_inventory?
@@ -30,5 +31,8 @@ class Movie < ApplicationRecord
     return "We do not have that title available now."
 
    end
+=======
+
+>>>>>>> ece389e9ae48b6e9c96c07133fb8057bd6e578c4
 
 end

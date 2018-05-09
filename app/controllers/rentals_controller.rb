@@ -32,18 +32,33 @@ class RentalsController < ApplicationController
 
   end
 
-
   def checkin
-
-    rental = Rental.find(params[:rental_id])
-    rental.update_attributes checkin_date: DateTime.now
-
-    customer = Customer.find_by(rental.customer_id)
-    movie = Movie.find(rental.movie_id)
+    p "top of checkin"
+    (Rental.all).each do |rental|
+    puts  rental.id
+    puts "customerid"
+    puts rental.customer_id
+    puts "rental id"
+    puts      rental.movie_id
+      end
     rental = Rental.find_by(id: check_params[:rental_id])
-    rental.update_attributes checkin_date: DateTime.now
+    puts rental.inspect
+
+
+    rental.checkin_date = DateTime.now
+    rental.save
+    p "in checkin"
+    puts rental.inspect
+
+    movie_id = rental.movie_id
+    customer_id = rental.customer_id
+
+    customer = Customer.find_by(id: customer_id)
+    movie = Movie.find_by(id: movie_id)
 
     if rental.save
+      p "in rental.save"
+      puts rental.inspect
       Customer.find(rental.customer_id).update_attributes movies_checked_out_count:  customer.movies_checked_out_count-1
 
       Movie.find(rental.movie_id).update_attributes available_inventory: movie.available_inventory+1
@@ -51,12 +66,16 @@ class RentalsController < ApplicationController
       render json: { id: rental.id }, status: :ok
     else
       render json: { errors: rental.errors.messages }, status: :bad_request
+
+      render json: { id: rental.id }, status: :ok
+    else
+      render json: { errors: rental.errors.messages }, status: :bad_request
     end
-
+    
   end
-end
 
-private
-def check_params
-  params.permit(:customer_id, :movie_id, :rental_id)
+  private
+  def check_params
+    params.permit(:customer_id, :movie_id, :rental_id)
+  end
 end
