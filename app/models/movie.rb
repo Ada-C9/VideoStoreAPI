@@ -8,6 +8,11 @@ class Movie < ApplicationRecord
   validates :inventory, presence: true, numericality: { only_integer: true }
   validates :available_inventory, presence: true, numericality: { only_integer: true }
 
+  def decrement_available_inventory
+    if self.available_inventory > 0
+      self.available_inventory -= 1
+    end
+  end
 
   private
   def set_available_inventory_default
