@@ -6,12 +6,12 @@ class RentalsController < ApplicationController
     rental.check_out = DateTime.now
     rental.due_date = rental.check_out + 7
 
-    movie = Movie.find_by(id: params[:rental][:movie_id])
+    movie = Movie.find_by(id: params[:movie_id])
 
     if movie.nil?
       render json: {
         errors: {
-          movie_id: ["No movie with ID #{params[:rental][:movie_id]}"]
+          movie_id: ["No movie with ID #{params[:movie_id]}"]
         }
       }, status: :not_found
       return
@@ -34,7 +34,7 @@ class RentalsController < ApplicationController
   end
 
   def check_in
-    rental = Rental.find_rental(params[:rental][:movie_id], params[:rental][:customer_id])
+    rental = Rental.find_rental(params[:movie_id], params[:customer_id])
 
     if rental.nil?
       render json: {
@@ -56,7 +56,7 @@ class RentalsController < ApplicationController
 
   private
   def rental_params
-    return params.require(:rental).permit(:movie_id, :customer_id)
+    return params.permit(:movie_id, :customer_id)
   end
 
 end
