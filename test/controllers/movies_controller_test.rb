@@ -26,7 +26,7 @@ describe MoviesController do
     end
 
     it "returns movies with exactly the required fields" do
-      keys = %w(id release_date title)
+      keys = %w(available_inventory id release_date title)
       get movies_url
       body = JSON.parse(response.body)
       body.each do |movie|
@@ -43,7 +43,7 @@ describe MoviesController do
 
     it "returns a movie with exactly the required fields" do
       keanu = movies(:keanu)
-      keys = %w(id inventory overview release_date title)
+      keys = %w(available_inventory id inventory overview release_date title)
       get movie_url(keanu.id)
       body = JSON.parse(response.body)
       body.keys.sort.must_equal keys
