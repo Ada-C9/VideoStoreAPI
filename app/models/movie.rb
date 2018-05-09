@@ -16,7 +16,6 @@ class Movie < ApplicationRecord
 
   private
   def set_available_inventory_default
-    puts "Running set available inventory default"
     self.available_inventory = self.inventory
   end
 end

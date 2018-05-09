@@ -1,4 +1,5 @@
 require "test_helper"
+require 'pry'
 
 describe RentalsController do
 
@@ -11,7 +12,7 @@ describe RentalsController do
       }
     }
 
-    it "creates a new instance of Rental for a valid movie and customer" do
+    it "creates a new instance of Rental for a valid customer and a movie that has available inventory" do
       old_rental_count = Rental.count
 
       post checkout_path, params: { rental: rental_data }
@@ -45,7 +46,7 @@ describe RentalsController do
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include "errors"
-      body["errors"].must_include "movie"
+      body["errors"].must_include "Movie"
     end
 
     it "sends bad_request response if customer_id is invalid" do
@@ -62,6 +63,27 @@ describe RentalsController do
       body.must_be_kind_of Hash
       body.must_include "errors"
       body["errors"].must_include "customer"
+    end
+
+    it "sends a bad_request if valid movie has no available_inventory" do
+
+      movies(:one).available_inventory = 0
+
+      movies(:one).save
+
+      bad_rental_data = {
+        movie_id: movies(:one).id,
+        customer_id: Customer.last.id
+      }
+
+      post checkout_path, params: { rental: bad_rental_data }
+      # binding.pry
+      must_respond_with :bad_request
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "available inventory"
     end
 
   end
