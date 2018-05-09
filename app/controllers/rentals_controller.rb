@@ -17,7 +17,6 @@ class RentalsController < ApplicationController
 
       if rental.save
         Movie.decrement(chosen_movie)
-
         render json: {id: rental.id}, status: :ok
       else
         render json: {ok: false, errors: rental.errors}, status: :bad_request
@@ -28,15 +27,16 @@ class RentalsController < ApplicationController
   def update
     rental = Rental.find_by(id: params[:rental_id])
 
-    today = Date.today.to_s
+    if rental
+      today = Date.today.to_s
+      rental.check_in_date = today
+      rental.save
 
-    rental.check_in_date = today
-
-    rental.save
-
-    Movie.increment(rental.movie)
-
-    render json: {id: rental.id}, status: :ok
+      Movie.increment(rental.movie)
+      render json: {id: rental.id}, status: :ok
+    else
+      render json: {ok: false, errors: rental.errors}, status: :bad_request
+    end
   end
 
   private

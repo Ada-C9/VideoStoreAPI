@@ -13,7 +13,7 @@ class Movie < ApplicationRecord
   def available_inventory_cannot_exceed_inventory
     if inventory
       if inventory < available_inventory
-      errors.add(:available_inventory, "Cannot exceed inventory")
+        errors.add(:available_inventory, "Cannot exceed inventory")
       end
     end
   end
@@ -22,6 +22,7 @@ class Movie < ApplicationRecord
 
     if movie && movie.available_inventory > 0
       movie.available_inventory -= 1
+      movie.save
     else
       # figure out how we will process invalid requests
     end

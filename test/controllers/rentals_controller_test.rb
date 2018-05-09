@@ -38,21 +38,21 @@ describe RentalsController do
       body["id"].must_equal Rental.last.id
     end
 
-    # it "decrements the movie's available_inventory" do
-    #   test_movie = movies(:one)
-    #   initial_inventory = test_movie.available_inventory
-    #
-    #   customer_movie_info = {
-    #     customer_id: (customers(:one)).id,
-    #     movie_id: test_movie.id
-    #   }
-    #
-    #   post rental_path(customer_movie_info)
-    #   # movie2 = Movie.find_by(id: movies(:one).id)
-    #   # binding.pry
-    #
-    #   test_movie.available_inventory.must_equal (initial_inventory - 1)
-    # end
+    it "decrements the movie's available_inventory" do
+      test_movie = movies(:one)
+      initial_inventory = test_movie.available_inventory
+
+      customer_movie_info = {
+        customer_id: (customers(:one)).id,
+        movie_id: test_movie.id
+      }
+
+      post rental_path(customer_movie_info)
+      # movie2 = Movie.find_by(id: movies(:one).id)
+      # binding.pry
+
+      Movie.find(test_movie.id).available_inventory.must_equal (initial_inventory - 1)
+    end
   end
 
   describe "update" do

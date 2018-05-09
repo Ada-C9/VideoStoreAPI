@@ -48,6 +48,7 @@ describe Movie do
       movie.available_inventory = 6
 
       movie.valid?.must_equal false
+      movie.errors.messages.must_include :available_inventory
     end
   end
 
@@ -77,7 +78,6 @@ describe Movie do
       available = movie.available_inventory
 
       Movie.increment(movie)
-      binding.pry
       movie.available_inventory.must_equal (available)
     end
   end
