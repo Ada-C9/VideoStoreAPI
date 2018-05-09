@@ -13,7 +13,7 @@ describe Movie do
       }
 
       old_count = Movie.count
-      result = Movie.create_from_json(hash)
+      result = Movie.create_from_request(hash)
       result.must_be_kind_of Movie
       result.title.must_equal hash["title"]
       Movie.count.must_equal old_count + 1
@@ -28,7 +28,7 @@ describe Movie do
 
       old_count = Movie.count
       proc {
-        Movie.create_from_json(hash)
+        Movie.create_from_request(hash)
       }.must_raise
 
       Movie.count.must_equal old_count
@@ -44,7 +44,7 @@ describe Movie do
 
       old_count = Movie.count
       proc {
-        Movie.create_from_json(hash)
+        Movie.create_from_request(hash)
       }.must_raise
 
       Movie.count.must_equal old_count

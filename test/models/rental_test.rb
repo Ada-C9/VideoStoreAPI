@@ -3,7 +3,7 @@ require "test_helper"
 describe Rental do
   before do
     @movie = Movie.first
-    @customer = Customer.first
+    @customer = Customer.last
   end
 
   describe "Can be created" do
@@ -45,7 +45,7 @@ describe Rental do
       it "returns invalid rental if given invalid data" do
         old_rental_count = Rental.count
         rental_data = {
-          customer_id: nil,
+          customer_id: @customer.id + 1,
           movie_id: @movie.id
         }
 
@@ -101,13 +101,13 @@ describe Rental do
 
       rental.wont_be :valid?
 
-      proc { rental.save }.must_raise
+      rental.save
       rental.errors.messages.wont_be :empty?
       Rental.count.must_equal old_rental_count
 
     end
 
-    it "returns an ArgumentError if the customer and movie have an active rental" do
+    it "doesn't update database if the customer and movie have an active rental" do
       Rental.create!(customer: @customer, movie: @movie)
 
       rental = Rental.new(customer: @customer, movie: @movie)
@@ -115,7 +115,7 @@ describe Rental do
 
       old_rental_count = Rental.count
 
-      proc { rental.save }.must_raise
+      rental.save
       rental.errors.messages.wont_be :empty?
       Rental.count.must_equal old_rental_count
     end

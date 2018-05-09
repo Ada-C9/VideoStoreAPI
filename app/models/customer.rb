@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
     self.created_at = DateTime.parse(registration)
   end
 
-  def self.create_from_json(hash)
+  def self.create_from_request(hash)
     cust_data = {
       name: hash["name"],
       address: hash["address"],

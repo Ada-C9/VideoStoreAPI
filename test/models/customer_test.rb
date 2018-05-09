@@ -15,7 +15,7 @@ describe Customer do
       expected_creation = DateTime.parse("Wed, 29 Apr 2015 07:54:14 -0700")
 
       previous_count = Customer.count
-      result = Customer.create_from_json(hash)
+      result = Customer.create_from_request(hash)
       result.must_be_kind_of Customer
       result.name.must_equal hash["name"]
       result.created_at.must_equal expected_creation
@@ -32,7 +32,7 @@ describe Customer do
 
       previous_count = Customer.count
       proc {
-        Customer.create_from_json(hash)
+        Customer.create_from_request(hash)
       }.must_raise
       Customer.find_by(phone: hash["phone"]).must_be_nil
       Customer.count.must_equal previous_count
