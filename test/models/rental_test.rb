@@ -1,4 +1,5 @@
 require "test_helper"
+require 'pry'
 
 describe Rental do
   describe 'relations' do
@@ -29,6 +30,31 @@ describe Rental do
     it 'will be invalid witout a valid customer_id' do
       @rental.customer_id = Customer.last.id + 1
       @rental.wont_be :valid?
+    end
+
+  end
+
+  describe 'find_rental_movie' do
+    before do
+      customer_id = customers(:two).id
+      movie_id = movies(:two).id
+      @rental_params = {movie_id: movie_id, customer_id: customer_id}
+    end
+    it "returns an instance of a Movie given a valid movie id" do
+      binding.pry
+      result = find_rental_movie(@rental_params)
+
+      result.must_be_kind_of Movie
+      result.id.must_equal @rental_params[:movie_id]
+
+    end
+
+    it "returns nil if given invalid movie id" do
+      @rental_params[:movie_id] = Movie.last.id + 1
+
+      result = find_rental_movie(@rental_params)
+
+      result.id.must_be nil
     end
 
   end

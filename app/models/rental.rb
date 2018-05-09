@@ -7,4 +7,9 @@ class Rental < ApplicationRecord
   belongs_to :movie
   belongs_to :customer
 
+  # def find_rental_movie(rental_params)
+  #   return Movie.find_by(id: rental_params[:movie_id])
+  # end
+
+
 end
