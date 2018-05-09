@@ -14,17 +14,18 @@ class RentalsController < ApplicationController
         movie_id: params[:movie_id],
         status: 'checked_out'
       )
+      if @rental.save
+        # binding.pry
+        render json: {customer_id: @rental.customer_id, movie_id: @rental.movie_id}, status: :ok
+
+      else
+        render json: {ok: false}, status: :bad_request
+      end
 
     else
-      render json: {ok: false}, status: :bad_request
+      render json: {ok: false}, status: :no_content
     end
 
-    if @rental.save
-      # binding.pry
-      render json: {customer_id: @rental.customer_id, movie_id: @rental.movie_id}, status: :ok
-    else
-      render json: {ok: false}, status: :bad_request
-    end
   end
 
   def check_in

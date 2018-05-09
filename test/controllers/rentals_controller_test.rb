@@ -53,8 +53,23 @@ describe RentalsController do
 
     end
 
+    it "does not decrease available inventory if available inventory is 0" do
+      movie_one = movies(:one)
+      inventory = movie_one.available_inventory
+
+      post check_out_path(params:
+        {
+          customer_id: customers(:one).id,
+          movie_id: movies(:one).id
+        })
+
+      movie_one = Movie.find_by(id: movie_one.id)
+      # binding.pry
+      movie_one.available_inventory.must_equal inventory 
+    end
+
     it "increases the customer's movies checked out count" do
-      
+
 
     end
   end
