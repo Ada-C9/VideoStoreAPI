@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   get '/customers', to: 'customers#index', as: 'customers'
 
-  post '/rentals/checkout', to: 'rentals#check_out', as: 'check_out'
+  post '/rentals/check-out', to: 'rentals#check_out', as: 'check_out'
 
-  patch '/rentals/checkin', to: 'rentals#check_in', as: 'check_in'
+  post '/rentals/check-in', to: 'rentals#check_in', as: 'check_in'
+  
 end
