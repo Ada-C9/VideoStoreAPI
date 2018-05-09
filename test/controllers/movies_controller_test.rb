@@ -88,6 +88,10 @@ describe MoviesController do
       }.must_change "Movie.count", 1
       must_respond_with :success
 
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body["id"].must_equal Movie.last.id
+
     end
 
     it "returns a bad request for a bad params data" do
