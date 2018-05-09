@@ -73,6 +73,42 @@ describe Movie do
       end
     end
 
+    describe "available_to_rent?" do
+      before do
+        @movie = Movie.create(
+          title: "test movie",
+          overview: "The unexciting life of a boy",
+          release_date: "1979-01-18",
+          inventory: "10",
+          available_inventory: "10"
+        )
+
+        customer = Customer.first
+        rental_data = { movie_id: @movie.id, customer_id: customer.id}
+
+        rental = Rental.create(rental_data)
+      end
+
+      it "returns true if the movie has available inventory" do
+        @movie.available_inventory.must_be :>, 0
+
+        @movie.available_to_rent?.must_equal true
+      end
+
+      it "returns false if the movie does not have available inventory" do
+        @movie.inventory.times do
+          @movie.reduce_available_inventory
+        end
+
+        @movie.reload
+        puts @movie.available_inventory
+        @movie.available_inventory.must_equal 0
+
+        @movie.available_to_rent?.must_equal false
+      end
+    end
+
+
     describe "reduce_available_inventory" do
       it "reduce_available_inventory" do
           @movie = Movie.create(
