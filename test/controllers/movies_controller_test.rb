@@ -52,10 +52,10 @@ describe MoviesController do
       proc{
         post movies_url,
           params:{
-              movie:{
+
                       title:"test movie",overview: "testing",release_date:DateTime.now,inventory:12,available_inventory:11
                     }
-                  }
+
             }.must_change 'Movie.count', 1
 
       must_respond_with :success
@@ -66,10 +66,8 @@ describe MoviesController do
       proc{
         post movies_url,
           params:{
-              movie:{
                       title:"",overview: "testing",release_date:DateTime.now,inventory:12,available_inventory:11
                     }
-                  }
             }.wont_change 'Movie.count'
 
       must_respond_with :bad_request
