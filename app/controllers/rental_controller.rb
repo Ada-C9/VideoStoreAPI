@@ -1,7 +1,14 @@
 class RentalController < ApplicationController
-  # def check_in
-  #
-  # end
+  def check_in
+    movie = Movie.find_by(id: rental_params[:movie_id])
+    customer = Customer.find_by(id: rental_params[:customer_id])
+
+    if movie && customer
+    else
+      #end outer loop
+    end
+
+  end
 
 
   def check_out

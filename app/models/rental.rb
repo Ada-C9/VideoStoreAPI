@@ -5,7 +5,6 @@ class Rental < ApplicationRecord
 
   validates :customer_id, presence: true
   validates :movie_id, presence: true
-  # validates :check_in, presence: true
   validates :check_out, presence: true
 
   def assign_check_out_date
@@ -14,6 +13,10 @@ class Rental < ApplicationRecord
 
   def assign_due_date
     self.due_date = self.check_out + 7
+  end
+
+  def assign_check_in_date
+    self.check_out = DateTime.now
   end
 
 end
