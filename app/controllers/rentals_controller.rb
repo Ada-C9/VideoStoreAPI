@@ -28,7 +28,7 @@ class RentalsController < ApplicationController
   end
 
   def update
-    rental = Rental.find_by(id: params[:id])
+    rental = Rental.find_by(customer_id: params[:customer_id], movie_id: params[:movie_id])
 
     if rental.checkin_date != nil
       render json: {ok: false, errors: "Rental already checked in."}, status: :bad_request
