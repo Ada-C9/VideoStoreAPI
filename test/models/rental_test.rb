@@ -8,7 +8,7 @@ describe Rental do
       customer = Customer.first
       movie = Movie.first
       date = Date.today
-      
+
       @rental_data = {
         checkout: date,
         due_date: date + 7,
@@ -22,7 +22,7 @@ describe Rental do
       # binding.pry
       rental.checkout.must_be_kind_of Date
       rental.due_date.must_be_kind_of Date
-      rental.must_be :valid?
+      rental.must_be :valid?, rental.errors.messages
     end
 
     it 'cannot be created without customer_id' do
