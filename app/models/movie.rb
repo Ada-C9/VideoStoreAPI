@@ -14,6 +14,11 @@ class Movie < ApplicationRecord
     self.save
   end
 
+  #def increase_available_inventory
+  #   self.available_inventory += 1
+  #   self.save
+  #end
+
   private
   #https://stackoverflow.com/questions/29575259/default-values-for-models-in-rails
   after_initialize :set_defaults, unless: :persisted?
