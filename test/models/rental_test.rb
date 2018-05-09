@@ -68,12 +68,16 @@ describe Rental do
   end
 
   describe 'relations' do
-    it "associates the correct customer with customer_id" do
-      skip
-      rental = Rental.new(@rental_data)
+    it "associates the correct customer and moveie with customer_id and movie_id" do
       customer = Customer.first
+      movie = Movie.first
 
-      rental.customer.name.must_equal customer.name
+      rental = Rental.new(@rental_data)
+      rental.customer = customer
+      rental.movie = movie
+
+      rental.customer_id.must_equal customer.id
+      rental.movie_id.must_equal movie.id
     end
 
   end
