@@ -9,6 +9,12 @@ class Movie < ApplicationRecord
     hash["release_date"] = Date.parse(hash["release_date"])
 
     self.create!(hash)
+  end
 
+  def available
+    rentals = Rental.where(movie_id: self.id)
+    rented = rentals.select{ |rent| !rent.checkin_date }.count
+    avail = (self.inventory - rented)
+    return avail
   end
 end

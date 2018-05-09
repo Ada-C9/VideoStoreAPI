@@ -52,4 +52,32 @@ describe Movie do
 
   end
 
+  describe "#available" do
+    before do
+      @movie = Movie.first
+      @customer = Customer.first
+    end
+    it "returns an integer of available inventory" do
+      result = @movie.available
+      result.must_be_kind_of Integer
+    end
+
+    it "updates when checkout and checkin" do
+      original_avail = @movie.available
+
+      rental = Rental.create_from_request(movie_id: @movie.id, customer_id: @customer.id)
+      rental.save
+
+      result = @movie.available
+      result.must_equal original_avail - 1
+
+      rental.checkin_date = DateTime.now
+      rental.save
+
+      new_result = @movie.available
+      new_result.must_equal original_avail
+    end
+
+  end
+
 end

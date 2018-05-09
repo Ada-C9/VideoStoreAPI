@@ -39,4 +39,32 @@ describe Customer do
     end
   end
 
+  describe "#checkedout" do
+    before do
+      @customer = Customer.first
+      @movie = Movie.first
+    end
+
+    it "returns an integer of available inventory" do
+      result = @customer.checkedout
+      result.must_be_kind_of Integer
+    end
+
+    it "updates when checkout and checkin" do
+      original_checkedout = @customer.checkedout
+
+      rental = Rental.create_from_request(movie_id: @movie.id, customer_id: @customer.id)
+      rental.save
+
+      result = @customer.checkedout
+      result.must_equal original_checkedout + 1
+
+      rental.checkin_date = DateTime.now
+      rental.save
+
+      new_result = @customer.checkedout
+      new_result.must_equal original_checkedout
+    end
+  end
+
 end
