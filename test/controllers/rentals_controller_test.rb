@@ -61,9 +61,8 @@ describe RentalsController do
     end
 
     it "returns a 404 for rental not found" do
-      rental = rentals(:one)
-      rental.destroy
-      get rental_path(rental.id)
+
+      get rental_path("not a rental")
 
       must_respond_with :not_found
     end
@@ -105,12 +104,11 @@ describe RentalsController do
   end
 
   describe "Update" do
-
     it "successfully updates an existing rental" do
       existing_rental = rentals(:one)
 
       proc {
-        patch checkin_path(existing_rental),
+        post checkin_path(existing_rental),
         params: {
           rental: {
             customer_id: existing_rental.customer_id,
@@ -121,22 +119,14 @@ describe RentalsController do
         }
       }.wont_change "Rental.count"
 
-
       must_respond_with :success
-
     end
 
     it "will not update a rental that's already been checked in" do
       existing_rental = rentals(:three)
 
-      # existing_rental.checkin_date = "2018-05-10"
-      # existing_rental.customer_id = customers(:two).id
-      # existing_rental.movie_id = movies(:two).id
-      # existing_rental.save
-      # binding.pry
-
       proc {
-        patch checkin_path(existing_rental),
+        post checkin_path(existing_rental),
         params: {
           customer_id: existing_rental.customer_id,
           movie_id: existing_rental.movie_id,
@@ -146,11 +136,6 @@ describe RentalsController do
       }.wont_change "Rental.count"
 
       must_respond_with :bad_request
-
     end
-
-
-
   end
-
 end

@@ -60,9 +60,8 @@ describe MoviesController do
     end
 
     it "returns a 404 for movie not found" do
-      movie = movies(:one)
-      movie.destroy
-      get movie_path(movie.id)
+
+      get movie_path("not a movie")
 
       must_respond_with :not_found
     end

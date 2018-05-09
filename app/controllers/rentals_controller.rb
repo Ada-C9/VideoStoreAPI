@@ -35,6 +35,7 @@ class RentalsController < ApplicationController
     else
 
       rental.checkin_date = Date.today
+      rental.save
 
       render json: rental.as_json(only: [:customer_id, :movie_id, :checkout_date, :checkin_date]), status: :ok
     end
@@ -42,7 +43,7 @@ class RentalsController < ApplicationController
 
   private
   def rental_params
-    return params.permit(:customer_id, :movie_id)
+    return params.permit(:customer_id, :movie_id, :checkout_date, :checkin_date)
   end
 
 end
