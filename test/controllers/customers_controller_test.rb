@@ -26,6 +26,11 @@ describe CustomersController do
       body.length.must_equal Customer.count
     end
 
+    # TODO
+    it "returns empty array if there is no customers" do
+
+    end
+
     it "returns customers with exactly the required fields" do
       keys = %w(id movies_checked_out_count name phone postal_code registered_at)
       get customers_url
