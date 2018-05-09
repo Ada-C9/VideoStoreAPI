@@ -8,8 +8,8 @@ one:
   available_inventory: 1
 
 two:
-  title: MyString
-  overview: MyString
+  title: SecondMovie
+  overview: SecondMovieOverview
   release_date: 2018-05-07
-  inventory: 1
-  available_inventory: 1
+  inventory: 3
+  available_inventory: 2
