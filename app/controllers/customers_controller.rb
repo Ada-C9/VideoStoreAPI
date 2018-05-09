@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
 
     else
       render 'index.json'
-      # render json: customers.as_json(only: [:id, :name, :created_at, :phone, :postal_code]), status: :ok
     end
   end
+
 end
