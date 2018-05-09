@@ -9,7 +9,7 @@ describe RentalsController do
       }
     }
 
-    it "creates a rental object if given valid params and available inventory is > 0" do
+    it "creates a rental object and returns customer_id and movie_id in request body if given valid params and available inventory is > 0" do
       proc {
         post check_out_path(params: rental_data)
       }.must_change 'Rental.count', 1
@@ -25,22 +25,22 @@ describe RentalsController do
 
     it "decreases the movie's available inventory if given valid params and available inventory is > 0" do
       movie_two = movies(:two)
-      inventory = movie_two.available_inventory
+      ai = movie_two.available_inventory
 
       post check_out_path(params: rental_data)
 
       movie_two = Movie.find_by(id: movie_two.id)
-      movie_two.available_inventory.must_equal inventory - 1
+      movie_two.available_inventory.must_equal ai - 1
     end
 
     it "increases the customer's movies checked out count if given valid params and available inventory is > 0" do
       customer = customers(:one)
-      movies = customer.movies_checked_out_count
+      mcoc = customer.movies_checked_out_count
 
       post check_out_path(params: rental_data)
 
       customer = Customer.find_by(id: customer.id)
-      customer.movies_checked_out_count.must_equal movies + 1
+      customer.movies_checked_out_count.must_equal mcoc + 1
     end
 
     it "returns bad_request with bad params" do
@@ -59,7 +59,7 @@ describe RentalsController do
 
     it "does not decrease available inventory if available inventory is 0" do
       movie_one = movies(:one)
-      inventory = movie_one.available_inventory
+      ai = movie_one.available_inventory
 
       post check_out_path(params:
         {
@@ -68,12 +68,21 @@ describe RentalsController do
         })
 
       movie_one = Movie.find_by(id: movie_one.id)
-      movie_one.available_inventory.must_equal inventory
+      movie_one.available_inventory.must_equal ai
     end
 
-    # TODO
     it "does not increase customer's movies checked out count if available inventory is 0" do
+      customer_one = customers(:one)
+      mcoc = customer_one.movies_checked_out_count
 
+      post check_out_path(params:
+        {
+          customer_id: customers(:one).id,
+          movie_id: movies(:one).id
+        })
+
+      customer_one = Customer.find_by(id: customer_one.id)
+      customer_one.movies_checked_out_count.must_equal mcoc
     end
   end
 
@@ -85,7 +94,7 @@ describe RentalsController do
       }
     }
 
-    it "changes the status of the rental to returned if given valid params" do
+    it "changes the status of the rental to returned and returns customer_id and movie_id in request body if given valid params" do
       post check_in_path(params: rental_data)
 
       must_respond_with :success
@@ -101,22 +110,22 @@ describe RentalsController do
 
     it "increases the movie's available inventory if given valid params" do
       movie_one = movies(:one)
-      inventory = movie_one.available_inventory
+      ai = movie_one.available_inventory
 
       post check_in_path(params: rental_data)
 
       movie_one = Movie.find_by(id: movie_one.id)
-      movie_one.available_inventory.must_equal inventory + 1
+      movie_one.available_inventory.must_equal ai + 1
     end
 
     it "decrease the customer's movies checked out count if given valid params" do
       customer = customers(:one)
-      movies = customer.movies_checked_out_count
+      mcoc = customer.movies_checked_out_count
 
       post check_in_path(params: rental_data)
 
       customer = Customer.find_by(id: customer.id)
-      customer.movies_checked_out_count.must_equal movies - 1
+      customer.movies_checked_out_count.must_equal mcoc - 1
     end
 
     it "returns bad_request with bad params" do

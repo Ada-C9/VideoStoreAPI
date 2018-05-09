@@ -26,9 +26,19 @@ describe MoviesController do
       body.length.must_equal Movie.count
     end
 
-    # TODO
     it "returns empty array if there is no movies" do
+      Movie.all.each do |movie|
+        movie.rentals.each do |rental|
+          rental.destroy
+        end
+        movie.destroy
+      end
 
+      get movies_url
+
+      body = JSON.parse(response.body)
+      body.must_equal []
+      body.length.must_equal 0
     end
 
     it "returns movies with exactly the required fields" do

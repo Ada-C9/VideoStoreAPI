@@ -26,9 +26,19 @@ describe CustomersController do
       body.length.must_equal Customer.count
     end
 
-    # TODO
     it "returns empty array if there is no customers" do
+      Customer.all.each do |customer|
+        customer.rentals.each do |rental|
+          rental.destroy
+        end
+        customer.destroy
+      end
 
+      get customers_url
+
+      body = JSON.parse(response.body)
+      body.must_equal []
+      body.length.must_equal 0
     end
 
     it "returns customers with exactly the required fields" do
