@@ -65,11 +65,18 @@ describe RentalsController do
 
       movie_one = Movie.find_by(id: movie_one.id)
       # binding.pry
-      movie_one.available_inventory.must_equal inventory 
+      movie_one.available_inventory.must_equal inventory
     end
 
     it "increases the customer's movies checked out count" do
+      customer = customers(:one)
+      movies = customer.movies_checked_out_count
 
+      post check_out_path(params: rental_data)
+
+      customer = Customer.find_by(id: customer.id)
+
+    customer.movies_checked_out_count.must_equal movies + 1
 
     end
   end
