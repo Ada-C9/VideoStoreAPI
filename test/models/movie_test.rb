@@ -86,6 +86,36 @@ describe Movie do
 
       @movie.available_inventory.must_equal 0
 
+    end
+
+  end
+
+  describe 'increment_available_inventory' do
+
+    before do
+      @movie = movies(:one)
+    end
+
+    it "increases available inventory for specific movie by 1" do
+      @movie.available_inventory = @movie.inventory - 1
+      @movie.save
+
+      before_avail_inv = @movie.available_inventory
+
+      @movie.increment_available_inventory
+
+      @movie.available_inventory.must_equal before_avail_inv + 1
+
+    end
+
+    it "will not increase available inventory more than total inventory" do
+      @movie.available_inventory = @movie.inventory
+
+      before_available_inventory = @movie.available_inventory
+
+      @movie.increment_available_inventory
+
+      @movie.available_inventory.must_equal before_available_inventory
 
     end
 

@@ -14,6 +14,12 @@ class Movie < ApplicationRecord
     end
   end
 
+  def increment_available_inventory
+    if self.available_inventory < self.inventory
+      self.available_inventory += 1
+    end
+  end
+
   private
   def set_available_inventory_default
     self.available_inventory = self.inventory
