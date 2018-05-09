@@ -64,5 +64,33 @@ describe Rental do
         result.must_be_nil
       end
     end
+
+    describe 'update_movie_and_customer' do
+      it 'updates movie and customer inventory/counts during checkout' do
+        rental = Rental.first
+        movie_available_inventory = rental.movie.available_inventory
+        customer_movies_count = rental.customer.movies_checked_out_count
+
+        result = Rental.update_movie_and_customer(rental)
+
+        result.must_equal rental
+        result.movie.available_inventory.must_equal movie_available_inventory - 1
+        result.customer.movies_checked_out_count.must_equal customer_movies_count + 1
+      end
+
+      it 'updates movie and customer inventory/counts during checkin' do
+        rental = Rental.first
+        rental.update(check_in_date: Date.today)
+        
+        movie_available_inventory = rental.movie.available_inventory
+        customer_movies_count = rental.customer.movies_checked_out_count
+
+        result = Rental.update_movie_and_customer(rental)
+
+        result.must_equal rental
+        result.movie.available_inventory.must_equal movie_available_inventory + 1
+        result.customer.movies_checked_out_count.must_equal customer_movies_count - 1
+      end
+    end
   end
 end

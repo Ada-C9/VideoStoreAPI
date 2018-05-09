@@ -33,12 +33,11 @@ class Rental < ApplicationRecord
       new_inventory = rental.movie.available_inventory + 1
       new_count = rental.customer.movies_checked_out_count - 1
     end
-      # do we need to rescue this error if there is one?
-      # movie = Movie.find_by(id: rental.movie_id)
-      rental.movie.update(available_inventory: new_inventory)
 
-      rental.customer.update(movies_checked_out_count: new_count)
+    rental.movie.update(available_inventory: new_inventory)
 
-      return rental
+    rental.customer.update(movies_checked_out_count: new_count)
+
+    return rental
   end
 end
