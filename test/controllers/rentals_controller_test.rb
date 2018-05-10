@@ -57,22 +57,35 @@ describe RentalsController do
       rental_count = Rental.all.count
       rental = rentals(:one)
 
-      post rental_update_path(rental.id)
+      data = {
+        customer_id: rental.customer.id,
+        movie_id: rental.movie.id}
+
+      post rental_update_path(data)
 
       must_respond_with :success
-      Rental.all.count.must_equal rental_count
+      Rental.count.must_equal rental_count
     end
 
     it "returns json" do
       rental = rentals(:one)
-      post rental_update_path(rental.id)
 
+      post rental_update_path(
+        {
+        customer_id: rental.customer.id,
+        movie_id: rental.movie.id}
+      )
       response.header['Content-Type'].must_include 'json'
     end
 
     it "returns the correct rental" do
       rental = rentals(:one)
-      post rental_update_path(rental.id)
+
+      post rental_update_path(
+        {
+        customer_id: rental.customer.id,
+        movie_id: rental.movie.id}
+      )
 
       body = JSON.parse(response.body)
       body.length.must_equal 1
@@ -80,13 +93,17 @@ describe RentalsController do
     end
 
     it "increments the movie's available_inventory" do
-      test_movie = movies(:two)
-      starting_available_inventory = test_movie.available_inventory
-
       rental = rentals(:two)
 
-      post rental_update_path(rental.id)
-      Movie.find(test_movie.id).available_inventory.must_equal (starting_available_inventory + 1)
+      starting_available_inventory = rental.movie.available_inventory
+
+      post rental_update_path(
+        {
+        customer_id: rental.customer.id,
+        movie_id: rental.movie.id}
+      )
+
+      Movie.find(rental.movie.id).available_inventory.must_equal (starting_available_inventory + 1)
     end
   end
 
