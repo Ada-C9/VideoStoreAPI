@@ -18,6 +18,7 @@ describe RentalsController do
 
   describe "checkin" do
     it "responds with success" do
+
       post check_in_url
       must_respond_with :success
     end
