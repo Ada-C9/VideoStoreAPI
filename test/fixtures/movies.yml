@@ -12,4 +12,11 @@ gijane:
   overview: In response to political pressure from Senator Lillian DeHaven (Anne Bancroft), the U.S. Navy begins a program that would allow for the eventual integration of women into its services.
   release_date: 1997-08-22
   inventory: 3
-  available_inventory: 3
+  available_inventory: 2
+
+purple:
+  title: The Color Purple
+  overview: An epic tale spanning forty years in the life of Celie (Whoopi Goldberg), an African-American woman living in the South who survives incredible abuse and bigotry.
+  release_date: 1985-12-18
+  inventory: 3
+  available_inventory:
