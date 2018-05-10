@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
   post 'rentals/check-out', to: 'rentals#create', as: 'rental'
 
-  post 'rentals/check-in/:rental_id', to: 'rentals#update', as: 'rental_update'
+  post 'rentals/check-in', to: 'rentals#update', as: 'rental_update'
 
 end
