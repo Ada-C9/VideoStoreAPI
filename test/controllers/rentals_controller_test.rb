@@ -4,6 +4,7 @@ describe RentalsController do
   let(:rental_one) { rentals(:rental_one) }
   let(:sara) { customers(:sara) }
   let(:babe) { movies(:babe) }
+  let(:nora) { customers(:nora) }
 
   describe "checkout" do
 
@@ -57,12 +58,26 @@ describe RentalsController do
   end
 
   describe "checkin" do
+    let(:checkin_data) {
+      {
+        movie_id: babe.id,
+        customer_id: nora.id,
+      }
+    }
+
+    let(:bad_checkin_data) {
+      {
+        movie_id: 12121,
+        customer_id: 493771,
+      }
+    }
 
     it "updates a rental when returned" do
       id = rental_one.id
       movie_id = babe.id
+      # customer_id = nora.id
       proc {
-        post checkin_path(rental_one.id)
+        post checkin_path, params: {rental: checkin_data}
       }.must_change "Rental.count", 0
       must_respond_with :success
 
@@ -74,7 +89,7 @@ describe RentalsController do
 
     it "returns a bad request for a non-existent rental" do
       proc {
-        post checkin_path(234567890)
+        post checkin_path, params: {rental: bad_checkin_data}
       }.must_change "Rental.count", 0
       must_respond_with :no_content
     end

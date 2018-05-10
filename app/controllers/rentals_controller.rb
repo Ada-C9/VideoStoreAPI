@@ -21,7 +21,9 @@ class RentalsController < ApplicationController
   end
 
   def checkin
-    rental = Rental.find_by(params[:id])
+    rental = Rental.where(movie_id: params[:rental][:movie_id], customer_id: params[:rental][:customer_id], returned?: false )
+    # rental = Rental.find_by(params[:id])
+
     if rental.nil?
       render json: { ok: false }, status: :no_content
     else

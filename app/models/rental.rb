@@ -4,6 +4,8 @@ class Rental < ApplicationRecord
 
   validates :movie_id, presence: true
   validates :customer_id, presence: true
+  # attribute :checkout, Date, default: Date.today
+  # attribute :returned? Boolean, default: false
 
   # after_save :set_return_to_false
   # after_save :reduce_inventory
