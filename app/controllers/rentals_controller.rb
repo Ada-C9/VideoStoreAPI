@@ -8,36 +8,29 @@ class RentalsController < ApplicationController
     movie = Movie.find_by(id: movie_id)
     customer = Customer.find_by(id: customer_id)
 
+    rental = Rental.new(customer_id: customer_id, movie_id: movie_id, checkout_date: checkout_date, due_date: due_date)
     # change movies_checked_out_count for customer
     # changes available_inventory for movie
-    if movie && customer
-      # if movie has available copies
-      if movie.available_inventory > 0
-        movie.available_inventory -= 1
-        movie.save
-
-        customer.movies_checked_out_count += 1
-        customer.save
-      end
-
+    if rental.valid?
+      # if the rental custom validations pass
+      rental.save
+      render json: { id: rental.id }, status: :ok
     else
-      # error about movie or customer not found?
-
+      # if the rental's custom validations fail, render errors
+      render json: { errors: rental.errors.messages }, status: :bad_request
     end
 
-# set checkin to nil 
+
+    customer.movies_checked_out_count += 1
+    customer.save
 
     checkout_date = Date.today
     due_date = checkout_date + 7
+    checkin_date = nil
 
     rental = Rental.new(customer_id: customer_id, movie_id: movie_id, checkout_date: checkout_date, due_date: due_date)
 
-    if rental.save
-      render json: { id: rental.id }, status: :ok
-      binding.pry
-    else
-      render json: { errors: rental.errors.messages }, status: :bad_request
-    end
+
 
   end
 
