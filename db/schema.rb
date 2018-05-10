@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 20180508221622) do
     t.string "state"
     t.string "postal_code"
     t.string "phone"
-    t.integer "movies_checked_out_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "registered_at"
+    t.integer "movies_checked_out_count"
   end
 
   create_table "customers_movies", force: :cascade do |t|

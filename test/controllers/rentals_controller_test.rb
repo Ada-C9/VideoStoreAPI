@@ -1,4 +1,5 @@
 require "test_helper"
+require 'pry'
 
 describe RentalsController do
   # it "must be a real test" do
@@ -48,7 +49,10 @@ describe RentalsController do
 
       assert_response :success
 
-      # check that check in date is now today
+      rental = Rental.find_by(@params)
+      # binding.pry
+      rental.check_in.must_equal Date.today
+
       # decreases customer movies by 1
       # increases available_inventory by 1
     end
@@ -59,6 +63,10 @@ describe RentalsController do
       assert_response :not_found
       # customer movies stays same
       # available_inventory stays same
+    end
+
+    it 'can handle already checked in' do
+
     end
   end
 end
