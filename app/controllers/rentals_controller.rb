@@ -27,14 +27,26 @@ class RentalsController < ApplicationController
   end
 
   def checkin
-    movie_id = params[:movie_id]
-    customer_id = params[:customer_id]
-    # find movie/customer based on rental
-    # find movie id based on rental id
+    # know which rental based on params passed in test let block
+    @movie = Movie.find_by(id: params[:movie_id])
+    @customer = Customer.find_by(id: params[:customer_id])
 
-      rental.checkin_date = Date.now
+    # @movie = params[:movie_id]
+    # @customer = params[:customer_id]
 
-      rental.movies_checked_out_count - 1
+    assign_attributes(@customer)
+
+    before_count = @customer.movies_checked_out_count
+    # binding.pry
+
+    # puts "THIS IS MOVIE: #{@customer}"
+    puts "BEFORE COUNT: #{before_count}"
+
+    # if @customer.save
+    #   @customer.checkin_date = DateTime.now
+    # else
+    #   # something
+    # end
 
     # add logic for verifying that the checkin date is before the checkout date
   end

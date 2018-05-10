@@ -36,10 +36,9 @@ describe RentalsController do
       available_inventory = movie_data.available_inventory
       checked_out_count = customer_data.movies_checked_out_count
 
-      post rentals_check_in_url, params: { movie_id: movie_data.id, customer_id: customer_data.id }
+      post rentals_check_in_url, params: { movie_id: movie_data, customer_id: customer_data }
       # assert_difference "Rental movie count upon checkin", 1 do
-      #   # post pets_url, params: { pet: pet_data }
-      #   post checkin_url, params: { movie_id: movie_data.id, customer_id: customer_data.id}
+      #   post rentals_check_in_url, params: { movie_id: movie_data, customer_id: customer_data }
       # end
     end
   end
