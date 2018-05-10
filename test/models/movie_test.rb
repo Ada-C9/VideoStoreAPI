@@ -101,7 +101,6 @@ describe Movie do
         end
 
         @movie.reload
-        puts @movie.available_inventory
         @movie.available_inventory.must_equal 0
 
         @movie.available_to_rent?.must_equal false

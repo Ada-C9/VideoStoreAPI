@@ -14,7 +14,7 @@ class CustomersController < ApplicationController
         }
         }, status: :not_found
       else
-        render json: customer.as_json(only: [:name, :registered_at, :address, :city, :state, :postal_code, :phone]), status: :ok
+        render json: customer.as_json(only: [:name, :registered_at, :address, :city, :state, :postal_code, :phone, :movies_checked_out_count]), status: :ok
       end
     end
 
@@ -29,6 +29,6 @@ class CustomersController < ApplicationController
 
     private
     def customer_params
-      params.require(:customer).permit(:name, :registered_at, :address, :city, :state, :postal_code, :phone)
+      params.require(:customer).permit(:name, :registered_at, :address, :city, :state, :postal_code, :phone, :movies_checked_out_count)
     end
   end

@@ -8,6 +8,17 @@ class Customer < ApplicationRecord
 
   after_initialize :set_defaults, unless: :persisted?
 
+  def increase_movies_checked_out_count
+    self.movies_checked_out_count += 1
+    self.save
+  end
+
+  def decrease_movies_checked_out_count
+    self.movies_checked_out_count -= 1
+    self.save
+  end
+
+
   private
   def set_defaults
     self.movies_checked_out_count ||= 0

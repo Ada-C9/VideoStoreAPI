@@ -14,10 +14,14 @@ describe RentalsController do
 
     it "creates a new rental" do
       before_rental_count = Rental.count
+      customer = customers(:one)
+      before_movie_check_out = customer.movies_checked_out_count
       post checkout_url, params: { rental: rental_data }
       must_respond_with :success
 
       Rental.count.must_equal before_rental_count + 1
+      customer.reload
+      customer.movies_checked_out_count.must_equal before_movie_check_out + 1
 
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
@@ -67,13 +71,17 @@ describe RentalsController do
     it "increase_available_inventory on movie in the rental" do
       movie = movies(:two)
       before_availability = movie.available_inventory
+      customer = customers(:one)
 
 
-      available_data = { customer_id: customers(:one).id, movie_id: movies(:two).id }
+      available_data = { customer_id: customer.id, movie_id: movies(:two).id }
       post checkout_url, params: { rental: available_data }
+      customer.reload
       movie.reload
+      before_movie_check_in = customer.movies_checked_out_count
       post checkin_url, params: { rental: available_data }
-
+      customer.reload
+      customer.movies_checked_out_count.must_equal before_movie_check_in - 1
       body = JSON.parse(response.body)
 
       movie.reload
