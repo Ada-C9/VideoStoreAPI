@@ -34,6 +34,14 @@ class RentalsController < ApplicationController
       movie.inc_avail_inventory
 
       render(json: rental.as_json(only: [:customer_id, :movie_id]), status: :ok)
+      }, status: :not_found
+      else
+        # logic for increasing available_inventory
+        rental.check_in = Date.today
+        rental.save
+
+        render(json: rental.as_json(only: [:customer_id, :movie_id]), status: :ok)
+      end
     end
   end
 

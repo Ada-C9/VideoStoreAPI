@@ -1,5 +1,9 @@
 require "test_helper"
 require 'pry'
+<<<<<<< HEAD
+=======
+
+>>>>>>> migration_for_customer
 describe RentalsController do
 
   describe 'check_out' do
@@ -53,7 +57,11 @@ describe RentalsController do
       post check_in_path, params: @params
 
       assert_response :success
-      # check that check in date is now today
+
+      rental = Rental.find_by(@params)
+      # binding.pry
+      rental.check_in.must_equal Date.today
+
       # decreases customer movies by 1
       # increases available_inventory by 1
     end
@@ -66,5 +74,8 @@ describe RentalsController do
       # available_inventory stays same
     end
 
+    it 'can handle already checked in' do
+
+    end
   end
 end
