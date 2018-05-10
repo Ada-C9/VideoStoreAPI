@@ -24,26 +24,22 @@ class RentalsController < ApplicationController
 
     if rental.nil?
       render json: {
-          "errors": {
-            "id": ["No rental with #{params[:id]}"]
-          }, status: :not_found
+        "errors": {
+          "id": ["No rental with #{params[:id]}"]
+        }, status: :not_found
       }
     else
       # logic for increasing available_inventory
       movie = Movie.find_by(id: rental.movie_id)
       movie.inc_avail_inventory
+      # logic for increasing available_inventory
+      rental.check_in = Date.today
+      rental.save
 
       render(json: rental.as_json(only: [:customer_id, :movie_id]), status: :ok)
-      }, status: :not_found
-      else
-        # logic for increasing available_inventory
-        rental.check_in = Date.today
-        rental.save
-
-        render(json: rental.as_json(only: [:customer_id, :movie_id]), status: :ok)
-      end
     end
   end
+
 
   private
 

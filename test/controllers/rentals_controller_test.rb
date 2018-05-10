@@ -1,9 +1,6 @@
 require "test_helper"
 require 'pry'
-<<<<<<< HEAD
-=======
 
->>>>>>> migration_for_customer
 describe RentalsController do
 
   describe 'check_out' do
