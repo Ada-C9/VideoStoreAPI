@@ -5,11 +5,11 @@
 # below each fixture, per the syntax in the comments below
 #
 one: {
-  title: "Little Mermaid"
+  title: "Little Mermaid",
+  overview: "Kids movie about a mermaid"
   }
-# column: value
-#
+
 two: {
-  title: "Lion King"
+  title: "Lion King",
+  overview: "Kids movie about a lion"
   }
-# column: value
