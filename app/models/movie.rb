@@ -3,12 +3,17 @@ class Movie < ApplicationRecord
   has_many :rentals
 
   validates :title, presence: true
+  validate :available_inventory_cannot_be_greater_than_inventory
 
-  def set_avail_inventory
-    # because available_inventory is nil by default (see seed files), we have to set it equal to inventory
-    self.available_inventory = self.inventory
-    # TODO: self.available_inventory must not be a larger value than inventory
-    # TODO: self.available_inventory attribute can't go below 0
+  validates :available_inventory, numericality: { only_integer: true, greater_than_or_equal_to: 0}
+
+  # #TODO add validations:
+  # inventory >= 0
+  # inventory is only an integer 
+
+  after_initialize do |movie|
+      self.inventory ||= 0
+      self.available_inventory ||= self.inventory
   end
 
   def dec_avail_inventory
@@ -22,5 +27,13 @@ class Movie < ApplicationRecord
     self.available_inventory += 1
   end
 
+private
+
+# See: http://guides.rubyonrails.org/active_record_validations.html#custom-methods
+def available_inventory_cannot_be_greater_than_inventory
+  if available_inventory > inventory
+    errors.add(:available_inventory, "Can't be greater than inventory value")
+  end
+end
 
 end
