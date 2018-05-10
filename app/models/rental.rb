@@ -24,8 +24,6 @@ class Rental < ApplicationRecord
 
     rental.update_attribute(:checked_out, false)
     rental.movie.update_attribute(:available_inventory, new_inventory)
-    rental.customer.update_attribute(:movies_checked_out_count, customer_movie_count)  
+    rental.customer.update_attribute(:movies_checked_out_count, customer_movie_count)
   end
-
-
 end
