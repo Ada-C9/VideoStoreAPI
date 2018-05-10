@@ -4,7 +4,7 @@ class Rental < ApplicationRecord
 
 
   def due_date
-    # self.check_in + 7 days <<--- not if they return it early
+    # self.check_in + 7 days <<-- not if they return it early?
   end
 
   def returned?
