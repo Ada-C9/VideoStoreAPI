@@ -9,7 +9,7 @@ class Rental < ApplicationRecord
   # if no copies of a movie are available, this will
   # throw an error when you attempt to save the Rental
   def available?
-    if self.movie.available_inventory < 0
+    if self.movie.available_inventory <= 0
       errors.add(:movie_id, "This movie is not in stock.")
     end
   end
