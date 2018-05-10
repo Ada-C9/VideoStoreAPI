@@ -27,15 +27,19 @@ class RentalsController < ApplicationController
   end
 
   def checkin
-    movie_id = params[:movie_id]
-    customer_id = params[:customer_id]
-    # find movie/customer based on rental
-    # find movie id based on rental id
+    @movie = Movie.find_by(id: params[:movie_id])
+    @customer = Customer.find_by(id: params[:customer_id])
+    head :not_found unless @movie && @customer
 
-      rental.checkin_date = Date.now
+    @customer.movies << @movie
 
-      rental.movies_checked_out_count - 1
+    if @customer.save
+      @rental = Rental.last
+      @rental.checkin_date = DateTime.now
+    else
+      puts "CUSTOMER DIDN'T SAVE"
+    end
+  end
 
     # add logic for verifying that the checkin date is before the checkout date
-  end
 end
