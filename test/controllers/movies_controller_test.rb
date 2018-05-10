@@ -28,7 +28,7 @@ describe MoviesController do
   describe 'show' do
     it 'can get one movie' do
       movie = movies(:beautiful)
-      keys = %w(id title release_date inventory overview).sort
+      keys = %w(id title release_date inventory overview available_inventory).sort
 
       get movie_path(movie.id)
       must_respond_with :success
@@ -43,7 +43,7 @@ describe MoviesController do
 
     it 'returns movie with exactly the required fields' do
       movie = Movie.first
-      keys = %w(id title release_date inventory overview).sort
+      keys = %w(id title release_date inventory overview available_inventory).sort
       get movie_path(movie)
       body = JSON.parse(response.body)
 
