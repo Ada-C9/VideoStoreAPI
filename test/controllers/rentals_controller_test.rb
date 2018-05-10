@@ -21,13 +21,44 @@ describe RentalsController do
 
       Rental.last.movie_id.must_equal @params[:movie_id]
       Rental.last.customer_id.must_equal @params[:customer_id]
+      #check that it decreases available_inventory by 1
+      # check that it increases customer movie count by 1
     end
 
     it "won't create a rental when movie_id DNE" do
       #Maria
     end
 
-    it "won't create a rental when customer_id DNE"
-    #Maria
+    it "won't create a rental when customer_id DNE" do
+      #Maria
     end
+  end
+
+  describe 'check_in' do
+    before do
+      @customer = Customer.first
+      @movie = Movie.first
+      @params = { customer_id: @customer.id, movie_id: @movie.id }
+    end
+
+    it 'can find and update a valid rental' do
+      post check_out_path, params: @params
+
+      post check_in_path, params: @params
+
+      assert_response :success
+
+      # check that check in date is now today
+      # decreases customer movies by 1
+      # increases available_inventory by 1
+    end
+
+    it 'returns status not_found if rental DNE' do
+      post check_in_path, params: @params
+
+      assert_response :not_found
+      # customer movies stays same
+      # available_inventory stays same
+    end
+  end
 end

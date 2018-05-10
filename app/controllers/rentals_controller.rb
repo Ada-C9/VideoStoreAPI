@@ -3,13 +3,11 @@ require 'date'
 class RentalsController < ApplicationController
 
   def check_out
-    # new rental has to have a customer id and a movie id???
-    # when you check_out a rental, you create a rental
-    # create a new check in date?
     rental = Rental.new(rental_params)
     #check movies availability - in a movie method?
     rental.check_out = Date.today
     rental.due_date = Date.today + 7
+    #set available_inventory to inventory in movie controller?
 
     if rental.save
       render json: { id: rental.id }, status: :ok
@@ -20,6 +18,7 @@ class RentalsController < ApplicationController
 
   def check_in
     rental = Rental.find_by(customer_id: params[:customer_id], movie_id: params[:movie_id])
+
     if rental.nil?
     render json: {
       "errors": {
