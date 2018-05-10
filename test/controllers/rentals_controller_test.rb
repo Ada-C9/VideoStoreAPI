@@ -25,22 +25,17 @@ describe RentalsController do
 
   describe 'checkin' do
     let (:movie_data) { movies(:two) }
-    let (:customer_data) { customers(:two) }
+    let (:customer_data) { customers(:one) }
 
-    # it "returns json" do
-    #   post rentals_check_in_path
-    #   response.header['Content-Type'].must_include 'json'
-    # end
+    it "returns json" do
+      post rentals_check_in_url, params: { movie_id: movie_data.id, customer_id: customer_data.id }
+      response.header['Content-Type'].must_include 'json'
+    end
 
     it "checks in a movie for a customer" do
-      available_inventory = movie_data.available_inventory
-      checked_out_count = customer_data.movies_checked_out_count
-
-      post rentals_check_in_url, params: { movie_id: movie_data.id, customer_id: customer_data.id }
-      # assert_difference "Rental movie count upon checkin", 1 do
-      #   # post pets_url, params: { pet: pet_data }
-      #   post checkin_url, params: { movie_id: movie_data.id, customer_id: customer_data.id}
-      # end
+      assert_difference "Rental.count", 1 do
+        post rentals_check_in_url, params: { movie_id: movie_data.id, customer_id: customer_data.id }
+      end
     end
   end
 end
