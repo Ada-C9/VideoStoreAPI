@@ -7,6 +7,9 @@ class Movie < ApplicationRecord
   validates :release_date, presence: true
   validates :inventory, presence: true
 
+  # calculates and returns a movie's available inventory
+  # if rental is out, then checkin_date is nil
+  # if rental is back, checkin_date is a Date object
   def available_inventory
     unavailable = 0
     self.rentals.each do |rental|

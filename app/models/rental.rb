@@ -4,9 +4,10 @@ class Rental < ApplicationRecord
 
   validate :available?
 
+  # custom validation method, errors hash TBD!
   def available?
     return true if self.movie.available_inventory > 0
-    return false 
+    return false
   end
 
 end

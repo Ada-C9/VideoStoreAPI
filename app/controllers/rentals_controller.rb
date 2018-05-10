@@ -2,40 +2,53 @@ require 'pry'
 
 class RentalsController < ApplicationController
   def checkout
+    # take in query params
+    movie_id = params[:movie_id]
+    customer_id = params[:customer_id]
+
+    # find customer and movie by id's
+    movie = Movie.find_by(id: movie_id)
+    customer = Customer.find_by(id: customer_id)
+
+    # initialize a rental
+    rental = Rental.new(customer_id: customer_id, movie_id: movie_id, checkout_date: checkout_date, due_date: due_date)
+
+    # save rental if valid, otherwise send errors
+    if rental.save
+      # if the rental custom validations pass, set rental attributes
+      # and return rental id and status
+      rental.checkout_date = Date.today
+      due_date = checkout_date + 7
+      rental.checkin_date = nil
+      render json: { id: rental.id }, status: :ok
+    else
+      # if the rental's custom validations fail, render errors
+      # errors come from custom rental validation method (see rental.rb)
+      render json: { errors: rental.errors.messages }, status: :bad_request
+    end
+
+    # increase the customer's checked-out movie number
+    customer.movies_checked_out_count += 1
+    customer.save
+
+  end
+
+  def checkin
     movie_id = params[:movie_id]
     customer_id = params[:customer_id]
 
     movie = Movie.find_by(id: movie_id)
     customer = Customer.find_by(id: customer_id)
 
-    rental = Rental.new(customer_id: customer_id, movie_id: movie_id, checkout_date: checkout_date, due_date: due_date)
-    # change movies_checked_out_count for customer
-    # changes available_inventory for movie
-    if rental.valid?
-      # if the rental custom validations pass
-      rental.save
-      render json: { id: rental.id }, status: :ok
-    else
-      # if the rental's custom validations fail, render errors
-      render json: { errors: rental.errors.messages }, status: :bad_request
-    end
+    # find movie/customer based on rental
+    # find movie id based on rental id
+    movie = rental.movie_id
 
+    # assigning current date to movies
 
-    customer.movies_checked_out_count += 1
-    customer.save
+    # decrement customer movies_checked_out_count
 
-    checkout_date = Date.today
-    due_date = checkout_date + 7
-    checkin_date = nil
-
-    rental = Rental.new(customer_id: customer_id, movie_id: movie_id, checkout_date: checkout_date, due_date: due_date)
-
-
-
-  end
-
-  def checkin
-    # set checkin to a date
+    # add logic for verifying that the checkin date is before the checkout date
   end
 
 end
