@@ -6,8 +6,9 @@ class Rental < ApplicationRecord
 
   # custom validation method, errors hash TBD!
   def available?
-    return true if self.movie.available_inventory > 0
-    return false
+    if self.movie.available_inventory > 0
+      errors.add(:movie_id, "This movie is not in stock.")
+    end
   end
 
 end
