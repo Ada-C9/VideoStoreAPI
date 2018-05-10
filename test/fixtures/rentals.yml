@@ -6,12 +6,12 @@
 #
 one:
   checkout_date: 2018-01-01
-  due_date: 2018-01-08
+  due_date: nil
   customer_id: 00000
   movie_id: 12345
-  
+
 two:
   checkout_date: 2018-02-01
-  due_date: 2018-02-08
+  due_date: nil 
   customer_id: 11111
   movie_id: 56789

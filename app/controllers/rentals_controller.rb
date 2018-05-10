@@ -10,6 +10,9 @@ class RentalsController < ApplicationController
     movie = Movie.find_by(id: movie_id)
     customer = Customer.find_by(id: customer_id)
 
+    checkout_date = Date.today
+    due_date = checkout_date + 7
+
     # initialize a rental
     rental = Rental.new(customer_id: customer_id, movie_id: movie_id, checkout_date: checkout_date, due_date: due_date)
 
@@ -17,8 +20,6 @@ class RentalsController < ApplicationController
     if rental.save
       # if the rental custom validations pass, set rental attributes
       # and return rental id and status
-      rental.checkout_date = Date.today
-      due_date = checkout_date + 7
 
       render json: { id: rental.id }, status: :ok
     else
@@ -41,7 +42,7 @@ class RentalsController < ApplicationController
     # find rental with corresponding attributes
     rental = Rental.find_by(movie_id: params[:movie_id], customer_id: params[:customer_id])
 
-    # set rental due date to nil 
+    # set rental due date to nil
     rental.due_date = nil
 
 
