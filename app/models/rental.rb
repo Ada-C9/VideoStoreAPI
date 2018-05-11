@@ -4,25 +4,28 @@ class Rental < ApplicationRecord
 
   validates :movie_id, presence: true
   validates :customer_id, presence: true
-  # attribute :checkout, Date, default: Date.today
-  # attribute :returned? Boolean, default: false
-
-  # after_save :set_return_to_false
-  # after_save :reduce_inventory
-
 
   def get_due_date
     return calc_due_date
   end
+
+  def self.get_checked_out
+    # return Rental.all.where(returned? == false)
+    return self.select { |rental| rental.returned? == false }
+  end
+
+  def self.get_overdue
+    checked_out_rentals = Rental.get_checked_out
+    # overdue_rentals = checked_out_rentals.where(Date.today > get_due_date)
+    overdue_rentals = checked_out_rentals.select { |rental| Date.today > rental.get_due_date }
+    return overdue_rentals
+  end
+
 
   private
 
   def calc_due_date
     return checkout_date + 7
   end
-  #
-  # def set_return_to_false
-  #   rental.update(returned?: false)
-  # end
 
 end
