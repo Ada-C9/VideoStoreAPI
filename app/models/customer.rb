@@ -32,8 +32,5 @@ class Customer < ApplicationRecord
     return rented_count
   end
 
-  def self.request_query(params)
-
-  end
-
+  
 end

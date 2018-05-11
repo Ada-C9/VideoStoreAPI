@@ -78,9 +78,9 @@ describe Customer do
         "n": "5"
       }
       expected_length = 5
-      sorted_cust = Customer.all.order_by(:name)
+      sorted_cust = Customer.all.order(:name)
 
-      result = Customer.request_query(params_hash)
+      result = Customer.request_query(params_hash, Customer)
       result.must_be_kind_of Array
       result.each do |customer|
         customer.must_be_kind_of Customer
@@ -94,7 +94,7 @@ describe Customer do
     it "works if params hash empty" do
       params_hash = {}
 
-      result = Customer.request_query(params_hash)
+      result = Customer.request_query(params_hash, Customer)
       result.must_be_kind_of Array
       result.each do |customer|
         customer.must_be_kind_of Customer
@@ -107,7 +107,7 @@ describe Customer do
         "p": "2",
       }
 
-      result = Customer.request_query(params_hash)
+      result = Customer.request_query(params_hash, Customer)
       result.must_be_kind_of Array
       result.each do |customer|
         customer.must_be_kind_of Customer
@@ -121,7 +121,7 @@ describe Customer do
         "n": "3"
       }
 
-      result = Customer.request_query(params_hash)
+      result = Customer.request_query(params_hash, Customer)
       result.must_be_kind_of Array
       result.each do |customer|
         customer.must_be_kind_of Customer
@@ -131,12 +131,13 @@ describe Customer do
 
     it "works if all random incorrect params" do
       params_hash = {
+        "sort": "somethingelse",
         "kitties": "something",
         "banana": "5",
         "n": "bananas"
       }
 
-      result = Customer.request_query(params_hash)
+      result = Customer.request_query(params_hash, Customer)
       result.must_be_kind_of Array
       result.each do |customer|
         customer.must_be_kind_of Customer
