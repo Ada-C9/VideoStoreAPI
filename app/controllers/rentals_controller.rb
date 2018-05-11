@@ -1,5 +1,6 @@
 class RentalsController < ApplicationController
 
+# TODO: To make this happen automatically 
   def checkout
     @rental = Rental.new(rental_params)
     @rental.check_date
