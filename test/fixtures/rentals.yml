@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  checkout: 2018-05-08
+  due_date: 2018-05-08
+  movie: movie_1
+  customer: one
+
+two:
+  checkout: 2018-05-08
+  due_date: 2018-05-08
+  movie: movie_1
+  customer: two
