@@ -15,22 +15,28 @@ class RentalsController < ApplicationController
 
     # initialize a rental
     rental = Rental.new(customer_id: customer_id, movie_id: movie_id, checkout_date: checkout_date, due_date: due_date)
+    # head :bad_request unless movie && customer
 
-    # save rental if valid, otherwise send errors
-    if rental.save
-      # if the rental custom validations pass, set rental attributes
-      # and return rental id and status
+    if movie && customer
+      # save rental if valid, otherwise send errors
+      if rental.save
+        # if the rental custom validations pass, set rental attributes
+        # and return rental id and status
+        
+        # increase the customer's checked-out movie number
+        customer.movies_checked_out_count += 1
+        customer.save
 
-      render json: { id: rental.id }, status: :ok
+        render json: { id: rental.id }, status: :ok
+      else
+        # if the rental's custom validations fail, render errors
+        # errors come from custom rental validation method (see rental.rb)
+        render json: { errors: rental.errors.messages }, status: :bad_request
+      end
     else
-      # if the rental's custom validations fail, render errors
-      # errors come from custom rental validation method (see rental.rb)
-      render json: { errors: rental.errors.messages }, status: :bad_request
+      render json: {errors: { id: ["Must enter a valid movie and customer"]}}, status: :bad_request
     end
 
-    # increase the customer's checked-out movie number
-    customer.movies_checked_out_count += 1
-    customer.save
 
   end
 
