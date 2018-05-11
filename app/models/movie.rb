@@ -20,5 +20,4 @@ class Movie < ApplicationRecord
     return self.inventory - checked_out
   end
 
-
 end
