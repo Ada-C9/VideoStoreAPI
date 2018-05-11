@@ -7,7 +7,7 @@ class Rental < ApplicationRecord
     # if returned becomes available
     # inventory + 1
     # check_in date gets set
-    #
+    
   end
 
 end

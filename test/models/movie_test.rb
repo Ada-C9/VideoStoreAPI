@@ -42,23 +42,30 @@ describe Movie do
 
       result.must_equal false
     end
+
+    it 'is invalid if available inventory greater than inventory'do
+      movie= movies(:gijane)
+
+      # this will increment available_inventory value to 4
+      movie.inc_avail_inventory
+      movie.inc_avail_inventory
+
+      movie.wont_be :valid?
+    end
   end
 
-  describe 'describe available inventory methods' do
-
-    # the next test uses the yml 'gijane' which has different inventory compared to available_inventory
-    it 'sets the available_inventory of a movie equal to the inventory' do
-      movie = movies(:gijane)
-
-      movie.set_avail_inventory
+  describe 'attributes' do
+    it 'available_inventory defaults to the inventory amount' do
+      movie = movies(:purple)
 
       movie.available_inventory.must_equal 3
     end
+  end
 
+  describe 'describe available inventory methods' do
     # the next two tests uses the yml 'purple' which has available_inventory set to nil as a default
     it 'decreases available inventory of a movie by 1' do
       movie = movies(:purple)
-      movie.set_avail_inventory
       before_count = movie.available_inventory
 
       movie.dec_avail_inventory
@@ -71,7 +78,6 @@ describe Movie do
 
     it 'increases available inventory of a movie by 1' do
       movie = movies(:purple)
-      movie.set_avail_inventory
       before_count = movie.available_inventory
 
       movie.inc_avail_inventory
