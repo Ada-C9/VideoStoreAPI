@@ -24,10 +24,10 @@ class RentalsController < ApplicationController
       } , status: :bad_request
       return
     end
-    
+
     new_rental = Rental.new(rental_params)
     new_rental[:checkout] = date
-    new_rental[:due_date] = date + 7
+     = date + 7
     movie[:inventory] -= 1
     if new_rental.save
       movie.save

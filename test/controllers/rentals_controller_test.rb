@@ -56,8 +56,6 @@ describe RentalsController do
       @movie.inventory = 0
       @movie.save
 
-      # binding.pry
-
       assert_no_difference "Rental.count" do
         post checkout_path, params: @rental_data
         assert_response :bad_request
@@ -85,7 +83,55 @@ describe RentalsController do
     end
 
     it 'throws an error if a movie is not checked out and you attempt a checkin' do
-      skip
+
+      post checkout_path, params: @rental_data
+      assert_response :success
+
+      post checkin_path, params: @rental_data
+
+      must_respond_with :success
+    end
+
+    it 'renders json' do
+      post checkin_path, params: @rental_data
+
+      response.header['Content-Type'].must_include 'json'
+    end
+
+    it 'can checkin a movie and changes the inventory when checked in' do
+      before_inventory_count = @movie.inventory
+      before_count = Rental.count
+
+      post checkout_path, params: @rental_data
+      assert_response :success
+      Rental.count.must_equal before_count + 1
+
+      post checkin_path, params: @rental_data
+      assert_response :success
+
+      @movie.reload
+      # binding.pry
+      @movie.inventory.must_equal before_inventory_count + 1
+    end
+
+    it 'throws an error if a movie is not checked out and you attempt a checkin' do
+      before_inventory_count = @movie.inventory
+
+      post checkin_path, params: @rental_data
+      assert_response :success
+
+      @movie.reload
+
+      assert_no_difference "#{@movie.inventory}" do
+        post checkin_path, params: @rental_data
+        assert_response :bad_request
+      end
+
+      body = JSON.parse(response.body)
+      body.must_include "errors"
+      body['errors'].must_include 'checkout'
+      body['errors'].must_include 'due_date'
+
     end
   end
 end
