@@ -3,31 +3,47 @@ require 'date'
 class RentalsController < ApplicationController
 
   def create
-    chosen_movie = Movie.find_by(id: params[:movie_id])
-      today = Date.today
+    movie_id_params = params[:movie_id]
+    customer_id_params = params[:customer_id]
 
-      rental_data = {
-        movie_id: params[:movie_id],
-        customer_id: params[:customer_id],
-        check_out_date: today.to_s,
-        due_date: (today + 7).to_s
-      }
+    chosen_movie = Movie.find_by(id: movie_id_params)
+    today = Date.today
 
-      rental = Rental.new(rental_data)
+    rental_data = {
+      movie_id: movie_id_params,
+      customer_id: customer_id_params,
+      check_out_date: today.to_s,
+      due_date: (today + 7).to_s
+    }
 
-      if rental.save
-        Movie.decrement(chosen_movie)
-        render json: {id: rental.id}, status: :ok
-      else
-        render json: {ok: false, errors: rental.errors}, status: :bad_request
-      end
+    rental = Rental.new(rental_data)
+
+    # I added this check to confirm that the movie is available to save before we make a new rental
+    # called the movie.available_movie? to
+
+    if movie_id_params.nil? || customer_id_params.nil?
+      # this renders multiple times so I commented it out
+      # I'm unsure why its rendering multiple times
+      # I set this up to send a bad request/not_found for nil values for ids in params and also test if movie can be rented
+      
+      # render json: {ok: false }, status: :not_found
+    else
+      chosen_movie = Movie.available_movie?(chosen_movie.id)
+    end
+
+    if chosen_movie && rental.save
+      Movie.decrement(chosen_movie)
+      render json: {id: rental.id}, status: :ok
+    else
+      render json: {ok: false, errors: rental.errors}, status: :bad_request
+    end
 
   end
 
   def update
     rental_movie = Movie.find_by(id: params[:movie_id])
 
-    if rental_movie     
+    if rental_movie
       Movie.increment(rental_movie)
       render json: {id: rental_movie.id}, status: :ok
     else
@@ -35,18 +51,18 @@ class RentalsController < ApplicationController
     end
   end
 
-    # rental = Rental.find_by(id: params[:rental_id])
-    #
-    # if rental
-    #   today = Date.today.to_s
-    #   rental.check_in_date = today
-    #   rental.save
-    #
-    #   Movie.increment(rental.movie)
-    #   render json: {id: rental.id}, status: :ok
-    # else
-    #   render json: {ok: false, errors: rental.errors}, status: :bad_request
-    # end
+  # rental = Rental.find_by(id: params[:rental_id])
+  #
+  # if rental
+  #   today = Date.today.to_s
+  #   rental.check_in_date = today
+  #   rental.save
+  #
+  #   Movie.increment(rental.movie)
+  #   render json: {id: rental.id}, status: :ok
+  # else
+  #   render json: {ok: false, errors: rental.errors}, status: :bad_request
+  # end
 
 
   private

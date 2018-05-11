@@ -13,3 +13,10 @@ two:
   release_date: "2015-08-08"
   inventory: 5
   available_inventory: 4
+
+three:
+  title: Men in black more popular
+  overview: willenium
+  release_date: "2005-08-08"
+  inventory: 3
+  available_inventory: 0
