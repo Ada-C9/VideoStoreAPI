@@ -50,6 +50,46 @@ describe RentalsController do
       post rental_path(customer_movie_info)
       Movie.find(test_movie.id).available_inventory.must_equal (initial_inventory - 1)
     end
+
+    describe "Invalid rental responses" do
+
+      it "create rental returns a status of bad_request for invalid movie id" do
+        test_movie = movies(:one)
+
+        customer_movie_info = {
+          customer_id: nil,
+          movie_id: test_movie.id
+        }
+
+        post rental_path(customer_movie_info)
+        must_respond_with :bad_request
+      end
+
+      it "create rental returns a status of bad_request for invalid customer id" do
+
+        customer_movie_info = {
+          customer_id: (customers(:one)).id,
+          movie_id: nil
+        }
+
+        post rental_path(customer_movie_info)
+        must_respond_with :bad_request
+      end
+
+      it "create rental for invalid customer id does not decrement available_inventory" do
+        test_movie = movies(:one)
+
+        initial_inventory = test_movie.available_inventory
+
+        customer_movie_info = {
+          customer_id: nil,
+          movie_id: test_movie.id
+        }
+
+        post rental_path(customer_movie_info)
+        Movie.find(test_movie.id).available_inventory.must_equal (initial_inventory)
+      end
+    end
   end
 
   describe "update" do
