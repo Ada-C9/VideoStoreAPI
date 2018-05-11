@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+ada:
+  name: Lovelace
+  postal_code: 12345
+  address: 123 Olive
+  city: Seattle
+  state: WA
+  phone: (232) 123-1232
+  movies_checked_out_count: 0
+
+bob:
+  name: Bobby
+  postal_code: 33345
+  address: 112123 Oliveinger
+  city: Columbus
+  state: OH
+  phone: (222) 222-2222
+  movies_checked_out_count: 0 

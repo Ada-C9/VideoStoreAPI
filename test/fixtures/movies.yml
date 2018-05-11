@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+bride:
+  title: "Princess Bride"
+  overview: "I don't know"
+  release_date: "2013-02-20"
+  inventory: 5
+  available_inventory: 5
+
+rocket:
+  title: "Space Girl"
+  overview: "stellar"
+  release_date: "1999-12-31"
+  inventory: 0
+  available_inventory: 0
