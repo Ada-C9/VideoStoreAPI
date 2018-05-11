@@ -1,7 +1,13 @@
 class MoviesController < ApplicationController
 
   def index
-    movies = Movie.all
+    if params[:sort] == "title"
+      movies = Movie.all.order(:title).paginate(page: params[:p], per_page: params[:n])
+    elsif params[:sort] == "release_date"
+      movies = Movie.all.order(:release_date).paginate(page: params[:p], per_page: params[:n])
+    else
+      movies = Movie.all
+    end
     render json: movies.as_json(only: [:id, :title, :release_date])
   end
 
