@@ -3,7 +3,7 @@ require 'date'
 class RentalsController < ApplicationController
 
   def create
-    if params[:movie_id].nil? || params[:customer_id].nil? || (Movie.find_by(id: params[:movie_id])).nil?
+    if params[:movie_id].nil? || params[:customer_id].nil? || (Movie.find_by(id: params[:movie_id])).nil? || (Customer.find_by(id: params[:customer_id])).nil?
       render json: {ok: false}, status: :not_found
     else
       movie = Movie.rentable_movie?(params[:movie_id])
@@ -20,6 +20,8 @@ class RentalsController < ApplicationController
 
       if movie && rental.save
         Movie.decrement(movie)
+        customer = Customer.find_by(id: params[:customer_id])
+        customer.add_movie
         render json: {id: rental.id}, status: :ok
       else
         render json: {ok: false, errors: rental.errors}, status: :bad_request
@@ -28,7 +30,7 @@ class RentalsController < ApplicationController
   end
 
   def update
-    if params[:movie_id].nil? || (Movie.find_by(id: params[:movie_id])).nil?
+    if params[:movie_id].nil? || (Movie.find_by(id: params[:movie_id])).nil? || params[:customer_id].nil? || (Customer.find_by(id: params[:customer_id])).nil?
       render json: {ok: false}, status: :bad_request
     else
       rental_movie = Movie.returnable_movie?(Movie.find_by(id: params[:movie_id]))
