@@ -141,6 +141,7 @@ describe Movie do
 
     it "works if all random incorrect params" do
       params_hash = {
+        "sort": "somethingelse",
         "kitties"=> "something",
         "banana"=> "5",
         "n"=> "bananas"
