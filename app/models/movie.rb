@@ -4,4 +4,11 @@ class Movie < ApplicationRecord
 
   validates :title, presence: true
 
+  after_initialize :default_inventory
+
+
+  private
+  def default_inventory
+    
+  end
 end
