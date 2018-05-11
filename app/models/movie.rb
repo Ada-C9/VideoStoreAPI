@@ -18,25 +18,4 @@ class Movie < ApplicationRecord
     return avail
   end
 
-  def self.request_query(params)
-    full_list = Movie.all
-    if !params.empty?
-      max_results_num = params["n"].to_i ||= 10
-      page_num = params["p"].to_i ||= 1
-      sort = params["sort"] ||= :id
-
-
-      start_index = max_results_num.to_i * (page_num.to_i - 1)
-
-      if start_index > 0
-        end_index = (start_index.to_i + max_results_num.to_i) - 1
-      else
-        end_index = -1
-      end
-
-      full_list = full_list.order(sort)[start_index..end_index]
-    end
-    return full_list
-  end
-
 end

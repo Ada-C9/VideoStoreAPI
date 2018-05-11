@@ -21,9 +21,9 @@ describe Movie do
 
     it "doesn't create an instance with incomplete data" do
       hash = {
-         "overview" => "The unexciting life of a boy will be permanently altered as a strange woman enters his life.",
-         "release_date" => "1979-01-18",
-         "inventory" => 10
+         "overview": "The unexciting life of a boy will be permanently altered as a strange woman enters his life.",
+         "release_date": "1979-01-18",
+         "inventory": 10
       }
 
       old_count = Movie.count
@@ -36,10 +36,10 @@ describe Movie do
 
     it "doesn't create an instance with unacceptable data" do
       hash = {
-        "title" => "Some Title",
-         "overview" => "The unexciting life of a boy will be permanently altered as a strange woman enters his life.",
-         "release_date" => "1979-01-18",
-         "inventory" => -7
+        "title": "Some Title",
+         "overview": "The unexciting life of a boy will be permanently altered as a strange woman enters his life.",
+         "release_date": "1979-01-18",
+         "inventory": -7
       }
 
       old_count = Movie.count
@@ -83,14 +83,14 @@ describe Movie do
 
     it "takes in a hash and returns a collection of movies" do
       params_hash = {
-        "sort" => "title",
-        "p" => "2",
-        "n" => "5"
+        "sort": "title",
+        "p": "2",
+        "n": "5"
       }
       expected_length = 5
       sorted_movies = Movie.all.order(:title)
 
-      result = Movie.request_query(params_hash)
+      result = Movie.request_query(params_hash, Movie)
       result.must_be_kind_of Array
       result.each do |movie|
         movie.must_be_kind_of Movie
@@ -104,7 +104,7 @@ describe Movie do
     it "works if params hash empty" do
       params_hash = {}
 
-      result = Movie.request_query(params_hash)
+      result = Movie.request_query(params_hash, Movie)
       result.must_be_kind_of Array
       result.each do |movie|
         movie.must_be_kind_of Movie
@@ -114,10 +114,10 @@ describe Movie do
 
     it "work if only one optional" do
       params_hash = {
-        "p" => "2",
+        "p": "2",
       }
 
-      result = Movie.request_query(params_hash)
+      result = Movie.request_query(params_hash, Movie)
       result.must_be_kind_of Array
       result.each do |movie|
         movie.must_be_kind_of Movie
@@ -127,11 +127,11 @@ describe Movie do
 
     it "works if two optionals" do
       params_hash = {
-        "p" => "4",
-        "n" => "3"
+        "p": "4",
+        "n": "3"
       }
 
-      result = Movie.request_query(params_hash)
+      result = Movie.request_query(params_hash, Movie)
       result.must_be_kind_of Array
       result.each do |movie|
         movie.must_be_kind_of Movie
@@ -146,7 +146,7 @@ describe Movie do
         "n"=> "bananas"
       }
 
-      result = Movie.request_query(params_hash)
+      result = Movie.request_query(params_hash, Movie)
       result.must_be_kind_of Array
       result.each do |movie|
         movie.must_be_kind_of Movie

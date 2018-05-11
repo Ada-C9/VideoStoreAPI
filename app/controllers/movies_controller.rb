@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.request_query(params)
+    @movies = Movie.request_query(params, Movie)
 
     if @movies.empty?
       render json: {
