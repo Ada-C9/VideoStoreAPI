@@ -16,10 +16,10 @@ class RentalsController < ApplicationController
     movie = Movie.find_by(id: movie_id)
     customer = Customer.find_by(id: customer_id)
 
-    if movie[:inventory] == 0
+    if movie[:available_inventory] == 0
       render json: {
         errors: {
-          inventory: ["Movie is currently all checked out. Sorry."]
+          available_inventory: ["Movie is currently all checked out. Sorry."]
         }
       } , status: :bad_request
       return
@@ -27,8 +27,8 @@ class RentalsController < ApplicationController
 
     new_rental = Rental.new(rental_params)
     new_rental[:checkout] = date
-     = date + 7
-    movie[:inventory] -= 1
+    new_rental[:due_date] = date + 7
+    movie[:available_inventory] -= 1
     if new_rental.save
       movie.save
       render json: { id: new_rental.id}, status: :ok
@@ -40,21 +40,26 @@ class RentalsController < ApplicationController
   def checkin
     rental = Rental.find_by(customer_id: params[:customer_id], movie_id: params[:movie_id])
     puts "DPR: found rental #{rental}"
-    # binding.pry
 
-    if rental[:checkout].nil? || rental[:due_date].nil?
+
+    if rental.checked_in
       render json: {
         errors: {
-          checkout: ["Movie has not been checked out."],
-        due_date: ["Movie has not been checked out."]
+          checked_in: ["Movie has not been checked out."]
         }
       }, status: :bad_request
       return
     end
-    rental.movie.inventory += 1
+
+    # TODO: error handling
+    rental.update!(checked_in: true)
+
+
+    rental.movie.available_inventory += 1
     if rental.movie.save
       render json: { id: rental.movie.id }, status: :ok
     else
+
       render json: { errors: rental.movie.errors.messages }, status: :bad_request
     end
   end

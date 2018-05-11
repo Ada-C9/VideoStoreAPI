@@ -6,12 +6,14 @@
 #
 movie_1: {
   title: "300",
+  available_inventory: 2,
   inventory: 2
   }
 # column: value
 #
 movie_2: {
   title: 'Some Like It Hot',
+  available_inventory: 5,
   inventory: 5
   }
 # column: value

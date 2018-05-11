@@ -23,7 +23,7 @@ describe MoviesController do
     end
 
     it "returns the movies with all required fields" do
-      keys = %w(id inventory overview  release_date title)
+      keys = %w(available_inventory id inventory overview  release_date title)
 
       get movies_path
 
@@ -36,7 +36,7 @@ describe MoviesController do
 
   describe 'show' do
     it 'can get a movie' do
-      keys = %w(id inventory overview  release_date title)
+      keys = %w(available_inventory id inventory overview  release_date title)
 
       movie = movies(:movie_1)
 
