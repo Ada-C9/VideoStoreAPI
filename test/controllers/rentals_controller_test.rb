@@ -75,6 +75,24 @@ describe RentalsController do
       post_inventory.must_equal pre_inventory - 1
     end
 
+    it "can't checkout a movie when there are no available copies" do
+      customer = Customer.first
+      movie = Movie.first
+
+      10.times do
+        post check_out_path(customer_id: customer.id, movie_id: movie.id)
+      end
+
+      movie.reload
+      movie.available_inventory.must_equal 0
+
+      post check_out_path(customer_id: customer.id, movie_id: movie.id)
+
+      body = JSON.parse(response.body)
+      body.must_include "errors"
+      body["errors"]["id"].must_equal ["No copies of the movie with ID #{movie.id} are available"]
+    end
+
   end
 
 end

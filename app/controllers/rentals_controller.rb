@@ -1,3 +1,5 @@
+require 'pry'
+
 class RentalsController < ApplicationController
   def checkout
     customer = Customer.find_by(id: check_params[:customer_id])
@@ -7,6 +9,8 @@ class RentalsController < ApplicationController
       render json: {errors: {id: ["No such customer with ID #{check_params[:customer_id]}"]}}, status: :not_found
     elsif movie.nil?
       render json: { errors: { id: ["No such movie with ID #{check_params[:movie_id]}"]}}, status: :not_found
+    elsif movie.available_inventory < 1
+      render json: { errors: { id: ["No copies of the movie with ID #{check_params[:movie_id]} are available"]}}, status: :not_found
     else
       customer_id = customer.id
       movie_id = movie.id
