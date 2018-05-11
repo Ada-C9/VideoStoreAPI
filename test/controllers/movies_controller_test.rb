@@ -3,13 +3,10 @@ require "test_helper"
 describe MoviesController do
   describe "index" do
     it "gets all the movies" do
-      # Arrange
       keys = %w(id release_date title)
 
-      # Act
       get movies_path
 
-      # Assert
       must_respond_with :success
 
       response.header['Content-Type'].must_include 'json'
@@ -24,14 +21,11 @@ describe MoviesController do
 
   describe "show" do
     it "can get a movie" do
-      # Arrange
       keys = %w(available_inventory id inventory overview release_date title)
       movie = movies(:LOTR)
 
-      # Act
       get movie_path(movie.id)
 
-      # Assert
       must_respond_with :success
 
       response.header['Content-Type'].must_include 'json'
@@ -41,7 +35,7 @@ describe MoviesController do
       body["id"].must_equal movie.id
     end
 
-    it "yields a not_found status and also return some error text if the movie D.N.E." do
+    it "returns a not_found status and error text if the movie D.N.E." do
       movie_id = Movie.last.id + 1
 
       get movie_path(movie_id)
@@ -65,7 +59,7 @@ describe MoviesController do
       }
     end
 
-    it "Creates a new movie" do
+    it "creates a new movie" do
       assert_difference "Movie.count", 1 do
         post movies_url, params: @movie_data
         must_respond_with :success
@@ -74,12 +68,10 @@ describe MoviesController do
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include "id"
-
-      # Check that the ID matches
       Movie.find(body["id"]).title.must_equal @movie_data[:title]
     end
 
-    it "Returns an error for an invalid movie" do
+    it "returns an error for an invalid movie" do
       bad_data = @movie_data.clone()
       bad_data.delete(:title)
       assert_no_difference "Movie.count" do

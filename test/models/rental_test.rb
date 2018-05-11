@@ -46,40 +46,6 @@ describe Rental do
       Rental.count.must_equal count_before
     end
 
-    # it "invalid if customer currently has checked out that movie" do
-    #   count_before = Rental.count
-    #   rental_2 = Rental.new(
-    #     movie: movies(:HP),
-    #     customer: customers(:kari),
-    #     check_out: DateTime.now,
-    #     due_date: DateTime.now + 7
-    #   )
-    #
-    #   rental_2.valid?.must_equal false
-    #
-    #   rental_2.save
-    #
-    #   rental_2.errors.messages.must_include :movie_id
-    #   rental_2.errors.messages[:movie_id].must_include "Movie has already been checked out by this customer."
-    #   Rental.count.must_equal count_before
-    # end
-    #
-    # it "is allows a customer to checkout a previously rented movie if alreaady returned" do
-    #   count_before = Rental.count
-    #   rental_2 = Rental.new(
-    #     movie: movies(:HP),
-    #     customer: customers(:dan),
-    #     check_out: DateTime.now,
-    #     due_date: DateTime.now + 7
-    #   )
-    #   rental_2.valid?.must_equal true
-    #
-    #   rental_2.save
-    #
-    #   Rental.count.must_equal count_before + 1
-    #
-    # end
-
     it "is invalid without a customer ID" do
       count_before = Rental.count
       @rental.customer_id = nil

@@ -1,13 +1,15 @@
 class RentalsController < ApplicationController
 
+  RENTAL_LIMIT = 7 #days
+
   def check_out
     rental = Rental.new(rental_params)
     rental.check_out = DateTime.now
-    rental.due_date = rental.check_out + 7
+    rental.due_date = rental.check_out + RENTAL_LIMIT
 
     movie = Movie.find_by(id: params[:movie_id])
 
-    if movie.nil?
+    unless movie
       render json: {
         errors: {
           movie_id: ["No movie with ID #{params[:movie_id]}"]
@@ -25,6 +27,16 @@ class RentalsController < ApplicationController
         return
     end
 
+    duplicate_rental = Rental.find_rental(params[:movie_id], params[:customer_id])
+    if duplicate_rental
+      render json: {
+        errors: {
+          movie_id: ["#{movie.title} is currently checked out by that customer. A customer may not check out more than one copy of a movie at a time."]
+          }
+        }, status: :bad_request
+        return
+    end
+
     if rental.save
       render json: rental.as_json(only: [:movie_id, :customer_id]), status: :ok
     else
@@ -35,10 +47,10 @@ class RentalsController < ApplicationController
   def check_in
     rental = Rental.find_rental(params[:movie_id], params[:customer_id])
 
-    if rental.nil?
+    unless rental
       render json: {
         errors: {
-          rental: ["No rental is currently checkout with that criteria."]
+          rental: ["There is no outstanding rental with that criteria."]
           }
         }, status: :not_found
         return
