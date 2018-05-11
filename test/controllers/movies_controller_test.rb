@@ -3,7 +3,7 @@ require "test_helper"
 describe MoviesController do
   describe 'index'do
 
-  it "is a real working route" do
+  it "can get an index of movies" do
     get movies_url
     must_respond_with :success
   end
@@ -20,7 +20,7 @@ describe MoviesController do
     body.must_be_kind_of Array
   end
 
-  it "returns all of the movies" do
+  it "returns all of the movies with correct fields" do
     get movies_url
 
     body = JSON.parse(response.body)
@@ -36,6 +36,13 @@ describe MoviesController do
     end
 
   end
+
+  it "gets index with no movies" do
+   Movie.all.each { |movie| movie.destroy }
+   get movies_url
+   must_respond_with :success
+ end
+
 end
 
 describe 'show' do

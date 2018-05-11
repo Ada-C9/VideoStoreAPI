@@ -2,7 +2,7 @@ require "test_helper"
 
 describe CustomersController do
   describe 'index'do
-  it "is a real working route" do
+  it "can get a list of customers" do
     get customers_url
     must_respond_with :success
   end
@@ -33,6 +33,20 @@ describe CustomersController do
     body.each do |costumer|
       costumer.keys.sort.must_equal keys
     end
+  end
+
+  it "succeeds with many customers" do
+    Customer.count.must_be :>, 0
+
+    get customers_path
+    must_respond_with :success
+  end
+
+  it "succeeds with no customers" do
+    Customer.destroy_all
+
+    get customers_path
+    must_respond_with :success
   end
 end
 
