@@ -4,7 +4,7 @@ require 'pry'
 describe RentalsController do
   describe "create" do
     it "it is a real, working route" do
-      rental_count = Rental.all.count
+      rental_count = Rental.count
 
       customer_movie_info = {
         customer_id: customers(:one).id,
@@ -13,7 +13,7 @@ describe RentalsController do
       post rental_path(customer_movie_info)
 
       must_respond_with :success
-      Rental.all.count.must_equal (rental_count + 1)
+      Rental.count.must_equal (rental_count + 1)
     end
 
     it "returns json" do
@@ -54,7 +54,7 @@ describe RentalsController do
     # should we also add the json response for a bad request as well?
     describe "Invalid rental responses" do
 
-      it "create rental returns a status of bad_request for invalid movie id" do
+      it "create rental returns a status of not_found for invalid movie id" do
         test_movie = movies(:one)
 
         customer_movie_info = {
@@ -63,10 +63,10 @@ describe RentalsController do
         }
 
         post rental_path(customer_movie_info)
-        must_respond_with :bad_request
+        must_respond_with :not_found
       end
 
-      it "create rental returns a status of bad_request for invalid customer id" do
+      it "create rental returns a status of not_found for invalid customer id" do
 
         customer_movie_info = {
           customer_id: (customers(:one)).id,
@@ -74,7 +74,7 @@ describe RentalsController do
         }
 
         post rental_path(customer_movie_info)
-        must_respond_with :bad_request
+        must_respond_with :not_found
       end
 
       it "create rental for invalid customer id does not decrement available_inventory" do
@@ -110,7 +110,7 @@ describe RentalsController do
 
   describe "update" do
     it "it is a real, working route" do
-      rental_count = Rental.all.count
+      rental_count = Rental.count
 
       # removed rental because it is not used in the code we are testing
       # used movie :two b/c movie :one is invalid rental update (cant return fully stocked movie)
@@ -163,7 +163,7 @@ describe RentalsController do
     describe "Invalid update requests" do
 
       it "update rental returns a status of bad_request for nil movie id value" do
-        rental_count = Rental.all.count
+        rental_count = Rental.count
 
         data = {
           movie_id: nil}
@@ -175,7 +175,7 @@ describe RentalsController do
       end
 
       it "update rental returns a status of bad_request for invalid movie id value" do
-        rental_count = Rental.all.count
+        rental_count = Rental.count
 
         data = {
           movie_id: -999}
@@ -183,12 +183,12 @@ describe RentalsController do
         post rental_update_path(data)
 
         must_respond_with :bad_request
-        Rental.all.count.must_equal rental_count
+        Rental.count.must_equal rental_count
       end
 
       it "cannot update rental movie with available_inventory == inventory" do
 
-        rental_count = Rental.all.count
+        rental_count = Rental.count
 
         movie = movies(:four)
         movie.available_inventory.must_equal movie.inventory
@@ -202,7 +202,7 @@ describe RentalsController do
         post rental_update_path(data)
 
         must_respond_with :bad_request
-        Rental.all.count.must_equal rental_count
+        Rental.count.must_equal rental_count
         movie.available_inventory.must_equal initial_inventory
       end
     end
