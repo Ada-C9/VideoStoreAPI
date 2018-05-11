@@ -43,7 +43,7 @@ describe Movie do
       result.must_equal false
     end
 
-    it 'is invalid if available inventory greater than inventory'do
+    it 'is invalid if available inventory greater than inventory' do
       movie= movies(:gijane)
 
       # this will increment available_inventory value to 4
@@ -51,6 +51,14 @@ describe Movie do
       movie.inc_avail_inventory
 
       movie.wont_be :valid?
+    end
+
+    it 'is invalid if available_inventory is negative' do
+      #try to check out when available_inventory is 0
+    end
+
+    it 'is invalid if inventory is zero or less' do
+      # cannot be created with 0
     end
   end
 
@@ -73,7 +81,6 @@ describe Movie do
       after_count = movie.available_inventory
 
       after_count.must_equal before_count - 1
-
     end
 
     it 'increases available inventory of a movie by 1' do
@@ -86,6 +93,16 @@ describe Movie do
 
       after_count.must_equal before_count + 1
 
+    end
+
+    it 'throws an error if available_inventory is greater than inventory' do
+      movie = Movie.first
+      stock = movie.inventory
+
+      movie.available_inventory = stock + 2
+      result = movie.valid?
+
+      result.must_equal false
     end
   end
 end

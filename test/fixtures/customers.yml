@@ -19,7 +19,7 @@ ava:
   movies_checked_out_count: 3
 
 no_name:
-  name:
+  name: 
   address: 455 Main Dr
   city: New York
   state: NY

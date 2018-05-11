@@ -7,9 +7,7 @@ class Movie < ApplicationRecord
 
   validates :available_inventory, numericality: { only_integer: true, greater_than_or_equal_to: 0}
 
-  # #TODO add validations:
-  # inventory >= 0
-  # inventory is only an integer 
+  validates :inventory, numericality: { only_integer: true, greater_than: 0 }
 
   after_initialize do |movie|
       self.inventory ||= 0

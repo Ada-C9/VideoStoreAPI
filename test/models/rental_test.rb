@@ -5,7 +5,11 @@ describe Rental do
 
 
   it "must be valid" do
-    # TODO set up rental YML file with a customer and movie -- using the yml called ":one" and then run this test again
+    # rental = rentals(:one)
+    movie = Movie.first
+    customer = Customer.first
+    rental = Rental.new(movie_id: movie.id, customer_id: customer.id)
+
     value(rental).must_be :valid?
   end
 end
