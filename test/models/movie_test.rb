@@ -30,7 +30,6 @@ describe Movie do
     it "is valid even if the available inventory is not a number" do
       @movie.available_inventory = nil
       result = @movie.valid?
-      # binding.pry
 
       result.must_equal false
       @movie.errors.messages.must_include :available_inventory

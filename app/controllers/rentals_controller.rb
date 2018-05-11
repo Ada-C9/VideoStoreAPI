@@ -3,8 +3,8 @@ class RentalsController < ApplicationController
   def create
     rental = Rental.new(rental_params)
 
-    movie = find_rental_movie(rental_params)
-    customer = find_rental_customer(rental_params)
+    movie = Movie.find_by(id: rental_params[:movie_id])
+    customer = Customer.find_by(id: rental_params[:customer_id])
 
     if movie.nil?
       render json: {errors: "Movie with id #{rental_params[:movie_id]} doesn't exist"}, status: :bad_request
@@ -34,12 +34,7 @@ class RentalsController < ApplicationController
     end
 
     movie = rental.movie
-
-    #test this & cutsomer existence
-    # if movie.nil?
-    #   render json: { errors: "Movie with id #{rental_params[:movie_id]} doesn't exist"}, status: :bad_request
-    #   return
-    # end
+    customer = rental.customer
 
     if rental.updated_at != rental.created_at
       render json: { errors: "#{movie.title} is already checked-in." }, status: :bad_request
@@ -58,14 +53,6 @@ class RentalsController < ApplicationController
   private
   def rental_params
     return params.require(:rental).permit(:movie_id, :customer_id)
-  end
-
-  def find_rental_movie(rental_params)
-    return Movie.find_by(id: rental_params[:movie_id])
-  end
-
-  def find_rental_customer(rental_params)
-    return Customer.find_by(id: rental_params[:customer_id])
   end
 
 end
