@@ -19,7 +19,7 @@ class RentalsController < ApplicationController
     rental = Rental.new(rental_data)
 
     # I added this check to confirm that the movie is available to save before we make a new rental
-    # called the movie.available_movie? to
+    # called the movie.rentable_movie? to
 
     if movie_id_params.nil? || customer_id_params.nil?
       # this renders multiple times so I commented it out
@@ -28,7 +28,7 @@ class RentalsController < ApplicationController
 
       # render json: {ok: false }, status: :not_found
     else
-      chosen_movie = Movie.available_movie?(chosen_movie.id)
+      chosen_movie = Movie.rentable_movie?(chosen_movie.id)
     end
 
     if chosen_movie && rental.save
@@ -47,7 +47,9 @@ class RentalsController < ApplicationController
       # accounts for nil value and only sends a single bad render status
       rental_movie = nil
     else
-      rental_movie = Movie.find_by(id: params[:movie_id])
+      rental_movie = Movie.returnable_movie?(params[:movie_id])
+
+      # rental_movie = Movie.find_by(id: params[:movie_id])
     end
 
     if rental_movie
@@ -56,6 +58,8 @@ class RentalsController < ApplicationController
     elsif rental_movie.nil?
       render json: {ok: false}, status: :bad_request
     else
+      rental_movie = Movie.find_by(id: params[:movie_id])
+
       render json: {ok: false, errors: rental_movie.errors}, status: :bad_request
     end
   end

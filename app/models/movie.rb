@@ -38,7 +38,7 @@ class Movie < ApplicationRecord
     end
   end
 
-  def self.available_movie?(id)
+  def self.rentable_movie?(id)
     movie = false
 
     if Movie.find_by(id: id)
@@ -46,6 +46,21 @@ class Movie < ApplicationRecord
       movie = Movie.find_by(id: id)
 
       if movie.available_inventory <= 0
+        movie = false
+      end
+    end
+
+    return movie
+  end
+
+  def self.returnable_movie?(id)
+    movie = false
+
+    if Movie.find_by(id: id)
+
+      movie = Movie.find_by(id: id)
+
+      if movie.available_inventory == movie.inventory
         movie = false
       end
     end
