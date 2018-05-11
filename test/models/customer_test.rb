@@ -81,7 +81,7 @@ describe Customer do
       sorted_cust = Customer.all.order(:name)
 
       result = Customer.request_query(params_hash)
-      # result.must_be_kind_of Array
+      result.must_be_kind_of Array
       result.each do |customer|
         customer.must_be_kind_of Customer
       end
@@ -95,7 +95,7 @@ describe Customer do
       params_hash = {}
 
       result = Customer.request_query(params_hash)
-      # result.must_be_kind_of Array
+      result.must_be_kind_of Array
       result.each do |customer|
         customer.must_be_kind_of Customer
       end
@@ -108,7 +108,7 @@ describe Customer do
       }
 
       result = Customer.request_query(params_hash)
-      # result.must_be_kind_of Array
+      result.must_be_kind_of Array
       result.each do |customer|
         customer.must_be_kind_of Customer
       end
@@ -122,7 +122,7 @@ describe Customer do
       }
 
       result = Customer.request_query(params_hash)
-      # result.must_be_kind_of Array
+      result.must_be_kind_of Array
       result.each do |customer|
         customer.must_be_kind_of Customer
       end
