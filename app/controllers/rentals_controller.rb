@@ -13,6 +13,9 @@ class RentalsController < ApplicationController
       movie = Movie.find_by(id: rental.movie_id)
       movie.dec_avail_inventory
 
+      customer = Customer.find_by(id: rental.customer_id)
+      customer.inc_checked_out_count
+
       render json: { id: rental.id }, status: :ok
     else
       render json: { errors: rental.errors.messages }, status: :bad_request
@@ -32,6 +35,9 @@ class RentalsController < ApplicationController
       # logic for increasing available_inventory
       movie = Movie.find_by(id: rental.movie_id)
       movie.inc_avail_inventory
+
+      customer = Customer.find_by(id: rental.customer_id)
+      customer.dec_checked_out_count
       # logic for increasing available_inventory
       rental.check_in = Date.today
       rental.save
