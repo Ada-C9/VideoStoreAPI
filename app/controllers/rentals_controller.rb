@@ -36,8 +36,6 @@ class RentalsController < ApplicationController
       render json: { errors: new_rental.errors.messages }, status: :bad_request
     end
   end
-<<<<<<< HEAD
-=======
 
   def checkin
     rental = Rental.find_by(customer_id: params[:customer_id], movie_id: params[:movie_id])
@@ -65,5 +63,4 @@ class RentalsController < ApplicationController
   def rental_params
     return params.permit(:checkout, :due_date, :customer_id, :movie_id)
   end
->>>>>>> d768dc997c69c5a1e06c96e55bfede0479014987
 end
