@@ -10,12 +10,11 @@ class RentalsController < ApplicationController
     movie = Movie.find_by(id: movie_id)
     customer = Customer.find_by(id: customer_id)
 
-=======
     checkout_date = Date.today
     due_date = checkout_date + 7
 
     # initialize a rental
->>>>>>> 5ad83c774d36ba7af42a996498fa5858b2eaf93f
+
     rental = Rental.new(customer_id: customer_id, movie_id: movie_id, checkout_date: checkout_date, due_date: due_date)
     # head :bad_request unless movie && customer
 
