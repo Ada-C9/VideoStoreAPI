@@ -1,0 +1,17 @@
+rental_one:
+  due_date: 2019-01-18
+  returned: false
+  customer: shelley
+  movie: blacksmith
+
+rental_two:
+  due_date: 2019-01-18
+  returned: true
+  customer: shelley
+  movie: blacksmith
+
+rental_three:
+  due_date: 
+  returned:
+  customer:
+  movie:

@@ -1,0 +1,182 @@
+html,
+body,
+.page {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+p {
+  margin-bottom: 1em;
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+}
+
+.about-me {
+  font-size: 16px;
+}
+
+.email-me {
+  font-size: 16px;
+}
+
+h1, h2, h3  {
+  font-family: 'Playfair Display', serif;
+}
+
+li {
+  cursor: pointer;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+ul {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.home {
+  z-index: 1000;
+  width: 100%;
+  position: fixed;
+  background-color: #FFF;
+  opacity: .9;
+  /* border-bottom: 1px solid #d3d3d3; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 25px;
+}
+
+#hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
+}
+
+#visible:hover #hidden {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.home {
+  flex: 0 0 ;
+}
+
+.main {
+  margin-top: 0vw;
+  /* padding-top: 100px; */
+  flex: 1 1 ;
+  position: relative;
+  overflow-y: scroll;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer {
+  flex: 0 0 ;
+}
+
+.home h3 {
+  order: 2;
+}
+
+.home .categories {
+  order: 1;
+}
+
+.home .connect {
+  order: 3;
+}
+
+.categories ul, .connect ul {
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  letter-spacing: .2em;
+  position: absolute;
+}
+
+.main {
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+  margin-left: 22%;
+  margin-right: 22%;
+
+}
+
+.nav-padding {
+  clear: both;
+  padding: 0;
+  height: 12vw;
+}
+
+.about-contact {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.about {
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  padding: 5px
+}
+
+.contact {
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  padding: 5px
+}
+
+.social {
+  letter-spacing: .1em;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  padding: 5px
+}
+
+.linkedin {
+  padding: 5px
+}
+
+.github {
+  padding: 5px
+}
+
+.email {
+  padding: 5px
+}

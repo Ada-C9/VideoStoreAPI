@@ -1,0 +1,18 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+
+
+blacksmith:
+  title: Blacksmith Of The Banished
+  release_date: 1979-01-18
+  overview: The unexciting life of a boy will be permanently altered as a strange woman enters his life.
+  inventory: 10
+
+elegance:
+  title: Elegance Of The Machines
+  release_date: 1991-05-19
+  overview: But what if this neighbor is wrong about all this. Or what if the situation is worse than it appears. How could an ordinary girl be this lucky, or unlucky, depending on the turnout. We're about to find out.
+  inventory: 7
