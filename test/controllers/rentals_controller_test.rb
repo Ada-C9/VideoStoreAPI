@@ -42,9 +42,7 @@ describe RentalsController do
       body.must_include "id"
       new_rental = Rental.find(body["id"])
 
-      new_rental.customer_id.must_equal @rental_data[:customer_id]
-
-      new_rental.movie_id.must_equal @rental_data[:movie_id]
+      @rental_data[:movie_id]
 
       new_rental.checkout.must_equal @date
 
@@ -73,21 +71,21 @@ describe RentalsController do
     end
   end
 
-  # describe 'checkin' do
-  #   it 'is real route' do
-  #     skip
-  #   end
-  #
-  #   it 'can checkin a movie' do
-  #     skip
-  #   end
-  #
-  #   it 'changes the inventory of movie when it is checked in' do
-  #     skip
-  #   end
-  #
-  #   it 'throws an error if a movie is not checked out and you attempt a checkin' do
-  #     skip
-  #   end
-  # end
+  describe 'checkin' do
+    it 'is real route' do
+      skip
+    end
+
+    it 'can checkin a movie' do
+      skip
+    end
+
+    it 'changes the inventory of movie when it is checked in' do
+      skip
+    end
+
+    it 'throws an error if a movie is not checked out and you attempt a checkin' do
+      skip
+    end
+  end
 end
