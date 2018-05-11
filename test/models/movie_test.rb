@@ -96,7 +96,7 @@ describe Movie do
 
     end
 
-    it 'throws an error if available_inventory is greater than inventory' do
+    it 'invalid if available_inventory is greater than inventory' do
       movie = Movie.first
       stock = movie.inventory
 

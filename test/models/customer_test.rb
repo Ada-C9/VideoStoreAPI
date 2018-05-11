@@ -34,12 +34,32 @@ describe Customer do
 
     it 'is invalid if movies_checked_out_count is less than zero' do
       customer = customers(:no_name)
-      
+
       customer.dec_checked_out_count
       customer.dec_checked_out_count
       customer.dec_checked_out_count
 
       customer.wont_be :valid?
+    end
+  end
+
+  describe 'checked_out_count methods' do
+    it 'decreases customer check out count by 1' do
+      customer = Customer.first
+      before_count = customer.movies_checked_out_count
+
+      customer.dec_checked_out_count
+
+      customer.movies_checked_out_count.must_equal before_count - 1
+    end
+
+    it 'increases available inventory of a movie by 1' do
+      customer = Customer.first
+      before_count = customer.movies_checked_out_count
+
+      customer.inc_checked_out_count
+
+      customer.movies_checked_out_count.must_equal before_count + 1
     end
   end
 end
