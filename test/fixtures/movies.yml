@@ -4,8 +4,16 @@ Phantom:
   overview:
   release_date: 2016-02-03
   inventory: 12
+  available_inventory: 12
 Lion:
   title: Lion King
   overview:
   release_date: 1993-12-10
   inventory: 8
+  available_inventory: 8
+Grease:
+  title: Grease
+  overview:
+  release_date: 1963-12-10
+  inventory: 12
+  available_inventory: 0

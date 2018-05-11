@@ -44,5 +44,13 @@ describe Customer do
     end
   end
 
+  describe 'moveis_check_out_count' do
+    it 'must be able to raise movie count for a customer' do
+      proc {
+        @customer_2.add_to_check_out_count
+      }.must_change '@customer_2.movies_checked_out_count',1 
+    end
+  end
+
 
 end
