@@ -32,7 +32,7 @@ describe Movie do
   describe 'validations' do
 
     it "can be created with all valid fields" do
-      movie = Movie.new(title: "test movie")
+      movie = Movie.new(title: "test movie", inventory: 4)
 
       result = movie.valid?
 
