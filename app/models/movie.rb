@@ -1,3 +1,4 @@
+require 'pry'
 class Movie < ApplicationRecord
   has_many :rentals
   has_many :customers, through: :rentals
@@ -13,7 +14,7 @@ class Movie < ApplicationRecord
   def available_inventory
     unavailable = 0
     self.rentals.each do |rental|
-      if rental.due_date
+      if rental.due_date != nil
         unavailable += 1
       end
     end
