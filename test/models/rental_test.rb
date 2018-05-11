@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Rental do
   describe 'relations' do
-    let(:rental) { rentals(:rental) }
+    let(:rental1) { rentals(:rental1) }
 
     it "has a movie" do
       rental = Rental.new(due_date: "10-02-2018")
@@ -30,8 +30,8 @@ describe Rental do
         rental.valid?.must_equal true
       end
       it "is invalid without a customer" do
-        rentals(:rental).customer = nil
-        rentals(:rental).valid?.must_equal false
+        rentals(:rental1).customer = nil
+        rentals(:rental1).valid?.must_equal false
     end
   end
   describe 'rental_date' do
