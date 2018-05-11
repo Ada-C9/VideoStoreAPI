@@ -10,6 +10,7 @@ describe RentalsController do
       checked_out: false
     }
   }
+
     it 'returns a json object' do
       post new_rental_path, params: rental_data
       response.header['Content-Type'].must_include 'json'
