@@ -6,8 +6,6 @@ class RentalsController < ApplicationController
     if rental.save
       Rental.build_rental(rental)
       render json: rental_params, status: :ok
-
-      binding.pry
     else
       #failure
       render json: {errors: rental.errors.messages }, status: :bad_request
