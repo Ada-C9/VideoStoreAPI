@@ -37,7 +37,7 @@ class RentalsController < ApplicationController
   def checkin
     @rental = Rental.find_by(customer_id: check_params[:customer_id], movie_id: check_params[:movie_id] )
 
-    if rental.nil?
+    if @rental.nil?
       render json: {errors: {id: ["No such rental with customer ID #{check_params[:customer_id]} and movie ID #{check_params[:movie_id]}"]}}, status: :not_found
     end
 
