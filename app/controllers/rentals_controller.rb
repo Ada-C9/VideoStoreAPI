@@ -41,24 +41,27 @@ class RentalsController < ApplicationController
   end
 
   def checkin
-    movie_id = params[:movie_id]
-    customer_id = params[:customer_id]
+    movie_id = params[:movie_id].to_i
+    customer_id = params[:customer_id].to_i
 
-    rental = Rental.where(movie_id: movie.id, customer_id: customer.id)
+    rental = Rental.where(movie_id: movie_id, customer_id: customer_id).where.not(due_date: nil).first
+    binding.pry
 
     # make sure it's a valid rental???
-
     if rental && rental.due_date != nil
 
       rental.due_date = nil
-      rental.save
+      unless rental.save
+        render json: { errors: rental.errors.messages }, status: :bad_request
+        return
+      end
 
       rental.customer.movies_checked_out_count -= 1
       rental.customer.save
 
       render json: rental.as_json(only: [:id, :checkout_date, :due_date]), status: :ok
     else
-      render json: { errors: rental.errors.messages }, status: :bad_request
+      render json: { errors: { rental: ["not found"]}}, status: :not_found
     end
   end
 end
