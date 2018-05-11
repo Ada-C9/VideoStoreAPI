@@ -34,11 +34,9 @@ class Movie < ApplicationRecord
 
   def self.rentable_movie?(id)
       movie = Movie.find_by(id: id)
-
       if movie.available_inventory < 1
         movie = false
       end
-
     return movie
   end
 
@@ -46,14 +44,11 @@ class Movie < ApplicationRecord
     movie = false
 
     if Movie.find_by(id: id)
-
       movie = Movie.find_by(id: id)
-
       if movie.available_inventory == movie.inventory
         movie = false
       end
     end
-
     return movie
   end
 

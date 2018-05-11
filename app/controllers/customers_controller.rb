@@ -5,7 +5,6 @@ class CustomersController < ApplicationController
 
     render json: customers.as_json(only: [ :id, :name, :phone, :postal_code, :registered_at, :movies_checked_out_count]), status: :ok
 
-    # what if no customers
   end
 
 end
