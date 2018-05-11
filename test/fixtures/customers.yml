@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 'Bob Kelly'
+  registered_at: 2018-05-07 12:56:25
+  address: MyString
+  city: MyString
+  state: MyString
+  postal_code: '12345'
+  phone: '1234567891'
+
+two:
+  name: 'Customer One'
+  registered_at: 2018-05-07 12:56:25
+  address: MyString
+  city: MyString
+  state: MyString
+  postal_code: '12345'
+  phone: '1234567891'
