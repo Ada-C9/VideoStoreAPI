@@ -21,8 +21,7 @@ class MoviesController < ApplicationController
 
   def create
     movie = Movie.new(movie_params)
-    movie.set_avail_inventory
-    #todo: write test for this in movies_controller_test
+
     if movie.save
       # Success
       render json: { id: movie.id }, status: :ok
@@ -30,7 +29,6 @@ class MoviesController < ApplicationController
       # Failure
       render json: { errors: movie.errors.messages }, status: :bad_request
     end
-
   end
 
 private

@@ -64,11 +64,10 @@ describe RentalsController do
     end
 
     it 'returns status not_found if rental DNE' do
-      post check_in_path, params: @params
+      bad_params = { customer_id: 21394, movie_id: 4208422 }
+      post check_in_path, params: bad_params
 
       assert_response :not_found
-      # customer movies stays same
-      # available_inventory stays same
     end
 
     it 'can handle already checked in' do

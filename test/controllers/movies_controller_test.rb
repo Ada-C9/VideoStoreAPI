@@ -60,45 +60,44 @@ describe MoviesController do
       body.must_include "errors"
       body["errors"].must_include "id"
     end
+  end
 
-    describe 'create' do
-      let(:movie_data) {
-        {
-          title: "Secret Life of Walter Mitty",
-          overview: "An employee at Life Mag that daydreams a lot",
-          release_date: 2013-12-25, inventory: 5,
-          available_inventory: 0
-        }
+  describe 'create' do
+    let(:movie_data) {
+      {
+        title: "Secret Life of Walter Mitty",
+        overview: "An employee at Life Mag that daydreams a lot",
+        release_date: 2013-12-25, inventory: 5
       }
-      it "Creates a new movie" do
-        before_movie_count = Movie.count
+    }
+    it "Creates a new movie" do
+      before_movie_count = Movie.count
 
-        post movies_path, params: { movie: movie_data }
-        assert_response :success
+      post movies_path, params: movie_data 
+      assert_response :success
 
-        Movie.count.must_equal before_movie_count + 1
+      Movie.count.must_equal before_movie_count + 1
 
-        body = JSON.parse(response.body)
-        body.must_be_kind_of Hash
-        body.must_include "id"
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
 
-        # Check that the ID matches
-        Movie.find(body["id"]).title.must_equal movie_data[:title]
+      # Check that the ID matches
+      Movie.find(body["id"]).title.must_equal movie_data[:title]
+    end
+
+    it "Returns an error for an invalid movie" do
+      bad_data = movie_data.clone()
+      bad_data.delete(:title)
+      assert_no_difference "Movie.count" do
+        post movies_path, params: { movie: bad_data }
+        assert_response :bad_request
       end
 
-      it "Returns an error for an invalid movie" do
-        bad_data = movie_data.clone()
-        bad_data.delete(:title)
-        assert_no_difference "Movie.count" do
-          post movies_path, params: { movie: bad_data }
-          assert_response :bad_request
-        end
-
-        body = JSON.parse(response.body)
-        body.must_be_kind_of Hash
-        body.must_include "errors"
-        body["errors"].must_include "title"
-      end
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "title"
     end
   end
 end
