@@ -92,13 +92,14 @@ describe RentalsController do
   describe 'update' do
 
     it "allows a checked out movie to be checked in" do
-      rental = rentals(:two)
-      rental.updated_at = rental.created_at
-
       rental_data = {
         movie_id: movies(:two).id,
-        customer_id: customes(:one).id
+        customer_id: customers(:two).id
       }
+
+      rental = Rental.new(rental_data)
+      rental.valid?
+      rental.save
 
       post checkin_path, params: { rental: rental_data }
       must_respond_with :success
@@ -110,14 +111,43 @@ describe RentalsController do
     end
 
     it "does not allow a checked in movie to be checked in again" do
+      rental_data = {
+        movie_id: movies(:one).id,
+        customer_id: customers(:one).id
+      }
 
+      rental = Rental.new(rental_data)
+      rental.valid?
+      rental.save
+
+      rental.updated_at = rental.created_at + 1
+      rental.save
+
+      post checkin_path, params: { rental: rental_data }
+      must_respond_with :bad_request
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "already checked-in"
     end
 
     it "does not allow a movie that has not been checked out to be checked in" do
+      rental_data = {
+        movie_id: movies(:two).id,
+        customer_id: customers(:two).id
+      }
+
+      post checkin_path, params: { rental: rental_data }
+      must_respond_with :bad_request
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "not exist"
 
     end
 
   end
-
 
 end
