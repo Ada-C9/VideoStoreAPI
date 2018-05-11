@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20180510050545) do
     t.date "due_date"
     t.bigint "customer_id"
     t.bigint "movie_id"
+    t.date "checkin_date"
     t.index ["customer_id"], name: "index_rentals_on_customer_id"
     t.index ["movie_id"], name: "index_rentals_on_movie_id"
   end
