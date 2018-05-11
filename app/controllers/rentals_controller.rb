@@ -7,6 +7,7 @@ class RentalsController < ApplicationController
       render json: {ok: false}, status: :not_found
     else
       movie = Movie.rentable_movie?(params[:movie_id])
+      customer = Customer.find_by(id: params[:customer_id])
       today = Date.today
 
       rental_data = {
@@ -16,18 +17,21 @@ class RentalsController < ApplicationController
         due_date: (today + 7).to_s
       }
 
-      rental = Rental.new(rental_data)
+      if movie
+        rental = Rental.new(rental_data)
+      end
 
       if movie && rental.save
         Movie.decrement(movie)
-        customer = Customer.find_by(id: params[:customer_id])
-        customer.add_movie
+        Customer.add_movie(customer)
+
         render json: {id: rental.id}, status: :ok
       else
         render json: {ok: false, errors: rental.errors}, status: :bad_request
       end
     end
   end
+
 
   def update
     if params[:movie_id].nil? || (Movie.find_by(id: params[:movie_id])).nil? || params[:customer_id].nil? || (Customer.find_by(id: params[:customer_id])).nil?
@@ -38,9 +42,8 @@ class RentalsController < ApplicationController
 
       if rental_movie
         Movie.increment(rental_movie)
-        customer.remove_movie
+        Customer.remove_movie(customer)
         render json: {id: rental_movie.id}, status: :ok
-
       else
         render json: {ok: false}, status: :bad_request
       end

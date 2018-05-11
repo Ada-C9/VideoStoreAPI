@@ -2,13 +2,13 @@ class Customer < ApplicationRecord
   validates :name, :phone, presence: true
   has_many :rentals
 
-  def add_movie
-    self.movies_checked_out_count += 1
-    self.save
+  def self.add_movie(customer)
+    customer.movies_checked_out_count += 1
+    customer.save
   end
 
-  def remove_movie
-    self.movies_checked_out_count -= 1
-    self.save
+  def self.remove_movie(customer)
+    customer.movies_checked_out_count -= 1
+    customer.save
   end
 end

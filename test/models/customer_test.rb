@@ -42,7 +42,7 @@ describe Customer do
       customer = customers(:one)
       customer.movies_checked_out_count.must_equal 0
 
-      customer.add_movie
+      Customer.add_movie(customer)
       customer.movies_checked_out_count.must_equal 1
     end
   end
@@ -52,10 +52,10 @@ describe Customer do
       customer = customers(:one)
       customer.movies_checked_out_count.must_equal 0
 
-      customer.add_movie
+      Customer.add_movie(customer)
       customer.movies_checked_out_count.must_equal 1
 
-      customer.remove_movie
+      Customer.remove_movie(customer)
       customer.movies_checked_out_count.must_equal 0
     end
   end

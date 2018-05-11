@@ -27,3 +27,10 @@ four:
   release_date: "2005-08-08"
   inventory: 3
   available_inventory: 3
+
+five:
+  title: Fresher Princess
+  overview: Willenium Independence
+  release_date: "2005-08-08"
+  inventory: 1
+  available_inventory: 1

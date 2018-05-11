@@ -1,5 +1,4 @@
 require "test_helper"
-require 'pry'
 
 describe RentalsController do
   describe "create" do
@@ -40,6 +39,19 @@ describe RentalsController do
 
     it "decrements the movie's available_inventory" do
       test_movie = movies(:one)
+      initial_inventory = test_movie.available_inventory
+
+      customer_movie_info = {
+        customer_id: (customers(:one)).id,
+        movie_id: test_movie.id
+      }
+
+      post rental_path(customer_movie_info)
+      Movie.find(test_movie.id).available_inventory.must_equal (initial_inventory - 1)
+    end
+
+    it "decrements the movie's available_inventory when available_inventory is 1" do
+      test_movie = movies(:five)
       initial_inventory = test_movie.available_inventory
 
       customer_movie_info = {
@@ -105,6 +117,17 @@ describe RentalsController do
         must_respond_with :bad_request
         Movie.find(test_movie.id).available_inventory.must_equal 0
       end
+
+      it "increments customer's checked out count" do
+        movie = movies(:two)
+        customer = customers(:one)
+        customer.movies_checked_out_count.must_equal 0
+        data = {movie_id: movie.id, customer_id: customer.id}
+
+        post rental_path(data)
+        customer.reload
+        customer.movies_checked_out_count.must_equal 1
+      end
     end
   end
 
@@ -115,8 +138,9 @@ describe RentalsController do
       # removed rental because it is not used in the code we are testing
       # used movie :two b/c movie :one is invalid rental update (cant return fully stocked movie)
       movie = movies(:two)
+      customer = customers(:two)
 
-      data = {movie_id: movie.id}
+      data = {movie_id: movie.id, customer_id: customer.id}
 
       post rental_update_path(data)
 
@@ -135,29 +159,39 @@ describe RentalsController do
 
     it "returns the correct rental" do
       movie = movies(:two)
+      customer = customers(:two)
+      data = {movie_id: movie.id, customer_id: customer.id}
 
-      post rental_update_path(
-        {movie_id: movie.id}
-      )
+      post rental_update_path(data)
 
       body = JSON.parse(response.body)
-      # is this necessary?
-      # should we return the rental?
-      # current code returns the movie by movie id not rental id
-      # body.length.must_equal 1
-      # body["id"].must_equal rental.id
     end
 
     it "increments the movie's available_inventory" do
       movie = movies(:two)
+      customer = customers(:two)
+      data = {movie_id: movie.id, customer_id: customer.id}
 
       starting_available_inventory = movie.available_inventory
 
-      post rental_update_path(
-        {movie_id: movie.id}
-      )
+      post rental_update_path(data)
 
       Movie.find(movie.id).available_inventory.must_equal (starting_available_inventory + 1)
+    end
+
+    it "decrement customer's checked out count" do
+      movie = movies(:two)
+      customer = customers(:one)
+      customer.movies_checked_out_count.must_equal 0
+      data = {movie_id: movie.id, customer_id: customer.id}
+
+      post rental_path(data)
+      customer.reload
+      customer.movies_checked_out_count.must_equal 1
+
+      post rental_update_path(data)
+      customer.reload
+      customer.movies_checked_out_count.must_equal 0
     end
 
     describe "Invalid update requests" do
