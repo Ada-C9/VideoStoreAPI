@@ -105,11 +105,10 @@ describe RentalsController do
 
       it "cannot rent movie with available_inventory of 0, :bad_request response, does not decrement available_inventory" do
         test_movie = movies(:three)
-
         test_movie.available_inventory.must_equal 0
 
         customer_movie_info = {
-          customer_id: (customers(:one)).id,
+          customer_id: customers(:one).id,
           movie_id: test_movie.id
         }
 
@@ -132,70 +131,70 @@ describe RentalsController do
   end
 
   describe "update" do
-    it "it is a real, working route" do
-      rental_count = Rental.count
+    describe "valid update requests" do
+      it "it is a real, working route" do
+        rental_count = Rental.count
 
-      # removed rental because it is not used in the code we are testing
-      # used movie :two b/c movie :one is invalid rental update (cant return fully stocked movie)
-      movie = movies(:two)
-      customer = customers(:two)
+        movie = movies(:two)
+        customer = customers(:two)
 
-      data = {movie_id: movie.id, customer_id: customer.id}
+        data = {movie_id: movie.id, customer_id: customer.id}
 
-      post rental_update_path(data)
+        post rental_update_path(data)
 
-      must_respond_with :success
-      Rental.count.must_equal rental_count
-    end
+        must_respond_with :success
+        Rental.count.must_equal rental_count
+      end
 
-    it "returns json" do
-      movie = movies(:two)
+      it "returns json" do
+        movie = movies(:two)
 
-      post rental_update_path(
-        {movie_id: movie.id}
-      )
-      response.header['Content-Type'].must_include 'json'
-    end
+        post rental_update_path(
+          {movie_id: movie.id}
+        )
+        response.header['Content-Type'].must_include 'json'
+      end
 
-    it "returns the correct rental" do
-      movie = movies(:two)
-      customer = customers(:two)
-      data = {movie_id: movie.id, customer_id: customer.id}
+      it "returns the correct rental's movie id" do
+        movie = movies(:two)
+        customer = customers(:two)
+        data = {movie_id: movie.id, customer_id: customer.id}
 
-      post rental_update_path(data)
+        post rental_update_path(data)
 
-      body = JSON.parse(response.body)
-    end
+        body = JSON.parse(response.body)
+        body["id"].must_equal movie.id
+      end
 
-    it "increments the movie's available_inventory" do
-      movie = movies(:two)
-      customer = customers(:two)
-      data = {movie_id: movie.id, customer_id: customer.id}
+      it "increments the movie's available_inventory" do
+        movie = movies(:two)
+        customer = customers(:two)
+        data = {movie_id: movie.id, customer_id: customer.id}
 
-      starting_available_inventory = movie.available_inventory
+        starting_available_inventory = movie.available_inventory
 
-      post rental_update_path(data)
+        post rental_update_path(data)
 
-      Movie.find(movie.id).available_inventory.must_equal (starting_available_inventory + 1)
-    end
+        Movie.find(movie.id).available_inventory.must_equal (starting_available_inventory + 1)
+      end
 
-    it "decrement customer's checked out count" do
-      movie = movies(:two)
-      customer = customers(:one)
-      customer.movies_checked_out_count.must_equal 0
-      data = {movie_id: movie.id, customer_id: customer.id}
+      it "decrement customer's checked out count" do
+        movie = movies(:two)
+        customer = customers(:one)
+        customer.movies_checked_out_count.must_equal 0
+        data = {movie_id: movie.id, customer_id: customer.id}
 
-      post rental_path(data)
-      customer.reload
-      customer.movies_checked_out_count.must_equal 1
+        post rental_path(data)
+        customer.reload
+        customer.movies_checked_out_count.must_equal 1
 
-      post rental_update_path(data)
-      customer.reload
-      customer.movies_checked_out_count.must_equal 0
+        post rental_update_path(data)
+        customer.reload
+        customer.movies_checked_out_count.must_equal 0
+      end
     end
 
     describe "Invalid update requests" do
-
       it "update rental returns a status of bad_request for nil movie id value" do
         rental_count = Rental.count
 

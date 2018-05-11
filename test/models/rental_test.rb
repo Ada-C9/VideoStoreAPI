@@ -51,7 +51,7 @@ describe Rental do
       rental.due_date = (Date.today + 7).to_s
       rental.save
     end
-    
+
     it "must respond to movie" do
       rental = rentals(:one)
       rental.movie.must_equal movies(:one)
@@ -62,82 +62,5 @@ describe Rental do
       rental.customer.must_equal customers(:one)
     end
   end
-
-
-
-
-  # describe "Valid?" do
-  #   it "must be valid" do
-  #
-  #     rental_data = {
-  #       customer_id: (customers(:one)).id,
-  #       movie_id: (movies(:one)).id,
-  #       check_out_date: Date.today.to_s,
-  #       due_date: (Date.today + 7).to_s
-  #     }
-  #
-  #     rental = Rental.new(rental_data)
-  #
-  #     rental.save
-  #
-  #     rental.valid?.must_equal true
-  #   end
-  #
-  #   it "must have check_out_date" do
-  #
-  #     rental_data = {
-  #       customer_id: (customers(:one)).id,
-  #       movie_id: (movies(:one)).id,
-  #       check_out_date: nil,
-  #       due_date: (Date.today + 7).to_s
-  #     }
-  #
-  #     rental = Rental.create(rental_data)
-  #
-  #     rental.valid?.must_equal false
-  #   end
-  #
-  #   it "must have movie_id" do
-  #
-  #     rental_data = {
-  #       customer_id: (customers(:one)).id,
-  #       movie_id: nil,
-  #       check_out_date: Date.today.to_s,
-  #       due_date: (Date.today + 7).to_s
-  #     }
-  #
-  #     rental = Rental.create(rental_data)
-  #
-  #     rental.valid?.must_equal false
-  #   end
-  #
-  #   it "must have customer_id" do
-  #
-  #     rental_data = {
-  #       customer_id: nil,
-  #       movie_id: (movies(:one)).id,
-  #       check_out_date: Date.today.to_s,
-  #       due_date: (Date.today + 7).to_s
-  #     }
-  #
-  #     rental = Rental.create(rental_data)
-  #
-  #     rental.valid?.must_equal false
-  #   end
-  #
-  #   it "must have due_date" do
-  #
-  #     rental_data = {
-  #       customer_id: (customers(:one)).id,
-  #       movie_id: (movies(:one)).id,
-  #       check_out_date: Date.today.to_s,
-  #       due_date: nil
-  #     }
-  #
-  #     rental = Rental.create(rental_data)
-  #
-  #     rental.valid?.must_equal false
-  #   end
-  # end
 
 end
