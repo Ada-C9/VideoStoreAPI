@@ -5,7 +5,7 @@ class RentalsController < ApplicationController
     Rental.rental_date(rental)
     if rental.save
       Rental.build_rental(rental)
-      render json: rental_params, status: :ok
+      render(json: rental.as_json(only: [:customer_id, :movie_id]), status: :ok)
     else
       #failure
       render json: {errors: rental.errors.messages }, status: :bad_request
@@ -29,6 +29,6 @@ class RentalsController < ApplicationController
 
   private
   def rental_params
-    params.permit(:customer_id, :movie_id)
+    params.permit(:customer_id, :movie_id, :due_date, :checked_out, :checkout_date)
   end
 end
