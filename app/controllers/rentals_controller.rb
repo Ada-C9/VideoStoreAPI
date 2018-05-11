@@ -3,11 +3,9 @@ class RentalsController < ApplicationController
   def checkout
     rental = Rental.new(rental_params)
     Rental.rental_date(rental)
-
     if rental.save
       Rental.build_rental(rental)
       render json: rental_params, status: :ok
-
     else
       #failure
       render json: {errors: rental.errors.messages }, status: :bad_request

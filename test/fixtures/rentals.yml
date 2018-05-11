@@ -5,6 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 
+
 rental1:
     customer_id: kari.id
     movie_id: robots.id
