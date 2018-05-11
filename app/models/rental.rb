@@ -41,8 +41,9 @@ class Rental < ApplicationRecord
   end
 
   def self.process_checkin(customer, movie)
-    Customer.find(@rental.customer.id).update_attributes movies_checked_out_count: customer.movies_checked_out_count-1
+    Customer.find(customer.id).update_attributes movies_checked_out_count: customer.movies_checked_out_count-1
 
-    Movie.find(@rental.movie.id).update_attributes available_inventory: movie.available_inventory+1
+    Movie.find(movie.id).update_attributes available_inventory: movie.available_inventory+1
   end
+
 end

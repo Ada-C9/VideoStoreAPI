@@ -98,13 +98,13 @@ describe RentalsController do
 
   describe "checkin" do
 
-      customer_id = Customer.first.id
-      movie_id = Movie.first.id
+    customer_id = Customer.first.id
+    movie_id = Movie.first.id
 
-      url_data = {
-        customer_id: customer_id,
-        movie_id: movie_id
-      }
+    url_data = {
+      customer_id: customer_id,
+      movie_id: movie_id
+    }
 
     it "responds with success" do
 

@@ -46,11 +46,8 @@ class RentalsController < ApplicationController
     @rental.checkin_date = Date.today
     @rental.save
 
-    movie_id = @rental.movie_id
-    customer_id = @rental.customer_id
-
-    customer = Customer.find_by(id: customer_id)
-    movie = Movie.find_by(id: movie_id)
+    customer = Customer.find_by(id: @rental.customer_id)
+    movie = Movie.find_by(id: @rental.movie_id)
 
     if @rental.save
 
