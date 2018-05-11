@@ -1,3 +1,4 @@
+# require 'pry'
 class RentalsController < ApplicationController
   def checkout
     customer = Customer.find_by(id: check_params[:customer_id])
@@ -37,11 +38,14 @@ class RentalsController < ApplicationController
   def checkin
     @rental = Rental.find_by(customer_id: check_params[:customer_id], movie_id: check_params[:movie_id] )
 
+
     if @rental.nil?
+
       render json: {errors: {id: ["No such rental with customer ID #{check_params[:customer_id]} and movie ID #{check_params[:movie_id]}"]}}, status: :not_found
+      return
     end
 
-    @rental.checkin_date = DateTime.now
+    @rental.checkin_date = Date.today
     @rental.save
 
     movie_id = @rental.movie_id

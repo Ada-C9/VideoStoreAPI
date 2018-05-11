@@ -1,5 +1,6 @@
 require "test_helper"
 require "Date"
+require "pry"
 
 describe RentalsController do
   describe "checkout" do
@@ -55,7 +56,6 @@ describe RentalsController do
       movie = Movie.first
 
       post check_out_path(customer_id: customer.id, movie_id: movie.id)
-
       customer.reload
       amount = customer.movies_checked_out_count
 
@@ -69,8 +69,8 @@ describe RentalsController do
       pre_inventory = movie.available_inventory
 
       post check_out_path(customer_id: customer.id, movie_id: movie.id)
-
       movie.reload
+
       post_inventory = movie.available_inventory
 
       post_inventory.must_equal pre_inventory - 1
@@ -80,13 +80,13 @@ describe RentalsController do
 
   describe "checkin" do
 
-    customer_id = Customer.first.id
-    movie_id = Movie.first.id
+      customer_id = Customer.first.id
+      movie_id = Movie.first.id
 
-    url_data = {
-      customer_id: customer_id,
-      movie_id: movie_id
-    }
+      url_data = {
+        customer_id: customer_id,
+        movie_id: movie_id
+      }
 
     it "responds with success" do
 
@@ -107,23 +107,18 @@ describe RentalsController do
       post check_in_url, params: url_data
 
       rental = Rental.find_by(customer_id: url_data[:customer_id], movie_id: url_data[:movie_id])
-      rental.checkin_date.must_equal DateTime.now
+      rental.checkin_date.must_equal Date.today
+
     end
 
     it "does not checkin an invalid rental" do
-      url_data[:movie_id].delete
-
-
-      bad_data = {
-        customer_id: customer_id,
-        movie_id: movie_id
-      }
+      bad_data = url_data.clone
+      bad_data.delete(:movie_id)
 
       post check_out_url, params: url_data
       post check_in_url, params: bad_data
 
-      must_respond_with :bad_request
-
+      must_respond_with :not_found
 
     end
 
