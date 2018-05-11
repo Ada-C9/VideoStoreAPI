@@ -1,0 +1,28 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+mary:
+  name: mary
+  registered_at: 2018-05-07 14:24:47
+  address: 945 21st
+  city: Seattle
+  state: Wa
+  postal_code: 98073
+  phone: 424234123
+
+sally:
+  name: sally
+  registered_at: 2018-05-07 14:24:47
+  address: 112 22st
+  city: sammamish
+  state: Wa
+  postal_code: 98074
+  phone: 421234541
+
+cherry:
+  name: cherry
+  registered_at: 2018-05-07 14:24:47
+  address: 112 22st
+  city: sammamish
+  state: Wa
+  postal_code: 98074
+  phone: 421234541
