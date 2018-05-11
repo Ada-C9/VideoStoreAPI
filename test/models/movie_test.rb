@@ -55,11 +55,13 @@ describe Movie do
     end
 
     it 'is invalid if available_inventory is negative' do
-      #try to check out when available_inventory is 0
-    end
+      movie= movies(:gijane)
 
-    it 'is invalid if inventory is zero or less' do
-      # cannot be created with 0
+      movie.dec_avail_inventory
+      movie.dec_avail_inventory
+      movie.dec_avail_inventory
+
+      movie.wont_be :valid?
     end
   end
 
