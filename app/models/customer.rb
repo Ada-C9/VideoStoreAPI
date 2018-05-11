@@ -5,8 +5,6 @@ class Customer < ApplicationRecord
 
   validates :postal_code, length: { is: 5 }
 
-  # validates :phone, length: { is: 10 }
-
   def movies_checked_out_count
     movies = self.rentals.select{ |rental| rental.status == 'checked_out' }
 
