@@ -113,9 +113,7 @@ describe RentalsController do
       rental_count = Rental.all.count
       rental = rentals(:one)
 
-      data = {
-        customer_id: rental.customer.id,
-        movie_id: rental.movie.id}
+      data = {movie_id: rental.movie.id}
 
       post rental_update_path(data)
 
@@ -127,9 +125,7 @@ describe RentalsController do
       rental = rentals(:one)
 
       post rental_update_path(
-        {
-        customer_id: rental.customer.id,
-        movie_id: rental.movie.id}
+        {movie_id: rental.movie.id}
       )
       response.header['Content-Type'].must_include 'json'
     end
@@ -138,9 +134,7 @@ describe RentalsController do
       rental = rentals(:one)
 
       post rental_update_path(
-        {
-        customer_id: rental.customer.id,
-        movie_id: rental.movie.id}
+        {movie_id: rental.movie.id}
       )
 
       body = JSON.parse(response.body)
@@ -154,12 +148,38 @@ describe RentalsController do
       starting_available_inventory = rental.movie.available_inventory
 
       post rental_update_path(
-        {
-        customer_id: rental.customer.id,
-        movie_id: rental.movie.id}
+        {movie_id: rental.movie.id}
       )
 
       Movie.find(rental.movie.id).available_inventory.must_equal (starting_available_inventory + 1)
+    end
+
+    describe "Invalid update requests" do
+
+      it "update rental returns a status of bad_request for invalid movie id" do
+        # rental_count = Rental.all.count
+        # rental = rentals(:one)
+        #
+        # data = {
+        #   movie_id: nil}
+        #
+        # post rental_update_path(data)
+        #
+        # must_respond_with :success
+        # Rental.count.must_equal rental_count
+      end
+
+      it "update rental returns a status of bad_request for invalid customer id" do
+
+      end
+
+      it "update rental for invalid customer id does not decrement available_inventory" do
+
+      end
+
+      it "cannot update rental movie with available_inventory == inventory, responds  :bad_request response, does not increment available_inventory" do
+
+      end
     end
   end
 
