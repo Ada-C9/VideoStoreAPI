@@ -22,9 +22,9 @@ class RentalsController < ApplicationController
           customer.save
         end
 
-        Customer.find(@rental.customer_id).update_attributes movies_checked_out_count: customer.movies_checked_out_count+1
+        customer.update! movies_checked_out_count: customer.movies_checked_out_count+1
 
-        Movie.find(@rental.movie_id).update_attributes available_inventory: movie.available_inventory-1
+        movie.update! available_inventory: movie.available_inventory-1
         render :check, status: :ok
 
       else
@@ -36,6 +36,10 @@ class RentalsController < ApplicationController
 
   def checkin
     @rental = Rental.find_by(customer_id: check_params[:customer_id], movie_id: check_params[:movie_id] )
+
+    if @rental.nil?
+      render json: {errors: {id: ["No such rental with customer ID #{check_params[:customer_id]} and movie ID #{check_params[:movie_id]}"]}}, status: :not_found
+    end
 
     @rental.checkin_date = DateTime.now
     @rental.save

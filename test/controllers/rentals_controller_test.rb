@@ -56,6 +56,7 @@ describe RentalsController do
 
       post check_out_path(customer_id: customer.id, movie_id: movie.id)
 
+      customer.reload
       amount = customer.movies_checked_out_count
 
       amount.must_equal 1
@@ -69,6 +70,7 @@ describe RentalsController do
 
       post check_out_path(customer_id: customer.id, movie_id: movie.id)
 
+      movie.reload
       post_inventory = movie.available_inventory
 
       post_inventory.must_equal pre_inventory - 1
