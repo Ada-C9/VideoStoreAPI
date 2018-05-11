@@ -15,5 +15,9 @@ describe Movie do
     movie.wont_be :valid?
   end
 
-  # Maybe raise an error if inventory = 0?
+  # it "can get a customer from movie through rentals" do
+  #   movie = Movie.first
+  #
+  #
+  # end
 end
