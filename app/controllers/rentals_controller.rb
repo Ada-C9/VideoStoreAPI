@@ -35,6 +35,8 @@ class RentalsController < ApplicationController
 
     if chosen_movie && rental.save
       Movie.decrement(chosen_movie)
+      customer = Customer.find_by(id: params[:customer_id])
+      customer.add_movie
       render json: {id: rental.id}, status: :ok
     else
       render json: {ok: false, errors: rental.errors}, status: :bad_request
@@ -56,6 +58,8 @@ class RentalsController < ApplicationController
 
     if rental_movie
       Movie.increment(rental_movie)
+      customer = Customer.find_by(id: params[:customer_id])
+      customer.remove_movie
       render json: {id: rental_movie.id}, status: :ok
     elsif rental_movie.nil?
       render json: {ok: false}, status: :bad_request
