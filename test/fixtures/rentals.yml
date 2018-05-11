@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  movie: one
+  checkout_date: 2018-05-07
+
+two:
+  checkout_date: 2018-05-07
+
+three:
+  customer: one
+  movie_id: one
+  checkout_date: 2018-05-07
+  checkin_date: 2018-05-12
