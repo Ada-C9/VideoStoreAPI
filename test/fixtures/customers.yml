@@ -1,0 +1,32 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+tommy:
+  name: Tommy Pickles
+  registered_at: Wed, 29 Apr 2015 07:54:14 -0700
+  address: 45 Walnut St
+  city: Toledo
+  state: Ohio
+  postal_code: 49333
+  phone: 983-323-3343
+
+dee:
+  name: Space Jam
+  registered_at: Wed, 29 Apr 2015 07:54:14 -0700
+  address: 100 Pike St
+  city: Seattle
+  state: WA
+  postal_code: 98110
+  phone: 983-323-3344
+
+chucky:
+  name: Chucky
+  registered_at: Wed, 1 Mar 2017 09:54:00 -0700
+  address: 45 Walnut St
+  city: Toledo
+  state: Ohio
+  postal_code: 49333
+  phone: 983-323-2222
