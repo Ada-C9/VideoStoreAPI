@@ -4,7 +4,8 @@ class RentalsController < ApplicationController
     rental = Rental.new(rental_params)
 
     movie = find_rental_movie(rental_params)
-    #cutsomer existence
+    customer = find_rental_customer(rental_params)
+
     if movie.nil?
       render json: {errors: "Movie with id #{rental_params[:movie_id]} doesn't exist"}, status: :bad_request
       return
@@ -17,6 +18,7 @@ class RentalsController < ApplicationController
 
     if rental.save
       movie.decrement_available_inventory
+      customer.increment_movies_checked_out_count
       render json: { id: rental.id, due_date: rental.due_date }, status: :ok
     else
       render json: { errors: rental.errors.messages }, status: :bad_request
@@ -44,6 +46,7 @@ class RentalsController < ApplicationController
     else
       if rental.save
         movie.increment_available_inventory
+        customer.decrement_movies_checked_out_count
         render json: { id: rental.id, "check-in date": rental.updated_at }, status: :ok
       else
         render json: { errors: rental.errors.messages }, status: :bad_request
@@ -59,6 +62,10 @@ class RentalsController < ApplicationController
 
   def find_rental_movie(rental_params)
     return Movie.find_by(id: rental_params[:movie_id])
+  end
+
+  def find_rental_customer(rental_params)
+    return Customer.find_by(id: rental_params[:customer_id])
   end
 
 end
