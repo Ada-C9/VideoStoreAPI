@@ -27,7 +27,14 @@ class RentalsController < ApplicationController
 
         render json: {id: rental.id}, status: :ok
       else
-        render json: {ok: false, errors: rental.errors}, status: :bad_request
+        if rental.nil?
+          "no available_inventory for movie"
+        elsif rental.errors.nil?
+          error_messages = "cannot specify"
+        else
+          error_messages = rental.errors
+        end
+        render json: {ok: false, errors: error_messages}, status: :bad_request
       end
     end
   end
