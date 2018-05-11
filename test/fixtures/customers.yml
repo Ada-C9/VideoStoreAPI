@@ -1,0 +1,52 @@
+  # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Shelley Rocha
+
+
+two:
+  name: Curran Stout
+
+
+three:
+  name: Roanna Robinson
+
+
+four:
+  name: Carolyn Chandler
+
+
+five:
+  name: Aquila Riddle
+
+
+six:
+  name: Phyllis Russell
+
+
+seven:
+  name: Rajah Riggs
+
+
+eight:
+  name: Amanda Curtis
+
+
+nine:
+  name: Jacqueline Perry
+
+
+ten:
+  name: Quinlan Rich
+
+
+eleven:
+  name: Ciara Summers
+
+
+twelve:
+  name: Alfreda Hines
+
+
+thirteen:
+  name: Eugenia Roberson
