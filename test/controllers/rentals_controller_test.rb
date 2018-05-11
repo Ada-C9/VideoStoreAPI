@@ -3,6 +3,15 @@ require "test_helper"
 describe RentalsController do
   describe 'checkout' do
 
+    let(:rental_data) {
+    {
+      customer_id: 1,
+      movie_id: 1,
+      due_date: "12-10-2000",
+      checked_out: false
+    }
+  }
+
     it 'returns a json object' do
       customer_id = customers(:kari).id
       post new_rental_path("Robots Of Eternity"), params: { rental: {customer_id: customer_id } }
