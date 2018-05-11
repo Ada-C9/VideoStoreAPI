@@ -38,7 +38,9 @@ class RentalsController < ApplicationController
   end
 
   def checkin
-    rental = Rental.find_by(params[:id])
+    rental = Rental.find_by(customer_id: params[:customer_id], movie_id: params[:movie_id])
+    puts "DPR: found rental #{rental}"
+    # binding.pry
 
     if rental[:checkout].nil? || rental[:due_date].nil?
       render json: {
@@ -49,12 +51,11 @@ class RentalsController < ApplicationController
       }, status: :bad_request
       return
     end
-    movie = Movie.find_by(rental.movie_id)
-    movie[:inventory] += 1
-    if movie.save
-      render json: { id: movie.id }, status: :ok
+    rental.movie.inventory += 1
+    if rental.movie.save
+      render json: { id: rental.movie.id }, status: :ok
     else
-      render json: { errors: movie.errors.messages }, status: :bad_request
+      render json: { errors: rental.movie.errors.messages }, status: :bad_request
     end
   end
 

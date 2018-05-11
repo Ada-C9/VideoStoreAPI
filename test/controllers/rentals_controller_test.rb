@@ -1,21 +1,21 @@
 require "test_helper"
 
 describe RentalsController do
-  before do
-    @movie = Movie.first
-    customer = Customer.first
-    @date = Date.today
-
-    @rental_data = {
-      checkout: nil,
-      due_date: nil,
-      customer_id: customer.id,
-      movie_id: @movie.id
-    }
-
-  end
 
   describe 'checkout' do
+    before do
+      @movie = Movie.first
+      customer = Customer.first
+      @date = Date.today
+
+      @rental_data = {
+        checkout: nil,
+        due_date: nil,
+        customer_id: customer.id,
+        movie_id: @movie.id
+      }
+
+    end
     it 'is real route' do
       post checkout_path, params: @rental_data
 
@@ -72,47 +72,48 @@ describe RentalsController do
   end
 
   describe 'checkin' do
-    it 'is real route' do
-      post checkout_path, params: @rental_data
-      assert_response :success
+    before do
+      date = Date.today
+      @movie = Movie.first
+      customer = Customer.first
 
-      post checkin_path, params: @rental_data
+      @rental = {
+        checkout: date,
+        due_date: date + 7,
+        customer_id: customer.id,
+        movie_id: @movie.id
+      }
+      Rental.create!(@rental)
+    end
+
+    it 'is real route' do
+      post checkin_path, params: @rental
 
       must_respond_with :success
     end
 
     it 'renders json' do
-      post checkin_path, params: @rental_data
+      post checkin_path, params: @rental
 
       response.header['Content-Type'].must_include 'json'
     end
 
     it 'can checkin a movie and changes the inventory when checked in' do
       before_inventory_count = @movie.inventory
-      before_count = Rental.count
 
-      post checkout_path, params: @rental_data
-      assert_response :success
-      Rental.count.must_equal before_count + 1
-
-      post checkin_path, params: @rental_data
+      post checkin_path, params: @rental
       assert_response :success
 
       @movie.reload
-      # binding.pry
       @movie.inventory.must_equal before_inventory_count + 1
     end
 
     it 'throws an error if a movie is not checked out and you attempt a checkin' do
       before_inventory_count = @movie.inventory
-
-      post checkin_path, params: @rental_data
-      assert_response :success
-
       @movie.reload
 
       assert_no_difference "#{@movie.inventory}" do
-        post checkin_path, params: @rental_data
+        post checkin_path, params: @rental
         assert_response :bad_request
       end
 
