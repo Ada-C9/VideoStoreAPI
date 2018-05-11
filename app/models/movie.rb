@@ -9,6 +9,6 @@ class Movie < ApplicationRecord
 
   private
   def default_inventory
-    
+    self.available_inventory ||= self.inventory
   end
 end
