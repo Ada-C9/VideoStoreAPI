@@ -21,10 +21,12 @@ class RentalsController < ApplicationController
           customer.movies_checked_out_count = 0
           customer.save
         end
-        Customer.find(@rental.customer_id).update_attributes movies_checked_out_count:  customer.movies_checked_out_count+1
+
+        Customer.find(@rental.customer_id).update_attributes movies_checked_out_count: customer.movies_checked_out_count+1
 
         Movie.find(@rental.movie_id).update_attributes available_inventory: movie.available_inventory-1
         render :check, status: :ok
+
       else
         render json: {errors: { unknown: ["Something went wrong"]}}, status: :bad_request
       end

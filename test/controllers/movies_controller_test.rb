@@ -29,7 +29,8 @@ describe MoviesController do
       title: "Hook",
       overview: "Robin Williams duh",
       release_date: 1997,
-      inventory: 5
+      inventory: 5,
+      available_inventory: 10
     }
 
     it "Creates a new movie" do
