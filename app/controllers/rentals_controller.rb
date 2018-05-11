@@ -26,13 +26,6 @@ class RentalsController < ApplicationController
     end
   end
 
-  #   def create
-  #   pet = Pet.new(pet_params)
-  #   pet.save!
-  #   render json: { id: pet.id }, status: :ok
-  # end
-
-
   def checkin
     movie = Movie.find_by(id: params[:movie_id])
     customer = Customer.find_by(id: params[:customer_id])
@@ -41,16 +34,15 @@ class RentalsController < ApplicationController
     customer.movies << movie
 
     if customer.save
-      # render your rental as json
-      rental = Rental.where(movie_id: movie.id, customer_id: customer, checkin_date: nil).take
+      rental = Rental.where(movie_id: movie.id, customer_id: customer.id).take
 
-      rental.checkin_date = DateTime.now
+      if rental.due_date.class == Date
+        rental.due_date = nil
 
-      render json: rental.as_json(only: [:id, :checkout_date, :due_date, :checkin_date]), status: :ok
+        render json: rental.as_json(only: [:id, :checkout_date, :due_date]), status: :ok
+      end
     else
       render json: { errors: rental.errors.messages }, status: :bad_request
     end
   end
-
-  # add logic for verifying that the checkin date is before the checkout date
 end
