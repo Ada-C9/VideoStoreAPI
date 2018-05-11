@@ -36,4 +36,34 @@ class RentalsController < ApplicationController
       render json: { errors: new_rental.errors.messages }, status: :bad_request
     end
   end
+<<<<<<< HEAD
+=======
+
+  def checkin
+    rental = Rental.find_by(customer_id: params[:customer_id], movie_id: params[:movie_id])
+    puts "DPR: found rental #{rental}"
+    # binding.pry
+
+    if rental[:checkout].nil? || rental[:due_date].nil?
+      render json: {
+        errors: {
+          checkout: ["Movie has not been checked out."],
+        due_date: ["Movie has not been checked out."]
+        }
+      }, status: :bad_request
+      return
+    end
+    rental.movie.inventory += 1
+    if rental.movie.save
+      render json: { id: rental.movie.id }, status: :ok
+    else
+      render json: { errors: rental.movie.errors.messages }, status: :bad_request
+    end
+  end
+
+  private
+  def rental_params
+    return params.permit(:checkout, :due_date, :customer_id, :movie_id)
+  end
+>>>>>>> d768dc997c69c5a1e06c96e55bfede0479014987
 end
