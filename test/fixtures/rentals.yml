@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+rental_one:
+  customer: nora
+  movie: babe
+  checkout_date: 2018-05-07
+  returned?: false
+
+rental_two:
+  customer: sara
+  movie: keanu
+  checkout_date: 2018-05-07
+  returned?: false
