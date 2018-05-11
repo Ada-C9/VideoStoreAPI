@@ -34,10 +34,13 @@ class RentalsController < ApplicationController
       render json: {ok: false}, status: :bad_request
     else
       rental_movie = Movie.returnable_movie?(Movie.find_by(id: params[:movie_id]))
+      customer = Customer.find_by(id: params[:customer_id])
 
       if rental_movie
         Movie.increment(rental_movie)
+        customer.remove_movie
         render json: {id: rental_movie.id}, status: :ok
+
       else
         render json: {ok: false}, status: :bad_request
       end
