@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  checkout_date: 2018-05-08
+  due_date: 2018-05-15
+  returned: false
+  customer: curr
+  movie: savior
+
+two:
+  checkout_date: 2018-05-08
+  due_date: 2018-05-15
+  returned: true
+  customer: curr
+  movie: blacksmith
+
+three:
+  checkout_date: 2018-05-08
+  due_date: 2018-05-15
+  returned: true
+  customer: shell
+  movie: blacksmith
