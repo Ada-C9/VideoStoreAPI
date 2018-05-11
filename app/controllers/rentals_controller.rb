@@ -25,7 +25,7 @@ class RentalsController < ApplicationController
       # this renders multiple times so I commented it out
       # I'm unsure why its rendering multiple times
       # I set this up to send a bad request/not_found for nil values for ids in params and also test if movie can be rented
-      
+
       # render json: {ok: false }, status: :not_found
     else
       chosen_movie = Movie.available_movie?(chosen_movie.id)
@@ -41,11 +41,20 @@ class RentalsController < ApplicationController
   end
 
   def update
-    rental_movie = Movie.find_by(id: params[:movie_id])
+    # changed the test to return not_found and account for nil passed in params and invalid id passed in params
+
+    if params[:movie_id].nil?
+      # accounts for nil value and only sends a single bad render status
+      rental_movie = nil
+    else
+      rental_movie = Movie.find_by(id: params[:movie_id])
+    end
 
     if rental_movie
       Movie.increment(rental_movie)
       render json: {id: rental_movie.id}, status: :ok
+    elsif rental_movie.nil?
+      render json: {ok: false}, status: :bad_request
     else
       render json: {ok: false, errors: rental_movie.errors}, status: :bad_request
     end

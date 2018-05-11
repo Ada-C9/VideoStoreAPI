@@ -156,29 +156,51 @@ describe RentalsController do
 
     describe "Invalid update requests" do
 
-      it "update rental returns a status of bad_request for invalid movie id" do
-        # rental_count = Rental.all.count
-        # rental = rentals(:one)
-        #
-        # data = {
-        #   movie_id: nil}
-        #
-        # post rental_update_path(data)
-        #
-        # must_respond_with :success
-        # Rental.count.must_equal rental_count
+      it "update rental returns a status of bad_request for nil movie id value" do
+        rental_count = Rental.all.count
+        rental = rentals(:one)
+
+        data = {
+          movie_id: nil}
+
+        post rental_update_path(data)
+
+        must_respond_with :bad_request
+        Rental.count.must_equal rental_count
       end
 
-      it "update rental returns a status of bad_request for invalid customer id" do
+      it "update rental returns a status of bad_request for invalid movie id value" do
+        rental_count = Rental.all.count
+        rental = rentals(:one)
 
+        data = {
+          movie_id: -999}
+
+        post rental_update_path(data)
+
+        must_respond_with :bad_request
+        Rental.count.must_equal rental_count
       end
 
-      it "update rental for invalid customer id does not decrement available_inventory" do
+      it "cannot update rental movie with available_inventory == inventory" do
 
-      end
+        rental_count = Rental.all.count
+        rental = rentals(:one)
 
-      it "cannot update rental movie with available_inventory == inventory, responds  :bad_request response, does not increment available_inventory" do
+        movie = movies(:four)
+        movie.available_inventory.must_equal movie.inventory
 
+        initial_inventory = movie.available_inventory
+
+        data = {
+          movie_id: movie.id
+        }
+
+        post rental_update_path(data)
+
+        must_respond_with :bad_request
+        Rental.count.must_equal rental_count
+        movie.available_inventory.must_equal initial_inventory
       end
     end
   end
