@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+HP:
+  title: All Harry Potter Movies
+  overview: A movie about a wizard boy and his friends
+  release_date: 2018-05-07
+  inventory: 3
+
+LOTR:
+  title: Lord of the Rings
+  overview: A quest to find the ring
+  release_date: 2018-05-07
+  inventory: 1
+
+HP2:
+  title: ONLY the second Harry Potter movie
+  overview: He's still young. It's mostly about quidditch.
+  release_date: 2012-04-03
+  inventory: 1

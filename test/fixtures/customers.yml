@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+dan:
+  name: Dan
+  registered_at: 2018-05-07 13:41:00
+  address: Lives at Ada
+  city: Seattle
+  state: WA
+  postal_code: 98109
+  phone: 234-234-2345
+
+kari:
+  name: Kari
+  registered_at: 2018-05-07 13:41:00
+  address: Also lives at Ada
+  city: Seattle
+  state: WA
+  postal_code: 98101
+  phone: 456-345-2346
+
+dee:
+  name: Dee
+  registered_at: 2018-05-07 13:41:00
+  address: Also lives at Ada
+  city: Seattle
+  state: WA
+  postal_code: 98101
+  phone: 456-345-2346
+
+chris:
+  name: Chris
+  registered_at: 2018-05-07 13:41:00
+  address: Also lives at Ada
+  city: Seattle
+  state: WA
+  postal_code: 98101
+  phone: 456-345-2346
