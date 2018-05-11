@@ -12,9 +12,11 @@ class RentalsController < ApplicationController
     if rental.save
       movie = Movie.find_by(id: rental.movie_id)
       movie.dec_avail_inventory
+      movie.save
 
       customer = Customer.find_by(id: rental.customer_id)
       customer.inc_checked_out_count
+      customer.save
 
       render json: { id: rental.id }, status: :ok
     else
@@ -29,16 +31,17 @@ class RentalsController < ApplicationController
       render json: {
         "errors": {
           "id": ["No rental with #{params[:id]}"]
-        }, status: :not_found
-      }
+        }
+      }, status: :not_found
     else
-      # logic for increasing available_inventory
       movie = Movie.find_by(id: rental.movie_id)
       movie.inc_avail_inventory
+      movie.save
 
       customer = Customer.find_by(id: rental.customer_id)
       customer.dec_checked_out_count
-      # logic for increasing available_inventory
+      customer.save
+
       rental.check_in = Date.today
       rental.save
 

@@ -11,12 +11,12 @@ class Customer < ApplicationRecord
   end
 
   def dec_checked_out_count
-    # this method decrements available_inventory for that movie by 1; we call this in movies_controller check_out method
+
     self.movies_checked_out_count -= 1
   end
 
   def inc_checked_out_count
-    # this method increments available_inventory for that movie by 1; we call this in movies_controller check_in method
+
     self.movies_checked_out_count += 1
   end
 

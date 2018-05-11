@@ -5,7 +5,7 @@ class Movie < ApplicationRecord
   validates :title, presence: true
   validate :available_inventory_cannot_be_greater_than_inventory
 
-  validates :available_inventory, numericality: { only_integer: true, greater_than_or_equal_to: 0}
+  validates :available_inventory, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   validates :inventory, numericality: { only_integer: true, greater_than: 0 }
 
