@@ -49,4 +49,16 @@ describe Movie do
       movie.rentals.count.must_equal 0
     end
   end
+
+  describe 'available_inventory' do
+
+    it 'returns the correct number of available to rent items' do
+      movies(:two).available_inventory.must_equal 9
+    end
+
+    it 'returns 0 if there are no available movies' do
+      movies(:one).available_inventory.must_equal 0
+    end
+
+  end
 end
