@@ -22,7 +22,7 @@ class RentalsController < ApplicationController
       if rental.save
         # if the rental custom validations pass, set rental attributes
         # and return rental id and status
-        
+
         # increase the customer's checked-out movie number
         customer.movies_checked_out_count += 1
         customer.save

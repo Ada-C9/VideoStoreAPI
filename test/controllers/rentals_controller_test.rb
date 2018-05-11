@@ -18,6 +18,8 @@ describe RentalsController do
 
     it "checks out a movie" do
       keys = %w(id)
+      customer.reload
+      count = customer.movies_checked_out_count
       assert_difference "Rental.count", 1 do
         post rentals_check_out_path, params: { movie_id: movie.id, customer_id: customer.id}
       end
@@ -27,6 +29,7 @@ describe RentalsController do
       body.keys.sort.must_equal keys
       rental_id = body["id"]
       Rental.find(rental_id).movie.id.must_equal movie.id
+      Rental.find(rental_id).customer.movies_checked_out_count.must_equal count + 1
 
     end
     it "does not checkout a movie that is not available" do
