@@ -20,7 +20,11 @@ describe Customer do
 
   describe 'validations' do
     it "can be created with valid info" do
-      
+      customer = Customer.new(name: "test customer")
+
+      result = customer.valid?
+
+      result.must_equal true
     end
 
     it "must have a name to be valid" do
@@ -29,7 +33,13 @@ describe Customer do
     end
 
     it 'is invalid if movies_checked_out_count is less than zero' do
-      # cannot be created with 0
+      customer = customers(:no_name)
+      
+      customer.dec_checked_out_count
+      customer.dec_checked_out_count
+      customer.dec_checked_out_count
+
+      customer.wont_be :valid?
     end
   end
 end
