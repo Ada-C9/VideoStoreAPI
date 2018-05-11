@@ -15,9 +15,9 @@ describe Movie do
     movie.wont_be :valid?
   end
 
-  # it "can get a customer from movie through rentals" do
-  #   movie = Movie.first
-  #
-  #
-  # end
+  it "must respond to customer" do
+    movie = Movie.first
+    movie.must_respond_to :rentals
+
+  end
 end
