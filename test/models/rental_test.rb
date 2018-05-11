@@ -52,7 +52,7 @@ describe Rental do
       rental.customer.movies_checked_out_count = 5
       rental.checked_out = false
 
-      Rental.build_rental(rental)
+      rental.build_rental
       Movie.first.available_inventory.must_equal 6
       Customer.first.movies_checked_out_count.must_equal 6
       rental.checked_out.must_equal true
@@ -64,7 +64,7 @@ describe Rental do
       rental.customer = nil
       movie.available_inventory = 7
 
-      proc { Rental.build_rental(rental) }.must_raise
+      proc { rental.build_rental }.must_raise
     end
   describe 'build return' do
     it 'updates inventory, customer checked out count, and status for returned movie' do
@@ -76,7 +76,7 @@ describe Rental do
       rental.customer.movies_checked_out_count = 50
       rental.checked_out = true
 
-      Rental.build_return(rental)
+      rental.build_return
       Movie.first.available_inventory.must_equal 2
       Customer.first.movies_checked_out_count.must_equal 49
       rental.checked_out.must_equal false
@@ -88,7 +88,7 @@ describe Rental do
       rental.customer = Customer.first
       customer_movies = customer.movies_checked_out_count
 
-      proc { Rental.build_return(rental) }.must_raise
+      proc { rental.build_return }.must_raise
       customer_movies.must_equal Customer.first.movies_checked_out_count
     end
   end

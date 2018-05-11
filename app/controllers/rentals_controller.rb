@@ -1,32 +1,31 @@
 class RentalsController < ApplicationController
 
   def checkout
-    rental = Rental.new(rental_params)
-    Rental.rental_date(rental)
+    @rental = Rental.new(rental_params)
+    @rental.check_date
 
-
-    if rental.save
-      Rental.build_rental(rental)
+    if @rental.save
+      @rental.build_rental
       render json: rental_params, status: :ok
     else
       #failure
-      render json: {errors: rental.errors.messages }, status: :bad_request
+      render json: {errors: @rental.errors.messages }, status: :bad_request
     end
   end
 
 
   def check_in
-    rental = Rental.find_by(customer_id: params[:customer_id], movie_id: params[:movie_id])
+    @rental = Rental.find_by(customer_id: params[:customer_id], movie_id: params[:movie_id])
 
-    if rental.nil?
+    if @rental.nil?
         render json: {
           "errors": {
             "id": ["No rental with id #{params[:id]}"]
           }
           }, status: :not_found
     else
-      Rental.build_return(rental)
-      render(json: rental.as_json(only: [:customer_id, :movie_id]), status: :ok)
+      @rental.build_return
+      render(json: @rental.as_json(only: [:customer_id, :movie_id]), status: :ok)
     end
   end
 
