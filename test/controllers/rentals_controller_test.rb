@@ -6,7 +6,7 @@ describe RentalsController do
       old_rentals_count = Rental.count
       movie = Movie.first
       customer = Customer.first
-      get checkout_path, params: { movie_id: movie.id, customer_id: customer.id }
+      post checkout_path, params: { movie_id: movie.id, customer_id: customer.id }
       response.header['Content-Type'].must_include 'json'
       must_respond_with :success
       Rental.count.must_equal old_rentals_count + 1
@@ -20,7 +20,7 @@ describe RentalsController do
       old_rentals_count = Rental.count
       movie_id = Movie.last.id + 1
       customer = Customer.first
-      get checkout_path, params: { movie_id: movie_id, customer_id: customer.id }
+      post checkout_path, params: { movie_id: movie_id, customer_id: customer.id }
       response.header['Content-Type'].must_include 'json'
       must_respond_with :bad_request
       Rental.count.must_equal old_rentals_count
@@ -30,7 +30,7 @@ describe RentalsController do
       old_rentals_count = Rental.count
       movie = Movie.first
       customer_id = Customer.last.id + 1
-      get checkout_path, params: { movie_id: movie.id, customer_id: customer_id }
+      post checkout_path, params: { movie_id: movie.id, customer_id: customer_id }
       response.header['Content-Type'].must_include 'json'
       must_respond_with :bad_request
       Rental.count.must_equal old_rentals_count
@@ -45,7 +45,7 @@ describe RentalsController do
       movie.reload
       old_rentals_count = Rental.count
 
-      get checkout_path, params: { movie_id: movie.id, customer_id: customer.id }
+      post checkout_path, params: { movie_id: movie.id, customer_id: customer.id }
       response.header['Content-Type'].must_include 'json'
       must_respond_with :bad_request
       Rental.count.must_equal old_rentals_count
@@ -60,7 +60,7 @@ describe RentalsController do
 
       @rental.return_date.must_be_nil
 
-      get checkin_path, params: {rental_id: @rental.id}
+      post checkin_path, params: { movie_id: @rental.movie_id, customer_id: @rental.customer_id }
       @rental.reload
       @rental.return_date.must_equal Date.today
 
@@ -68,10 +68,11 @@ describe RentalsController do
 
     it "must respond with not_found for a rental that DNE" do
 
-      rental_id = @rental.id + 1
+      movie_id = Movie.last.id + 1
+      customer_id = Customer.last.id + 1
 
-      get checkin_path, params: { rental_id: rental_id}
-      
+      post checkin_path, params: { movie_id: movie_id, customer_id: customer_id}
+
       response.header['Content-Type'].must_include 'json'
       must_respond_with :not_found
 
