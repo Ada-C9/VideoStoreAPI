@@ -45,12 +45,12 @@ class RentalsController < ApplicationController
     customer_id = params[:customer_id].to_i
 
     rental = Rental.where(movie_id: movie_id, customer_id: customer_id).where.not(due_date: nil).first
-    binding.pry
 
     # make sure it's a valid rental???
     if rental && rental.due_date != nil
 
       rental.due_date = nil
+
       unless rental.save
         render json: { errors: rental.errors.messages }, status: :bad_request
         return

@@ -78,12 +78,9 @@ end
       end
 
       it "should set due_date to nil for rental record" do
+        post rentals_check_in_url, params: { movie_id: movie.id, customer_id: customer.id }
 
-
-        assert_difference "Rental.count", 1 do
-          post rentals_check_in_url, params: { movie_id: movie.id, customer_id: customer.id }
-        end
-
+        assert_response :success
         rental.reload
         rental.due_date.must_be_nil
       end
