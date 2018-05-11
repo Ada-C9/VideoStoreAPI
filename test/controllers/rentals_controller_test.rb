@@ -106,14 +106,11 @@ describe RentalsController do
 
       rental = Rental.find_by(customer_id: url_data[:customer_id], movie_id: url_data[:movie_id])
       rental.checkin_date.must_equal DateTime.now
-
-
-
     end
 
     it "does not checkin an invalid rental" do
-      customer_id = Customer.first.id
-      movie_id = Movie.first.id + 1
+      url_data[:movie_id].delete
+
 
       bad_data = {
         customer_id: customer_id,
@@ -123,7 +120,7 @@ describe RentalsController do
       post check_out_url, params: url_data
       post check_in_url, params: bad_data
 
-      must_respond_with :not_found
+      must_respond_with :bad_request
 
 
     end

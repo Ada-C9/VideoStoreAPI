@@ -4,12 +4,16 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {
-  title: "Little Mermaid",
-  overview: "Kids movie about a mermaid"
-  }
+one:
+  title: Little Mermaid
+  overview: Kids movie about a mermaid
 
-two: {
-  title: "Lion King",
-  overview: "Kids movie about a lion"
-  }
+
+two:
+  title: Lion King
+  overview: Kids movie about a lion
+
+
+three:
+  title: The shining
+  overview: Scary ghost movie
