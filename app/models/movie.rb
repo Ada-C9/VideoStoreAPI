@@ -10,8 +10,8 @@ class Movie < ApplicationRecord
   validates :inventory, numericality: { only_integer: true, greater_than: 0 }
 
   after_initialize do |movie|
-      self.inventory ||= 0
-      self.available_inventory ||= self.inventory
+    self.inventory ||= 0
+    self.available_inventory ||= self.inventory
   end
 
   def dec_avail_inventory
@@ -25,13 +25,13 @@ class Movie < ApplicationRecord
     self.available_inventory += 1
   end
 
-private
+  private
 
-# See: http://guides.rubyonrails.org/active_record_validations.html#custom-methods
-def available_inventory_cannot_be_greater_than_inventory
-  if available_inventory > inventory
-    errors.add(:available_inventory, "Can't be greater than inventory value")
+  # See: http://guides.rubyonrails.org/active_record_validations.html#custom-methods
+  def available_inventory_cannot_be_greater_than_inventory
+    if available_inventory > inventory
+      errors.add(:available_inventory, "Can't be greater than inventory value")
+    end
   end
-end
 
 end
