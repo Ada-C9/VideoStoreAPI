@@ -18,7 +18,9 @@ class RentalsController < ApplicationController
 
     if rental.save
       movie.decrement_available_inventory
+      movie.save
       customer.increment_movies_checked_out_count
+      customer.save
       render json: { id: rental.id, due_date: rental.due_date }, status: :ok
     else
       render json: { errors: rental.errors.messages }, status: :bad_request
@@ -41,7 +43,9 @@ class RentalsController < ApplicationController
     else
       if rental.save
         movie.increment_available_inventory
+        movie.save
         customer.decrement_movies_checked_out_count
+        customer.save
         render json: { id: rental.id, "check-in date": rental.updated_at }, status: :ok
       else
         render json: { errors: rental.errors.messages }, status: :bad_request
