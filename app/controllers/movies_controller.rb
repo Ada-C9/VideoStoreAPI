@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
 
   def index
     movies = Movie.all
-    render json:movies.as_json(only: [:title, :release_date, :id]), status: :ok
+    render json: movies.as_json(only: [:title, :release_date, :id]), status: :ok
   end
 
   def show
@@ -18,13 +18,12 @@ class MoviesController < ApplicationController
   def create
     movie = Movie.new(movie_params)
 
-    #adding this for movie create smoketest - because smoketest doesn't have :available_inventory
     if movie[:available_inventory].nil?
       movie[:available_inventory] = movie[:inventory]
     end
 
     if movie.save
-      render json:movie.as_json(only: [:id]), status: :ok
+      render json: movie.as_json(only: [:id]), status: :ok
     else
       render json: {ok: false, errors: movie.errors}, status: :bad_request
     end

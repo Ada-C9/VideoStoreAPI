@@ -35,5 +35,12 @@ describe CustomersController do
       end
     end
 
+    it "works with no customers" do
+      Customer.destroy_all
+
+      get customers_url
+      must_respond_with :success
+    end
+
   end
 end

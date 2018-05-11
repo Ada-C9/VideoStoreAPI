@@ -26,18 +26,16 @@ describe MoviesController do
       body.length.must_equal Movie.count
     end
 
-    it "returns no movies if there are no movies, status :not_found" do
+    it "returns no movies if there are no movies, status :ok" do
       Movie.destroy_all
 
       get movies_url
       must_respond_with :ok
       body = JSON.parse(response.body)
       body.length.must_equal Movie.count
-
     end
 
     it "returns movies with exactly the required fields" do
-
       keys = %w(title release_date id)
 
       get movies_url
@@ -55,7 +53,6 @@ describe MoviesController do
     end
 
     it "returns movies with exactly the required fields" do
-
       keys = %w(title overview release_date inventory available_inventory)
       get movie_path(movies(:two).id)
 

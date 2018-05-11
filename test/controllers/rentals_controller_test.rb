@@ -2,69 +2,82 @@ require "test_helper"
 
 describe RentalsController do
   describe "create" do
-    it "it is a real, working route" do
-      rental_count = Rental.count
+    describe "valid rental requests" do
+      it "it is a real, working route" do
+        rental_count = Rental.count
 
-      customer_movie_info = {
-        customer_id: customers(:one).id,
-        movie_id: movies(:one).id
-      }
-      post rental_path(customer_movie_info)
+        customer_movie_info = {
+          customer_id: customers(:one).id,
+          movie_id: movies(:one).id
+        }
+        post rental_path(customer_movie_info)
 
-      must_respond_with :success
-      Rental.count.must_equal (rental_count + 1)
+        must_respond_with :success
+        Rental.count.must_equal (rental_count + 1)
+      end
+
+      it "returns json" do
+        customer_movie_info = {
+          customer_id: customers(:one).id,
+          movie_id: movies(:one).id
+        }
+        post rental_path(customer_movie_info)
+
+        response.header['Content-Type'].must_include 'json'
+      end
+
+      it "returns the correct rental" do
+        customer_movie_info = {
+          customer_id: customers(:one).id,
+          movie_id: movies(:one).id
+        }
+        post rental_path(customer_movie_info)
+
+        body = JSON.parse(response.body)
+        body.length.must_equal 1
+        body["id"].must_equal Rental.last.id
+      end
+
+      it "decrements the movie's available_inventory" do
+        test_movie = movies(:one)
+        initial_inventory = test_movie.available_inventory
+
+        customer_movie_info = {
+          customer_id: (customers(:one)).id,
+          movie_id: test_movie.id
+        }
+
+        post rental_path(customer_movie_info)
+        Movie.find(test_movie.id).available_inventory.must_equal (initial_inventory - 1)
+      end
+
+      it "decrements the movie's available_inventory when available_inventory is 1" do
+        test_movie = movies(:five)
+        initial_inventory = test_movie.available_inventory
+
+        customer_movie_info = {
+          customer_id: (customers(:one)).id,
+          movie_id: test_movie.id
+        }
+
+        post rental_path(customer_movie_info)
+        Movie.find(test_movie.id).available_inventory.must_equal (initial_inventory - 1)
+      end    
     end
 
-    it "returns json" do
-      customer_movie_info = {
-        customer_id: customers(:one).id,
-        movie_id: movies(:one).id
-      }
-      post rental_path(customer_movie_info)
-
-      response.header['Content-Type'].must_include 'json'
-    end
-
-    it "returns the correct rental" do
-      customer_movie_info = {
-        customer_id: customers(:one).id,
-        movie_id: movies(:one).id
-      }
-      post rental_path(customer_movie_info)
-
-      body = JSON.parse(response.body)
-      body.length.must_equal 1
-      body["id"].must_equal Rental.last.id
-    end
-
-    it "decrements the movie's available_inventory" do
-      test_movie = movies(:one)
-      initial_inventory = test_movie.available_inventory
-
-      customer_movie_info = {
-        customer_id: (customers(:one)).id,
-        movie_id: test_movie.id
-      }
-
-      post rental_path(customer_movie_info)
-      Movie.find(test_movie.id).available_inventory.must_equal (initial_inventory - 1)
-    end
-
-    it "decrements the movie's available_inventory when available_inventory is 1" do
-      test_movie = movies(:five)
-      initial_inventory = test_movie.available_inventory
-
-      customer_movie_info = {
-        customer_id: (customers(:one)).id,
-        movie_id: test_movie.id
-      }
-
-      post rental_path(customer_movie_info)
-      Movie.find(test_movie.id).available_inventory.must_equal (initial_inventory - 1)
-    end
-
-    # should we also add the json response for a bad request as well?
     describe "Invalid rental responses" do
+      it "catches rental requests for unavailable movies" do
+        rental_count = Rental.count
+
+        customer_movie_info = {
+          customer_id: customers(:one).id,
+          movie_id: movies(:three)
+        }
+        post rental_path(customer_movie_info)
+
+        must_respond_with :bad_request
+        Rental.count.must_equal rental_count
+      end
 
       it "create rental returns a status of not_found for invalid movie id" do
         test_movie = movies(:one)
