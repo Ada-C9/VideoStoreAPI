@@ -2,33 +2,23 @@ require 'pry'
 
 class RentalsController < ApplicationController
   def checkout
-    customer = Customer.find_by(id: check_params[:customer_id])
-    movie = Movie.find_by(id: check_params[:movie_id])
+    customer_id = check_params[:customer_id]
+    movie_id = check_params[:movie_id]
 
-    if customer.nil?
-      render json: {errors: {id: ["No such customer with ID #{check_params[:customer_id]}"]}}, status: :not_found
-    elsif movie.nil?
-      render json: { errors: { id: ["No such movie with ID #{check_params[:movie_id]}"]}}, status: :not_found
-    elsif movie.available_inventory < 1
-      render json: { errors: { id: ["No copies of the movie with ID #{check_params[:movie_id]} are available"]}}, status: :not_found
+    find_customer_and_movie(customer_id, movie_id)
+
+    errors = Rental.check_dependencies(@customer, @movie)
+
+    if errors
+      render json: {errors: errors}, status: :not_found
     else
-      customer_id = customer.id
-      movie_id = movie.id
-      checkout_date = DateTime.now
-      due_date = checkout_date + 7
-      checkin_date = nil
 
-      @rental = Rental.new(customer_id: customer_id, movie_id: movie_id, checkout_date: checkout_date, due_date: due_date, checkin_date: checkin_date)
+      @rental = Rental.create_checkout(@customer, @movie)
 
       if @rental.save
-        if customer.movies_checked_out_count == nil
-          customer.movies_checked_out_count = 0
-          customer.save
-        end
 
-        customer.update! movies_checked_out_count: customer.movies_checked_out_count+1
+        Rental.process_checkout(@customer, @movie)
 
-        movie.update! available_inventory: movie.available_inventory-1
         render :check, status: :ok
 
       else
@@ -39,26 +29,23 @@ class RentalsController < ApplicationController
   end
 
   def checkin
-    @rental = Rental.find_by(customer_id: check_params[:customer_id], movie_id: check_params[:movie_id] )
+
+    customer_id = check_params[:customer_id]
+    movie_id = check_params[:movie_id]
+
+    find_customer_and_movie(customer_id, movie_id)
+
+    @rental = find_rental(customer_id, movie_id)
 
     if @rental.nil?
       render json: {errors: {id: ["No such rental with customer ID #{check_params[:customer_id]} and movie ID #{check_params[:movie_id]}"]}}, status: :not_found
     end
 
     @rental.checkin_date = DateTime.now
-    @rental.save
-
-    movie_id = @rental.movie_id
-    customer_id = @rental.customer_id
-
-    customer = Customer.find_by(id: customer_id)
-    movie = Movie.find_by(id: movie_id)
 
     if @rental.save
 
-      Customer.find(@rental.customer_id).update_attributes movies_checked_out_count: customer.movies_checked_out_count-1
-
-      Movie.find(@rental.movie_id).update_attributes available_inventory: movie.available_inventory+1
+      Rental.process_checkin(customer, movie)
 
       render :check, status: :ok
     else
@@ -70,5 +57,14 @@ class RentalsController < ApplicationController
   private
   def check_params
     params.permit(:customer_id, :movie_id)
+  end
+
+  def find_customer_and_movie(customer_id, movie_id)
+    @customer = Customer.find_by(id: customer_id)
+    @movie = Movie.find_by(id: movie_id)
+  end
+
+  def find_rental(customer_id, movie_id)
+    @rental = Rental.find_by(customer_id: customer_id, movie_id: movie_id)
   end
 end

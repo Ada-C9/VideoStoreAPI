@@ -29,7 +29,7 @@ describe RentalsController do
 
       body = JSON.parse(response.body)
       body.must_include "errors"
-      body["errors"]["id"].must_equal ["No such customer with ID #{customer_id}"]
+      body["errors"]["customer_id"].must_equal ["No such customer"]
     end
 
     it "can't post to the checkout path w/ invalid movie" do
@@ -46,7 +46,7 @@ describe RentalsController do
 
       body = JSON.parse(response.body)
       body.must_include "errors"
-      body["errors"]["id"].must_equal ["No such movie with ID #{movie_id}"]
+      body["errors"]["movie_id"].must_equal ["No such movie"]
     end
 
     it "movies_checked_out_count increases when checkout is ran" do
@@ -90,7 +90,7 @@ describe RentalsController do
 
       body = JSON.parse(response.body)
       body.must_include "errors"
-      body["errors"]["id"].must_equal ["No copies of the movie with ID #{movie.id} are available"]
+      body["errors"]["inventory"].must_equal ["No copies of that movie are available"]
     end
 
   end
