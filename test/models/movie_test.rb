@@ -105,6 +105,7 @@ describe Movie do
       params_hash = {}
 
       result = Movie.request_query(params_hash)
+      result.must_be_kind_of Array
       result.each do |movie|
         movie.must_be_kind_of Movie
       end
