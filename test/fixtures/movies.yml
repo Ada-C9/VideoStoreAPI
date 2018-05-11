@@ -1,0 +1,67 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+# one: {}
+# # column: value
+# #
+# two: {}
+# # column: value
+
+day:
+  title: Independents Day
+  overview: The best worst movie ever
+  release_date: 1996-07-04
+  inventory: 10
+breakfast:
+  title: Breakfast at Tiffany's
+  overview: The original manic pixie dreamgirl takes Manhattan
+  release_date: 1961-04-11
+  inventory: 2
+backbone:
+  title: The Devil's Backbone
+  overview: As close as Guillermo del Toro ever gets to understatement.
+  release_date: 2001-04-20
+  inventory: 5
+get:
+  title: Get Out
+  overview: We have met the enemy and he is us.
+  release_date: 2017-02-24
+  inventory: 15
+once:
+  title: Once Upon a Time in Anatolia
+  overview: Want to watch something really long? Here you go!!
+  release_date: 2011-09-23
+  inventory: 1
+synedoche:
+  title: Synecdoche, New York
+  overview: Of all Charlie Kauffman movies, this is the Charlie Kauffman-est.
+  release_date: 2008-11-21
+  inventory: 3
+after:
+  title: After Last Season
+  overview: Some movies are so bad, they're good.  And some movies are much, much worse.
+  release_date: 2009-06-05
+  inventory: 12
+wanda:
+  title: Wanda
+  overview: Rarely seen, feminist touchstone crime film.
+  release_date: 1974-02-28
+  inventory: 1
+lights:
+  title: City Lights
+  overview: The Little Tramp's most heartbreaking work. This cut lacks the legendary drain-poking scene.
+  release_date: 1931-03-07
+  inventory: 1
+fast:
+  title: Fast, Cheap, & Out-Of-Control
+  overview: Errol Morris spotlights a collection of charming obsessives.
+  release_date: 1997-09-07
+  inventory: 2
+paris:
+  title: Paris is Burning
+  overview: profoundly influential documentary about the underground, gay ball scene in NYC
+  release_date: 1991-08-16
+  inventory: 1

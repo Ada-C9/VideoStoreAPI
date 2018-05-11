@@ -1,0 +1,35 @@
+ada:
+  name: Ada Lovelace
+  registered_at: Wed, 16 Apr 2017 21:40:20 -0700
+  address: 123 Developers Academy Way
+  city: Seattle
+  state: WA
+  postal_code: 98102
+  phone: (206) 949-6758
+
+grace:
+  name: Grace Hopper
+  registered_at: Mon, 30 Apr 2018 21:40:20 -0700
+  address: 42 Pi Street
+  city: Atlanta
+  state: GA
+  postal_code: 30064
+  phone: (770) 951-1599
+
+dorothy:
+  name: Dorothy Vaughan
+  registered_at: Sun, 29 Apr 2018 21:40:20 -0700
+  address: 3 Surd Drive
+  city: Hampton
+  state: VA
+  postal_code: 23668
+  phone: (757) 727-2121
+
+heddy:
+  name: Heddy LaMarr
+  registered_at: Sat, 28 Apr 2018 21:40:20 -0700
+  address: 12 Mullholland Drive
+  city: Los Angeles
+  state: CA
+  postal_code: 90036
+  phone: (323) 922-3441

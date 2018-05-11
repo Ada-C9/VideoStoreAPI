@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+ada_get:
+  check_in_date: nil
+  movie: get
+  customer: ada
+
+grace_day:
+  check_in_date: nil
+  movie: day
+  customer: grace
+
+ada_day:
+  check_in_date: nil
+  movie: day
+  customer: ada
+
+ada_after:
+  check_in_date: 2018-05-03
+  movie: after
+  customer: ada
+
+ada_wanda:
+  check_in_date: nil
+  movie: wanda
+  customer: ada
+
+dorothy_fast:
+  check_in_date: 2018-05-04
+  movie: fast
+  customer: dorothy
+
+dorothy_paris:
+  check_in_date: 2018-04-30
+  movie: paris
+  customer: dorothy
