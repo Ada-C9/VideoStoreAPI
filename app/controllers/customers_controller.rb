@@ -1,6 +1,10 @@
 class CustomersController < ApplicationController
   def index
-    customers = Customer.where(name: params[:search])
+    if params[:search].nil?
+      customers = Customer.all
+    else
+      customers = Customer.where(name: params[:search])
+    end
     render json: customers.as_json(except: [:created_at, :updated_at], status: :ok)
   end
 
@@ -25,12 +29,12 @@ class CustomersController < ApplicationController
     else
       render json: {
         errors: customer.errors.messages
-      }, status: :bad_request
+        }, status: :bad_request
+      end
+    end
+
+    private
+    def customer_params
+      return params.require(:customer).permit(:name, :address, :city, :state, :postal_code, :registered_at)
     end
   end
-
-  private
-  def customer_params
-    return params.require(:customer).permit(:name, :address, :city, :state, :postal_code, :registered_at)
-  end
-end

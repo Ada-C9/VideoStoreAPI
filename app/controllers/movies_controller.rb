@@ -1,7 +1,11 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.where(title: params[:title])
+    if params[:title].nil?
+      @movies = Movie.all
+    else
+      @movies = Movie.where(title: params[:title])
+    end
     render 'movies/index'
   end
 
@@ -31,7 +35,7 @@ class MoviesController < ApplicationController
 
     private
     def movie_params
-      return params.require(:movie).permit(:title, :overwiew, :inventory, :release_date)
+      return params.permit(:title, :overwiew, :inventory, :release_date)
     end
 
   end

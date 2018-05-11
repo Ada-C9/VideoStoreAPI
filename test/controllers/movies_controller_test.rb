@@ -11,10 +11,10 @@ describe MoviesController do
     end
 
     it "returns movies with a name that matches the search" do
-      get movies_url, params: {search: "Bob Esponja"}
+      get movies_url, params: {title: "Laberinto del Fauno"}
       body = JSON.parse(response.body)
       body.each do |movie|
-        movie["name"].must_equal "Bob Esponja"
+        movie["title"].must_equal "Laberinto del Fauno"
       end
     end
 
@@ -68,7 +68,7 @@ describe MoviesController do
 
     it "should create a new valid movie" do
       old_movie_count = Movie.count
-      post movies_url, params: { movie: movie_data }
+      post movies_url, params: movie_data
       Movie.count.must_equal old_movie_count + 1
       newest_movie = Movie.last
       newest_movie.title.must_equal movie_data[:title]
