@@ -40,7 +40,6 @@ class RentalsController < ApplicationController
     end
   end
 
-
   private
 
   def rental_params

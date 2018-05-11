@@ -6,14 +6,21 @@ describe Customer do
 
   describe 'relations' do
     it 'checks that a customer already exists' do
-      ava = customers(:ava)
-      value(ava).must_be :valid?
+      customer = Customer.find_by(name: "ava")
+      customer.must_be_nil
+    end
+
+    it "connects customer and rental customer_id" do
+      movie = Movie.first
+      customer = Customer.first
+      rental = Rental.new(movie_id: movie.id, customer_id: customer.id)
+      rental.customer_id.must_equal customer.id
     end
   end
 
   describe 'validations' do
     it "can be created with valid info" do
-      skip
+      
     end
 
     it "must have a name to be valid" do

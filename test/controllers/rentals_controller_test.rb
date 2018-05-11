@@ -70,8 +70,5 @@ describe RentalsController do
       assert_response :not_found
     end
 
-    it 'can handle already checked in' do
-
-    end
   end
 end
