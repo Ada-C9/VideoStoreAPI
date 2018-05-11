@@ -77,6 +77,83 @@ describe Movie do
       new_result = @movie.available
       new_result.must_equal original_avail
     end
+  end
+
+  describe "Movie.request_query" do
+
+    it "takes in a hash and returns a collection of movies" do
+      params_hash = {
+        "sort" => "title",
+        "p" => "2",
+        "n" => "5"
+      }
+      expected_length = 5
+      sorted_movies = Movie.all.order(:title)
+
+      result = Movie.request_query(params_hash)
+      result.must_be_kind_of Array
+      result.each do |movie|
+        movie.must_be_kind_of Movie
+      end
+      result.length.must_equal expected_length
+      names = result.map { |movie| movie.title }
+      names.sort.must_equal names
+      result.must_equal sorted_movies[5..9]
+    end
+
+    it "works if params hash empty" do
+      params_hash = {}
+
+      result = Movie.request_query(params_hash)
+      result.each do |movie|
+        movie.must_be_kind_of Movie
+      end
+      result.length.must_equal Movie.count
+    end
+
+    it "work if only one optional" do
+      params_hash = {
+        "p" => "2",
+      }
+
+      result = Movie.request_query(params_hash)
+      result.must_be_kind_of Array
+      result.each do |movie|
+        movie.must_be_kind_of Movie
+      end
+      result.length.must_equal 3
+    end
+
+    it "works if two optionals" do
+      params_hash = {
+        "p" => "4",
+        "n" => "3"
+      }
+
+      result = Movie.request_query(params_hash)
+      result.must_be_kind_of Array
+      result.each do |movie|
+        movie.must_be_kind_of Movie
+      end
+      result.length.must_equal 3
+    end
+
+    it "works if all random incorrect params" do
+      params_hash = {
+        "kitties"=> "something",
+        "banana"=> "5",
+        "n"=> "bananas"
+      }
+
+      result = Movie.request_query(params_hash)
+      result.must_be_kind_of Array
+      result.each do |movie|
+        movie.must_be_kind_of Movie
+      end
+      result.length.must_equal Movie.count
+    end
+
+
 
   end
 
