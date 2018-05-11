@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
   end
 
   def increment_movies_checked_out_count
-      self.available_inventory += 1
+      self.movies_checked_out_count += 1
   end
 
 end

@@ -68,6 +68,9 @@ describe Customer do
     end
 
     it "reduces movies checkout out count for specific customer by 1" do
+      @customer.movies_checked_out_count = 1
+      @customer.save
+
       before_movies_count = @customer.movies_checked_out_count
 
       @customer.decrement_movies_checked_out_count
