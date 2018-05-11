@@ -18,6 +18,11 @@ class MoviesController < ApplicationController
   def create
     movie = Movie.new(movie_params)
 
+    #adding this for movie create smoketest - because smoketest doesn't have :available_inventory
+    if movie[:available_inventory].nil?
+      movie[:available_inventory] = movie[:inventory]
+    end
+
     if movie.save
       render json:movie.as_json(only: [:id]), status: :ok
     else
