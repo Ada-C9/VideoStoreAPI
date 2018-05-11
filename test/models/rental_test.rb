@@ -3,7 +3,6 @@ require "test_helper"
 describe Rental do
   let(:rental) { rentals(:one) }
 
-
   it "must be valid" do
     # rental = rentals(:one)
     movie = Movie.first
@@ -11,5 +10,13 @@ describe Rental do
     rental = Rental.new(movie_id: movie.id, customer_id: customer.id)
 
     value(rental).must_be :valid?
+  end
+
+  it "will be invalid without customer_id" do
+    skip
+  end
+
+  it "will be invalid without movie_id" do
+    skip
   end
 end

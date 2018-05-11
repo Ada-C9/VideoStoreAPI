@@ -5,16 +5,20 @@ describe Movie do
     before do
       # @customer = Customer.create!(name: "test customer")
       @customer = Customer.first
-      puts @customer.name
+
       @movie = Movie.new(title: "test movie")
       @movie.customers << @customer
     end
 
     it 'can connect customer to customer_id' do
+      skip
+      # write these for a rental
       @movie.customers.last.id.must_equal @customer.id
     end
 
     it 'has a list of customers' do
+      skip
+      # write these for a rental
       @movie.must_respond_to :customers
       second_cust = Customer.create!(name: "fake name")
       @movie.customers << second_cust
