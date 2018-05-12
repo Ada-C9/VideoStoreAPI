@@ -47,7 +47,7 @@ describe Customer do
     end
   end
 
-  describe 'moveis_check_out_count' do
+  describe 'movies_check_out_count' do
     it 'must be able to raise movie count for a customer' do
       proc {
         @customer_2.add_to_check_out_count
