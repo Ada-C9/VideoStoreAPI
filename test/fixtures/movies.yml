@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: "Black Panther"
+  overview: "An afrofuturism film about world resources"
+  release_date: 2018-03-20
+  inventory: 1
+
+two:
+  title: "Swamp Thing"
+  overview: "A woman falls in love with a swamp thing"
+  release_date: 2018-05-07
+  inventory: 1
+
+three:
+  title: "Fifth Element"
+  overview: "One of the best movies ever"
+  release_date: 1997-01-01
+  inventory: 10
