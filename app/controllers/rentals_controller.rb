@@ -15,18 +15,18 @@ class RentalsController < ApplicationController
 
     # initialize a rental
     rental = Rental.new(customer_id: customer_id, movie_id: movie_id, checkout_date: checkout_date, due_date: due_date)
-    # head :bad_request unless movie && customer
 
     if movie && customer
+
       # save rental if valid, otherwise send errors
       if rental.save
-        # if the rental custom validations pass, set rental attributes
-        # and return rental id and status
 
         # increase the customer's checked-out movie number
         customer.movies_checked_out_count += 1
         customer.save
 
+        # if the rental custom validations pass, set rental attributes
+        # and return rental id and status
         render json: { id: rental.id }, status: :ok
       else
         # if the rental's custom validations fail, render errors
@@ -36,17 +36,17 @@ class RentalsController < ApplicationController
     else
       render json: {errors: { id: ["Must enter a valid movie and customer"]}}, status: :bad_request
     end
-
-
   end
 
   def checkin
     movie_id = params[:movie_id].to_i
     customer_id = params[:customer_id].to_i
 
-    rental = Rental.where(movie_id: movie_id, customer_id: customer_id).where.not(due_date: nil).first
+    # rental = Rental.where(movie_id: movie_id, customer_id: customer_id).where.not(due_date: nil).first
 
-    # make sure it's a valid rental???
+    rental = Rental.where.not(due_date: nil).where(movie_id: movie_id, customer_id: customer_id).order(checkout_date: :desc).first
+    # rental = Rental.where(movie_id: movie_id, customer_id: customer_id).order(checkout_date: :desc).where.not(due_date: nil)
+
     if rental && rental.due_date != nil
 
       rental.due_date = nil

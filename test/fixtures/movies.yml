@@ -11,3 +11,9 @@ two:
   overview: "A woman falls in love with a swamp thing"
   release_date: 2018-05-07
   inventory: 1
+
+three:
+  title: "Fifth Element"
+  overview: "One of the best movies ever"
+  release_date: 1997-01-01
+  inventory: 10
