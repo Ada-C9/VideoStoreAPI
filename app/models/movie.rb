@@ -4,8 +4,6 @@ class Movie < ApplicationRecord
   validates :title, presence: true
   validates :release_date, presence: true
   validates :inventory, presence: true
-  #new validation (test needed)
-  # validates :available_inventory, presence: true
 
   def a_checkout
     if self.available_inventory > 0
@@ -19,5 +17,4 @@ class Movie < ApplicationRecord
   def a_check_in
     self.inventory+=1
   end
-
 end

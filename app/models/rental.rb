@@ -9,15 +9,16 @@ class Rental < ApplicationRecord
 
   def assign_check_out_date
     self.check_out = DateTime.now
+    self.save
   end
 
   def assign_due_date
     self.due_date = self.check_out+ 7.days
+    self.save
   end
 
   def assign_check_in_date
     self.check_out = DateTime.now
-
+    self.save
   end
-
 end

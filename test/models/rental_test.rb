@@ -35,29 +35,14 @@ describe Rental do
       @rental_phantom.errors.messages.values[0][0].must_equal "must exist"
       @rental_phantom.errors.messages.values[1][0].must_equal "can't be blank"
     end
-
-    it 'will raise an error with a missing check_in' do
-      @rental_lion.check_in = nil
-      @rental_lion.check_in.must_be_nil
+    it 'will raise an error with a missing check_out' do
+      @rental_lion.check_out = nil
+      @rental_lion.check_out.must_be_nil
       @rental_lion.valid?.must_equal false
       @rental_lion.errors.size.must_equal 1
-      @rental_lion.errors.messages.keys[0].must_equal :check_in
+      @rental_lion.errors.messages.keys[0].must_equal :check_out
       @rental_lion.errors.messages.values[0][0].must_equal "can't be blank"
-    end
-
-    it 'will raise an error with a missing check_out' do
-      # @rental_lion.check_out = nil
-      # @rental_lion.check_out.must_be_nil
-      # @rental_lion.valid?.must_equal false
-      # @rental_lion.errors.size.must_equal 1
-      # @rental_lion.errors.messages.keys[0].must_equal :check_out
-      # @rental_lion.errors.messages.values[0][0].must_equal "can't be blank"
-    end
-
-    # it 'a valid rental contains expected content' do
-    #   @rental_lion.customer_id
-    #   @
-    # end
+    end    
   end
 
   describe "relations" do
