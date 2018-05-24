@@ -26,6 +26,7 @@ describe CustomersController do
       body.length.must_equal Customer.count
     end
 
+    # not needed to check individual keys/attributes just confirm it is an instance of customer..ie .must be kind of customer
     it "customers must have requisite info" do
       keys = %w(id name phone postal_code registered_at movies_checked_out_count)
       get customers_url

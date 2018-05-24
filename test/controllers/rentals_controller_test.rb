@@ -3,7 +3,7 @@ require "test_helper"
 describe RentalsController do
   describe "create" do
     describe "valid rental requests" do
-      it "it is a real, working route" do
+      it "it creates a rental record" do
         rental_count = Rental.count
 
         customer_movie_info = {
@@ -52,6 +52,7 @@ describe RentalsController do
       end
 
       it "decrements the movie's available_inventory when available_inventory is 1" do
+        # update the fixture to include that it must have its inventory of 1 for testing this edge case
         test_movie = movies(:five)
         initial_inventory = test_movie.available_inventory
 
@@ -62,7 +63,18 @@ describe RentalsController do
 
         post rental_path(customer_movie_info)
         Movie.find(test_movie.id).available_inventory.must_equal (initial_inventory - 1)
-      end    
+      end
+
+      it "increments customer's checked out count" do
+        movie = movies(:two)
+        customer = customers(:one)
+        customer.movies_checked_out_count.must_equal 0
+        data = {movie_id: movie.id, customer_id: customer.id}
+
+        post rental_path(data)
+        customer.reload
+        customer.movies_checked_out_count.must_equal 1
+      end
     end
 
     describe "Invalid rental responses" do
@@ -129,35 +141,11 @@ describe RentalsController do
         must_respond_with :bad_request
         Movie.find(test_movie.id).available_inventory.must_equal 0
       end
-
-      it "increments customer's checked out count" do
-        movie = movies(:two)
-        customer = customers(:one)
-        customer.movies_checked_out_count.must_equal 0
-        data = {movie_id: movie.id, customer_id: customer.id}
-
-        post rental_path(data)
-        customer.reload
-        customer.movies_checked_out_count.must_equal 1
-      end
     end
   end
 
   describe "update" do
     describe "valid update requests" do
-      it "it is a real, working route" do
-        rental_count = Rental.count
-
-        movie = movies(:two)
-        customer = customers(:two)
-
-        data = {movie_id: movie.id, customer_id: customer.id}
-
-        post rental_update_path(data)
-
-        must_respond_with :success
-        Rental.count.must_equal rental_count
-      end
 
       it "returns json" do
         movie = movies(:two)
@@ -214,44 +202,47 @@ describe RentalsController do
         data = {
           movie_id: nil}
 
-        post rental_update_path(data)
+          post rental_update_path(data)
 
-        must_respond_with :bad_request
-        Rental.count.must_equal rental_count
-      end
+          must_respond_with :bad_request
+          Rental.count.must_equal rental_count
+        end
 
-      it "update rental returns a status of bad_request for invalid movie id value" do
-        rental_count = Rental.count
+        it "update rental returns a status of bad_request for invalid movie id value" do
+          rental_count = Rental.count
 
-        data = {
-          movie_id: -999}
+          data = {
+            movie_id: -999}
 
-        post rental_update_path(data)
+            post rental_update_path(data)
 
-        must_respond_with :bad_request
-        Rental.count.must_equal rental_count
-      end
-
-      it "cannot update rental movie with available_inventory == inventory" do
-
-        rental_count = Rental.count
-
-        movie = movies(:four)
-        movie.available_inventory.must_equal movie.inventory
-
-        initial_inventory = movie.available_inventory
-
-        data = {
-          movie_id: movie.id
-        }
-
-        post rental_update_path(data)
-
-        must_respond_with :bad_request
-        Rental.count.must_equal rental_count
-        movie.available_inventory.must_equal initial_inventory
-      end
-    end
-  end
+            must_respond_with :bad_request
+            Rental.count.must_equal rental_count
+          end
+# write a test that allows anyone to return a checkedout movie ...doesn't have to be returned with a customer id in the params
+it " " do
 
 end
+          it "cannot update rental movie with available_inventory == inventory" do
+
+            rental_count = Rental.count
+
+            movie = movies(:four)
+            movie.available_inventory.must_equal movie.inventory
+
+            initial_inventory = movie.available_inventory
+
+            data = {
+              movie_id: movie.id
+            }
+
+            post rental_update_path(data)
+
+            must_respond_with :bad_request
+            Rental.count.must_equal rental_count
+            movie.available_inventory.must_equal initial_inventory
+          end
+        end
+      end
+
+    end

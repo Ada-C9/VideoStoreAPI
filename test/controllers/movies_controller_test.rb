@@ -52,12 +52,18 @@ describe MoviesController do
       must_respond_with :success
     end
 
+    #This test was wrong, needs to be more specific and confirm based on added notes below:
     it "returns movies with exactly the required fields" do
       keys = %w(title overview release_date inventory available_inventory)
       get movie_path(movies(:two).id)
 
-      body = JSON.parse(response.body)
-      body.keys.sort.must_equal keys.sort
+      movie_object = JSON.parse(response.body)
+      movie_object.keys.sort.must_equal keys.sort
+
+      # should also show that is the same movie by confirming its a movie with the same id and movie name
+
+      movie_object.title.must_equal movies(:two).title
+
     end
 
     it "responds with not_found if get a movie given invalid id" do
@@ -92,6 +98,20 @@ describe MoviesController do
     end
 
     it "returns a bad request for a bad params data" do
+      movie_data[:title] = nil
+
+      proc{
+        post movies_url, params: movie_data
+      }.must_change "Movie.count", 0
+      must_respond_with :bad_request
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "title"
+    end
+
+# update tests to make sure defaults available inventory to inventory if avaialable inventory is input as nil.
+    it "" do
       movie_data[:title] = nil
 
       proc{
